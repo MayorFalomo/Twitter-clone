@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { useState } from "react";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import ForYouPosts from "@/components/foryouposts/ForYouPosts";
 import FollowersPosts from "@/components/followerspost/FollowersPosts";
 import { HomeContainer } from "@/styles/Home.styled";
+import Navbar from "@/components/navbar/Navbar";
+import Search from "@/components/search/Search";
+import Trends from "@/components/trends/Trends";
 
-// const inter = Inter({ subsets: ["latin"] });
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
@@ -17,7 +18,6 @@ export default function Home() {
   const handleClick = (param: number) => {
     setCurrent(param);
     setActive(!active);
-    console.log(param);
   };
 
   return (
@@ -28,7 +28,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className="mainHomePage" >
+        <Navbar/>
         <main>
           <div className="homeHeader">
             <div className="homeHeading">
@@ -54,6 +55,10 @@ export default function Home() {
             {current === 1 && <FollowersPosts />}
           </div>
         </main>
+        <div className="trendsContainer" >
+        <Search />
+          <Trends />
+          </div>
       </div>
     </HomeContainer>
   );

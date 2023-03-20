@@ -20,7 +20,6 @@ export const NavContainer = styled.div`
       gap: 30px;
       width: 100%;
       .logoContainer {
-        /* border: 2px red solid; */
         display: flex;
         justify-content: flex-start;
         width: 70%;
@@ -28,49 +27,59 @@ export const NavContainer = styled.div`
           padding: 10px 10px;
           border-radius: 50%;
           margin-top: 20px;
+          font-size: 35px;
         }
         .twitterLogo:hover {
           background-color: rgb(47, 51, 54);
         }
       }
-    }
-    span {
-      font-size: 35px;
-    }
+   
     ul {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       gap: 20px;
-      margin-right: 20px;
-      /* border: 2px red solid; */
+      /* border: 2px blue solid; */
       width: 100%;
-      a {
-        font-size: 25px;
-        cursor: pointer;
-      }
-
-      li {
+      li{
+        /* border: 2px yellow solid; */
+        width: 100%;
+        a{
         display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 25px;
+        align-items: center;
+        gap: 20px;
         width: 60%;
-        padding: 5px;
+         border-radius: 25px;
+          /* border: 2px red solid; */
+          padding: 10px;
+          cursor: pointer;
+       span{
+        font-size: 25px;
+       }
+        
+      }
+       .navIcon{
+          font-size:35px;
+          /* border: 2px blue solid; */
+        }
+         a:hover {
+            background-color: rgb(47, 51, 54);
+          }
+          
+      }
+      .tweetBtn{
+        width: 80%;
+         padding-top: 15px;
+         padding-bottom: 15px;
         padding-left: 5px;
         border-radius: 35px;
-        /* border: 2px yellow solid; */
-        .tweetBtn {
-          background-color: #1d9aef;
-          width: 90%;
-          text-align: center;
-          padding: 15px 25px;
-          border-top-left-radius: 30px;
-          border-bottom-left-radius: 30px;
-          border-top-right-radius: 30px;
-          border-bottom-right-radius: 30px;
-          font-weight: 700;
-        }
+        text-align: center;
+        background-color: #1d9aef;
+        border: none;
+        outline: none;
+        font-size: 25px;
+        cursor: pointer;
+        color: white;
+      }
       }
       .writeTweet {
         /* border: 2px red solid; */
@@ -80,11 +89,7 @@ export const NavContainer = styled.div`
         display: none;
       }
     }
-    li:hover {
-      background-color: rgb(47, 51, 54);
-
-      /* transition: 0.5s ease all; */
-    }
+   
 
     .bgImg {
       border: 2px rgb(47, 51, 54) solid;

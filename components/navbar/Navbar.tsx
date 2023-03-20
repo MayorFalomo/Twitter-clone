@@ -24,42 +24,55 @@ const Navbar = (props: any) => {
             </div>
             <ul>
               <li>
-                <span>{<RiHome7Line />} </span>
-                <a>Home </a>
+                <a>
+                {<RiHome7Line className="navIcon"  />}
+                  <span>Home </span>
+                  </a>
               </li>
               <li>
-                <span>{<RiHashtag />} </span>
-                <a>Explore</a>
+                <a>
+                <RiHashtag className="navIcon"  />
+                  <span>Explore</span>
+                  </a>
               </li>
               <li>
-                <span>{<BiBell />} </span>
-                <a>Notifications </a>
+                <a>
+                <BiBell className="navIcon" />
+                  <span>Notifications </span>
+                  </a>
               </li>
               <li>
-                <span>{<RxEnvelopeClosed />} </span>
-                <a>Messages </a>
+                <a>
+                <RxEnvelopeClosed className="navIcon" />
+                  <span>Messages </span>
+                  </a>
               </li>
               <li>
-                <span>{<IoBookmarkOutline />} </span>
-                <a>Bookmarks </a>
+                <a>
+                <IoBookmarkOutline className="navIcon" />
+                  <span>Bookmarks </span>
+                  </a>
               </li>
               <li>
-                <span>{<AiFillTwitterSquare />} </span>
-                <a>Twitter Blue </a>
+                <a>
+                <AiFillTwitterSquare className="navIcon" />
+                  <span>Twitter Blue </span>
+                  </a>
               </li>
               <li>
-                <span>{<BsPersonFill />} </span>
-                <a>Profile </a>
+                <a>
+                <BsPersonFill className="navIcon" />
+                  <span>Profile </span>
+                  </a>
               </li>
               <li>
-                <span>{<HiOutlineEllipsisHorizontalCircle />} </span>
-                <a>More </a>
+                <a>
+                <HiOutlineEllipsisHorizontalCircle className="navIcon" />
+                  <span>More </span>
+                  </a>
               </li>
 
-              <li>
-                <a className="writeTweet">{<RiQuillPenLine />} </a>
-                <a className="tweetBtn">Tweet </a>
-              </li>
+                <button className="tweetBtn">Tweet </button>
             </ul>
           </div>
           <div className="navProfile">

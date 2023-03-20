@@ -1,45 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ForYouContainer } from "./ForYou.styled";
 import { BsCardImage, BsEmojiSmile } from "react-icons/bs";
 import { Grid } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
-import { AiOutlineFileGif } from "react-icons/ai";
+import { AiOutlineBars, AiOutlineFileGif } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { IoLocationOutline } from "react-icons/io5";
-import axios from "axios";
+import Axios from "axios";
+import Tweets from "./posts/Tweets";
 
 type Props = {};
 
 const ForYouPosts = (props: any) => {
-  const gf = new GiphyFetch("KqU4HP3PerF9lHGPc2df7ZxzJo6TtuCs");
 
-  const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 });
-
-  const [gifs, setGifs] = useState(props.gifVid);
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
+  const [gif, setGif] = useState<any>([]);
 
-  console.log(gifs);
+
+  // useEffect(() => {
+  //   Axios.get('https://api.giphy.com/v1/gifs/random?api_key=KqU4HP3PerF9lHGPc2df7ZxzJo6TtuCs&tag=funny&rating=g').then((res) => console.log(res.data)).catch((err) => console.log(err)
+  //   )
+  // })
+
+  const postTweet = (e: any) => {
+    e.preventDefault();
+  }
+  
+
 
   return (
     <ForYouContainer>
       <div className="forYouPostContainer">
         <div className="userProfilePicture"></div>
-        <form>
+        <form onSubmit={postTweet} >
           <div
             className="textAreaContainer"
             onClick={() => setEveryOne(!false)}
           >
-            <textarea
+            <textarea className="textArea"
               placeholder="What's happening?"
               typeof="text"
-              autoFocus
-            ></textarea>
+              autoFocus/>
             {everyOne ? (
               <select>
-                <p>Choose Audience </p>
                 <option>Everyone </option>
               </select>
             ) : (
@@ -55,7 +61,9 @@ const ForYouPosts = (props: any) => {
                   {<AiOutlineFileGif fontSize="25" />}
                 </label>
                 <input type="file" id="fileInput" style={{ display: "none" }} />
-
+                <span>
+                  {<AiOutlineBars fontSize="25" cursor="pointer" />}{" "}
+                </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
                     {<BsEmojiSmile fontSize="25" cursor="pointer" />}
@@ -66,10 +74,11 @@ const ForYouPosts = (props: any) => {
                   </span>
                 )}
                 {emoji ? (
-                  <Picker data={data} onEmojiSelect={console.log} />
+                  <div className="pickerEmoji" ><Picker data={data} onEmojiSelect={console.log} /></div>
                 ) : (
                   ""
                 )}
+                
                 <span>
                   {<TbCalendarTime fontSize="25" cursor="pointer" />}{" "}
                 </span>
@@ -78,28 +87,29 @@ const ForYouPosts = (props: any) => {
                 </span>
               </div>
               <div className="tweetButton">
-                <button type="submit" disabled={everyOne == false}>
+                {everyOne ? <button type="submit">Tweet</button> : <button className="btn-primary"disabled>
                   Tweet{" "}
-                </button>
+                </button>}
               </div>
             </div>
           </div>
         </form>
       </div>
+      <Tweets/>
     </ForYouContainer>
   );
 };
 
 export default ForYouPosts;
 
-export const getStaticProps = async () => {
-  const res = await axios.get(
-    "https://api.giphy.com/v1/gifs/random?api_key=KqU4HP3PerF9lHGPc2df7ZxzJo6TtuCs&tag=funny&rating=g"
-  );
-  const initialData = res
-  return {
-    props: {
-        gifVid: initialData,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const {data} = await Axios.get(
+//     "https://www.boredapi.com/api/activity"
+//   )
+//   const post = data
+//   return {
+//     props: {
+//        props: {post}
+//     },
+//   };
+// };
