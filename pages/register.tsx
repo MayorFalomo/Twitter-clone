@@ -47,7 +47,7 @@ const register = (props: any) => {
                     getCurrentUser(res.user.uid)
         }).then(() =>
             router.push("/")
-        ).then(() => window.location.reload()).catch((err) => console.log(err))
+        ).catch((err) => console.log(err))
   }
   
 
@@ -64,6 +64,7 @@ const register = (props: any) => {
         email: email,
         password: passwords,
         profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
+        coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
         usersAt: `@${userNames}`,
         following: [],
         followers: [],

@@ -17,7 +17,12 @@ const ForYouPosts = (props: any) => {
 
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
-  const [gif, setGif] = useState<any>([]);
+  const [username, setUsername] = useState<boolean>(false);
+  const [tweet, setTweet] = useState<string>("");
+  const [photo, setPhoto] = useState<string>("");
+  const [video, setVideo] = useState<string>("");
+  const [gif, setGif] = useState<string>("");
+  
 
 
   // useEffect(() => {
@@ -27,6 +32,10 @@ const ForYouPosts = (props: any) => {
 
   const postTweet = (e: any) => {
     e.preventDefault();
+
+    const newTweet = {
+      
+    }
   }
   
 

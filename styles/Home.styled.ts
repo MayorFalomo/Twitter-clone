@@ -38,10 +38,10 @@ export const HomeContainer = styled.div`
       /* margin: 10px 10px; */
     }
   }
-  ul {
+  .postGroup {
     display: flex;
     justify-content: space-around;
-    border: 2px red solid;
+    /* border: 2px red solid; */
     a {
       font-size: 20px;
       /* border: 2px yellow solid; */
@@ -58,6 +58,7 @@ export const HomeContainer = styled.div`
       width: 50%;
       margin: 0 auto;
       padding: 10px 20px;
+      list-style: none;
     }
     .linkActive li {
       border-bottom: 6px #1d9aef solid;

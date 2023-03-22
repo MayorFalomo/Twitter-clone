@@ -10,6 +10,7 @@ import { AiFillTwitterSquare } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { HiOutlineEllipsisHorizontalCircle } from "react-icons/hi2";
 import { RiQuillPenLine } from "react-icons/ri";
+import Link from "next/link";
 
 type Props = {};
 
@@ -23,53 +24,53 @@ const Navbar = (props: any) => {
               <span className="twitterLogo">{<TfiTwitter />} </span>
             </div>
             <ul>
-              <li>
-                <a>
+              <Link href='/' ><li>
+                <div className="navLinkItems">
                 {<RiHome7Line className="navIcon"  />}
                   <span>Home </span>
-                  </a>
-              </li>
-              <li>
-                <a>
+                  </div>
+              </li></Link>
+              <Link href='./explore' ><li>
+                <div  className="navLinkItems" >
                 <RiHashtag className="navIcon"  />
                   <span>Explore</span>
-                  </a>
-              </li>
-              <li>
-                <a>
+                  </div>
+              </li></Link>
+              <Link href='./notifications' ><li>
+                <div className="navLinkItems">
                 <BiBell className="navIcon" />
                   <span>Notifications </span>
-                  </a>
-              </li>
-              <li>
-                <a>
+                  </div>
+              </li></Link>
+              <Link href='messages' ><li>
+                <div className="navLinkItems">
                 <RxEnvelopeClosed className="navIcon" />
                   <span>Messages </span>
-                  </a>
-              </li>
-              <li>
-                <a>
+                  </div>
+              </li></Link>
+              <Link href='bookmarks' ><li>
+                <div className="navLinkItems" >
                 <IoBookmarkOutline className="navIcon" />
                   <span>Bookmarks </span>
-                  </a>
-              </li>
+                  </div>
+              </li></Link>
               <li>
-                <a>
+                <div className="navLinkItems">
                 <AiFillTwitterSquare className="navIcon" />
                   <span>Twitter Blue </span>
-                  </a>
+                  </div>
               </li>
-              <li>
-                <a>
+              <Link href='./profile' ><li>
+                <div className="navLinkItems">
                 <BsPersonFill className="navIcon" />
                   <span>Profile </span>
-                  </a>
-              </li>
+                  </div>
+              </li></Link>
               <li>
-                <a>
+                <div className="navLinkItems">
                 <HiOutlineEllipsisHorizontalCircle className="navIcon" />
                   <span>More </span>
-                  </a>
+                  </div>
               </li>
 
                 <button className="tweetBtn">Tweet </button>

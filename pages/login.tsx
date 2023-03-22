@@ -33,6 +33,7 @@ const login = (props: any) => {
             username:  res.user.displayName,
             email: res.user.email,
             profilePic: res.user.photoURL,
+            coverphoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
             password: "12345",
             usersAt: `@${res.user.displayName}`,
             following: [],

@@ -1,10 +1,13 @@
+import Navbar from '@/components/navbar/Navbar'
 import React from 'react'
 
 type Props = {}
 
 const explore = (props: Props) => {
   return (
-    <div>explore</div>
+    <div>
+      <Navbar/>
+    </div>
   )
 }
 

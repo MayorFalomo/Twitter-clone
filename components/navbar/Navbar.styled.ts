@@ -42,8 +42,9 @@ export const NavContainer = styled.div`
       width: 100%;
       li{
         /* border: 2px yellow solid; */
+        list-style: none;
         width: 100%;
-        a{
+        .navLinkItems{
         display: flex;
         align-items: center;
         gap: 20px;
@@ -61,7 +62,7 @@ export const NavContainer = styled.div`
           font-size:35px;
           /* border: 2px blue solid; */
         }
-         a:hover {
+         .navLinkItems:hover {
             background-color: rgb(47, 51, 54);
           }
           

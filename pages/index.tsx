@@ -35,7 +35,7 @@ export default function Home() {
             <div className="homeHeading">
               <h1>Home </h1>
             </div>
-            <ul>
+            <ul className="postGroup" >
               <a
                 className={current === 0 ? "linkActive" : "link"}
                 onClick={() => handleClick(0)}

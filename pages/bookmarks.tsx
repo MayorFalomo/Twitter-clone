@@ -1,10 +1,13 @@
+import Navbar from '@/components/navbar/Navbar'
 import React from 'react'
 
 type Props = {}
 
 const bookmarks = (props: Props) => {
   return (
-    <div>bookmarks</div>
+    <div>
+      <Navbar/>
+    </div>
   )
 }
 
