@@ -7,6 +7,7 @@ import { HomeContainer } from "@/styles/Home.styled";
 import Navbar from "@/components/navbar/Navbar";
 import Search from "@/components/search/Search";
 import Trends from "@/components/trends/Trends";
+import Tweets from "@/components/foryouposts/posts/Tweets";
 
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
@@ -54,6 +55,7 @@ export default function Home() {
             {current === 0 && <ForYouPosts />}
             {current === 1 && <FollowersPosts />}
           </div>
+            <Tweets/>
         </main>
         <div className="trendsContainer" >
         <Search />

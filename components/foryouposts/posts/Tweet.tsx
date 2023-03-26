@@ -9,6 +9,8 @@ import Link from 'next/link';
 type Props = {}
 
 const Tweet = (props: any) => {
+
+  
   return (
       <Tweetstyled>
            <div className='postsContainer' >
@@ -18,7 +20,7 @@ const Tweet = (props: any) => {
                   <div className='tweetProfileDetails' >
               <h2>{props.tweet.username} </h2>
               <div className='tweetProfileFlex' >
-              <p>{props.tweet.usersAt} </p>
+              <p>{props.tweet.usersAt.slice(0, 8)}.. </p>
               <ul>
                 <li>{moment(new Date(props.tweet.createdAt)).fromNow()} </li>
                 </ul>
@@ -28,7 +30,7 @@ const Tweet = (props: any) => {
                     </div>
                     <p className='tweet-caption' >{props.tweet.tweet} </p>
                     {/* <img src={props.tweet.picture} className='tweet-image' alt='img' /> */}
-          <div style={{ backgroundImage: `url(${props.tweet.picture})` }} className='tweet-image' ></div>
+          {props.tweet.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet.picture})` }} className='tweet-image' ></div> : ""}
           <div className='tweetOptions' >
             <div className='flexIconsAndValues' >
               <p>

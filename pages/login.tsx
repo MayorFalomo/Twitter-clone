@@ -19,21 +19,21 @@ const login = (props: any) => {
     const router = useRouter()
 
     const { isAuth, setIsAuth, getCurrentUser } = useContext(AppContext)
-    const [cookies, setCookies] = useCookies(["user"])
+    const [cookie, setCookie] = useCookies(["user"])
     const [email, setEmail] = useState<any>("")
     const [password, setPassword] = useState<any>("")
 
     
     const signInWithGoogle = async () => {
         signInWithPopup(auth, provider).then((res) => {
-            setCookies("user", res.user.uid, { path: "/" })
+            setCookie("user", res.user.uid, { path: "/" })
             
             let userInfo = {
             userId: res.user.uid,
             username:  res.user.displayName,
             email: res.user.email,
             profilePic: res.user.photoURL,
-            coverphoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
+            coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
             password: "12345",
             usersAt: `@${res.user.displayName}`,
             following: [],
@@ -51,7 +51,7 @@ const login = (props: any) => {
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         signInWithEmailAndPassword(auth, email, password).then((res) => {
-            setCookies("user", res.user.uid, { path: "/" })
+            setCookie("user", res.user.uid, { path: "/" })
         }).then(() => router.push("/") ).then(() =>
             window.location.reload()
         ).catch((err) => console.log(err)

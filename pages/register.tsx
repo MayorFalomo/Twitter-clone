@@ -22,13 +22,13 @@ const register = (props: any) => {
   const [email, setEmail] = useState<string>("")
   const [userNames, setUserName] = useState<string>("")
   const [passwords, setPasswords] = useState<string>("")
-  const [cookies, setCookies] = useCookies(["user"])
+  const [cookies, setCookie] = useCookies(["user"])
   const [name, setName] = useState("")
 
   //Sign In With Google
    const signInWithGoogle = async () => {
         signInWithPopup(auth, provider).then((res) => {
-            setCookies("user", res.user.uid, { path: "/" })
+            setCookie("user", res.user.uid, { path: "/" })
             console.log(res.user);
             
             let userInfo = {
@@ -36,6 +36,7 @@ const register = (props: any) => {
             username:  res.user.displayName,
             email: res.user.email,
             profilePic: res.user.photoURL,
+            coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
             password: "123456",
             usersAt: `@${res.user.displayName}`,
             following: [],
@@ -47,7 +48,7 @@ const register = (props: any) => {
                     getCurrentUser(res.user.uid)
         }).then(() =>
             router.push("/")
-        ).catch((err) => console.log(err))
+     ).then(() => window.location.reload()).catch((err) => console.log(err))
   }
   
 
@@ -55,8 +56,7 @@ const register = (props: any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     createUserWithEmailAndPassword(auth, email, passwords).then((res) => {
-      setCookies("user", res.user.uid, { path: "/" })
-      console.log(res, "This is submit res");
+      setCookie("user", res.user.uid, { path: "/" })
       
       const userInfo = {
         userId: res.user.uid,
@@ -77,6 +77,7 @@ const register = (props: any) => {
         window.location.reload()
       ).catch((err) => { console.log(err) })
       getCurrentUser(res.user.uid)
+            console.log(res.user.uid, "This is submit res");
     }).catch((err) => console.log(err))
   }
 

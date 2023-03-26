@@ -29,17 +29,23 @@ gap: 10px;
         align-items: center;
         width: 100%;
         border: 2px yellow solid;
-        padding: 10px;
+        padding: 10px 0;
         .tweetProfileDetails{
             display: flex;
             align-items: center;
             gap: 5px;
             border: 2px green solid;
-            width: 50%;
+            width: 60%;
+            h2{
+                border: 2px red solid;
+                width: 80%;
+            }
             .tweetProfileFlex{
                 display: flex;
                 align-items: center;
                 gap: 25px;
+                border: 2px blue solid;
+                width: 100%;
                 ul{
                 display: flex;
                 align-items: center;
@@ -51,8 +57,12 @@ gap: 10px;
                     /* list-style: ; */
                     gap: 10px;
                 }
+               
             }
-           
+            p{
+                    border: #1d9aef 2px solid;
+                    width: 100%;
+                }
             }
         }
     }
