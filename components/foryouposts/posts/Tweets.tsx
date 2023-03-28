@@ -13,8 +13,8 @@ const Tweets = (props: any) => {
     return (
       <TweetsContainer>
             <div>
-          {tweets.reverse().map((tweet: any) => (
-            <div key={tweet._id} >
+          {tweets.reverse().map((tweet: any,index:any) => (
+            <div key={index} >
               <Tweet tweet={tweet} />
                   </div>
                 ))}

@@ -17,15 +17,11 @@ const Tweet = (props: any) => {
             <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet.picture})` }} ></div>
           <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >
-                  <div className='tweetProfileDetails' >
-              <h2>{props.tweet.username} </h2>
-              <div className='tweetProfileFlex' >
-              <p>{props.tweet.usersAt.slice(0, 8)}.. </p>
-              <ul>
-                <li>{moment(new Date(props.tweet.createdAt)).fromNow()} </li>
-                </ul>
-                </div>
-                  </div>
+            <div className='tweetProfileDetails' >
+              <span className='userName' > {props.tweet.username}</span>
+              <span className='userAt'>{props.tweet.usersAt}</span>
+              <span className='createdAt' >{moment(new Date(props.tweet.createdAt)).fromNow()}</span>
+            </div>
                   <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
                     </div>
                     <p className='tweet-caption' >{props.tweet.tweet} </p>

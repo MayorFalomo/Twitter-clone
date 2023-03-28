@@ -14,6 +14,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { AppContext } from "@/helpers/Helpers";
 import { log } from "console";
+import Tweet from "./posts/Tweet";
 
 type Props = {};
 
@@ -69,7 +70,7 @@ const ForYouPosts = (props: any) => {
     axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
     )
   }, [cookies.user]);  
-    console.log(tweets, "This is tweets");
+    // console.log(tweets, "This is tweets");
 
   const postTweet = async(e: any) => {
     e.preventDefault();
@@ -84,11 +85,12 @@ const ForYouPosts = (props: any) => {
       gif,
     }
     try {
-      const res = await axios.post(`http://localhost:7000/api/tweets`, newTweet);
+      await axios.post(`http://localhost:7000/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
-      setTweets(...tweets, newTweet)
-      console.log(res.data);
-      console.log(tweets);
+      setTweets([...tweets, newTweet])
+      setTweet(" ")
+      // console.log(res.data);
+      // console.log(tweets);
       
     } catch (err) {
       console.log(err);
@@ -124,11 +126,11 @@ const ForYouPosts = (props: any) => {
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
                   {<BsCardImage fontSize="25" />}
                 </label>
-                <input type="file" onChange={(e) => uploadImage(e.target.value) } id="fileInputImage" style={{ display: "none" }} />
+                <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
                   {<AiOutlineFileGif fontSize="25" />}
                 </label>
-                <input type="file" onChange={(e) => uploadVideo(e.target.value)} id="fileInputGif" style={{ display: "none" }} />
+                <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 <span>
                   {<AiOutlineBars fontSize="25" cursor="pointer" />}{" "}
                 </span>
@@ -154,15 +156,18 @@ const ForYouPosts = (props: any) => {
                   {<IoLocationOutline fontSize="25" />}{" "}
                 </span>
               </div>
-              <div className="tweetButton">
-                {everyOne ? <button type="submit">Tweet</button> : <button className="btn-primary"disabled>
-                  Tweet{" "}
+              {everyOne ? <div className="tweetButton">
+                {successfulUpload ? <button type="submit">Tweet</button> : <button className="btn-primary" disabled>
+                  Tweet
                 </button>}
-              </div>
+              </div> : <button className="btn-primary" disabled></button> }
             </div>
           </div>
         </form>
       </div>
+      {/* <div>
+        <Tweets />
+        </div> */}
     </ForYouContainer>
   );
 };

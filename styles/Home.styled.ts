@@ -2,32 +2,45 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   border: 1px rgb(47, 51, 54) solid;
-  overflow-x: hidden;
     .mainHomePage {
     display: grid;
-    grid-template-columns: 400px 800px 500px;
-    /* grid-template-columns: 200px auto 500px; */
+    grid-template-columns: 500px auto 600px;
+      overflow: hidden;
     height: 100vh;
     /* width: 80%; */
     /* margin: 0 auto; */
-    margin: 0 15%;
+    margin: 0 10%;
     /* overflow-x: hidden; */
     .trendsContainer {
     /* border: 2px red solid; */
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 30px; */
   }
+   main::-webkit-scrollbar {
+          width: 0;
+        }
   }
   main{
       border: 1px rgb(47, 51, 54) solid;
+      overflow: auto;
+       height: 100vh;
+        width: 100%;
+        /* border: 6px green solid; */
+       position: relative;
 
   .homeHeader {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.6px);
     -webkit-backdrop-filter: blur(7.6px);
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    /* border: 2px red solid; */
+    /* width: 100%; */
 
     /* height: 150px; */
     .homeHeading {
@@ -43,7 +56,7 @@ export const HomeContainer = styled.div`
     justify-content: space-around;
     /* border: 2px red solid; */
     a {
-      font-size: 20px;
+      /* font-size: 20px; */
       /* border: 2px yellow solid; */
       width: 60%;
       padding-top: 10px;
@@ -59,6 +72,7 @@ export const HomeContainer = styled.div`
       margin: 0 auto;
       padding: 10px 20px;
       list-style: none;
+      font-size: 24px;
     }
     .linkActive li {
       border-bottom: 6px #1d9aef solid;
@@ -67,5 +81,6 @@ export const HomeContainer = styled.div`
       color: #575b5f;
     }
   }
+  
 }
 `;

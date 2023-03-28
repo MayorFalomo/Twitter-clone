@@ -5,6 +5,11 @@ export const Tweetstyled = styled.div`
 display: flex;
 align-items: flex-start;
 gap: 10px;
+margin: 25px auto;
+border-top: 2px rgb(47, 51, 54) solid;
+border-bottom: 2px rgb(47, 51, 54) solid;
+padding: 10px;
+
 .profilePicture{
     background-color: black;
     background-position: center;
@@ -19,32 +24,43 @@ gap: 10px;
     /* display: flex;
     align-items: flex-start;
     gap: 20px; */
-    border: 2px red solid;
+    /* border: 2px rgb(47, 51, 54) solid; */
     width: 100%;
-    margin: 5px 10px;
+    /* margin: 5px 5px; */
+    /* padding: 10px; */
 
 .flexTweetProfileDetails{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        border: 2px yellow solid;
-        padding: 10px 0;
+        /* border: 2px yellow solid; */
+        /* padding: 5px 0; */
         .tweetProfileDetails{
+            width: 100%;
             display: flex;
             align-items: center;
             gap: 5px;
-            border: 2px green solid;
-            width: 60%;
-            h2{
-                border: 2px red solid;
-                width: 80%;
+            /* border: 2px green solid; */
+            .userName{
+                font-size: 28px;
+            }
+            .userAt{
+                font-size: 20px;
+                color: rgb(113,118,123);
+            }
+            .createdAt{
+                font-size: 20px;
+                display: list-item;
+                list-style: disc outside none;
+                margin-left: 25px;
+                color: rgb(113,118,123);
             }
             .tweetProfileFlex{
                 display: flex;
                 align-items: center;
                 gap: 25px;
-                border: 2px blue solid;
+                /* border: 2px blue solid; */
                 width: 100%;
                 ul{
                 display: flex;
@@ -60,7 +76,7 @@ gap: 10px;
                
             }
             p{
-                    border: #1d9aef 2px solid;
+                    /* border: #1d9aef 2px solid; */
                     width: 100%;
                 }
             }
@@ -68,11 +84,12 @@ gap: 10px;
     }
     .tweet-caption{
         font-size: 22px;
+        margin: 20px auto;
     }
     .tweet-image{
         /* height: 500px;
         width: 500px; */
-        border: 3px blue solid;
+        /* border: 3px blue solid; */
         width: 100%;
         height: 700px;
         object-fit: cover;
@@ -80,7 +97,7 @@ gap: 10px;
         border-radius: 10px;
     }
     .tweet-image{
-        border: 3px blue solid;
+        border: 3px rgb(113,118,123); solid;
         width: 100%;
         height: 700px;
         background-position: center;
@@ -93,9 +110,11 @@ gap: 10px;
     .tweetOptions{
         display: flex;
         align-items: flex-start;
-        justify-content: space-around;
-        margin: 20px;
+        justify-content: space-between;
+        /* justify-content: space-around; */
+        margin: 20px auto;
         color: #E2E4E4;
+        /* border: 2px red solid; */
     }
     .flexIconsAndValues{
         display: flex;
@@ -110,6 +129,7 @@ gap: 10px;
         display: flex;
         align-items: center;
         gap: 20px;
+        /* border: #1d9aef 2px solid; */
         .subUserPhoto{
             width: 50px;
             height: 50px;
@@ -119,6 +139,7 @@ gap: 10px;
             background-size: cover;
             object-fit: cover;
             border-radius: 50%;
+            border: 2px white solid;
         }
         p{
             font-size: 22px;

@@ -1,12 +1,17 @@
 import styled from 'styled-components'
 
 export const SearchStyled = styled.div`
+.searchContainer{
+/* border:4px green solid; */
+width: 100%;
+margin: 5px;
 .subSearchContainer{
     /* display:flex; */
     /* border: 2px red solid; */
     /* justify-content: center; */
     position:relative;
-    margin: auto;
+    /* margin: auto; */
+    width: 100%;
     .search{
         padding:15px 30px;
         background-color: #202327;
@@ -30,5 +35,6 @@ export const SearchStyled = styled.div`
         top: 10px;
         /* border: 2px blue solid; */
     }
+}
 }
 `

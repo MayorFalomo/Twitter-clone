@@ -13,13 +13,15 @@ import Tweets from "@/components/foryouposts/posts/Tweets";
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
 export default function Home() {
-  const [current, setCurrent] = useState<number>(0);
+  const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
 
-  const handleClick = (param: number) => {
+  const handleClick = (param: boolean) => {
     setCurrent(param);
     setActive(!active);
   };
+
+
 
   return (
     <HomeContainer>
@@ -38,24 +40,26 @@ export default function Home() {
             </div>
             <ul className="postGroup" >
               <a
-                className={current === 0 ? "linkActive" : "link"}
-                onClick={() => handleClick(0)}
+                className={active ? "linkActive" : "link"}
+                onClick={() => handleClick(false)}
               >
                 <li> For you </li>
               </a>
               <a
-                className={current === 1 ? "linkActive" : "link"}
-                onClick={() => handleClick(1)}
+                className={!active ? "linkActive" : "link"}
+                onClick={() => handleClick(true)}
               >
                 <li> Following </li>
               </a>
             </ul>
           </div>
           <div>
-            {current === 0 && <ForYouPosts />}
-            {current === 1 && <FollowersPosts />}
+            {current == false && <div>
+              <ForYouPosts />
+              <Tweets />
+            </div>}
+            {current == true && <FollowersPosts />}
           </div>
-            <Tweets/>
         </main>
         <div className="trendsContainer" >
         <Search />
