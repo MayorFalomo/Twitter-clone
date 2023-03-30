@@ -165,9 +165,6 @@ const ForYouPosts = (props: any) => {
           </div>
         </form>
       </div>
-      {/* <div>
-        <Tweets />
-        </div> */}
     </ForYouContainer>
   );
 };

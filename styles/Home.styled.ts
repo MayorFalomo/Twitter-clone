@@ -4,23 +4,21 @@ export const HomeContainer = styled.div`
   border: 1px rgb(47, 51, 54) solid;
     .mainHomePage {
     display: grid;
-    grid-template-columns: 500px auto 600px;
+    grid-template-columns: 400px auto 600px;
       overflow: hidden;
     height: 100vh;
-    /* width: 80%; */
-    /* margin: 0 auto; */
     margin: 0 10%;
-    /* overflow-x: hidden; */
     .trendsContainer {
     /* border: 2px red solid; */
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px; */
+    overflow: auto;
+    position: relative;
   }
    main::-webkit-scrollbar {
           width: 0;
         }
+  }
+  .trendsContainer::-webkit-scrollbar {
+    width: 0;
   }
   main{
       border: 1px rgb(47, 51, 54) solid;

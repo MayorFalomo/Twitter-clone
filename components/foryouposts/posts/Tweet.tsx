@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
 import { IoHeartSharp } from "react-icons/io5";
@@ -6,10 +6,14 @@ import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { Tweetstyled } from './Tweet.styled'
 import moment from 'moment';
 import Link from 'next/link';
+import { green } from 'colors';
+import { BsFillHeartFill } from 'react-icons/bs';
 type Props = {}
 
 const Tweet = (props: any) => {
 
+  const [retweet, setRetweet] = useState<boolean>(false)
+  const [likeTweet, SetLikeTweet] = useState<boolean>(false)
   
   return (
       <Tweetstyled>
@@ -39,23 +43,41 @@ const Tweet = (props: any) => {
               <span>100 </span>
             </div>
             <div  className='flexIconsAndValues'>
+              {retweet ? <p>
+                {
+                  <AiOutlineRetweet
+                    onClick={() => setRetweet(false)}
+                    className="likeIcon"
+                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
+                  />
+                }</p> :
               <p>
-                  {
-                        <AiOutlineRetweet
-                      className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
-                }</p>
+                {
+                    <AiOutlineRetweet
+                    onClick={() => setRetweet(true)}
+                    className="likeIcon"
+                    style={{ cursor: "pointer", fontSize: 35 }}
+                  />
+                }</p>}
               <span>200 </span>
             </div>
             <div  className='flexIconsAndValues'>
+              {likeTweet ? <p>
+                  {
+                        <BsFillHeartFill
+                    className="likeIcon"
+                    onClick={() => SetLikeTweet(false)}
+                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
+                      />
+                }</p> :
               <p>
                   {
                         <FaRegHeart
                       className="likeIcon"
+                      onClick={() => SetLikeTweet(true)}
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
-                }</p>
+                }</p>}
               <span>200 </span>
             </div>
             <div>

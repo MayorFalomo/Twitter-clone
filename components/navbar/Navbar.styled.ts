@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavContainer = styled.div`
-  /* border: 2px green solid; */
+  /* border: 4px green solid; */
 
   .navContainer {
     display: flex;
@@ -54,7 +54,7 @@ export const NavContainer = styled.div`
           padding: 10px;
           cursor: pointer;
        span{
-        font-size: 25px;
+        font-size: 28px;
        }
         
       }

@@ -4,14 +4,17 @@ export const SearchStyled = styled.div`
 .searchContainer{
 /* border:4px green solid; */
 width: 100%;
-margin: 5px;
+margin: 10px 5px;
+position: sticky;
 .subSearchContainer{
     /* display:flex; */
     /* border: 2px red solid; */
     /* justify-content: center; */
     position:relative;
     /* margin: auto; */
-    width: 100%;
+    width: 95%;
+    margin-left: 10px;
+    /* margin: 5px 10px; */
     .search{
         padding:15px 30px;
         background-color: #202327;

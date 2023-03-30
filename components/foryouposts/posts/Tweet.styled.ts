@@ -97,7 +97,7 @@ padding: 10px;
         border-radius: 10px;
     }
     .tweet-image{
-        border: 3px rgb(113,118,123); solid;
+        border: 3px rgb(113,118,123);
         width: 100%;
         height: 700px;
         background-position: center;

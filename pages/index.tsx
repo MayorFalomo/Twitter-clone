@@ -21,6 +21,8 @@ export default function Home() {
     setActive(!active);
   };
 
+  console.log(current, "current");
+  
 
 
   return (
@@ -54,11 +56,11 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            {current == false && <div>
+            {current ? <FollowersPosts/> : <div>
               <ForYouPosts />
               <Tweets />
-            </div>}
-            {current == true && <FollowersPosts />}
+            </div> }
+            {/* {current ? <FollowersPosts /> : <ForYouPosts/>} */}
           </div>
         </main>
         <div className="trendsContainer" >
