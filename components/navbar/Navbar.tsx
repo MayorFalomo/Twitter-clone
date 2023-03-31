@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavContainer } from "./Navbar.styled";
 import { RiHome7Line } from "react-icons/ri";
 import { TfiTwitter } from "react-icons/tfi";
@@ -11,10 +11,21 @@ import { BsPersonFill } from "react-icons/bs";
 import { HiOutlineEllipsisHorizontalCircle } from "react-icons/hi2";
 import { RiQuillPenLine } from "react-icons/ri";
 import Link from "next/link";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 type Props = {};
 
 const Navbar = (props: any) => {
+  const [cookies, setCookies] = useCookies(["user"])
+  const [tweeterUser, setTweeterUser] = useState<any>([])
+
+   useEffect(() => {
+    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+    )
+  }, [cookies.user]);  
+  // console.log(cookies.user);
+  
   return (
     <NavContainer>
       <nav>
@@ -80,13 +91,13 @@ const Navbar = (props: any) => {
             <div className="bgImg"></div>
             <div className="navSubProfile">
               <div className="navUsername" style={{ fontSize: 22 }}>
-                i am Taveren{" "}
+                {tweeterUser?.username}
               </div>
               <div
                 className="navEmail"
                 style={{ fontSize: 22, color: "rgb()" }}
               >
-                @mayorfalomo1{" "}
+                {tweeterUser?.usersAt}
               </div>
             </div>
           </div>
