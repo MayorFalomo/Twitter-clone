@@ -40,6 +40,10 @@ const login = (props: any) => {
             followers: [],
             notifications: [],
             bio: "Regular Human",
+            location: "Lagos, Nigeria",
+            birthday: "April 19th, 1999",
+            links: "https://mayowa-falomo.netlify.app"
+
             }
             axios.post("http://localhost:7000/api/users/login", userInfo).catch((err) => { console.log(err) })
                     getCurrentUser(res.user.uid)

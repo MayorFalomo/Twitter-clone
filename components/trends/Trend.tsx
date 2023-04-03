@@ -11,7 +11,7 @@ const Trend = (props: any) => {
       <TrendStyle>
       <div className='trendContainer' >
           <div className='subTrendContainer' >
-              <p> Trending in <span className='location' >{props.trends?.country }</span> </p>
+              <p> Trending in <span className='location' >{props.trends?.subsection }</span> </p>
               <h4>{props.trends?.title.slice(0, 18)}... </h4>
           </div>
             <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>

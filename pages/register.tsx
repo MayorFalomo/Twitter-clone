@@ -43,6 +43,10 @@ const register = (props: any) => {
             followers: [],
             notifications: [],
             bio: "Regular Human",
+            location: "Lagos, Nigeria",
+            birthday: "April 19th, 1999",
+            links: "https://mayowa-falomo.netlify.app"
+
             }
             axios.post("http://localhost:7000/api/users/register", userInfo).catch((err) => { console.log(err) })
                     getCurrentUser(res.user.uid)
@@ -70,6 +74,9 @@ const register = (props: any) => {
         followers: [],
         notifications: [],
         bio: "Regular Human",
+        location: "Lagos, Nigeria",
+        birthday: "April 19th, 1999",
+        links: "https://mayowa-falomo.netlify.app"
       }
       axios.post("http://localhost:7000/api/users/register", userInfo).then(() =>
         router.push("/")        

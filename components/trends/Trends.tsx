@@ -15,9 +15,12 @@ const Trends = (props: any) => {
  
 
   useEffect(() => {
-    axios.get(`http://api.mediastack.com/v1/news?access_key=ba0cdaef5f2c69f8e3a7d991247a6dca&countries%20=%20ng,-us`)
-      .then((res: any) => setTrending(res.data.data)).catch((err: any) => console.log(err))
+    axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`)
+      .then((res: any) => setTrending(res.data.results)).catch((err: any) => console.log(err))
   }, [])  
+
+  console.log(trending);
+  
 
  
   return <TrendStyle>
