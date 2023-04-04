@@ -97,6 +97,8 @@ const ForYouPosts = (props: any) => {
     }
   }
   
+  // console.log(tweet.length);
+  
 
 
   return (
@@ -157,10 +159,11 @@ const ForYouPosts = (props: any) => {
                 </span>
               </div>
               {everyOne ? <div className="tweetButton">
-                {successfulUpload ? <button type="submit">Tweet</button> : <button className="btn-primary" disabled>
+                {successfulUpload || tweet.length > 0 ? <button type="submit">Tweet</button> : <button className="btn-primary" disabled>
                   Tweet
                 </button>}
-              </div> : <button className="btn-primary" disabled></button> }
+              </div> : <div className="tweetButton"><button className="btn-primary" disabled>Tweet </button></div>
+              }
             </div>
           </div>
         </form>

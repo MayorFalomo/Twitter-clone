@@ -21,7 +21,7 @@ export default function Home() {
     setActive(!active);
   };
 
-  console.log(current, "current");
+  // console.log(current, "current");
   
 
 

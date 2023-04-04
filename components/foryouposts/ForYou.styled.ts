@@ -90,10 +90,10 @@ export const ForYouContainer = styled.div`
           font-size: 18px;
           background-color: #1d9aef;
           color: #fff;
-          border-top-left-radius: 25px;
-          border-bottom-left-radius: 25px;
+          border-radius: 25px;
+          /* border-bottom-left-radius: 25px;
           border-top-right-radius: 25px;
-          border-bottom-right-radius: 25px;
+          border-bottom-right-radius: 25px; */
         }
         .btn-primary{
           opacity: 0.4;

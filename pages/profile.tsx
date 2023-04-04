@@ -1,20 +1,40 @@
 import Navbar from '@/components/navbar/Navbar'
+import ProfilePage from '@/components/profilepage/ProfilePage'
 import Search from '@/components/search/Search'
 import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { ProfileStyled } from '@/styles/Profile.styled'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 type Props = {}
 
 const profile = (props: Props) => {
+
+      const [cookies, setCookie] = useCookies(["user"])
+    const [userProfile, setUserProfile] = useState<any>([])
+
+     useEffect(() => {
+    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserProfile(res.data)).catch((err) => console.log(err)
+    )
+     }, [cookies.user]);  
+  
+  console.log(userProfile);
+  
+
+
   return (
     <ProfileStyled>
     <div className='profileStyleContainer' >
-      <Navbar />
-        <div className='subProfileStyle' >
-          
-      </div>
-      <div>
+        <Navbar />
+        <div>
+        {/* {userProfile.map((user:any) => (
+          <div key={user.id} >
+          <ProfilePage user={user} />
+          </div>
+        ))} */}
+          </div>
+          <div>
       <Search />
         <Whotofollow />
         </div>
@@ -22,5 +42,4 @@ const profile = (props: Props) => {
       </ProfileStyled>
   )
 }
-
 export default profile
