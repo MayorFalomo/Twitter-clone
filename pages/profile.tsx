@@ -12,14 +12,18 @@ type Props = {}
 const profile = (props: Props) => {
 
       const [cookies, setCookie] = useCookies(["user"])
-    const [userProfile, setUserProfile] = useState<any>([])
+  const [userProfile, setUserProfile] = useState<any>([])
+  
+  // console.log(cookies.user, "id");
+  
 
      useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserProfile(res.data)).catch((err) => console.log(err)
+    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
     )
      }, [cookies.user]);  
   
   console.log(userProfile);
+  // console.log(cookies);
   
 
 
@@ -28,11 +32,7 @@ const profile = (props: Props) => {
     <div className='profileStyleContainer' >
         <Navbar />
         <div>
-        {/* {userProfile.map((user:any) => (
-          <div key={user.id} >
-          <ProfilePage user={user} />
-          </div>
-        ))} */}
+          <ProfilePage userProfile={userProfile}/>
           </div>
           <div>
       <Search />
