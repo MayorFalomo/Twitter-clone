@@ -90,8 +90,13 @@ export const NavContainer = styled.div`
         display: none;
       }
     }
-   
-
+    .navProfileFlex{
+      /* border: 2px solid blue; */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 20px;
     .bgImg {
       border: 2px rgb(47, 51, 54) solid;
       height: 70px;
@@ -102,8 +107,10 @@ export const NavContainer = styled.div`
     .navProfile {
       display: flex;
       align-items: center;
+      gap: 10px;
       width: 100%;
       margin-bottom: 20px;
+      /* border: 2px red solid; */
       .navSubProfile {
         display: flex;
         flex-direction: column;
@@ -111,4 +118,5 @@ export const NavContainer = styled.div`
       }
     }
   }
+}
 `;

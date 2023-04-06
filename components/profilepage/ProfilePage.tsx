@@ -1,5 +1,7 @@
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineLink } from 'react-icons/ai'
+import { BiCalendar } from 'react-icons/bi'
 import { BsArrowLeft } from 'react-icons/bs'
 import { CiLocationOn } from 'react-icons/ci'
 import UsersReplies from '../usersreplies/UsersReplies'
@@ -32,7 +34,7 @@ const ProfilePage = (props: any) => {
             </ul>
             <div className='profileUsersDetails' >
             <h1>{props.userProfile?.username} </h1>
-              <p> No of tweets</p>
+              <p>{props.allUsersTweets.posts?.length} Tweets</p>
               </div>
           </div>
           <div className='profilePhotoContainers' >
@@ -41,18 +43,18 @@ const ProfilePage = (props: any) => {
           </div>
                     <div className='editProfileBtn'><button  >Edit Profile </button></div>
                     <div className='userDetailsContainer' >
-                    <h1 style={{fontSize: 35}} >{props.userProfile?.username} </h1>
-                    <p style={{color: "#575B5F", fontSize: 24}} >{props.userProfile?.usersAt} </p>
-                    <div className='usersBio' style={{margin: '30px auto', fontSize: 24}}>
+                    <h1 style={{fontSize: 35, fontWeight: 800}} >{props.userProfile?.username} </h1>
+                    <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.userProfile?.usersAt} </p>
+                    <div className='usersBio' style={{margin: '30px auto', fontSize: 24, fontWeight: 600}}>
                         <p>{props.userProfile?.bio} </p>
                         </div>
                         <div className='usersExtraInfoContainer' style={{margin: '30px auto',}}>
                     <div className='usersExtraInfo' >
-                                <span style={{ color: "#575B5F" }}>{<CiLocationOn />} {props.userProfile?.location} </span>
-                                <span style={{ color: "#575B5F" }}> {<AiOutlineLink />} {props.userProfile?.links} </span>
-                        <span style={{color: "#575B5F"}}>{props.userProfile?.birthday} </span><br />
+                                <span style={{ color: "#575B5F", fontWeight: 600 }}>{<CiLocationOn />} {props.userProfile?.location} </span>
+                                <span style={{ color: "#575B5F", fontWeight: 600 }}  className='usersLink' > {<AiOutlineLink />} {props.userProfile?.links} </span>
+                        <span style={{color: "#575B5F", fontWeight: 600}}>{props.userProfile?.birthday} </span><br />
                             </div>
-                                <p style={{ color: "#575B5F", fontSize: 24 }} >{new Date(props.userProfile?.createdAt).toDateString()} </p>
+                                <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.userProfile?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
                         <span style={{ fontSize: 24 }}>No of following </span>

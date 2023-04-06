@@ -3,7 +3,7 @@ import { NavContainer } from "./Navbar.styled";
 import { RiHome7Line } from "react-icons/ri";
 import { TfiTwitter } from "react-icons/tfi";
 import { RiHashtag } from "react-icons/ri";
-import { BiBell } from "react-icons/bi";
+import { BiBell, BiDotsHorizontalRounded } from "react-icons/bi";
 import { RxEnvelopeClosed } from "react-icons/rx";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { AiFillTwitterSquare } from "react-icons/ai";
@@ -87,6 +87,7 @@ const Navbar = (props: any) => {
                 <button className="tweetBtn">Tweet </button>
             </ul>
           </div>
+          <div className="navProfileFlex" >
           <div className="navProfile">
             <div className="bgImg"></div>
             <div className="navSubProfile">
@@ -99,8 +100,10 @@ const Navbar = (props: any) => {
               >
                 {tweeterUser?.usersAt}
               </div>
+              </div>
             </div>
-          </div>
+            <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+            </div>
         </div>
       </nav>
     </NavContainer>

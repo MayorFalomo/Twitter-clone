@@ -19,7 +19,7 @@ const Trends = (props: any) => {
       .then((res: any) => setTrending(res.data.results)).catch((err: any) => console.log(err))
   }, [])  
 
-  console.log(trending);
+  // console.log(trending);
   
 
  

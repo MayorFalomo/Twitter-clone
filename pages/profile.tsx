@@ -1,6 +1,7 @@
 import Navbar from '@/components/navbar/Navbar'
 import ProfilePage from '@/components/profilepage/ProfilePage'
 import Search from '@/components/search/Search'
+import Trends from '@/components/trends/Trends'
 import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { ProfileStyled } from '@/styles/Profile.styled'
 import axios from 'axios'
@@ -11,9 +12,9 @@ type Props = {}
 
 const profile = (props: Props) => {
 
-      const [cookies, setCookie] = useCookies(["user"])
+  const [cookies, setCookie] = useCookies(["user"])
   const [userProfile, setUserProfile] = useState<any>([])
-  
+  const [allUsersTweets, setAllUsersTweets] = useState<any>([])
   // console.log(cookies.user, "id");
   
 
@@ -22,8 +23,13 @@ const profile = (props: Props) => {
     )
      }, [cookies.user]);  
   
-  console.log(userProfile);
-  // console.log(cookies);
+   useEffect(() => {
+     axios.get(`http://localhost:7000/api/tweets/get-tweet/${userProfile?.username}`)
+      .then((res) => setAllUsersTweets(res.data))
+      .catch((err) => console.log(err))
+  }, [userProfile?.username])
+  
+  // console.log(userProfile);
   
 
 
@@ -31,12 +37,13 @@ const profile = (props: Props) => {
     <ProfileStyled>
     <div className='profileStyleContainer' >
         <Navbar />
-        <div>
-          <ProfilePage userProfile={userProfile}/>
+        <div className='centerGridContainer' >
+          <ProfilePage userProfile={userProfile} allUsersTweets={allUsersTweets}/>
           </div>
-          <div>
+          <div className='rightGridContainer' >
       <Search />
-        <Whotofollow />
+          <Whotofollow />
+          <Trends/>
         </div>
       </div>
       </ProfileStyled>
