@@ -15,6 +15,7 @@ const profile = (props: Props) => {
   const [cookies, setCookie] = useCookies(["user"])
   const [userProfile, setUserProfile] = useState<any>([])
   const [allUsersTweets, setAllUsersTweets] = useState<any>([])
+  const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
   // console.log(cookies.user, "id");
   
 
@@ -35,10 +36,10 @@ const profile = (props: Props) => {
 
   return (
     <ProfileStyled>
-    <div className='profileStyleContainer' >
+      <div className='profileStyleContainer' >
         <Navbar />
         <div className='centerGridContainer' >
-          <ProfilePage userProfile={userProfile} allUsersTweets={allUsersTweets}/>
+          <ProfilePage userProfile={userProfile} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
           </div>
           <div className='rightGridContainer' >
       <Search />

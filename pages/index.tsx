@@ -56,7 +56,7 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            {current ? <FollowersPosts/> : <div>
+            {current == true ? <FollowersPosts/> : <div>
               <ForYouPosts />
               <Tweets />
             </div> }
