@@ -37,6 +37,7 @@ export const ProfileStyled = styled.div`
         background-repeat:no-repeat;
         background-size: cover;
         object-fit: cover;
+        object-position: center;
         height: 350px;
         width: 100%;
         border-bottom: 2px rgb(47, 51, 54) solid;
@@ -50,6 +51,7 @@ export const ProfileStyled = styled.div`
         background-repeat:no-repeat;
         background-size: cover;
         object-fit: cover;
+        object-position: center;
         border: 2px black solid;
         position: absolute;
         bottom: -150px;
@@ -110,6 +112,7 @@ export const ProfileStyled = styled.div`
         transform: translate(-50%, -50%);
         width: 600px;
         height: 80vh;
+        border-radius: 30px;
         /* border: 2px red solid; */
     }
     }
@@ -222,6 +225,7 @@ export const ProfileStyled = styled.div`
         transform: translate(-50%, -50%);
         width: 40%;
         height: 90vh;
+        border-radius: 30px;
         /* position: relative; */
         /* border: 2px red solid; */
         overflow: auto;

@@ -23,14 +23,13 @@ const profile = (props: Props) => {
     axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
     )
      }, [cookies.user]);  
+    
   
    useEffect(() => {
-     axios.get(`http://localhost:7000/api/tweets/get-tweet/${userProfile?.username}`)
-      .then((res) => setAllUsersTweets(res.data))
-      .catch((err) => console.log(err))
+     axios.get(`http://localhost:7000/api/tweets/get-tweet/${userProfile?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [userProfile?.username])
   
-  // console.log(userProfile);
+  console.log(allUsersTweets);
   
 
 
@@ -39,7 +38,7 @@ const profile = (props: Props) => {
       <div className='profileStyleContainer' >
         <Navbar />
         <div className='centerGridContainer' >
-          <ProfilePage userProfile={userProfile} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
+          <ProfilePage userProfile={userProfile} setUserProfile={setUserProfile} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
           </div>
           <div className='rightGridContainer' >
       <Search />

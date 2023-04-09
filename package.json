@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.9.2",
+    "@cloudinary/url-gen": "^1.10.0",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
     "@giphy/js-fetch-api": "^4.7.1",

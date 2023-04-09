@@ -68,7 +68,7 @@ const register = (props: any) => {
         email: email,
         password: passwords,
         profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
-        coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
+        coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
         usersAt: `@${userNames}`,
         following: [],
         followers: [],

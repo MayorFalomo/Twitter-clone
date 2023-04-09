@@ -18,10 +18,6 @@ const ProfilePage = (props: any) => {
      const handleClick = (param: any) => {
     setCurrent(param);
     };
-
-    
-    
-
     
     
     
@@ -44,7 +40,7 @@ const ProfilePage = (props: any) => {
           </div>
                     <div onClick={() => props.setEditProfileModal(!false)} className='editProfileBtn'><button> Edit Profile </button></div>
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
-                    <div className={props.editProfileModal ? 'editProfileModal' : "removeModal"} >{props.editProfileModal ? <EditProfileModal setEditProfileModal={props.setEditProfileModal} />: ""}</div>
+                    <div className={props.editProfileModal ? 'editProfileModal' : "removeModal"} >{props.editProfileModal ? <EditProfileModal userProfile={props.userProfile} setUserProfile={props.setUserProfile} setEditProfileModal={props.setEditProfileModal} />: ""}</div>
                     <div className='userDetailsContainer' >
                     <h1 style={{fontSize: 35, fontWeight: 800}} >{props.userProfile?.username} </h1>
                     <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.userProfile?.usersAt} </p>

@@ -15,6 +15,7 @@ form{
         align-items: center;
         justify-content: space-between;
         padding: 20px;
+        /* border: 2px red solid; */
         .flexNavHeader{
             display: flex;
             align-items: center;
@@ -36,6 +37,12 @@ form{
         height: 300px;
         width: 100%;
         border-bottom: 1px solid white;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+        object-position: center;
         }
         .profilePicBg{
             height: 180px;
@@ -45,6 +52,35 @@ form{
             position: absolute;
             bottom: -80px;
             left: 20px;
+        }
+        .uploadCoverPhoto{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100%;
+            .camera{
+           background: rgba(255, 255, 255, 0.13);
+           border-radius: 16px;
+           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+           backdrop-filter: blur(4.9px);
+            }
+        }
+        .profilePicBg{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+            .camera{
+                background: rgba(255, 255, 255, 0.13);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(4.9px);
+            }
         }
     }
     .labelContainer{
@@ -100,6 +136,10 @@ form{
                 font-weight: 500;
                 color: #575B5F;
             }
+            span{
+                font-size: 24px;
+                color: #575B5F;
+            }
             input{
                 background-color: transparent;
                 outline: none;
@@ -134,10 +174,17 @@ form{
         }
     }
     ul{
-        margin: 20px 20px;
+        margin: 20px 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        h1{
+            padding: 20px 5px;
+        }
+    }
+    ul:hover{
+        background-color: rgb(47, 51, 54);
+        cursor: pointer;
     }
 }
 }

@@ -33,7 +33,7 @@ const login = (props: any) => {
             username:  res.user.displayName,
             email: res.user.email,
             profilePic: res.user.photoURL,
-            coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
+            coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
             password: "12345",
             usersAt: `@${res.user.displayName}`,
             following: [],
