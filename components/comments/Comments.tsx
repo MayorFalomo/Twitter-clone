@@ -9,6 +9,7 @@ import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { IoLocationOutline } from 'react-icons/io5'
+import Commentpage from './Commentpage'
 import { CommentStyled } from './Comments.styled'
 
 type Props = {}
@@ -17,14 +18,19 @@ const Comments = (props: any) => {
     
     const { currentUser } = useContext(AppContext)
     
-
+    const timeAgo = new Date().toISOString()
+    const commentId = Date.now()
+    // console.log(timeAgo);
+    
     const [emoji, setEmoji] = useState<boolean>(false);
     const [everyOne, setEveryOne] = useState<boolean>(false);
-    const [username, setUsername] = useState<string>(currentUser?.username);
-    const [usersAt, setUsersAt] = useState<string>(currentUser?.usersAt);
-    const [profileDp, setProfileDp] = useState<string>(currentUser?.profileDp);
+    const [username, setUsername] = useState<string>("");
+    const [usersAt, setUsersAt] = useState<string>("");
+    const [profileDp, setProfileDp] = useState<string>("");
     const [picture, setPicture] = useState<string>("");
     const [video, setVideo] = useState<string>("");
+    const [createdAt, setCreatedAt] = useState<string>(timeAgo)
+    const [postId, setPostId] = useState<number>(commentId)
     const [gif, setGif] = useState<string>("");
     const [user, setUser] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
@@ -32,8 +38,6 @@ const Comments = (props: any) => {
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
     const [comments, setComments] = useState<any>(props.tweetProps?.comments) //comment box for user to enter comment and post it. 	   const [
     const { suggestedUsers } = useContext(AppContext)
-    const [retweet, setRetweet] = useState<boolean>(false)
-    const [likeTweet, SetLikeTweet] = useState<boolean>(false)
 
     
      const uploadImage = (files: any) => {
@@ -61,25 +65,33 @@ const Comments = (props: any) => {
     //     axios.get(`http:localhost7000/api/users/${cookies.user}`).then((res) => console.log(res)
     //     ).catch((err) => console.log(err));
     // })
-   
+  
+    
      const handleComment = async () => {
          const commentData = {
-             username,
-             usersAt,
-             profileDp,
+             username: currentUser?.username,
+             usersAt: currentUser?.usersAt,
+             profileDp: currentUser?.profileDp,
              comments,
              picture,
              video,
-             postId: props.tweetProps._id,
+             postId,
+             createdAt,
          }
          await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
-         setComments("")
+         setComments(" ")
+         props.setTweetProps({
+             ...props.tweetProps, comments: [
+             ...props.tweetProps.comments, commentData,
+         ]})
      }
   
-    // console.log(currentUser, "single post");
+    // console.log(props.tweetProps._id, "single postId");
     console.log(props.tweetProps, "single post");
+    // console.log(props.tweetProps.comments, "singletweet comment");
+    // console.log(Date.now() , "Date");
     
-  const views = Math.floor(Math.random() * suggestedUsers.length)
+    
     return (
       <CommentStyled>
       <div className='postsContainer' >
@@ -92,7 +104,7 @@ const Comments = (props: any) => {
             <textarea className="textArea"
               placeholder="Tweet your reply"
               typeof="text"
-              value={comments}
+            //   value={comments}
               onChange={(e) => setComments(e.target.value)}
               />
             {everyOne ? (
@@ -141,91 +153,14 @@ const Comments = (props: any) => {
               }
             </div>
           </div>
-          </form>
-            {/* <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
-                 <div className='subPostsContainer' >
-              <Link href={'/posts/' + props.tweet?._id} ><div className='flexTweetProfileDetails' >
-                  <div className='tweetProfileDetails' >
-              <span className='userName' > {props.tweet?.username}</span>
-              <span className='userAt'>{props.tweet?.usersAt}</span>
-              <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span>
-            </div>
-                  <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
-          </div>
-            </Link>
-                    <p className='tweet-caption' >{props.tweet?.tweet} </p>
-                    <img src={props.tweet.picture} className='tweet-image' alt='img' />
-          {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
-          <div className='tweetOptions' >
-            <div className='flexIconsAndValues' >
-              <p>
-                  {
-                        <FaRegComment
-                      className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
-                }</p>
-              <span>{0} </span>
-            </div>
-            <div  className='flexIconsAndValues'>
-              {retweet ? <p>
-                {
-                  <AiOutlineRetweet
-                    onClick={() => setRetweet(false)}
-                    className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
-                  />
-                }</p> :
-              <p>
-                {
-                    <AiOutlineRetweet
-                    onClick={() => setRetweet(true)}
-                    className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
-                  />
-                }</p>}
-              <span>{0} </span>
-            </div>
-            <div  className='flexIconsAndValues'>
-              {likeTweet ? <p>
-                  {
-                        <BsFillHeartFill
-                    className="likeIcon"
-                    onClick={() => SetLikeTweet(false)}
-                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
-                      />
-                }</p> :
-              <p>
-                  {
-                        <FaRegHeart
-                      className="likeIcon"
-                      onClick={() => SetLikeTweet(true)}
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
-                }</p>}
-              <span>{0} </span>
-            </div>
-            <div className='flexIconsAndValues'>
-              <p>
-                  {
-                        <BiBarChart
-                      className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
-                }</p>
-              <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
-            </div>
-            <div>
-              <p>
-                  {
-                        <AiOutlineUpload
-                      className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
-                }</p>
-            </div>
-              </div>
-          </div> */}
+                </form>
+                <div className='seeCommentMap' >
+                    {props.tweetProps.comments?.map((comment: any, index:any) => (
+                        <div key={index} className='mappedContainer' >
+                            <Commentpage comment={comment} />  
+                    </div>   
+                    ))}
+                </div>
             </div>
             </CommentStyled>
   )

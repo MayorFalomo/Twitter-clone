@@ -11,20 +11,49 @@ import { BsFillHeartFill } from 'react-icons/bs';
 import { AppContext } from '@/helpers/Helpers';
 import Id from '@/pages/posts/[id]';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 type Props = {}
 
 const Tweet = (props: any) => {
 
-  const {suggestedUsers} = useContext(AppContext)
+  const { currentUser, suggestedUsers } = useContext(AppContext)
 
+  const [postId, setPostId] = useState(props.tweet?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
+  const [likesArray, setLikesArray] = useState<any>(props.tweet.likes)
+
+  // console.log(likesArray, "likes array");
+  
+  const handleAddLike = async () => {
+    const likeData = {
+       username: currentUser.username,
+      profileDp: currentUser?.profileDp,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId: props.tweet._id,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+    setLikesArray([...likesArray, likeData])
+  }
+
+  const removeLike = async () => {
+    SetLikeTweet(false)
+    const likeData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profileDp,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId,
+    } 	//takes the id of the post and removes it from the
+    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+    setLikesArray(filtered) 	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
 
   // const query = useRouter()
-  // console.log(props.tweet);
+  // console.log(props.tweet._id);
   
   return (
       <Tweetstyled>
@@ -52,7 +81,7 @@ const Tweet = (props: any) => {
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>
-              <span>{0} </span>
+              <span>{props.tweet.comments.length} </span>
             </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
@@ -74,23 +103,30 @@ const Tweet = (props: any) => {
               <span>{0} </span>
             </div>
             <div  className='flexIconsAndValues'>
-              {likeTweet ? <p>
-                  {
-                        <BsFillHeartFill
-                    className="likeIcon"
-                    onClick={() => SetLikeTweet(false)}
-                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
+              {likesArray && (
+                  <p>
+                    {likesArray.some(
+                      (e: any) => e.username === currentUser?.username
+                    ) ? (
+                      <BsFillHeartFill
+                        onClick={removeLike}
+                        className='likeIcon'
+                        style={{
+                          color: "red",
+                          fontSize: 35,
+                          cursor: "pointer",
+                        }}
                       />
-                }</p> :
-              <p>
-                  {
-                        <FaRegHeart
-                      className="likeIcon"
-                      onClick={() => SetLikeTweet(true)}
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                    ) : (
+                      <FaRegHeart
+                        className='likeIcon'
+                        onClick={handleAddLike}
+                        style={{ fontSize: 35, cursor: "pointer" }}
                       />
-                }</p>}
-              <span>{0} </span>
+                    )}
+                  </p>
+                )}
+              <span>{props.tweet.likes?.length} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>

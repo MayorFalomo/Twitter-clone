@@ -36,10 +36,10 @@ const Allusertweet = (props: any) => {
                   {
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 30, color: '#71767B' }}
+                      style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
                       />
                 }</p>
-              <span>100 </span>
+              <span>0 </span>
             </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
@@ -47,7 +47,7 @@ const Allusertweet = (props: any) => {
                   <AiOutlineRetweet
                     onClick={() => setRetweet(false)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 30, color: "#00BA7C" }}
+                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
                   />
                 }</p> :
               <p>
@@ -58,7 +58,7 @@ const Allusertweet = (props: any) => {
                     style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
                   />
                 }</p>}
-              <span>200 </span>
+              <span>0 </span>
             </div>
             <div  className='flexIconsAndValues'>
               {likeTweet ? <p>
@@ -66,7 +66,7 @@ const Allusertweet = (props: any) => {
                         <BsFillHeartFill
                     className="likeIcon"
                     onClick={() => setLikeTweet(false)}
-                      style={{ cursor: "pointer", fontSize: 30, color: "red",}}
+                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
                       />
                 }</p> :
               <p>
@@ -74,10 +74,10 @@ const Allusertweet = (props: any) => {
                         <BsHeart
                       className="likeIcon"
                       onClick={() => setLikeTweet(true)}
-                      style={{ cursor: "pointer", fontSize: 30,color: '#71767B' }}
+                      style={{ cursor: "pointer", fontSize: 35,color: '#71767B' }}
                       />
                 }</p>}
-              <span>200 </span>
+              <span>0 </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>

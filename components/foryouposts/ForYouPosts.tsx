@@ -20,7 +20,7 @@ type Props = {};
 
 const ForYouPosts = (props: any) => {
 
-  const {posts,tweets, setTweets} = useContext(AppContext)
+  const {currentUser,tweets, setTweets} = useContext(AppContext)
 
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
@@ -66,19 +66,19 @@ const ForYouPosts = (props: any) => {
   //   })
   // };
 
-  useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
-    )
-  }, [cookies.user]);  
+  // useEffect(() => {
+  //   axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+  //   )
+  // }, [cookies.user]);  
     // console.log(tweets, "This is tweets");
 
   const postTweet = async(e: any) => {
     e.preventDefault();
 
     const newTweet = {
-      username: tweeterUser.username,
-      profileDp: tweeterUser.profilePic || "",
-      usersAt: tweeterUser.usersAt,
+      username: currentUser.username,
+      profileDp: currentUser.profilePic || "",
+      usersAt: currentUser.usersAt,
       tweet,
       video,
       picture,

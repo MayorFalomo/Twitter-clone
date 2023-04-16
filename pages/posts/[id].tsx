@@ -43,14 +43,16 @@ export const getStaticProps = async (context: any) => {
   
   return {
     props: {
-      tweetProps: data
+      tweetData: data
     },
   }
 }
 
-const Id = ({ tweetProps }: any) => {
+const Id = ({ tweetData }: any) => {
   
-    const {suggestedUsers,tweets, setTweets} = useContext(AppContext)
+  const { suggestedUsers, tweets, setTweets } = useContext(AppContext)
+  
+  const [tweetProps, setTweetProps] = useState<any>(tweetData)
 
 
   const [retweet, setRetweet] = useState<boolean>(false)
@@ -189,7 +191,7 @@ const Id = ({ tweetProps }: any) => {
             </div>
           </div>
          
-          <Comments tweetProps={tweetProps} />
+          <Comments tweetProps={tweetProps} setTweetProps={setTweetProps} />
         </div>
         <div className='leftGridSection' >
           <Search />

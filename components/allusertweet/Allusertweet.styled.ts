@@ -25,7 +25,7 @@ export const AllUserTweets = styled.div`
         /* border: 2px blue solid; */
         width: 100%;
         p{
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 400;
             margin: 20px auto;
         }
@@ -63,7 +63,9 @@ export const AllUserTweets = styled.div`
                     font-weight: 700;
                     color: rgb(47, 51, 54)
                 }
+               
             }
+           
         }
     }
 }

@@ -18,7 +18,7 @@ img{
 }
 a{
     text-decoration: none;
-   
+    color: white;
 }
 li{
     /* list-style: none; */

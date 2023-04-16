@@ -112,8 +112,8 @@ export const SingleTweetStyle = styled.div`
         justify-content: space-around;
         margin: 20px auto;
         color: #E2E4E4;
-        border-bottom: 2px #575B5F solid;
-        padding: 15px;
+        /* border-bottom: 2px #575B5F solid; */
+        /* padding: 15px; */
     }
     .flexIconsAndValues{
         display: flex;

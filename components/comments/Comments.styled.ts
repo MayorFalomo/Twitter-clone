@@ -103,8 +103,8 @@ padding: 10px; */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-       object-fit: cover;
-       object-position: center;
+        object-fit: cover;
+        object-position: center;
         border-radius: 10px;
     }
     .tweetOptions{
@@ -153,7 +153,8 @@ padding: 10px; */
       align-items: start;
       gap: 10px;
       margin-top: 20px;
-      border-bottom: 1px solid #575B5F;
+      padding: 10px;
+      border-top: 1px solid #575B5F;
       .userProfileDp{
         width: 90px;
         height: 90px;
@@ -248,6 +249,13 @@ padding: 10px; */
         }
       }
     }
-
+    .seeCommentMap{
+        .mappedContainer{
+        border-top: 2px #575B5F solid;
+        /* border-bottom: 2px #575B5F solid; */
+        margin: 5px auto;
+        padding: 10px;
+        }
+    }
 }
 `
