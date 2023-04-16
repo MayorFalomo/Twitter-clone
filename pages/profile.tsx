@@ -29,7 +29,7 @@ const profile = (props: Props) => {
      axios.get(`http://localhost:7000/api/tweets/get-tweet/${userProfile?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [userProfile?.username])
   
-  console.log(allUsersTweets);
+  // console.log(allUsersTweets);
   
 
 

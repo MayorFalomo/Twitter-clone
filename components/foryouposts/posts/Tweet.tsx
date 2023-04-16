@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
 import { IoHeartSharp } from "react-icons/io5";
@@ -8,29 +8,41 @@ import moment from 'moment';
 import Link from 'next/link';
 import { green } from 'colors';
 import { BsFillHeartFill } from 'react-icons/bs';
+import { AppContext } from '@/helpers/Helpers';
+import Id from '@/pages/posts/[id]';
+import { useRouter } from 'next/router';
 type Props = {}
 
 const Tweet = (props: any) => {
 
+  const {suggestedUsers} = useContext(AppContext)
+
   const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
+
+  
+  const views = Math.floor(Math.random() * suggestedUsers.length)
+
+  // const query = useRouter()
+  // console.log(props.tweet);
   
   return (
       <Tweetstyled>
            <div className='postsContainer' >
-            <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet.picture})` }} ></div>
-          <div className='subPostsContainer' >
-              <div className='flexTweetProfileDetails' >
-            <div className='tweetProfileDetails' >
-              <span className='userName' > {props.tweet.username}</span>
-              <span className='userAt'>{props.tweet.usersAt}</span>
-              <span className='createdAt' >{moment(new Date(props.tweet.createdAt)).fromNow()}</span>
+            <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
+                 <div className='subPostsContainer' >
+              <Link href={'/posts/' + props.tweet?._id} ><div className='flexTweetProfileDetails' >
+                  <div className='tweetProfileDetails' >
+              <span className='userName' > {props.tweet?.username}</span>
+              <span className='userAt'>{props.tweet?.usersAt}</span>
+              <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span>
             </div>
                   <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
-                    </div>
-                    <p className='tweet-caption' >{props.tweet.tweet} </p>
+          </div>
+            </Link>
+                    <p className='tweet-caption' >{props.tweet?.tweet} </p>
                     {/* <img src={props.tweet.picture} className='tweet-image' alt='img' /> */}
-          {props.tweet.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet.picture})` }} className='tweet-image' ></div> : ""}
+          {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
           <div className='tweetOptions' >
             <div className='flexIconsAndValues' >
               <p>
@@ -40,7 +52,7 @@ const Tweet = (props: any) => {
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>
-              <span>100 </span>
+              <span>{0} </span>
             </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
@@ -59,7 +71,7 @@ const Tweet = (props: any) => {
                     style={{ cursor: "pointer", fontSize: 35 }}
                   />
                 }</p>}
-              <span>200 </span>
+              <span>{0} </span>
             </div>
             <div  className='flexIconsAndValues'>
               {likeTweet ? <p>
@@ -78,9 +90,9 @@ const Tweet = (props: any) => {
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>}
-              <span>200 </span>
+              <span>{0} </span>
             </div>
-            <div>
+            <div className='flexIconsAndValues'>
               <p>
                   {
                         <BiBarChart
@@ -88,6 +100,7 @@ const Tweet = (props: any) => {
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>
+              <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
             </div>
             <div>
               <p>
@@ -101,14 +114,16 @@ const Tweet = (props: any) => {
           </div>
           <Link href='' >
             <div className='showThread' >
-          <div style={{ cursor: "pointer", backgroundImage: `url(${props.tweet.picture})` }} className='subUserPhoto' > </div>
+          <div style={{ cursor: "pointer", backgroundImage: `url(${props.tweet?.profileDp})` }} className='subUserPhoto' > </div>
             <p>Show this thread </p>
             </div>
           </Link>
-              </div>
+        </div>
             </div>
     </Tweetstyled>
   )
 }
+
+
 
 export default Tweet

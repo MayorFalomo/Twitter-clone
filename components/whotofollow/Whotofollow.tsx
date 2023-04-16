@@ -1,21 +1,20 @@
+import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Suggestedpeople from '../suggested/Suggestedpeople'
 import { WhoToFollowStyled } from './Whotofollow.styled'
 
 type Props = {}
 
-const Whotofollow = (props: Props) => {
+const Whotofollow = (props: any) => {
+
+  const {suggestedUsers} = useContext(AppContext)
 
    const [seeMoreUsers, setSeeMoreUsers] = useState<number>(3)
-  const [suggestedUsers, setSuggestedUsers] = useState<any>([])
 
   
-  useEffect(() => {
-    axios.get(`http://localhost:7000/api/users`)
-      .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
-  }, [])
+
 
 
   return (

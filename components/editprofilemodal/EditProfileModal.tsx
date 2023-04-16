@@ -105,7 +105,7 @@ const EditProfileModal = (props: any) => {
                                 <label>Name </label>
                                 {currentActiveInput == 0 ? <span> {username.length} / { maxNameLength} </span> : ""}
                                 </div>
-                      <input onChange={(e:any) => setUsername(e.target.value) } onClick={() => setCurrentActiveInput(0)} maxLength={maxNameLength} type='text' placeholder={props.userProfile?.username}/>
+                      <input onChange={(e:any) => setUsername(e.target.value) } value={username} onClick={() => setCurrentActiveInput(0)} maxLength={maxNameLength} type='text' placeholder={props.userProfile?.username}/>
                         </div>
                         
                         <div className={currentActiveInput == 1 ? "activeInput" : "labelBorder"} >

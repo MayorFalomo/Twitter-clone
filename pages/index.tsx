@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import ForYouPosts from "@/components/foryouposts/ForYouPosts";
 import FollowersPosts from "@/components/followerspost/FollowersPosts";
@@ -8,11 +8,25 @@ import Navbar from "@/components/navbar/Navbar";
 import Search from "@/components/search/Search";
 import Trends from "@/components/trends/Trends";
 import Tweets from "@/components/foryouposts/posts/Tweets";
+import { GetStaticProps } from "next";
+import { AppContext } from "@/helpers/Helpers";
 
+
+
+type Post = {
+  username: string,
+}
+
+export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
+  const res = await fetch(`http://localhost:7000/api/tweets`)
+  const posts: Post[] = await res.json()
+  
+  return { props: { posts } };
+};
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
-export default function Home() {
+export default function Home({posts}:any) {
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
 
@@ -20,6 +34,11 @@ export default function Home() {
     setCurrent(param);
     setActive(!active);
   };
+
+  // const {posts} = useContext(AppContext)
+
+  // console.log(posts, "all the index");
+  
 
   // console.log(current, "current");
   
@@ -56,7 +75,7 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            {current == true ? <FollowersPosts/> : <div>
+            {current == true ? <div><FollowersPosts/></div> : <div>
               <ForYouPosts />
               <Tweets />
             </div> }

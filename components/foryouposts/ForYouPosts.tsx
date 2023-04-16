@@ -20,7 +20,7 @@ type Props = {};
 
 const ForYouPosts = (props: any) => {
 
-  const {tweets, setTweets} = useContext(AppContext)
+  const {posts,tweets, setTweets} = useContext(AppContext)
 
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
@@ -89,13 +89,14 @@ const ForYouPosts = (props: any) => {
       // window.location.replace("/tweets/" + res.data._id)
       setTweets([...tweets, newTweet])
       setTweet(" ")
-      // console.log(res.data);
       // console.log(tweets);
       
     } catch (err) {
       console.log(err);
     }
   }
+  
+  // console.log(tweets);
   
   // console.log(tweet.length);
   

@@ -56,8 +56,8 @@ const ProfilePage = (props: any) => {
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.userProfile?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                        <span style={{ fontSize: 24 }}>No of following </span>
-                        <span style={{ fontSize: 24 }}>No of followers </span>
+                            <span style={{ fontSize: 24 }}>No of following  {0}</span>
+                            <span style={{ fontSize: 24 }}>No of followers {0} </span>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>

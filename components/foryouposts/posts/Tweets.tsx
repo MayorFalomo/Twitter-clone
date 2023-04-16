@@ -1,19 +1,26 @@
 import { AppContext } from '@/helpers/Helpers'
-import React, {useContext} from 'react'
+import axios from 'axios'
+import { GetServerSideProps, GetStaticProps, InferGetStaticPropsType } from 'next'
+import React, {useContext, useEffect} from 'react'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import Tweet from './Tweet'
 import { TweetsContainer } from './Tweets.styled'
 
-type Props = {}
 
-const Tweets = (props: any) => {
+const Tweets = (props:any) => {
 
   const { tweets } = useContext(AppContext)
+
+  // console.log(tweets, "all tweeets");
+  
+  
+
+  
   
     return (
       <TweetsContainer>
             <div>
-          {tweets.reverse().map((tweet: any,index:any) => (
+          {tweets?.map((tweet: any,index:any) => (
             <div key={index} >
               <Tweet tweet={tweet} />
                   </div>
@@ -23,4 +30,5 @@ const Tweets = (props: any) => {
   )
 }
 
-export default Tweets
+
+export default Tweets;

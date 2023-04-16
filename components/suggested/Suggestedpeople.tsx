@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { SuggestedStyle } from './SuggestedUser.styled'
 
@@ -8,6 +9,13 @@ const Suggestedpeople = (props: any) => {
   const [followingButton, setFollowingButton] = useState<boolean>(false)
   const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
 
+  const handleFollow = () => {
+    axios.put(`http://localhost:7000/api/user/follow-user`, { 
+      follower: { 
+        userId: props.suggestedUser
+      }
+    })
+  }
   
   return (
     <SuggestedStyle>

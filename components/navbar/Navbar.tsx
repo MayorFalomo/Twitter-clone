@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavContainer } from "./Navbar.styled";
 import { RiHome7Line } from "react-icons/ri";
 import { TfiTwitter } from "react-icons/tfi";
@@ -13,10 +13,13 @@ import { RiQuillPenLine } from "react-icons/ri";
 import Link from "next/link";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { AppContext } from "@/helpers/Helpers";
 
 type Props = {};
 
 const Navbar = (props: any) => {
+
+  const {twitterBlue, setTwitterBlue} = useContext(AppContext)
   const [cookies, setCookies] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
 
@@ -25,6 +28,8 @@ const Navbar = (props: any) => {
     )
   }, [cookies.user]);  
   // console.log(cookies.user);
+
+  
   
   return (
     <NavContainer>
@@ -66,7 +71,7 @@ const Navbar = (props: any) => {
                   </div>
               </li></Link>
               <li>
-                <div className="navLinkItems">
+                <div onClick={() => setTwitterBlue(true)} className="navLinkItems">
                 <AiFillTwitterSquare className="navIcon" />
                   <span>Twitter Blue </span>
                   </div>
@@ -105,6 +110,7 @@ const Navbar = (props: any) => {
             <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
             </div>
         </div>
+        {/* <div onClick={() => setT(false)} className={overlay ? "overlay" : ""} > </div> */}
       </nav>
     </NavContainer>
   );

@@ -115,6 +115,11 @@ export const ProfileStyled = styled.div`
         border-radius: 30px;
         /* border: 2px red solid; */
     }
+    .followContainer{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
     }
 }
 .opaque{

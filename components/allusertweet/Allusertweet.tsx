@@ -15,7 +15,7 @@ const Allusertweet = (props: any) => {
     const [retweet, setRetweet] = useState<boolean>(false)
 
     // console.log(props.allTweet);
-    
+    const views = Math.floor(Math.random() * 20000)
 
     
     return (
@@ -87,7 +87,7 @@ const Allusertweet = (props: any) => {
                       style={{ cursor: "pointer", fontSize: 35,color: '#71767B' }}
                       />
                                     }</p>
-                                <span>{Math.floor(Math.random() * 20000)} </span>
+                                <span>{views}{views > 10000 ? "k" : ""} </span>
             </div>
             <div>
               <p>

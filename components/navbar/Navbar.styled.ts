@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   /* border: 4px green solid; */
-
+  nav{
   .navContainer {
     display: flex;
     flex-direction: column;
@@ -119,4 +119,14 @@ export const NavContainer = styled.div`
     }
   }
 }
+.overlay{
+  /* width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #242D34;
+  z-index: 1; */
+}
+  }
 `;
