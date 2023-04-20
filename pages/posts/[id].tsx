@@ -9,6 +9,7 @@ import axios from 'axios'
 import { Picker } from 'emoji-mart'
 import moment from 'moment'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { AiOutlineBars, AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
@@ -78,12 +79,14 @@ const Id = ({ tweetData }: any) => {
     // console.log(tweets, "This is tweets");
 
  
+  const params = useRouter()
+  console.log(params, "This is params");
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
 
 
-  // console.log(tweet);
+  console.log();
   
   return (
     <SingleTweetStyle>
@@ -116,7 +119,7 @@ const Id = ({ tweetData }: any) => {
               <div className='subTweetCount' >
               <p><span>{0} </span> Retweets </p>
               <p><span>{0} </span> Quotes </p>
-              <p><span>{0} </span> Likes </p>
+              <p><span>{ tweetProps.likes.length} </span> Likes </p>
               <p><span>{0} </span> Bookmarks </p>
               </div>
               </div>

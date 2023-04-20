@@ -124,6 +124,18 @@ padding: 10px;
         span{
             font-size: 20px;
         }
+        .activeModal{
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            height: 50vh;
+            border-radius: 30px;
+            z-index: 9999;
+            background: black;
+            /* border: 2px red solid; */
+        }
     }
     .showThread{
         display: flex;

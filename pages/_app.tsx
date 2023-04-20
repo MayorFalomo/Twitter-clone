@@ -67,13 +67,15 @@ export default function App({ Component, pageProps }: AppProps) {
     useEffect(() => {
     axios.get(`http://localhost:7000/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
-  }, [])
+    }, [])
+  
+  
     useEffect(() => {
     axios.get(`http://localhost:7000/api/users`)
       .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
     }, [])
-  // console.log(cookies.user);
   
+  // console.log(currentUser);
 
   return (
     <AppContext.Provider value={{isAuth, user, setUser, getCurrentUser, suggestedUsers, setSuggestedUsers, twitterBlue, setTwitterBlue, tweets, setTweets, currentUser}}>

@@ -96,7 +96,7 @@ const ForYouPosts = (props: any) => {
     }
   }
   
-  // console.log(tweets);
+  // console.log(currentUser)
   
   // console.log(tweet.length);
   
@@ -105,7 +105,7 @@ const ForYouPosts = (props: any) => {
   return (
     <ForYouContainer>
       <div className="forYouPostContainer">
-        <div className="userProfilePicture"></div>
+        <div style={{backgroundImage: `url(${currentUser?.profilePic})`}} className="userProfilePicture"></div>
         <form onSubmit={postTweet} >
           <div
             className="textAreaContainer"

@@ -13,6 +13,11 @@ export const ForYouContainer = styled.div`
       min-width: 70px;
       border-radius: 50%;
       border: 1px white solid;
+      background-color: #000;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      object-fit: cover;
     }
     form {
       width: 100%;
@@ -25,10 +30,7 @@ export const ForYouContainer = styled.div`
         width: 100%;
         height: 170px;
         background-color: transparent;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: none;
+        border: none;
         font-size: 25px;
         outline: 0;
         color: white;

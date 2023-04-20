@@ -18,9 +18,9 @@ const Comments = (props: any) => {
     
     const { currentUser } = useContext(AppContext)
     
-    const timeAgo = new Date().toISOString()
+    const timeAgo = Date.now()
     const commentId = Date.now()
-    // console.log(timeAgo);
+    // console.log(currentUser?.profileDp, "profile Dp");
     
     const [emoji, setEmoji] = useState<boolean>(false);
     const [everyOne, setEveryOne] = useState<boolean>(false);
@@ -29,8 +29,8 @@ const Comments = (props: any) => {
     const [profileDp, setProfileDp] = useState<string>("");
     const [picture, setPicture] = useState<string>("");
     const [video, setVideo] = useState<string>("");
-    const [createdAt, setCreatedAt] = useState<string>(timeAgo)
-    const [postId, setPostId] = useState<number>(commentId)
+    const [createdAt, setCreatedAt] = useState<number>(commentId)
+    const [postId, setPostId] = useState<number>(props.tweetProps?._id)
     const [gif, setGif] = useState<string>("");
     const [user, setUser] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
@@ -67,11 +67,12 @@ const Comments = (props: any) => {
     // })
   
     
-     const handleComment = async () => {
+    const handleComment = async (e:any) => {
+         e.preventDefault();
          const commentData = {
              username: currentUser?.username,
              usersAt: currentUser?.usersAt,
-             profileDp: currentUser?.profileDp,
+             profileDp: currentUser?.profilePic,
              comments,
              picture,
              video,
@@ -88,7 +89,7 @@ const Comments = (props: any) => {
   
     // console.log(props.tweetProps._id, "single postId");
     console.log(props.tweetProps, "single post");
-    // console.log(props.tweetProps.comments, "singletweet comment");
+    console.log(props.tweetProps.comments, "singletweet comment");
     // console.log(Date.now() , "Date");
     
     
