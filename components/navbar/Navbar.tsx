@@ -94,7 +94,7 @@ const Navbar = (props: any) => {
           </div>
           <div className="navProfileFlex" >
           <div className="navProfile">
-            <div className="bgImg"></div>
+            <div style={{backgroundImage: `url(${tweeterUser?.profilePic})`}} className="bgImg"></div>
             <div className="navSubProfile">
               <div className="navUsername" style={{ fontSize: 22 }}>
                 {tweeterUser?.username}

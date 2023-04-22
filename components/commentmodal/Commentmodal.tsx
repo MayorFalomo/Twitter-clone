@@ -5,6 +5,7 @@ import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbCalendarTime } from 'react-icons/tb'
 import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 import axios from 'axios'
 import { MdClose } from 'react-icons/md'
 import { CommentModalStyle } from '@/components/commentmodal/Commentmodal.styled'
@@ -15,6 +16,8 @@ type Props = {}
 
 const Slug = (props:any) => {
     
+      const commentId = Date.now()
+
   const {currentUser} = useContext(AppContext)
   const [emoji, setEmoji] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
@@ -25,8 +28,12 @@ const Slug = (props:any) => {
   const [user, setUser] = useState<string>("");
   const [cookies, setCookie] = useCookies(["user"])
   const [singleTweets, setSingleTweets] = useState<any>([])
+  const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-    
+  const [postId, setPostId] = useState<number>(singleTweets?._id)
+  const [createdAt, setCreatedAt] = useState<number>(commentId)
+  const [successComment, setSuccessComment] = useState<boolean>(false)
+
      const uploadImage = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -53,8 +60,31 @@ const Slug = (props:any) => {
         axios.get(`http://localhost:7000/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
             .catch((err) => console.log(err))
     }, [])
+  
+   const handleComment = async (e:any) => {
+         e.preventDefault();
+         const commentData = {
+             username: currentUser?.username,
+             usersAt: currentUser?.usersAt,
+             profileDp: currentUser?.profilePic,
+             comments,
+             picture,
+             video,
+             postId: singleTweets?._id ,
+             createdAt,
+         }
+         await axios.put(`http://localhost:7000/api/tweets/comments/`, commentData).catch((err) => console.log(err))
+     setComments(" ")
+     setSuccessComment(true)
+        //  setSingleTweets({
+        //      ...singleTweets, comments: [
+        //      ...singleTweets.comments, commentData,
+        //  ]})
+     }
 
-  // console.log(singleTweets.tweet.length, "props");
+  // console.log(postId, "postId");
+  // console.log(singleTweets?._id, "tweet ID");
+  // console.log(createdAt, "comments");
   // console.log(currentUser, "current User");
     
     return (
@@ -72,8 +102,8 @@ const Slug = (props:any) => {
                   <h1>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h1>
                   <p >{singleTweets?.tweet?.slice(0, 85)}... </p>
                   <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p>
-        <form>
-            <textarea typeof='text' placeholder='Tweet your reply' />
+        <form onSubmit={handleComment} >
+            <textarea onChange={(e) => setComments(e.target.value) } value={comments} typeof='text' placeholder='Tweet your reply' />
                 <div className="flexIcons">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
@@ -98,7 +128,7 @@ const Slug = (props:any) => {
                 )}
                 {emoji ? (
                 <div className="pickerEmoji" >
-                    {/* <Picker data={data} onEmojiSelect={(emoji: any) => setTweet(tweet + emoji.native)} /> */}
+                    <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
                 </div>
                 ) : (
                   ""
@@ -111,13 +141,14 @@ const Slug = (props:any) => {
                   {<IoLocationOutline fontSize="35" color='1D9BF0' />}{" "}
                 </span>
               </div>
-                {successfulUpload || tweet.length > 0 ? <button type="submit" className="tweetButton" >Tweet</button> : <button className="btn-primary" disabled>
+                {successfulUpload == true || comments?.length > 0 ? <button type="submit" className="tweetButton" >Tweet</button> : <button className="btn-primary" disabled>
                   Tweet
                 </button>}
               </div>
                   </form>
-              </div>
+            </div>
           </div>
+              {successComment ? <div className="successMessage" >Your comment has been sent </div> : "" }
             </div>
             </CommentModalStyle>
   )

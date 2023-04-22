@@ -19,15 +19,14 @@ export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) =>
   
   return {
     props: {
-      posts
+      posts: posts.reverse(),
     }
   };
 };
   
 export default function App({ Component, pageProps }: AppProps) {
 
-    const {posts} = pageProps
-
+  const {posts} = pageProps
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [user, setUser] = useState<any>(null)
   const [tweets, setTweets] = useState<any>(posts)
@@ -68,7 +67,6 @@ export default function App({ Component, pageProps }: AppProps) {
     axios.get(`http://localhost:7000/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
     }, [])
-  
   
     useEffect(() => {
     axios.get(`http://localhost:7000/api/users`)

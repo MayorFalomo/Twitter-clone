@@ -41,7 +41,7 @@ const profile = (props: Props) => {
           <ProfilePage userProfile={userProfile} setUserProfile={setUserProfile} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
           </div>
           <div className='rightGridContainer' >
-      <Search />
+          <Search />
           <Whotofollow />
           <Trends/>
         </div>

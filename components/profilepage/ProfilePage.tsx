@@ -20,7 +20,6 @@ const ProfilePage = (props: any) => {
     };
     
     
-    
     return (
       <ProfileStyled>
             <div className={props.editProfileModal ?  "opaque": 'profilePageStyled'} >

@@ -24,10 +24,11 @@ const Tweet = (props: any) => {
   const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
   const [likesArray, setLikesArray] = useState<any>(props.tweet.likes)
-  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray.length)
+  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
   const [commentModal, setCommentModal] = useState<boolean>(false)
   const [modalLink, setModalLink] = useState<string>("")
-    const [urlParams, setUrlParams] = useState<string>(" ")
+  const [urlParams, setUrlParams] = useState<string>(" ")
+  const [getUsername, setGetUsername] = useState<string>("")
 
   // console.log(likesArray && props.tweet.comments.length, "likes array");
 
@@ -46,10 +47,12 @@ const Tweet = (props: any) => {
         }
         axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData])
-        setNoOfLikesArray(likesArray.length + 1);
+        setNoOfLikesArray(likesArray?.length + 1);
       }
-
-    }
+  }
+  
+  // console.log(props.thank, "Thank");
+  
   // }
   // const handleAddLike = async () => {
   //   const likeData = {
@@ -74,11 +77,11 @@ const Tweet = (props: any) => {
     await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
-    setNoOfLikesArray(likesArray.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+    setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
 
   
-  const views = Math.floor(Math.random() * suggestedUsers.length)
+  const views = Math.floor(Math.random() * suggestedUsers?.length)
   
 
   const handleClick = (e: any) => {
@@ -87,31 +90,45 @@ const Tweet = (props: any) => {
      setCommentModal(true)
   };
 
+  const handleLink = (e: any) => {
+    e.preventDefault()
+    setGetUsername(props.tweet?._username)
+    //  setCommentModal(true)
+  };
+
+  // console.log(props.tweet);
+  //las las if it doesn't work i will just:
+  //1) Make a context state
+  //2) Set the username to be that state when you click on it
+  // http://localhost:3000/posts/ascarids
+
+  // console.log();
+  
+
   return (
       <Tweetstyled>
            <div className='postsContainer' >
             <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
                  <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >
-                  <div className='tweetProfileDetails' >
-              <span className='userName' > {props.tweet?.username}</span>
+                 <div className='tweetProfileDetails' >
+              <Link href={'/users/' + props.tweet?.username} className='userName' > {props.tweet?.username} </Link>
               <span className='userAt'>{props.tweet?.usersAt}</span>
-              <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span>
+              {props.tweet?.newDates == undefined ? <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span> : <span className='createdAt' >a few seconds ago </span> }
             </div>
                   <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
           </div>
-                    <p className='tweet-caption' >{props.tweet?.tweet} </p>
-                    {/* <img src={props.tweet.picture} className='tweet-image' alt='img' /> */}
-          {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
-          <div className='tweetOptions' >
-            <div className='flexIconsAndValues' >
-              <p onClick={handleClick} >
+          <p className='tweet-caption' >{props.tweet?.tweet} </p>
+          {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
+          <div className='tweetOptions'>
+            <div className='flexIconsAndValues'>
+              <p onClick={handleClick}>
                         <FaRegComment
                       className="likeIcon"
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
             </p>
-              <span>{props.tweet.comments.length} </span>
+              <span>{props.tweet.comments?.length} </span>
               {commentModal ?  <div className="activeModal" ><Slug urlParams={urlParams} setCommentModal={setCommentModal} /> </div> : ""}
             </div>
             <div  className='flexIconsAndValues'>

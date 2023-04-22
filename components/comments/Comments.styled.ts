@@ -240,9 +240,6 @@ padding: 10px; */
           background-color: #1d9aef;
           color: #fff;
           border-radius: 25px;
-          /* border-bottom-left-radius: 25px;
-          border-top-right-radius: 25px;
-          border-bottom-right-radius: 25px; */
         }
         .btn-primary{
           opacity: 0.4;

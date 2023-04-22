@@ -72,6 +72,7 @@ export const CommentModalStyle = styled.div`
                 color: #fff;
                 resize: none;
                 white-space: wrap;
+                line-height: 35px;
             }
             textarea::placeholder {
                 font-size: 28px;
@@ -130,6 +131,13 @@ export const CommentModalStyle = styled.div`
       outline: 0;
     } */
   }
+            }
+            .successMessage{
+              /* border: 2px red solid; */
+              margin-top: 10px;
+              color: green;
+              font-size: 26px;
+              text-align: center;
             }
         }
 `

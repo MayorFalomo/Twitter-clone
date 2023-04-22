@@ -1,5 +1,7 @@
 import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 import moment from 'moment'
 import Link from 'next/link'
 import React, {useState, useContext, useEffect} from 'react'
@@ -32,7 +34,7 @@ const Comments = (props: any) => {
     const [createdAt, setCreatedAt] = useState<number>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
     const [gif, setGif] = useState<string>("");
-    const [user, setUser] = useState<string>("");
+    // const [tweet, setEmoji] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
     const [tweeterUser, setTweeterUser] = useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
@@ -88,8 +90,8 @@ const Comments = (props: any) => {
      }
   
     // console.log(props.tweetProps._id, "single postId");
-    console.log(props.tweetProps, "single post");
-    console.log(props.tweetProps.comments, "singletweet comment");
+    // console.log(props.tweetProps, "single post");
+    // console.log(props.tweetProps.comments, "singletweet comment");
     // console.log(Date.now() , "Date");
     
     
@@ -105,7 +107,7 @@ const Comments = (props: any) => {
             <textarea className="textArea"
               placeholder="Tweet your reply"
               typeof="text"
-            //   value={comments}
+              // value={comments}
               onChange={(e) => setComments(e.target.value)}
               />
             {everyOne ? (
@@ -136,7 +138,7 @@ const Comments = (props: any) => {
                 )}
                 {emoji ? (
                     <div className="pickerEmoji" >
-                      {/* <Picker data={data} onEmojiSelect={(emoji: any) => setTweet(tweet + emoji.native)} /> */}
+                      <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
                     </div>
                 ) : (
                   ""

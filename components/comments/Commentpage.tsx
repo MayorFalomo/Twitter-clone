@@ -20,6 +20,8 @@ const Commentpage = (props: any) => {
     const [likeTweet, SetLikeTweet] = useState<boolean>(false)
 
 
+  console.log(props);
+  
     return (
       <CommentPageStyle>
       <div className='commentPageContainer' >
@@ -35,7 +37,7 @@ const Commentpage = (props: any) => {
           </div>
             </Link>
                     <p className='tweet-caption' style={{fontSize: 28, fontWeight: 400}} >{props.comment?.comments} </p>
-                    <img src={props.comment?.picture} className='tweet-image' alt='img' />
+            {/* {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image'> </div> : ""} */}
           {props.comment?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.comment?.picture})` }} className='tweet-image' ></div> : ""}
           <div className='tweetOptions' >
             <div className='flexIconsAndValues' >

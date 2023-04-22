@@ -15,12 +15,13 @@ import axios from "axios";
 import { AppContext } from "@/helpers/Helpers";
 import { log } from "console";
 import Tweet from "./posts/Tweet";
+import moment from "moment";
 
 type Props = {};
 
 const ForYouPosts = (props: any) => {
 
-  const {currentUser,tweets, setTweets} = useContext(AppContext)
+  const { currentUser, tweets, setTweets } = useContext(AppContext)
 
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
@@ -33,6 +34,7 @@ const ForYouPosts = (props: any) => {
   const [cookies, setCookie] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
+  const [newDate, setNewDate] = useState<any>(false);
   
   const uploadImage = (files: any) => {
     const formData = new FormData();
@@ -42,7 +44,7 @@ const ForYouPosts = (props: any) => {
       .post("https://api.cloudinary.com/v1_1/dsghy4siv/image/upload", formData)
       .then((res) => setPicture(res.data.url))
       .catch((err) => console.log(err));
-      setSuccessfulUpload(true)
+    setSuccessfulUpload(true)
   };
   const uploadVideo = (files: any) => {
     const formData = new FormData();
@@ -52,7 +54,7 @@ const ForYouPosts = (props: any) => {
       .post("https://api.cloudinary.com/v1_1/dsghy4siv/video/upload", formData)
       .then((res) => setVideo(res.data.url))
       .catch((err) => console.log(err));
-      setSuccessfulUpload(true)
+    setSuccessfulUpload(true)
   };
 
   
@@ -70,9 +72,13 @@ const ForYouPosts = (props: any) => {
   //   axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
   //   )
   // }, [cookies.user]);  
-    // console.log(tweets, "This is tweets");
+  // console.log(tweets, "This is tweets");
+  
+  // const presentDate = Date.now()
+  
+  // const [newDates, setNewDates ]= useState( moment(new Date(presentDate)).fromNow())
 
-  const postTweet = async(e: any) => {
+  const postTweet = async (e: any) => {
     e.preventDefault();
 
     const newTweet = {
@@ -83,6 +89,7 @@ const ForYouPosts = (props: any) => {
       video,
       picture,
       gif,
+      // newDates,
     }
     try {
       await axios.post(`http://localhost:7000/api/tweets`, newTweet);
@@ -90,13 +97,14 @@ const ForYouPosts = (props: any) => {
       setTweets([...tweets, newTweet])
       setTweet(" ")
       // console.log(tweets);
-      
     } catch (err) {
       console.log(err);
     }
   }
   
-  // console.log(currentUser)
+ 
+
+  // console.log(tweets);
   
   // console.log(tweet.length);
   

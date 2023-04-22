@@ -6,7 +6,6 @@ import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { AppContext } from '@/helpers/Helpers'
 import { SingleTweetStyle } from '@/styles/Id.styled'
 import axios from 'axios'
-import { Picker } from 'emoji-mart'
 import moment from 'moment'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -27,7 +26,7 @@ export const getStaticPaths = async () => {
 
   const paths = data.map((path: any) => {
     return {
-          params: { id: path._id.toString(), }
+          params: { id: path._id }
     }
   })
   return { 
@@ -80,13 +79,13 @@ const Id = ({ tweetData }: any) => {
 
  
   const params = useRouter()
-  console.log(params, "This is params");
+  // console.log(params, "This is params");
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
 
 
-  console.log();
+  // console.log();
   
   return (
     <SingleTweetStyle>
