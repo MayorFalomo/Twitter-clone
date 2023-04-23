@@ -10,6 +10,8 @@ export const UsernamePageStyle = styled.div`
     margin: 0 10%;
     .subUserContainer{
        overflow:auto ;
+       border-right: 1px solid rgb(47, 51, 54);
+       border-left: 1px solid rgb(47, 51, 54);
     }
     .subUserContainer::-webkit-scrollbar{
         width: 0;

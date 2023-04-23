@@ -47,6 +47,7 @@ const Slug = ({ users }: any) => {
   console.log(users);
 
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
+      const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 
       useEffect(() => {
      axios.get(`http://localhost:7000/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
@@ -60,7 +61,7 @@ const Slug = ({ users }: any) => {
         <div className='subUserContainer' >
           {users.map((user: any) => (
             <div key={user._id} >
-              <Singleuser user={user} allUsersTweets={allUsersTweets} />
+              <Singleuser user={user} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal} />
               </div>
           ))}
       </div>

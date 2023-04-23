@@ -63,9 +63,23 @@ export const SingleUserTweetsStyle = styled.div`
                     font-weight: 700;
                     color: rgb(47, 51, 54)
                 }
-               
-            }
-           
+                .activeModal{
+                    position: fixed;
+                    top: 30%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 40vw;
+                    height: 50vh;
+                    border-radius: 30px;
+                    z-index: 9999;
+                    background: black;
+                    /* border: 2px red solid; */
+        }
+            }  
+        }
+        .thread{
+            font-size: 22px;
+            color: #1d9aef;
         }
     }
 }

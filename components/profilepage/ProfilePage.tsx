@@ -1,4 +1,5 @@
 import moment from 'moment'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineLink } from 'react-icons/ai'
 import { BiCalendar } from 'react-icons/bi'
@@ -18,6 +19,9 @@ const ProfilePage = (props: any) => {
      const handleClick = (param: any) => {
     setCurrent(param);
     };
+
+    console.log(props.userProfile);
+    
     
     
     return (
@@ -25,9 +29,9 @@ const ProfilePage = (props: any) => {
             <div className={props.editProfileModal ?  "opaque": 'profilePageStyled'} >
           <div className='subProfileStyle' >
           <div className='subProfileFlex' >
-           <ul>
-            <li style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </li>
-            </ul>
+           {/* <ul> */}
+            <Link href='/' style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </Link>
+            {/* </ul> */}
             <div className='profileUsersDetails' >
             <h1>{props.userProfile?.username} </h1>
               <p>{props.allUsersTweets.posts?.length} Tweets</p>

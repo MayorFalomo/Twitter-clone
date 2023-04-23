@@ -33,8 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [suggestedUsers, setSuggestedUsers] = useState<any>([])
   const [twitterBlue, setTwitterBlue] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<any>([])
-
+  const [bookmarks, setBookmarks] = useState<any>([])
   const [cookies, setCookie] = useCookies(["user"])
+  const [userFollowing, setUserFollowing] = useState<any>([])
 
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
@@ -46,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
    useEffect(() => {
-     getCurrentUser(cookies.user)     
+     getCurrentUser(cookies.user)   
   }, []);
   // console.log(user, "this is user");
 
@@ -73,10 +74,36 @@ export default function App({ Component, pageProps }: AppProps) {
       .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
     }, [])
   
+  const getUserBookmarks = async (param:any) => {
+    const res = await axios.get(`http://localhost:7000/api/bookmarks/get-bookmark/${param}`)
+    setBookmarks(res.data.bookmarks)
+  }
+
+  useEffect(() => {
+    if (currentUser) {
+      getUserBookmarks(currentUser._id)
+    } else {
+      console.log("no user")
+    }
+  }, [currentUser])
   // console.log(currentUser);
 
   return (
-    <AppContext.Provider value={{isAuth, user, setUser, getCurrentUser, suggestedUsers, setSuggestedUsers, twitterBlue, setTwitterBlue, tweets, setTweets, currentUser}}>
+    <AppContext.Provider value={{
+      isAuth,
+      user,
+      setUser,
+      getCurrentUser,
+      suggestedUsers,
+      setSuggestedUsers,
+      twitterBlue,
+      setTwitterBlue,
+      tweets,
+      setTweets,
+      currentUser,
+      bookmarks,
+      setBookmarks,
+    }}>
       <GlobalStyle />
         <Component {...pageProps} />
     </AppContext.Provider>

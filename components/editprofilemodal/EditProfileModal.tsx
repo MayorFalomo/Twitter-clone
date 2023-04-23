@@ -65,14 +65,15 @@ const EditProfileModal = (props: any) => {
             setBio("")
             setLocation("")
             setLinks("")
-            props.setUserProfile({ ...props.userProfile , ...updatedUser})
+            props.setUserProfile({ ...props.userProfile, ...updatedUser })
+            props.setEditProfileModal(false)
             } catch (err) {
             console.log(err);
         }
     }
     
-    // console.log(props.userProfile);
-    console.log(profilePic);
+    console.log(props.userProfile);
+    // console.log(profilePic);
     
     return (
         <EditProfileStyle>
@@ -94,7 +95,7 @@ const EditProfileModal = (props: any) => {
                                 <input onChange={(e:any) => uploadCoverImage("")} id='fileRemove' style={{ display: 'none' }} />
                         </div>
                   </div>
-                  <div style={{ backgroundImage: `url(${props.userProfile.profilePic})` }} className='profilePicBg' >
+                  <div style={{ backgroundImage: `url(${props.userProfile?.profilePic})` }} className='profilePicBg' >
                       <label htmlFor='fileDp' className='camera' style={{ borderRadius: '50%', padding: 20}}>{<BiCamera fontSize={35} cursor='pointer' />} </label>
                       <input onChange={(e:any) => uploadImage(e.target.files)} type='file' id='fileDp' style={{ display: 'none'}}/>
                   </div>

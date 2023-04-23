@@ -16,9 +16,10 @@ import Commentmodal from '@/components/commentmodal/Commentmodal';
 import Slug from '@/components/commentmodal/Commentmodal';
 type Props = {}
 
+//parent component is tweets
 const Tweet = (props: any) => {
 
-  const { currentUser, suggestedUsers } = useContext(AppContext)
+  const { currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
 
   const [postId, setPostId] = useState(props.tweet?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
@@ -73,13 +74,37 @@ const Tweet = (props: any) => {
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
-    } 	//takes the id of the post and removes it from the
+    }
     await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
 
+  const handleBookmark = () => {
+    const bookmarkData = {
+      profileDp: props.tweet?.profileDp,
+      username: props.tweet?.username,
+      usersAt: props.tweet?.usersAt,
+      tweet: props.tweet?.tweet,
+      picture: props.tweet?.picture,
+      video: props.tweet?.video,
+      postId: props.tweet?._id,
+      likes: props.tweet?.likes,
+      comments: props.tweet?.comments,
+      createdAt: props.tweet?.createdAt,
+      saved: true,
+    }
+    axios.post(`http://localhost:7000/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
+    )
+    setBookmarks([...bookmarks, bookmarkData ])
+  }
+
+  const handleRemoveBookmark = async () => {
+    axios.delete(`http://localhost:7000/api/bookmark/bookmarks/delete-bookmark/${props.tweet?._id}`).catch((err) => console.log(err))
+    let filtered = bookmarks.filter((bookmark: any) => bookmark.id !== bookmark)
+    setBookmarks(filtered)
+  }
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
@@ -92,23 +117,15 @@ const Tweet = (props: any) => {
 
   const handleLink = (e: any) => {
     e.preventDefault()
-    setGetUsername(props.tweet?._username)
+    setGetUsername(props.tweet?.username)
     //  setCommentModal(true)
   };
-
-  // console.log(props.tweet);
-  //las las if it doesn't work i will just:
-  //1) Make a context state
-  //2) Set the username to be that state when you click on it
-  // http://localhost:3000/posts/ascarids
-
-  // console.log();
   
 
   return (
       <Tweetstyled>
            <div className='postsContainer' >
-            <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
+            <Link href={'/users/' + props.tweet?.username} className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></Link>
                  <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >
                  <div className='tweetProfileDetails' >
@@ -187,7 +204,7 @@ const Tweet = (props: any) => {
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
             </div>
             <div>
-              <p>
+              <p onClick={handleBookmark} >
                   {
                         <AiOutlineUpload
                       className="likeIcon"

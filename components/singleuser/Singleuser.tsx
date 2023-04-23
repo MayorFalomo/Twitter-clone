@@ -1,6 +1,6 @@
 import axios from 'axios'
 import moment from 'moment'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { AiOutlineLink } from 'react-icons/ai'
 import { BiCalendar, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsArrowLeft, BsBalloon } from 'react-icons/bs'
@@ -10,14 +10,19 @@ import { RxEnvelopeClosed } from 'react-icons/rx'
 import { SingleUserStyle } from './Singleuser.styled'
 import SingleUserReplies from './SingleUserReplies'
 import Singleusertweets from '../singletweet/Singleusertweets'
+import { AppContext } from '@/helpers/Helpers'
+import EditProfileModal from '../editprofilemodal/EditProfileModal'
+import Link from 'next/link'
 
 type Props = {}
 
+//[username] in pages is the parent component
 const Singleuser = (props: any) => {
 
     const [current, setCurrent] = useState<any>(0)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
 
+    const {currentUser} = useContext(AppContext)
      const handleClick = (param: any) => {
          setCurrent(param);
     };
@@ -27,42 +32,42 @@ const Singleuser = (props: any) => {
           .then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
     }, [props.user?.username])
     
-    // console.log(allUsersTweets.posts.length, "All tweets");
+    console.log(currentUser?.username, "current user");
+    console.log(props.user, "All tweets");
     
 
     
     return (
       <SingleUserStyle>
-      <div  className='profilePageStyled' >
-           <div className='subProfileStyle' >
-          <div className='subProfileFlex' >
-           <ul>
-            <li style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </li>
-            </ul>
+      <div  className='profilePageStyled'>
+           <div className='subProfileStyle'>
+          <div className='subProfileFlex'>
+           {/* <ul> */}
+            <Link href='/' style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </Link>
+            {/* </ul> */}
             <div className='profileUsersDetails'>
             <h1>{props.user?.username} </h1>
               <p>{allUsersTweets.posts?.length} Tweets</p>
               </div>
           </div>
-          <div className='profilePhotoContainers' >
+          <div className='profilePhotoContainers'>
           <div style={{ backgroundImage: `url(${props.user?.coverPhoto})` }} className='backDropPhoto' >  </div>
             <div style={{ backgroundImage: `url(${props.user?.profilePic})` }} className='profileDp'></div>
                     </div>
-                    {<div className='profilePageIcons' >
+                    {currentUser?.username === props.user?.username ? <div className='editProfileBtn'><button> Your profile </button></div> :
+                        <div className='profilePageIcons' >
                         <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </span>
                         <span>{<RxEnvelopeClosed fontSize='30px' cursor='pointer' />} </span>
                         <span>{<MdOutlineNotificationAdd fontSize='30px' cursor='pointer' />} </span>
                         <a> Following </a>
                     </div>}
-                    <div> </div>
-                    {/* <div onClick={() => props.setEditProfileModal(!false)} className='editProfileBtn'><button> Edit Profile </button></div> */}
+                   {props.editProfileModal ? <EditProfileModal/> : "" }
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
-                    {/* <div className={props.editProfileModal ? 'editProfileModal' : "removeModal"} >{props.editProfileModal ? <EditProfileModal userProfile={props.userProfile} setUserProfile={props.setUserProfile} setEditProfileModal={props.setEditProfileModal} />: ""}</div> */}
                     <div className='userDetailsContainer' >
                     <h1 style={{fontSize: 35, fontWeight: 800}} >{props.userProfile?.username} </h1>
                     <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.userProfile?.usersAt} </p>
                     <div className='usersBio' style={{margin: '30px auto', fontSize: 24, fontWeight: 600}}>
-                        <p>{props.userProfile?.bio} </p>
+                        <p style={{color: '#BABBBC'}} >{props.user?.bio} </p>
                         </div>
                         <div className='usersExtraInfoContainer' style={{margin: '30px auto',}}>
                     <div className='usersExtraInfo' >
@@ -83,7 +88,7 @@ const Singleuser = (props: any) => {
                         <li onClick={(e:any) => handleClick(2)} style={{ fontSize: 24, cursor: "pointer" }}>Media </li>
                         <li onClick={(e: any) => handleClick(3)} style={{ fontSize: 24, cursor: "pointer" }}> Likes</li>          
                     </ul>
-                {current == 0 && <div> {allUsersTweets?.posts?.map((allTweets:any) => (<div key={allTweets._id} ><Singleusertweets allTweets={allTweets} /> </div>) )} </div> }
+                {current == 0 && <div className="singleTweetsContainer" > {allUsersTweets?.posts?.map((allTweets:any) => (<div key={allTweets._id} className="singleTweet" ><Singleusertweets allTweets={allTweets} /> </div>) )} </div> }
                 {current == 1 && <SingleUserReplies/> }
                 </div>
             </div>

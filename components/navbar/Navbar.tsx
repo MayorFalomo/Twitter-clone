@@ -46,25 +46,25 @@ const Navbar = (props: any) => {
                   <span>Home </span>
                   </div>
               </li></Link>
-              <Link href='./explore' ><li>
+              <Link href='/explore' ><li>
                 <div  className="navLinkItems" >
                 <RiHashtag className="navIcon"  />
                   <span>Explore</span>
                   </div>
               </li></Link>
-              <Link href='./notifications' ><li>
+              <Link href='/notifications' ><li>
                 <div className="navLinkItems">
                 <BiBell className="navIcon" />
                   <span>Notifications </span>
                   </div>
               </li></Link>
-              <Link href='messages' ><li>
+              <Link href='/messages' ><li>
                 <div className="navLinkItems">
                 <RxEnvelopeClosed className="navIcon" />
                   <span>Messages </span>
                   </div>
               </li></Link>
-              <Link href='bookmarks' ><li>
+              <Link href='/bookmarks' ><li>
                 <div className="navLinkItems" >
                 <IoBookmarkOutline className="navIcon" />
                   <span>Bookmarks </span>
@@ -76,7 +76,7 @@ const Navbar = (props: any) => {
                   <span>Twitter Blue </span>
                   </div>
               </li>
-              <Link href='./profile' ><li>
+              <Link href='/profile' ><li>
                 <div className="navLinkItems">
                 <BsPersonFill className="navIcon" />
                   <span>Profile </span>
