@@ -20,7 +20,7 @@ const ProfilePage = (props: any) => {
     setCurrent(param);
     };
 
-    console.log(props.userProfile);
+    // console.log(props.userProfile);
     
     
     

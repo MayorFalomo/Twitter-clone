@@ -19,10 +19,12 @@ type Props = {}
 //[username] in pages is the parent component
 const Singleuser = (props: any) => {
 
+    const {currentUser, setCurrentUser, user} = useContext(AppContext)
+
     const [current, setCurrent] = useState<any>(0)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
+    const [copied, setCopied] = useState<boolean>(false)
 
-    const {currentUser} = useContext(AppContext)
      const handleClick = (param: any) => {
          setCurrent(param);
     };
@@ -31,10 +33,29 @@ const Singleuser = (props: any) => {
           axios.get(`http://localhost:7000/api/tweets/get-tweet/${props.user?.username}`)
           .then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
     }, [props.user?.username])
+
+    const handleFollowArtist = () => {
+        axios.put(`http://localhost:7000/api/users/follow-user`, {
+            follow: {
+                currentUsername: currentUser.username, 		//username of the user who is following the current user.
+                currentUsersAt: currentUser.usersAt,
+                currentProfileDp: currentUser.profileDp,
+                currentUserId: currentUser._id,
+                userToAddToName: currentUser.username,		//username of the user who is following the current user.
+            },
+        }).catch((err) => {console.log(err)
+        })
+        setCurrentUser({...currentUser, following: [...currentUser?.following ]})
+    }
     
-    console.log(currentUser?.username, "current user");
-    console.log(props.user, "All tweets");
-    
+    console.log(currentUser, "current user");
+    // console.log(user, "All tweets");
+     const handleCopyToClipboard = (param:any) => {
+    navigator.clipboard.writeText(
+      `https://insttagg-server.vercel.app/post/${param}`
+    );
+    setCopied(!copied);
+  };
 
     
     return (

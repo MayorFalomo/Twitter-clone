@@ -27,14 +27,14 @@ export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) =>
 export default function App({ Component, pageProps }: AppProps) {
 
   const {posts} = pageProps
-  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [isAuth, setIsAuth] = useState()
   const [user, setUser] = useState<any>(null)
   const [tweets, setTweets] = useState<any>(posts)
   const [suggestedUsers, setSuggestedUsers] = useState<any>([])
   const [twitterBlue, setTwitterBlue] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<any>([])
   const [bookmarks, setBookmarks] = useState<any>([])
-  const [cookies, setCookie] = useCookies(["user"])
+  const [cookies, setCookie] = useCookies(["user"]);
   const [userFollowing, setUserFollowing] = useState<any>([])
 
   //Function to get current user from backend
@@ -48,7 +48,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
    useEffect(() => {
      getCurrentUser(cookies.user)   
-  }, []);
+   }, []);
+  
   // console.log(user, "this is user");
 
   // console.log(posts, "hellooooo APP");
@@ -65,12 +66,12 @@ export default function App({ Component, pageProps }: AppProps) {
   // }, []);
 
     useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
     }, [])
   
     useEffect(() => {
-    axios.get(`http://localhost:7000/api/users`)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
       .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
     }, [])
   
@@ -80,13 +81,13 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
-    if (currentUser) {
+    if (isAuth) {
       getUserBookmarks(currentUser._id)
     } else {
       console.log("no user")
     }
   }, [currentUser])
-  // console.log(currentUser);
+  // console.log(currentUser?._id);
 
   return (
     <AppContext.Provider value={{
