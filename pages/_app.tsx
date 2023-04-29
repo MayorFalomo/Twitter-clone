@@ -80,21 +80,23 @@ export default function App({ Component, pageProps }: AppProps) {
     setBookmarks(res.data.bookmarks)
   }
 
-  useEffect(() => {
-    if (isAuth) {
-      getUserBookmarks(currentUser._id)
-    } else {
-      console.log("no user")
-    }
-  }, [currentUser])
-  // console.log(currentUser?._id);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     getUserBookmarks(currentUser?._id)
+  //   } else {
+  //     console.log("no user")
+  //   }
+  // }, [currentUser])
+  console.log(currentUser?.following?.length, "user Id");
+  const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
+  console.log(noOfFollowing, "following");
 
   return (
     <AppContext.Provider value={{
       isAuth,
       user,
       setUser,
-      getCurrentUser,
+      setCurrentUser,
       suggestedUsers,
       setSuggestedUsers,
       twitterBlue,
@@ -104,6 +106,8 @@ export default function App({ Component, pageProps }: AppProps) {
       currentUser,
       bookmarks,
       setBookmarks,
+      // following,
+      // setNoOfFollowing,
     }}>
       <GlobalStyle />
         <Component {...pageProps} />

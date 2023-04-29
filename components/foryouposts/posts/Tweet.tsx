@@ -120,6 +120,8 @@ const Tweet = (props: any) => {
     setGetUsername(props.tweet?.username)
     //  setCommentModal(true)
   };
+  // console.log(props.tweet?.newDates, "new Dates");
+  
   
 
   return (

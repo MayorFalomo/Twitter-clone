@@ -72,7 +72,7 @@ const EditProfileModal = (props: any) => {
         }
     }
     
-    console.log(props.userProfile);
+    // console.log(props.userProfile);
     // console.log(profilePic);
     
     return (

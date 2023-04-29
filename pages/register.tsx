@@ -134,7 +134,7 @@ const register = (props: any) => {
                     <IoMdClose className='letterX' />
           <BsTwitter className='loginLogo' style={{color: ' #1d9aef', fontSize: '40px'}} />
           <h1>Join Twitter Today</h1>
-          <button onClick={signInWithGoogle} className='googleBtn' > <FcGoogle size={30}  /> Sign In With Google </button>
+          <button onClick={signInWithGoogle} className='googleBtn' > <FcGoogle size={30}  /> Sign Up With Google </button>
           <div className='orBars' >
               <span className='leftBar' ></span>
               <p>or</p>

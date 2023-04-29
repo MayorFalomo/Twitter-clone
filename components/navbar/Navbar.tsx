@@ -94,10 +94,10 @@ const Navbar = (props: any) => {
           </div>
           <div className="navProfileFlex" >
           <div className="navProfile">
-            <div style={{backgroundImage: `url(${tweeterUser?.profilePic})`}} className="bgImg"></div>
+            <Link href="/profile" style={{backgroundImage: `url(${tweeterUser?.profilePic})`}} className="bgImg"></Link>
             <div className="navSubProfile">
               <div className="navUsername" style={{ fontSize: 22 }}>
-                {tweeterUser?.username}
+                <Link href="/profile" >{tweeterUser?.username}</Link>
               </div>
               <div
                 className="navEmail"

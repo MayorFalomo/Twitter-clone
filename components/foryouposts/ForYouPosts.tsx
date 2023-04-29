@@ -34,7 +34,7 @@ const ForYouPosts = (props: any) => {
   const [cookies, setCookie] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  const [newDate, setNewDate] = useState<any>(false);
+  // const [newDate, setNewDate] = useState<any>(false);
   
   const uploadImage = (files: any) => {
     const formData = new FormData();
@@ -74,9 +74,9 @@ const ForYouPosts = (props: any) => {
   // }, [cookies.user]);  
   // console.log(tweets, "This is tweets");
   
-  // const presentDate = Date.now()
+  const presentDate = Date.now()
   
-  // const [newDates, setNewDates ]= useState( moment(new Date(presentDate)).fromNow())
+  const [newDates, setNewDates ]= useState( moment(new Date(presentDate)).fromNow())
 
   const postTweet = async (e: any) => {
     e.preventDefault();
@@ -89,7 +89,7 @@ const ForYouPosts = (props: any) => {
       video,
       picture,
       gif,
-      // newDates,
+      newDates,
     }
     try {
       await axios.post(`http://localhost:7000/api/tweets`, newTweet);
@@ -104,9 +104,9 @@ const ForYouPosts = (props: any) => {
   
  
 
-  // console.log(tweets);
+  // console.log(newDates);
   
-  // console.log(tweet.length);
+  // console.log(tweet);
   
 
 

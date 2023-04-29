@@ -1,6 +1,7 @@
+import { AppContext } from '@/helpers/Helpers'
 import moment from 'moment'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineLink } from 'react-icons/ai'
 import { BiCalendar } from 'react-icons/bi'
 import { BsArrowLeft, BsBalloon, BsBalloonFill } from 'react-icons/bs'
@@ -13,12 +14,16 @@ import { ProfileStyled } from './ProfilePage.styled'
 type Props = {}
 
 const ProfilePage = (props: any) => {
+    const { currentUser } = useContext(AppContext);
 
     const [current, setCurrent] = useState<any>(0)
+  const [following, setNoOfFollowing] = useState<any>(currentUser.following?.length)
 
      const handleClick = (param: any) => {
     setCurrent(param);
     };
+    
+    // console.log(following, "number")
 
     // console.log(props.userProfile);
     
@@ -59,8 +64,8 @@ const ProfilePage = (props: any) => {
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.userProfile?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                            <span style={{ fontSize: 24 }}>No of following  {0}</span>
-                            <span style={{ fontSize: 24 }}>No of followers {0} </span>
+                            <span style={{ fontSize: 24 }}>{currentUser?.following?.length} Following  </span>
+                            <span style={{ fontSize: 24 }}>{currentUser?.followers?.length} Followers </span>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>

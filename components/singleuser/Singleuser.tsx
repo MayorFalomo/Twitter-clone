@@ -48,14 +48,14 @@ const Singleuser = (props: any) => {
         setCurrentUser({...currentUser, following: [...currentUser?.following ]})
     }
     
-    console.log(currentUser, "current user");
+    // console.log(currentUser, "current user");
     // console.log(user, "All tweets");
      const handleCopyToClipboard = (param:any) => {
     navigator.clipboard.writeText(
       `https://insttagg-server.vercel.app/post/${param}`
     );
     setCopied(!copied);
-  };
+    };
 
     
     return (
@@ -99,8 +99,8 @@ const Singleuser = (props: any) => {
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.user?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                            <span style={{ fontSize: 24 }}>No of following  {0}</span>
-                            <span style={{ fontSize: 24 }}>No of followers {0} </span>
+                            <p style={{ fontSize: 24 }}> {props.user?.following?.length} <span>Following</span> </p>
+                            <p style={{ fontSize: 24 }}>{props.user?.followers?.length} <span>Followers </span> </p>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>

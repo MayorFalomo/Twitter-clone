@@ -14,14 +14,27 @@ import Link from 'next/link'
 
 type Props = {}
 
+
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+};
+
 const login = (props: any) => {
+
+// axios.defaults.withCredentials = true;
+// const save = window.localStorage.getItem("userInfo");
+
 
     const router = useRouter()
 
-    const { isAuth, setIsAuth, getCurrentUser } = useContext(AppContext)
+    const { getCurrentUser } = useContext(AppContext)
     const [cookie, setCookie] = useCookies(["user"])
     const [email, setEmail] = useState<any>("")
     const [password, setPassword] = useState<any>("")
+    const [isAuth, setIsAuth] = useState<any>(false)
 
     
     const signInWithGoogle = async () => {
@@ -58,7 +71,7 @@ const login = (props: any) => {
             setCookie("user", res.user.uid, { path: "/" })
         }).then(() => router.push("/") ).then(() =>
             window.location.reload()
-        ).catch((err) => console.log(err)
+        ).catch((err) => setIsAuth(true)
         )
     }
     return (
@@ -79,7 +92,8 @@ const login = (props: any) => {
               <input className='Input' type="text" onChange={(e:any) => setPassword(e.target.value)} placeholder="Enter Password" />
               <div className='loginFlexBtn'  >
                   <button className='LoginSignInBtn' style={{backgroundColor: 'black', color: 'white'}} id='nextBtn' >Sign In </button>
-                  {/* <button className='LoginSignInBtn' id='backgroundHover' >  Forgot Password? </button> */}
+                            {/* <button className='LoginSignInBtn' id='backgroundHover' >  Forgot Password? </button> */}
+                            { isAuth ? <p>Check email and password again!</p> : "" }
               </div>
               <p>Don't have an account? <Link href='register' ><span style={{color: '#1d9aef', cursor: 'pointer' }} >Sign up</span></Link> </p>
                     </form>
