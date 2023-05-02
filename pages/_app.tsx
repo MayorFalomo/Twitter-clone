@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) =>
 export default function App({ Component, pageProps }: AppProps) {
 
   const {posts} = pageProps
-  const [isAuth, setIsAuth] = useState()
+  const [isAuth, setIsAuth] = useState(true)
   const [user, setUser] = useState<any>(null)
   const [tweets, setTweets] = useState<any>(posts)
   const [suggestedUsers, setSuggestedUsers] = useState<any>([])
@@ -77,17 +77,19 @@ export default function App({ Component, pageProps }: AppProps) {
   
   const getUserBookmarks = async (param:any) => {
     const res = await axios.get(`http://localhost:7000/api/bookmarks/get-bookmark/${param}`)
-    setBookmarks(res.data.bookmarks)
+    setBookmarks(res.data)
   }
 
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     getUserBookmarks(currentUser?._id)
-  //   } else {
-  //     console.log("no user")
-  //   }
-  // }, [currentUser])
-  console.log(currentUser?.following?.length, "user Id");
+  useEffect(() => {
+    if (isAuth) {
+      getUserBookmarks(currentUser?._id)
+    } else {
+      console.log("no user")
+    }
+  }, [currentUser])
+
+  // console.log(bookmarks, "bookmarks");
+
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
   console.log(noOfFollowing, "following");
 

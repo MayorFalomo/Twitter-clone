@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-export const Tweetstyled = styled.div`
+export const BookmarkStyle = styled.div`
 .postsContainer{
 display: flex;
 align-items: flex-start;
@@ -78,6 +78,20 @@ padding: 10px;
                     /* border: #1d9aef 2px solid; */
                     width: 100%;
                 }
+            }
+        }
+        .renoveModalContainer {
+            position: relative;
+            .remove{
+                position: absolute;
+                top: 20px;
+                left: 0;
+                z-index:9;
+                color: #fff;
+                background-color: #000;
+                cursor: pointer;
+                width: 200px;
+                border: 2px red solid;
             }
         }
     }

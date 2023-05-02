@@ -9,10 +9,12 @@ import { TweetsContainer } from './Tweets.styled'
 
 const Tweets = (props: any) => {
 
-  const { tweets } = useContext(AppContext)
+  const { tweets, bookmarks, } = useContext(AppContext)
   const [userMap, setUserMap] = useState<any>([])
+  const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
-  // console.log(tweets, "all tweeets");
+
+  // console.log(bookmarks);
 
   useEffect(() => {
     axios.get(`http://localhost:7000/api/users`)
@@ -25,17 +27,13 @@ const Tweets = (props: any) => {
   
     return (
       <TweetsContainer>
-            <div>
+            <div className='tweetsContainer' >
           {tweets?.map((tweet: any,index:any) => (
             <div key={index} >
-              <Tweet tweet={tweet} />
+              <Tweet tweet={tweet} setAddedToBookmark={setAddedToBookmark} />
                   </div>
           ))}
-          {/* {userMap.map((thank: any) => (
-            <div key={thank._id} >
-              <Tweet userMap={userMap} thank={thank} />
-              </div>
-          ))} */}
+                  {addedToBookmark ? <p className="bookmarkAdded" >Tweet added to bookmark</p> : ""}
            </div>
     </TweetsContainer>
   )

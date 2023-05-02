@@ -74,7 +74,7 @@ export default function Home({posts}:any) {
               </a>
             </ul>
           </div>
-          <div>
+          <div className="centerGrid" >
             {current == true ? <div><FollowersPosts/></div> : <div>
               <ForYouPosts />
               <Tweets />

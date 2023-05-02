@@ -49,6 +49,9 @@ export const HomeContainer = styled.div`
       /* margin: 10px 10px; */
     }
   }
+  .centerGrid {
+    /* border: 1px solid green; */
+  }
   .postGroup {
     display: flex;
     justify-content: space-around;

@@ -182,15 +182,3 @@ const ForYouPosts = (props: any) => {
 };
 
 export default ForYouPosts;
-
-// export const getStaticProps = async () => {
-//   const {data} = await Axios.get(
-//     "https://www.boredapi.com/api/activity"
-//   )
-//   const post = data
-//   return {
-//     props: {
-//        props: {post}
-//     },
-//   };
-// };
