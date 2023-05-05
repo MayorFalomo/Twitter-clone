@@ -120,9 +120,52 @@ export const SingleTweetStyle = styled.div`
         align-items:center;
         gap: 10px;
         /* color: #1d9aef; */
+        .retweetIcon{
+            position: relative;
+            .retweetModal{
+                position: absolute;
+                top: 20px;
+                left: 0;
+                z-index: 1;
+                background-color: #000;
+                border-radius:20px ;
+                width: 200px;
+                padding: 20px;
+                font-size: 20px;
+                line-height: 35px;
+                cursor: pointer;
+                .activeModal{
+                    /* border: 2px red solid; */
+                    /* width: auto; */
+                    /* width: 700px; */
+                    /* height: 70vh; */
+                    max-width: 600px;
+                    position: fixed;
+                    z-index:999;
+                    top: 200px;
+                    background-color: #000;
+                }
+            }
+        }
         span{
             font-size: 20px;
         }
+    }
+    .overlay{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.1px);
+        -webkit-backdrop-filter: blur(2.1px);
+    }
+    .removeOverlay{
+        display: none;
     }
 }
   }

@@ -1,5 +1,6 @@
 import Comments from '@/components/comments/Comments'
 import Navbar from '@/components/navbar/Navbar'
+import Quoted from '@/components/quoted-comment/Quoted-comment'
 import Search from '@/components/search/Search'
 import Trends from '@/components/trends/Trends'
 import Whotofollow from '@/components/whotofollow/Whotofollow'
@@ -50,12 +51,12 @@ export const getStaticProps = async (context: any) => {
 
 const Id = ({ tweetData }: any) => {
   
-  const { suggestedUsers, tweets, setTweets } = useContext(AppContext)
+  const {currentUser, suggestedUsers, tweets, setTweets } = useContext(AppContext)
   
   const [tweetProps, setTweetProps] = useState<any>(tweetData)
 
-
-  const [retweet, setRetweet] = useState<boolean>(false)
+  const [postId, setPostId] = useState(tweetData?._id)
+  // const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<boolean>(false);
   const [everyOne, setEveryOne] = useState<boolean>(false);
@@ -67,16 +68,110 @@ const Id = ({ tweetData }: any) => {
   const [cookies, setCookie] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  const [comments, setComments] = useState<string>("")
-
+  // const [comments, setComments] = useState<string>("")
+  const [likesArray, setLikesArray] = useState<any>(tweetData?.likes)
+  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
+  const [retweet, setRetweet] = useState<boolean>(false)
+  const [retweetArray, setRetweetArray] = useState<any>(tweetProps?.retweet)
+  const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length)
+  const [retweetModal, setRetweetModal] = useState<boolean>(false)
+  const [urlParams, setUrlParams] = useState<string>(" ")
+  const [quotedCommentModal, setQuotedCommentModal] = useState<boolean>(false)
+  const [commentModal, setCommentModal] = useState<boolean>(false)
 
 
   useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+    axios.get(`http://localhost:7000/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
     )
-  }, [cookies.user]);  
+  }, [currentUser?._id]); 
+
+  const handleAddRetweet = async () => {
+    setRetweetModal(false)
+    const retweetData = {
+       username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId: tweetProps._id,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+    setRetweetArray([...retweetArray, retweetData])    
+    setNoOfRetweetArray(retweetArray.length + 1 );
+  }
+
+   const removeRetweet = async () => {
+    setRetweet(false)
+    const retweetData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
+    setRetweetArray(filtered)
+    setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
+  
+  
+   const handleLikeEvent = () => {
+
+    if (likesArray.includes(likesArray.username)) {
+      console.log("You cannot like this tweet");
+    }
+    else {
+      // const handleAddLike = async () => {
+        const likeData = {
+          username: currentUser.username,
+          profileDp: currentUser?.profilePic,
+          usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+          postId: tweetData._id,
+        }
+        axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+        setLikesArray([...likesArray, likeData]);
+        setNoOfLikesArray(likesArray?.length + 1);
+      }
+  }
+  
+  // console.log(props.thank, "Thank");
+  
+  // }
+  // const handleAddLike = async () => {
+  //   const likeData = {
+  //      username: currentUser.username,
+  //     profileDp: currentUser?.profileDp,
+  //     usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+  //     postId: props.tweet._id,
+  //   }
+  //   await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+  //   setLikesArray([...likesArray, likeData])    
+  //   setNoOfLikesArray(likesArray.length + 1 );
+  // }
+
+  const removeLike = async () => {
+    SetLikeTweet(false)
+    const likeData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+    setLikesArray(filtered)
+    setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
+
+  const handleClick = (e: any) => {
+     e.preventDefault()
+     setUrlParams(tweetProps?._id)
+     setQuotedCommentModal(true)
+  };
     // console.log(tweets, "This is tweets");
 
+  const handleOpenAndClose = () => {
+    setQuotedCommentModal(true);
+    // setRetweetModal(false)
+  }
  
   const params = useRouter()
   // console.log(params, "This is params");
@@ -85,13 +180,14 @@ const Id = ({ tweetData }: any) => {
   const views = Math.floor(Math.random() * suggestedUsers.length)
 
 
-  // console.log();
+  console.log(retweetModal, "retweet Modal");
   
   return (
     <SingleTweetStyle>
-      <div className='singleTweetContainer' >
+      <div className={'singleTweetContainer'} >
         <Navbar />
         <div className='centerGridContainer' >
+          {<div className={quotedCommentModal ? 'overlay' : "removeOverlay"} > </div>}
           <div className='centerGridHeader' >
             <Link href='/' ><span>{<BsArrowLeft fontSize='40px' cursor='pointer' />}  </span></Link>
               <h1>Thread </h1>
@@ -116,9 +212,9 @@ const Id = ({ tweetData }: any) => {
             </div>
             <div className='tweetCount' >
               <div className='subTweetCount' >
-              <p><span>{0} </span> Retweets </p>
+              <p><span>{retweetArray.length} </span> Retweets </p>
               <p><span>{0} </span> Quotes </p>
-              <p><span>{ tweetProps.likes.length} </span> Likes </p>
+              <p><span>{ likesArray.length} </span> Likes </p>
               <p><span>{0} </span> Bookmarks </p>
               </div>
               </div>
@@ -132,45 +228,65 @@ const Id = ({ tweetData }: any) => {
                       style={{ cursor: "pointer", fontSize: 35}}
                       />
                 }</p>
-              <span>{0} </span>
+              <span>{tweetProps?.comments?.length} </span>
             </div>
             <div  className='flexIconsAndValues'>
-              {retweet ? <p>
-                {
-                  <AiOutlineRetweet
-                    onClick={() => setRetweet(false)}
-                    className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
-                  />
-                }</p> :
-              <p>
-                {
-                    <AiOutlineRetweet
-                    onClick={() => setRetweet(true)}
-                    className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
-                  />
-                }</p>}
-              <span>{0} </span>
+               {retweetArray && (
+                  <div className='retweetIcon'>
+                    {retweetArray.some(
+                      (e: any) => e.username == currentUser?.username
+                    ) ? (
+                      <AiOutlineRetweet
+                        onClick={removeRetweet}
+                        className='likeIcon'
+                        style={{
+                          color: "#00BA7C",
+                          fontSize: 35,
+                          cursor: "pointer",
+                        }}
+                      />
+                    ) : (
+                      <AiOutlineRetweet
+                        className='likeIcon'
+                        onClick={() => setRetweetModal(true)}
+                        style={{ fontSize: 35, cursor: "pointer",   }}
+                      />
+                  )}
+                   {retweetModal ? <div className='retweetModal' >
+                <span onClick={handleOpenAndClose} >Quote Tweet </span>
+                { quotedCommentModal ?  <div className="activeModal" ><Quoted urlParams={urlParams} quotedCommentModal={quotedCommentModal} setQuotedCommentModal={setQuotedCommentModal} setCommentModal={setCommentModal} /> </div> : null}
+                <span onClick={handleAddRetweet} >Retweet </span>
+              </div> : "" }
+                  </div>
+              )}
+             
+              <span>{noOfRetweetArray} </span>
             </div>
-            <div  className='flexIconsAndValues'>
-              {likeTweet ? <p>
-                  {
-                        <BsFillHeartFill
-                    className="likeIcon"
-                    onClick={() => SetLikeTweet(false)}
-                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
+            <div className='flexIconsAndValues'>
+               {likesArray && (
+                  <p>
+                    {likesArray.some(
+                      (e: any) => e.username == currentUser?.username
+                    ) ? (
+                      <BsFillHeartFill
+                        onClick={removeLike}
+                        className='likeIcon'
+                        style={{
+                          color: "red",
+                          fontSize: 35,
+                          cursor: "pointer",
+                        }}
                       />
-                }</p> :
-              <p>
-                  {
-                        <FaRegHeart
-                      className="likeIcon"
-                      onClick={() => SetLikeTweet(true)}
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                    ) : (
+                      <FaRegHeart
+                        className='likeIcon'
+                        onClick={handleLikeEvent}
+                        style={{ fontSize: 35, cursor: "pointer" }}
                       />
-                }</p>}
-              <span>{0} </span>
+                    )}
+                  </p>
+                )}
+              <span>{likesArray?.length} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>

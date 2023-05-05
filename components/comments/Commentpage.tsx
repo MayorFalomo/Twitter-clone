@@ -20,7 +20,7 @@ const Commentpage = (props: any) => {
     const [likeTweet, SetLikeTweet] = useState<boolean>(false)
 
 
-  console.log(props);
+  // console.log(props);
   
     return (
       <CommentPageStyle>

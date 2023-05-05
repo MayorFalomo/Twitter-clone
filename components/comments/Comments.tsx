@@ -16,6 +16,7 @@ import { CommentStyled } from './Comments.styled'
 
 type Props = {}
 
+//Parent comment is [id].tsx
 const Comments = (props: any) => {
     
     const { currentUser } = useContext(AppContext)
@@ -29,7 +30,7 @@ const Comments = (props: any) => {
     const [username, setUsername] = useState<string>("");
     const [usersAt, setUsersAt] = useState<string>("");
     const [profileDp, setProfileDp] = useState<string>("");
-    const [picture, setPicture] = useState<string>("");
+  const [picture, setPicture] = useState<string>("");
     const [video, setVideo] = useState<string>("");
     const [createdAt, setCreatedAt] = useState<number>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
@@ -38,7 +39,8 @@ const Comments = (props: any) => {
     const [cookies, setCookie] = useCookies(["user"])
     const [tweeterUser, setTweeterUser] = useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-    const [comments, setComments] = useState<any>(props.tweetProps?.comments) //comment box for user to enter comment and post it. 	   const [
+  const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
+  const [noCommentText, setNoCommentText] = useState<boolean>(false)
     const { suggestedUsers } = useContext(AppContext)
 
     
@@ -52,6 +54,7 @@ const Comments = (props: any) => {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
   };
+
   const uploadVideo = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -69,30 +72,35 @@ const Comments = (props: any) => {
     // })
   
     
-    const handleComment = async (e:any) => {
-         e.preventDefault();
-         const commentData = {
-             username: currentUser?.username,
-             usersAt: currentUser?.usersAt,
-             profileDp: currentUser?.profilePic,
-             comments,
-             picture,
-             video,
-             postId,
-             createdAt,
-         }
-         await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
-         setComments(" ")
-         props.setTweetProps({
-             ...props.tweetProps, comments: [
-             ...props.tweetProps.comments, commentData,
-         ]})
-     }
+  const handleComment = async (e: any) => {
+    e.preventDefault()
+      const commentData = {
+        username: currentUser?.username,
+        usersAt: currentUser?.usersAt,
+        profileDp: currentUser?.profilePic,
+        comments,
+        picture,
+        video,
+        postId,
+        createdAt,
+    }
+      await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
+      setComments(" ")
+      props.setTweetProps({
+        ...props.tweetProps, comments: [
+          ...props.tweetProps.comments, commentData,
+        ]
+      })
+    }
   
     // console.log(props.tweetProps._id, "single postId");
     // console.log(props.tweetProps, "single post");
     // console.log(props.tweetProps.comments, "singletweet comment");
     // console.log(Date.now() , "Date");
+  // console.log(comments, "This is comments");
+  // console.log(comments.length, "This is length");
+  // console.log(successfulUpload, "This is comments");
+  
     
     
     return (
@@ -100,15 +108,13 @@ const Comments = (props: any) => {
       <div className='postsContainer' >
            <form onSubmit={handleComment} >
             <div style={{ backgroundImage: `url()`}} className="userProfileDp" > </div>
-          <div
-            className="textAreaContainer"
-            onClick={() => setEveryOne(!false)}
-          >
-            <textarea className="textArea"
-              placeholder="Tweet your reply"
+          <div className="textAreaContainer">
+              <textarea className="textArea"
+                onFocus={() => setEveryOne(!false)}
               typeof="text"
-              // value={comments}
-              onChange={(e) => setComments(e.target.value)}
+              onChange={(e: any) => setComments(e.target.value)}
+                value={comments}
+                placeholder="Tweet your reply"
               />
             {everyOne ? (
               <p>
@@ -149,9 +155,11 @@ const Comments = (props: any) => {
                 </span>
               </div>
               {everyOne ? <div className="tweetButton">
-                {successfulUpload || comments.length > 0 ? <button type="submit">Tweet</button> : <button className="btn-primary" disabled>
+                  {successfulUpload || comments.length > 0 ? <button type={successfulUpload || comments.length > 0 ? 'submit' : 'button'}>Tweet</button>
+                    : <button className="btn-primary" disabled={comments.length == 0}>
                   Tweet
                 </button>}
+                   {/* <button type={successfulUpload || noCommentText ? 'submit' : 'button'}>Tweet</button> */}
               </div> : <div className="tweetButton"><button className="btn-primary" disabled>Tweet </button></div>
               }
             </div>

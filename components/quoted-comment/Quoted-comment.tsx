@@ -1,22 +1,22 @@
+import { AppContext } from '@/helpers/Helpers'
+import axios from 'axios'
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 import React, {useState, useEffect, useContext} from 'react'
 import { useCookies } from 'react-cookie'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbCalendarTime } from 'react-icons/tb'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
-import axios from 'axios'
-import { MdClose } from 'react-icons/md'
-import { CommentModalStyle } from '@/components/commentmodal/Commentmodal.styled'
-import { useRouter } from 'next/router'
-import { AppContext } from '@/helpers/Helpers'
+import { CommentModalStyle } from '../commentmodal/Commentmodal.styled'
+import { MdClose } from 'react-icons/md';
+import { QuotedCommentStyle } from './Quoted-comment.styled';
 
 type Props = {}
 
-const CommentModal = (props:any) => {
-    
-      const commentId = Date.now()
+const Quoted = (props: any) => {
+
+        const commentId = Date.now()
 
   const {currentUser} = useContext(AppContext)
   const [emoji, setEmoji] = useState<boolean>(false);
@@ -73,25 +73,24 @@ const CommentModal = (props:any) => {
              postId: singleTweets?._id ,
              createdAt,
          }
-         await axios.put(`http://localhost:7000/api/tweets/comments/`, commentData).catch((err) => console.log(err))
+         await axios.put(`http://localhost:7000/api/tweets/quote-tweet/`, commentData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
         //  setSingleTweets({
         //      ...singleTweets, comments: [
         //      ...singleTweets.comments, commentData,
         //  ]})
-     }
+    }
 
-  // console.log(postId, "postId");
-  // console.log(singleTweets?._id, "tweet ID");
-  // console.log(createdAt, "comments");
-  // console.log(currentUser, "current User");
+    console.log(props?.commentModal);
+    console.log(props?.quotedCommentModal, "quoted comment modal");
     
-    return (
-        <CommentModalStyle>
+    
+  return (
+       <QuotedCommentStyle>
       <div className='commentModalContainer' >
           <div className='commentModalClose' >
-            {<MdClose onClick={() => props.setCommentModal(false)} fontSize={40} cursor='pointer' />} </div>
+            {<MdClose onClick={() => props.setQuotedCommentModal(false)} fontSize={40} cursor='pointer' />} </div>
                 <div className='subCommentModal' >
                     <div className='profileImages' >
               <div style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='ProfilePic'> </div>
@@ -127,7 +126,7 @@ const CommentModal = (props:any) => {
                   </span>
                 )}
                 {emoji ? (
-                <div className="pickerEmoji" >
+                <div className="pickerEmoji">
                     <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
                 </div>
                 ) : (
@@ -150,8 +149,8 @@ const CommentModal = (props:any) => {
           </div>
               {successComment ? <div className="successMessage" >Your comment has been sent </div> : "" }
             </div>
-            </CommentModalStyle>
+            </QuotedCommentStyle>
   )
 }
 
-export default CommentModal
+export default Quoted
