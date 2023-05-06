@@ -70,6 +70,9 @@ const Singleusertweets = (props: any) => {
      setCommentModal(true)
   };
 
+  // console.log(props.allTweets.username, "This object");
+  
+
   const views = Math.floor(Math.random() * suggestedUsers?.length);
 
   return (
@@ -83,7 +86,8 @@ const Singleusertweets = (props: any) => {
           <span>{props.allTweets?.usersAt} </span>
           <span className='createdAt' >{moment(new Date(props.allTweets?.createdAt)).fromNow()}</span>
           </div>
-          <p className='tweetText' >{props.allTweets?.tweet} </p>
+            <p className='tweetText' >{props.allTweets?.tweet} </p>
+            {props.allTweets?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.allTweets?.picture})` }} className='singleTweetImage' > </div> : ""}
                   <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>

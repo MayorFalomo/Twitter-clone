@@ -1,7 +1,6 @@
 import React, { useContext, useState,} from 'react'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
-import { IoHeartSharp } from "react-icons/io5";
+import { AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { Tweetstyled } from './Tweet.styled'
 import moment from 'moment';
@@ -9,10 +8,7 @@ import Link from 'next/link';
 import { green } from 'colors';
 import { BsFillHeartFill } from 'react-icons/bs';
 import { AppContext } from '@/helpers/Helpers';
-import Id from '@/pages/posts/[id]';
-import { useRouter } from 'next/router';
 import axios from 'axios';
-import Commentmodal from '@/components/commentmodal/Commentmodal';
 import CommentModal from '@/components/commentmodal/Commentmodal';
 type Props = {}
 

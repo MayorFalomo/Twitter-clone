@@ -25,12 +25,6 @@ const Suggestedpeople = (props: any) => {
     setUsersAt(props.suggestedUser?.usersAt)
     setUsersProfileDp(props.suggestedUser?.profilePic)
     setFollowingButton(true)
-    // console.log("Hello world");
-    
-    //  setCommentModal(true)
-  // };
-
-  // const handleFollow = async () => {
            const followAUser = {
             currentUserName: currentUser?.username, 		//username of the user who is following the current user.
             currentUsersAt: currentUser?.usersAt,
@@ -103,7 +97,6 @@ const Suggestedpeople = (props: any) => {
               :
               <button onClick={handleClick} className='btn-follow'
             disabled={currentUser?.username == props.suggestedUser?.username} >Follow </button>}</div>
-                {/* } */}
       </div>
       </SuggestedStyle>
   )

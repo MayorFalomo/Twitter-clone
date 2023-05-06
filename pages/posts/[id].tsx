@@ -132,7 +132,7 @@ const Id = ({ tweetData }: any) => {
       }
   }
   
-  // console.log(props.thank, "Thank");
+  // console.log(likesArray, "Thank");
   
   // }
   // const handleAddLike = async () => {
@@ -168,8 +168,10 @@ const Id = ({ tweetData }: any) => {
   };
     // console.log(tweets, "This is tweets");
 
-  const handleOpenAndClose = () => {
+  const handleOpenAndClose = (e: any) => {
+    e.preventDefault()
     setQuotedCommentModal(true);
+    setUrlParams(tweetProps?._id)
     // setRetweetModal(false)
   }
  
@@ -180,7 +182,7 @@ const Id = ({ tweetData }: any) => {
   const views = Math.floor(Math.random() * suggestedUsers.length)
 
 
-  console.log(retweetModal, "retweet Modal");
+  // console.log(urlParams, "retweet Modal");
   
   return (
     <SingleTweetStyle>
@@ -252,9 +254,9 @@ const Id = ({ tweetData }: any) => {
                         style={{ fontSize: 35, cursor: "pointer",   }}
                       />
                   )}
-                   {retweetModal ? <div className='retweetModal' >
+                  {retweetModal ? <div className={retweetModal ? 'retweetModal' : "removeModal"} >
                 <span onClick={handleOpenAndClose} >Quote Tweet </span>
-                { quotedCommentModal ?  <div className="activeModal" ><Quoted urlParams={urlParams} quotedCommentModal={quotedCommentModal} setQuotedCommentModal={setQuotedCommentModal} setCommentModal={setCommentModal} /> </div> : null}
+                { quotedCommentModal ?  <div className="activeModal" ><Quoted urlParams={urlParams} setRetweetModal={setRetweetModal} quotedCommentModal={quotedCommentModal} setQuotedCommentModal={setQuotedCommentModal} setCommentModal={setCommentModal} /> </div> : null}
                 <span onClick={handleAddRetweet} >Retweet </span>
               </div> : "" }
                   </div>

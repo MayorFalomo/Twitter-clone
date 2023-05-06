@@ -131,12 +131,30 @@ export const SingleUserStyle = styled.div`
             border-radius: 50% ;
             padding: 20px;
         };
-        a{
-            font-size: 24px;
-            padding: 20px;
-            border: 1px rgb(47, 51, 54) solid;
-            border-radius: 50px ;
-            cursor: pointer;
+        .singleUserFollow{
+           .btn-follow{
+        border-radius: 30px;
+        padding:10px 20px;
+        width: 120px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .btn-following{
+        border-radius: 30px;
+        padding:10px 20px;
+        width: 140px;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: transparent;
+        color: white;
+        border: 2px white solid;
+        transition: 0.3s ease;
+    }
+    .btn-following:hover{
+        color: red;
+        border: 2px red solid;
+        transition: 0.3s ease;
+    }
         }
     }
     .singleTweet{

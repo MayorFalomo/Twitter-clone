@@ -136,15 +136,21 @@ export const SingleTweetStyle = styled.div`
                 cursor: pointer;
                 .activeModal{
                     /* border: 2px red solid; */
-                    /* width: auto; */
-                    /* width: 700px; */
-                    /* height: 70vh; */
-                    max-width: 600px;
+                    width: 40%;
+                    max-height: 60vh;
                     position: fixed;
+                    top: 40%;
+                    left: 50%;
+                    -ms-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
                     z-index:999;
-                    top: 200px;
+                    border-radius: 30px;
                     background-color: #000;
+                    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
                 }
+            }
+            .removeModal{
+                display: none;
             }
         }
         span{

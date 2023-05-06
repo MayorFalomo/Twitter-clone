@@ -46,6 +46,17 @@ export const SingleUserTweetsStyle = styled.div`
                 text-decoration: underline;
                 cursor:pointer;
             }
+            .singleTweetImage{
+                width: 400px;
+                height: 400px;
+                border-radius: 20px;
+                background-color: #000;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                object-fit: cover;
+                object-position: center;
+            }
         }
         .tweetOptions{
             display: flex;

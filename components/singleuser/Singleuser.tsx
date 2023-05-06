@@ -24,32 +24,79 @@ const Singleuser = (props: any) => {
     const [current, setCurrent] = useState<any>(0)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
     const [copied, setCopied] = useState<boolean>(false)
+  const [followingButton, setFollowingButton] = useState<boolean>(false)
+  const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
+  const [urlParams, setUrlParams] = useState<string>(props.suggestedUser?._id)
+  const [usernames, setUsernames] = useState<string>(props.suggestedUser?.username)
+  const [usersAt, setUsersAt] = useState<string>(props.suggestedUser?.usersAt)
+    const [usersProfileDp, setUsersProfileDp] = useState<string>(props.suggestedUser?.profilePic)
+    const [followingArray, setFollowingArray] = useState<any>(props.user?.following)
+    const [noOfFollowingsArray, setNoOfFollowingsArray] = useState<number>(followingArray?.length)
 
      const handleClick = (param: any) => {
          setCurrent(param);
     };
 
+    // console.log(followingArray, "following Array");
+    // console.log(noOfFollowingsArray, "no of following");
+    
     useEffect(() => {
           axios.get(`http://localhost:7000/api/tweets/get-tweet/${props.user?.username}`)
           .then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
     }, [props.user?.username])
 
-    const handleFollowArtist = () => {
-        axios.put(`http://localhost:7000/api/users/follow-user`, {
-            follow: {
-                currentUsername: currentUser.username, 		//username of the user who is following the current user.
-                currentUsersAt: currentUser.usersAt,
-                currentProfileDp: currentUser.profileDp,
-                currentUserId: currentUser._id,
-                userToAddToName: currentUser.username,		//username of the user who is following the current user.
-            },
-        }).catch((err) => {console.log(err)
-        })
-        setCurrentUser({...currentUser, following: [...currentUser?.following ]})
+     const handleFollow = async () => {
+    // e.preventDefault()
+    setUrlParams(props.suggestedUser?._id)
+    setUsernames(props.suggestedUser?.username)
+    setUsersAt(props.suggestedUser?.usersAt)
+    setUsersProfileDp(props.suggestedUser?.profilePic)
+    setFollowingButton(true)
+           const followAUser = {
+            currentUserName: currentUser?.username, 		//username of the user who is following the current user.
+            currentUsersAt: currentUser?.usersAt,
+            currentProfileDp: currentUser?.profilePic,
+            currentUserId: currentUser?._id,
+            userToAddToName: usernames,
+            userToAddToAt: usersAt,
+            userToAddToProfilePic: usersProfileDp, 	//username of the user who is following the current user.
+            usersId: urlParams,
+     }
+     try {
+      //  console.log(followAUser, "Follow object");
+         setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
+        //  console.log(currentUser, currentUser);
+       await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
+         .catch((err) => console.log(err))
+         setFollowingButton(true)
+        setNoOfFollowingsArray(followingArray?.length + 1)
+     } catch (err) {
+       console.log(err);
+        }
     }
     
+    const handleRemoveFollower = async () => {
+    const data = {
+      userToBeUnfollowed: urlParams,
+      currentUser: currentUser?._id,
+    }    
+    // console.log(data, "This is data");
+    
+    try {
+        await axios.put(`http://localhost:7000/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
+            .catch((err) => console.log(err));
+        setNoOfFollowingsArray(followingArray.length)
+        let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)
+        setCurrentUser({ ...currentUser, following: [...filtered] })
+        setFollowingButton(false)
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+    
     // console.log(currentUser, "current user");
-    // console.log(user, "All tweets");
+    // console.log(props.userProfile, "All tweets");
      const handleCopyToClipboard = (param:any) => {
     navigator.clipboard.writeText(
       `https://insttagg-server.vercel.app/post/${param}`
@@ -57,6 +104,8 @@ const Singleuser = (props: any) => {
     setCopied(!copied);
     };
 
+    // console.log(noOfFollowing);
+    
     
     return (
       <SingleUserStyle>
@@ -80,13 +129,21 @@ const Singleuser = (props: any) => {
                         <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </span>
                         <span>{<RxEnvelopeClosed fontSize='30px' cursor='pointer' />} </span>
                         <span>{<MdOutlineNotificationAdd fontSize='30px' cursor='pointer' />} </span>
-                        <a> Following </a>
+                            <div className='singleUserFollow' >
+                                {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
+                                    <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
+                                        onMouseLeave={() => setOnMouseHover(false)}
+                                        className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>
+                                    :
+                                    <button onClick={handleFollow} className='btn-follow'
+                                        disabled={currentUser?.username == props.suggestedUser?.username} >Follow </button>}
+                            </div>
                     </div>}
                    {props.editProfileModal ? <EditProfileModal/> : "" }
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
                     <div className='userDetailsContainer' >
-                    <h1 style={{fontSize: 35, fontWeight: 800}} >{props.userProfile?.username} </h1>
-                    <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.userProfile?.usersAt} </p>
+                    <h1 style={{fontSize: 35, fontWeight: 800}} >{props.user?.username} </h1>
+                    <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.user?.usersAt} </p>
                     <div className='usersBio' style={{margin: '30px auto', fontSize: 24, fontWeight: 600}}>
                         <p style={{color: '#BABBBC'}} >{props.user?.bio} </p>
                         </div>
@@ -99,7 +156,7 @@ const Singleuser = (props: any) => {
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.user?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                            <p style={{ fontSize: 24 }}> {props.user?.following?.length} <span>Following</span> </p>
+                            <p style={{ fontSize: 24 }}> {noOfFollowingsArray} <span>Following</span> </p>
                             <p style={{ fontSize: 24 }}>{props.user?.followers?.length} <span>Followers </span> </p>
                         </div>
                         </div>

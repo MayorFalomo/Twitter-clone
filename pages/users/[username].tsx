@@ -45,14 +45,17 @@ export const getStaticProps = async (context: any) => {
 const Slug = ({ users }: any) => {
     
   // console.log(users);
-
+  // const [username, setUsername] = useState<string>(users?.username)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
       const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 
-      useEffect(() => {
+     useEffect(() => {
      axios.get(`http://localhost:7000/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [users?.username])
+     
     
+  // console.log(allUsersTweets, "all tweets");
+  
     
   return (
     <UsernamePageStyle>
