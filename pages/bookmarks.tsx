@@ -16,7 +16,7 @@ import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 type Props = {}
 
 const bookmarks = (props: Props) => {
-  const { bookmarks } = useContext(AppContext)
+  const { bookmarks, currentUser } = useContext(AppContext)
 
   //   const [postId, setPostId] = useState(props.tweet?._id)
   // const [retweet, setRetweet] = useState<boolean>(false)
@@ -76,7 +76,7 @@ const bookmarks = (props: Props) => {
           <div className="bookmarkHeader" >
             <div>
             <h2>Bookmarks </h2>
-              <p>usersAt </p>
+              <p>{currentUser?.usersAt} </p>
             </div>
             <span>{<BiDotsHorizontalRounded fontSize='40px' cursor='pointer' />}</span>
           </div>

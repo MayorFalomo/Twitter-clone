@@ -19,7 +19,7 @@ type Props = {}
 //Parent comment is [id].tsx
 const Comments = (props: any) => {
     
-    const { currentUser } = useContext(AppContext)
+    const { currentUser , suggestedUsers} = useContext(AppContext)
     
     const timeAgo = Date.now()
     const commentId = Date.now()
@@ -41,7 +41,7 @@ const Comments = (props: any) => {
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
   const [noCommentText, setNoCommentText] = useState<boolean>(false)
-    const { suggestedUsers } = useContext(AppContext)
+    // const { suggestedUsers } = useContext(AppContext)
 
     
      const uploadImage = (files: any) => {
@@ -85,7 +85,9 @@ const Comments = (props: any) => {
         createdAt,
     }
       await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
-      setComments(" ")
+    setComments(" ")
+    setPicture("")
+    setVideo("")
       props.setTweetProps({
         ...props.tweetProps, comments: [
           ...props.tweetProps.comments, commentData,

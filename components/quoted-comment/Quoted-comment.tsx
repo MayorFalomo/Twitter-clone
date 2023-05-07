@@ -77,10 +77,10 @@ const Quoted = (props: any) => {
          await axios.put(`http://localhost:7000/api/tweets/quote-tweet/`, quotedData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
-        //  setSingleTweets({
-        //      ...singleTweets, comments: [
-        //      ...singleTweets.comments, commentData,
-        //  ]})
+         setSingleTweets({
+             ...singleTweets, quoted: [
+             ...singleTweets.quoted, quotedData,
+         ]})
   }
   const handleClose = () => {
     props.setQuotedCommentModal(false)
@@ -88,7 +88,7 @@ const Quoted = (props: any) => {
   }
 
     // console.log(props?.commentModal);
-    console.log(singleTweets, "quoted comment modal");
+    console.log(singleTweets?.quoted, "quoted comment modal");
     
     
   return (
@@ -98,7 +98,7 @@ const Quoted = (props: any) => {
           {<MdClose onClick={handleClose} fontSize={40} cursor='pointer' />} </div>
         <div className='subCommentModal' >
           <div style={{backgroundImage: `url(${currentUser.profilePic})`}} className='ProfilePic' > </div>
-          <form>
+          <form onSubmit={handleQuotedTweet} >
             <div className='commentForm' >
               <select className='select' >
             <option>Everyone </option>
@@ -109,7 +109,7 @@ const Quoted = (props: any) => {
             <div className='tweetDetailsContainer' >
               <div style={{padding: 10}} >
             <div className='tweetDetails' >
-            <span style={{ backgroundImage: `url()` }} className='tweetProfilePic' > </span>
+            <span style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='tweetProfilePic' > </span>
             <span style={{ fontSize: 28, fontWeight: 400 }} >{singleTweets?.username} </span>
                 <span  style={{ fontSize: 20, fontWeight: 400, color: 'rgb(113,118,123)' }}>{singleTweets?.usersAt}</span>
                 <span  style={{ fontSize: 20, fontWeight: 400, color: 'rgb(113,118,123)' }} className='createdAt' >{moment(singleTweets?.createdAt).format("MMMM D")} </span>

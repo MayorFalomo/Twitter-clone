@@ -30,7 +30,18 @@ const Whotofollow = (props: any) => {
           ))}
           <Link href='trending' ><p className="showUsers" >Show more </p></Link>
         </div>
-      </div>
+        </div>
+        <div className='policies' >
+          <span>Terms of Service </span>
+          <span>Privacy Policy </span>
+          <span>Cookie Policy </span>
+        </div>
+        <div className='policies' >
+          <span>Accesibility </span>
+          <span>Ads Info </span>
+          <span>More... </span>
+          <span> &copy; 2023 X Corp </span>
+        </div>
       </div>
       </WhoToFollowStyled>
   )

@@ -84,7 +84,7 @@ const Suggestedpeople = (props: any) => {
           <div className='subSuggestedContainer'>
           <Link href={`/users/${props.suggestedUser?.username}`} style={{ backgroundImage: `url(${props.suggestedUser?.profilePic})` }} className='profileImage' > </Link>
           <div>
-              <h3>{props.suggestedUser.username} </h3>
+              <Link  href={`/users/${props.suggestedUser?.username}`} ><h3>{props.suggestedUser.username} </h3></Link>
               <p>{props.suggestedUser.usersAt} </p>
           </div>
         </div>

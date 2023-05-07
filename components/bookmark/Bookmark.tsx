@@ -90,7 +90,7 @@ const Bookmark = (props: any) => {
     return (
       <BookmarkStyle>
            <div className='postsContainer' >
-            <Link href={'/users/'} className="profilePicture" style={{ backgroundImage: `url(${props.bookmark?.profileDp})` }} ></Link>
+            <Link href={'/users/' + props.bookmark?.username} className="profilePicture" style={{ backgroundImage: `url(${props.bookmark?.profileDp})` }} ></Link>
                  <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >
                  <div className='tweetProfileDetails' >

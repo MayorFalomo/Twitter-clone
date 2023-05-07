@@ -24,14 +24,14 @@ const Singleuser = (props: any) => {
     const [current, setCurrent] = useState<any>(0)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
     const [copied, setCopied] = useState<boolean>(false)
-  const [followingButton, setFollowingButton] = useState<boolean>(false)
-  const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
-  const [urlParams, setUrlParams] = useState<string>(props.suggestedUser?._id)
-  const [usernames, setUsernames] = useState<string>(props.suggestedUser?.username)
-  const [usersAt, setUsersAt] = useState<string>(props.suggestedUser?.usersAt)
+    const [followingButton, setFollowingButton] = useState<boolean>(false)
+    const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
+    const [urlParams, setUrlParams] = useState<string>(props.suggestedUser?._id)
+    const [usernames, setUsernames] = useState<string>(props.suggestedUser?.username)
+    const [usersAt, setUsersAt] = useState<string>(props.suggestedUser?.usersAt)
     const [usersProfileDp, setUsersProfileDp] = useState<string>(props.suggestedUser?.profilePic)
-    const [followingArray, setFollowingArray] = useState<any>(props.user?.following)
-    const [noOfFollowingsArray, setNoOfFollowingsArray] = useState<number>(followingArray?.length)
+    const [followersArray, setFollowersArray] = useState<any>(props.user?.following)
+    const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(followersArray?.length)
 
      const handleClick = (param: any) => {
          setCurrent(param);
@@ -69,7 +69,7 @@ const Singleuser = (props: any) => {
        await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
          setFollowingButton(true)
-        setNoOfFollowingsArray(followingArray?.length + 1)
+        setNoOfFollowersArray(followersArray?.length + 1)
      } catch (err) {
        console.log(err);
         }
@@ -85,7 +85,7 @@ const Singleuser = (props: any) => {
     try {
         await axios.put(`http://localhost:7000/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
             .catch((err) => console.log(err));
-        setNoOfFollowingsArray(followingArray.length)
+        setNoOfFollowersArray(followersArray.length)
         let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)
         setCurrentUser({ ...currentUser, following: [...filtered] })
         setFollowingButton(false)
@@ -156,8 +156,8 @@ const Singleuser = (props: any) => {
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.user?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                            <p style={{ fontSize: 24 }}> {noOfFollowingsArray} <span>Following</span> </p>
-                            <p style={{ fontSize: 24 }}>{props.user?.followers?.length} <span>Followers </span> </p>
+                            <p style={{ fontSize: 24 }}> {props.user?.following?.length} <span>Following</span> </p>
+                            <p style={{ fontSize: 24 }}>{noOfFollowersArray} <span>Followers </span> </p>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>

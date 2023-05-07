@@ -1,4 +1,5 @@
 import { AppContext } from '@/helpers/Helpers'
+import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
 import React, {useContext, useState} from 'react'
@@ -12,16 +13,103 @@ type Props = {}
 
 const Commentpage = (props: any) => {
 
-    const { suggestedUsers } = useContext(AppContext)
+    const { suggestedUsers, currentUser } = useContext(AppContext)
     
-    const views = Math.floor(Math.random() * suggestedUsers.length)
-    
-    const [retweet, setRetweet] = useState<boolean>(false)
-    const [likeTweet, SetLikeTweet] = useState<boolean>(false)
+  const views = Math.floor(Math.random() * suggestedUsers.length)
+  
+      const commentId = Date.now()
+
+  const [postId, setPostId] = useState(props.tweet?._id)
+  const [retweet, setRetweet] = useState<boolean>(false)
+  const [likeTweet, setLikeTweet] = useState<boolean>(false)
+  const [retweetArray, setRetweetArray] = useState<any>(props.tweet?.retweet)
+  const [likesArray, setLikesArray] = useState<any>(props.tweet?.likes)
+  const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length)
+  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
+  const [commentModal, setCommentModal] = useState<boolean>(false)
+  const [modalLink, setModalLink] = useState<string>("");
+  const [urlParams, setUrlParams] = useState<string>(" ");
+  const [getUsername, setGetUsername] = useState<string>("");
+  const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
+  const [picture, setPicture] = useState<string>("");
+  const [video, setVideo] = useState<string>("");
+  const [createdAt, setCreatedAt] = useState<number>(commentId)
+  // const [postId, setPostId] = useState<number>(props.tweetProps?._id)
 
 
   // console.log(props);
+
+   //Retweet Function
+  const handleAddRetweet = async () => {
+    const retweetData = {
+       username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId: props.tweet._id,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+    setRetweetArray([...retweetArray, retweetData])    
+    setNoOfRetweetArray(retweetArray.length + 1 );
+  }
+
+    //Remove Retweet
+   const removeRetweet = async () => {
+    setRetweet(false)
+    const retweetData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
+    setRetweetArray(filtered)
+    setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
   
+   //Add like function
+  const handleAddLike = async () => {
+    const likeData = {
+       username: currentUser.username,
+      profileDp: currentUser?.profileDp,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId: props.tweet._id,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+    setLikesArray([...likesArray, likeData])    
+    setNoOfLikesArray(likesArray.length + 1 );
+  }
+
+
+   const handleComment = async (e: any) => {
+    e.preventDefault()
+      const commentData = {
+        username: currentUser?.username,
+        usersAt: currentUser?.usersAt,
+        profileDp: currentUser?.profilePic,
+        comments,
+        picture,
+        video,
+        postId,
+        createdAt,
+    }
+      await axios.put(`http://localhost:7000/api/tweets/replies-comments`, commentData).catch((err) => console.log(err))
+    setComments(" ")
+    setPicture("")
+    setVideo("")
+      props.setTweetProps({
+        ...props.tweetProps, comments: [
+          ...props.tweetProps.comments, commentData,
+        ]
+      })
+    }
+  
+   const handleClick = (e: any) => {
+     e.preventDefault()
+     setUrlParams(props.tweet?._id)
+     setCommentModal(true)
+  };
+
     return (
       <CommentPageStyle>
       <div className='commentPageContainer' >
@@ -74,7 +162,7 @@ const Commentpage = (props: any) => {
                   {
                         <BsFillHeartFill
                     className="likeIcon"
-                    onClick={() => SetLikeTweet(false)}
+                    onClick={() => setLikeTweet(false)}
                       style={{ cursor: "pointer", fontSize: 35, color: "red",}}
                       />
                 }</p> :
@@ -82,7 +170,7 @@ const Commentpage = (props: any) => {
                   {
                         <FaRegHeart
                       className="likeIcon"
-                      onClick={() => SetLikeTweet(true)}
+                      onClick={() => setLikeTweet(true)}
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>}

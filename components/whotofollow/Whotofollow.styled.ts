@@ -18,5 +18,17 @@ export const WhoToFollowStyled = styled.div`
         cursor: pointer;
     }
 }
+.policies{
+        color: rgb(113,118,123);
+        font-size: 18px;
+        cursor: pointer;
+        margin: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .policies span:hover{
+        text-decoration: underline;
+    }
 }
 `

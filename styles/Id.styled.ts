@@ -12,6 +12,8 @@ export const SingleTweetStyle = styled.div`
     /* border: 2px red solid; */
     overflow: auto;
     position: relative;
+    /* border-right: 1px solid rgb(47, 51, 54);
+    border-left: 1px solid rgb(47, 51, 54); */
   }
    .leftGridSection::-webkit-scrollbar {
           width: 0;
@@ -22,6 +24,8 @@ export const SingleTweetStyle = styled.div`
     .centerGridContainer{
         overflow: auto;
         height: 100vh;
+        border-right: 1px solid rgb(47, 51, 54);
+        border-left: 1px solid rgb(47, 51, 54);
         .centerGridHeader{
             display: flex;
             align-items: center;

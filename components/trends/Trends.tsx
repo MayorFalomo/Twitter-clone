@@ -34,7 +34,7 @@ const Trends = (props: any) => {
           </div>
         ))}
         </div>
-        <Link href='./trending' ><p className="showMore" >Show more </p></Link>
+        <Link href='/trending' ><p className="showMore" >Show more </p></Link>
       </div>
      <Whotofollow/>
       </div>

@@ -13,6 +13,8 @@ export const BookmarkStyle = styled.div`
     .centerGrid{
         overflow: auto;
         height: 100vh;
+        border-right: 1px solid rgb(47, 51, 54);
+        border-left: 1px solid rgb(47, 51, 54);
         .bookmarkHeader{
             display: flex;
             align-items: center;
@@ -53,5 +55,6 @@ export const BookmarkStyle = styled.div`
     right: 50%; */
     /* width: ; */
     }
+    
 }
 `
