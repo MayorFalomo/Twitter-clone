@@ -9,6 +9,7 @@ margin: 25px auto;
 border-top: 2px rgb(47, 51, 54) solid;
 border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px; */
+    border-bottom: 2px rgb(47, 51, 54) solid;
 
 .profilePicture{
     background-color: black;

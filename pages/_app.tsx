@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) =>
   
   return {
     props: {
-      posts: posts.reverse(),
+      posts: posts,
     }
   };
 };
@@ -56,14 +56,14 @@ export default function App({ Component, pageProps }: AppProps) {
   
   
 
-  //  useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get(`http://localhost:7000/api/tweets`);
-  //     setTweets(res.data);
-  //     // setCompleted(true)
-  //   };
-  //   fetchPosts();
-  // }, []);
+   useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get(`http://localhost:7000/api/tweets`);
+      setTweets(res.data);
+      // setCompleted(true)
+    };
+    fetchPosts();
+  }, []);
 
     useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
@@ -91,7 +91,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // console.log(bookmarks, "bookmarks");
 
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
-  console.log(noOfFollowing, "following");
+  // console.log(noOfFollowing, "following");
 
   return (
     <AppContext.Provider value={{

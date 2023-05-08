@@ -17,16 +17,16 @@ type Post = {
   username: string,
 }
 
-export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
-  const res = await fetch(`http://localhost:7000/api/tweets`)
-  const posts: Post[] = await res.json()
+// export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
+//   const res = await fetch(`http://localhost:7000/api/tweets`)
+//   const posts: Post[] = await res.json()
   
-  return { props: { posts } };
-};
+//   return { props: { posts } };
+// };
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
-export default function Home({posts}:any) {
+export default function Home(props:any) {
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
 

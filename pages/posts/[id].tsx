@@ -51,7 +51,7 @@ export const getStaticProps = async (context: any) => {
 
 const Id = ({ tweetData }: any) => {
   
-  const {currentUser, suggestedUsers, tweets, setTweets } = useContext(AppContext)
+  const {currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
   
   const [tweetProps, setTweetProps] = useState<any>(tweetData)
 
@@ -78,7 +78,7 @@ const Id = ({ tweetData }: any) => {
   const [urlParams, setUrlParams] = useState<string>(" ")
   const [quotedCommentModal, setQuotedCommentModal] = useState<boolean>(false)
   const [commentModal, setCommentModal] = useState<boolean>(false)
-
+  const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
   useEffect(() => {
     axios.get(`http://localhost:7000/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
@@ -159,6 +159,30 @@ const Id = ({ tweetData }: any) => {
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
+
+   const handleBookmark = () => {
+    const bookmarkData = {
+      profileDp: tweetProps?.profileDp,
+      username: tweetProps?.username,
+      usersAt: tweetProps?.usersAt,
+      tweet: tweetProps?.tweet,
+      picture: tweetProps?.picture,
+      video: tweetProps?._id,
+      postId: tweetProps?._id,
+      likes: tweetProps?.likes,
+      comments: tweetProps?.comments,
+      createdAt: tweetProps?.createdAt,
+      userDetail: currentUser?._id,
+      saved: true,
+    }
+    axios.post(`http://localhost:7000/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
+    )
+    setAddedToBookmark(true)
+    setTimeout(() => {
+      setAddedToBookmark(false)
+    }, 3000)
+    setBookmarks([...bookmarks, bookmarkData])    
   }
 
   const handleClick = (e: any) => {
@@ -303,11 +327,13 @@ const Id = ({ tweetData }: any) => {
             <div>
               <p>
                   {
-                        <AiOutlineUpload
+                  <AiOutlineUpload
+                    onClick={handleBookmark}
                       className="likeIcon"
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>
+                {addedToBookmark ? <p className="bookmarkAdded" >Tweet added to bookmark</p> : ""}
             </div>
           </div>
          

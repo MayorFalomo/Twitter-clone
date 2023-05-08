@@ -116,8 +116,22 @@ export const SingleTweetStyle = styled.div`
         justify-content: space-around;
         margin: 20px auto;
         color: #E2E4E4;
-        /* border-bottom: 2px #575B5F solid; */
-        /* padding: 15px; */
+        .bookmarkAdded {
+    background-color: #1d9aef;
+    color: #fff;
+    padding: 15px 20px;
+     margin: auto;
+    position: fixed;
+    left: 40%;
+    bottom: 70px;
+    z-index: 999;
+    font-size: 24px;
+    z-index: 9999;
+    border-radius: 15px;
+    /* left: 50%;
+    right: 50%; */
+    /* width: ; */
+    }
     }
     .flexIconsAndValues{
         display: flex;

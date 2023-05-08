@@ -80,18 +80,19 @@ padding: 10px;
                 }
             }
         }
-        .renoveModalContainer {
+        .removeModalContainer {
             position: relative;
             .remove{
                 position: absolute;
-                top: 20px;
-                left: 0;
+                top: 10px;
+                right: 10px;
                 z-index:9;
                 color: #fff;
                 background-color: #000;
                 cursor: pointer;
                 width: 200px;
-                border: 2px red solid;
+                padding: 20px;
+                /* border: 2px red solid; */
             }
         }
     }

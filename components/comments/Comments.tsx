@@ -31,18 +31,32 @@ const Comments = (props: any) => {
     const [usersAt, setUsersAt] = useState<string>("");
     const [profileDp, setProfileDp] = useState<string>("");
   const [picture, setPicture] = useState<string>("");
-    const [video, setVideo] = useState<string>("");
+  const [video, setVideo] = useState<string>("");
+  const [like, setLike] = useState<any>([]);
+  const [reply, setReply] = useState<any>([]);
+  const [retweet, setRetweet] = useState<any>([]);
     const [createdAt, setCreatedAt] = useState<number>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
     const [gif, setGif] = useState<string>("");
     // const [tweet, setEmoji] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
-    const [tweeterUser, setTweeterUser] = useState<any>([])
+    const [comment, setComment] =  useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
   const [noCommentText, setNoCommentText] = useState<boolean>(false)
     // const { suggestedUsers } = useContext(AppContext)
 
+  
+  function dec2hex (dec:any) {
+  return dec.toString(16).padStart(2, "0")
+  }
+  
+  // generateId :: Integer -> String
+function generateId (len:any) {
+  var arr = new Uint8Array((len || 40) / 2)
+  window.crypto.getRandomValues(arr)
+  return Array.from(arr, dec2hex).join('')
+  }
     
      const uploadImage = (files: any) => {
     const formData = new FormData();
@@ -83,6 +97,8 @@ const Comments = (props: any) => {
         video,
         postId,
         createdAt,
+        comment,
+        newId: generateId(24),
     }
       await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
@@ -97,7 +113,7 @@ const Comments = (props: any) => {
   
     // console.log(props.tweetProps._id, "single postId");
     // console.log(props.tweetProps, "single post");
-    // console.log(props.tweetProps.comments, "singletweet comment");
+    console.log(props.tweetProps.comments, "singletweet comment");
     // console.log(Date.now() , "Date");
   // console.log(comments, "This is comments");
   // console.log(comments.length, "This is length");

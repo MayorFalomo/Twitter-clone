@@ -125,7 +125,8 @@ const Tweet = (props: any) => {
     //  setCommentModal(true)
   };
   // console.log(props.tweet?.likes, "likes");
-    const views = Math.floor(Math.random() * suggestedUsers?.length)
+  
+  const views = Math.floor(Math.random() * suggestedUsers?.length)
   
 
   return (

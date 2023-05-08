@@ -19,11 +19,11 @@ const Commentpage = (props: any) => {
   
       const commentId = Date.now()
 
-  const [postId, setPostId] = useState(props.tweet?._id)
+  const [postId, setPostId] = useState(props.comment?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
-  const [retweetArray, setRetweetArray] = useState<any>(props.tweet?.retweet)
-  const [likesArray, setLikesArray] = useState<any>(props.tweet?.likes)
+  const [retweetArray, setRetweetArray] = useState<any>(props.comment?.retweet)
+  const [likesArray, setLikesArray] = useState<any>(props.comment?.like)
   const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length)
   const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
   const [commentModal, setCommentModal] = useState<boolean>(false)
@@ -34,10 +34,26 @@ const Commentpage = (props: any) => {
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
   const [createdAt, setCreatedAt] = useState<number>(commentId)
+  const [reply, setReply] = useState<any>([])
+  const [like, setLike] = useState<any>([])
+  const [retweetReply, setRetweetReply] = useState<any>([])
+
   // const [postId, setPostId] = useState<number>(props.tweetProps?._id)
 
 
-  // console.log(props);
+  // console.log(props.comment.likes, "likes array");
+
+  function dec2hex (dec:any) {
+  return dec.toString(16).padStart(2, "0")
+  }
+  
+  // generateId :: Integer -> String
+function generateId (len:any) {
+  var arr = new Uint8Array((len || 40) / 2)
+  window.crypto.getRandomValues(arr)
+  return Array.from(arr, dec2hex).join('')
+  }
+  
 
    //Retweet Function
   const handleAddRetweet = async () => {
@@ -60,26 +76,48 @@ const Commentpage = (props: any) => {
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
+      newId: generateId(24),
     }
     await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
+
+  // console.log(generateId(24));
+  
   
    //Add like function
   const handleAddLike = async () => {
     const likeData = {
-       username: currentUser.username,
+      username: currentUser.username,
       profileDp: currentUser?.profileDp,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId: props.tweet._id,
+      postId: props.comment._id,
+      createdAt,
+      likeId: generateId(24)
     }
-    await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
-    setLikesArray([...likesArray, likeData])    
-    setNoOfLikesArray(likesArray.length + 1 );
+    await axios.put(`http://localhost:7000/api/tweets/comment-liketweet`, likeData).catch((err) => console.log("Cannot like "))
+    // setLikesArray([...likesArray, likeData])
+    // setNoOfLikesArray(likesArray.length + 1 );
+    // console.log("successfully liked this comment");
+    
   }
 
+  //Handle Remove Like 
+  const removeLike = async () => {
+    setLikeTweet(false)
+    const likeData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profilePic,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId,
+    }
+    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+    setLikesArray(filtered)
+    setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+  }
 
    const handleComment = async (e: any) => {
     e.preventDefault()
@@ -92,6 +130,10 @@ const Commentpage = (props: any) => {
         video,
         postId,
         createdAt,
+        newId: generateId(24),
+        reply,
+        like,
+        retweet
     }
       await axios.put(`http://localhost:7000/api/tweets/replies-comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
@@ -109,6 +151,12 @@ const Commentpage = (props: any) => {
      setUrlParams(props.tweet?._id)
      setCommentModal(true)
   };
+
+  console.log(props.comment.like, "props likes array");
+  console.log(likesArray, "likes array");
+  
+  likesArray?.some((e: any) => console.log(e.username == currentUser.username))
+  
 
     return (
       <CommentPageStyle>
@@ -158,23 +206,30 @@ const Commentpage = (props: any) => {
               <span>{0} </span>
             </div>
             <div  className='flexIconsAndValues'>
-              {likeTweet ? <p>
-                  {
-                        <BsFillHeartFill
-                    className="likeIcon"
-                    onClick={() => setLikeTweet(false)}
-                      style={{ cursor: "pointer", fontSize: 35, color: "red",}}
+              {likesArray && (
+                  <p>
+                    {likesArray.some(
+                      (e: any) => e.username == currentUser?.username
+                    ) ? (
+                      <BsFillHeartFill
+                        onClick={removeLike}
+                        className='likeIcon'
+                        style={{
+                          color: "red",
+                          fontSize: 35,
+                          cursor: "pointer",
+                        }}
                       />
-                }</p> :
-              <p>
-                  {
-                        <FaRegHeart
-                      className="likeIcon"
-                      onClick={() => setLikeTweet(true)}
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                    ) : (
+                      <FaRegHeart
+                        className='likeIcon'
+                        onClick={handleAddLike}
+                        style={{ fontSize: 35, cursor: "pointer" }}
                       />
-                }</p>}
-              <span>{0} </span>
+                    )}
+                  </p>
+                )}
+              <span>{props.comment?.like?.length} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>
