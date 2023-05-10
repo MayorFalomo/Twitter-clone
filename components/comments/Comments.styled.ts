@@ -115,7 +115,7 @@ padding: 10px; */
         /* justify-content: space-around; */
         margin: 20px auto;
         color: #E2E4E4;
-        /* border: 2px red solid; */
+        border: 2px red solid;
     }
     .flexIconsAndValues{
         display: flex;

@@ -22,7 +22,7 @@ const Comments = (props: any) => {
     const { currentUser , suggestedUsers} = useContext(AppContext)
     
     const timeAgo = Date.now()
-    const commentId = Date.now()
+    const commentId = new Date()
     // console.log(currentUser?.profileDp, "profile Dp");
     
     const [emoji, setEmoji] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const Comments = (props: any) => {
   const [like, setLike] = useState<any>([]);
   const [reply, setReply] = useState<any>([]);
   const [retweet, setRetweet] = useState<any>([]);
-    const [createdAt, setCreatedAt] = useState<number>(commentId)
+    const [createdAt, setCreatedAt] = useState<any>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
     const [gif, setGif] = useState<string>("");
     // const [tweet, setEmoji] = useState<string>("");
@@ -100,6 +100,7 @@ function generateId (len:any) {
         comment,
         newId: generateId(24),
     }
+    console.log(commentData, "created at")
       await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")
@@ -113,8 +114,8 @@ function generateId (len:any) {
   
     // console.log(props.tweetProps._id, "single postId");
     // console.log(props.tweetProps, "single post");
-    console.log(props.tweetProps.comments, "singletweet comment");
-    // console.log(Date.now() , "Date");
+  //   console.log(props.tweetProps.comments, "singletweet comment");
+  // console.log(commentId, "Date");
   // console.log(comments, "This is comments");
   // console.log(comments.length, "This is length");
   // console.log(successfulUpload, "This is comments");

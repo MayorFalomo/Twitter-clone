@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const CommentModalStyle = styled.div`
 .commentModalContainer{
-    backgroundColor: black;
+    background-color: black;
     padding: 20px;
     .commentModalClose{
         padding: 10px;

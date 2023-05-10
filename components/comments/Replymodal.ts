@@ -1,52 +1,20 @@
 import styled from "styled-components";
 
-export const CommentPageStyle = styled.div`
+export const ReplyPageStyle = styled.div`
 
-.commentPageContainer{
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    /* border: 2px red solid; */
-    .subPostsContainer{
-        /* border: 2px green solid; */
-        .tweetOption{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            /* border: #1d9aef 2px solid; */
-            .flexIconsAndValues{
-                /* border: 2px red solid; */
-               
-            }
-              .replyModal{
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            max-width: 40vw;
-            /* height: 50vh; */
-            border-radius: 30px;
-            z-index: 9999;
-            background: black;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            /* .commentIcon {
-                border:2px red solid;
-            } */
-            .commentModalContainer{
-                background-color: black;
-                padding: 20px;
-                .commentModalClose{
-                    padding: 10px;
-                    /* border-bottom: 1px solid white; */
-                    width: 100%;
-                    margin-bottom: 20px;
-                }
-                .subCommentModal{
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 10px;
-                    /* border: 2px red solid; */
+.commentModalContainer{
+    background-color: black;
+    padding: 20px;
+    .commentModalClose{
+        padding: 10px;
+        /* border-bottom: 1px solid white; */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .subCommentModal{
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
         .border{
             border-left: 1px solid #575B5F;
             height: 70px;
@@ -93,10 +61,7 @@ export const CommentPageStyle = styled.div`
             }
         }
         form{
-            /* border: 1px solid blue; */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            /* border: 1px solid red; */
             textarea {
                 width: 100%;
                 height: 200px;
@@ -112,15 +77,12 @@ export const CommentPageStyle = styled.div`
             }
             textarea::placeholder {
                 font-size: 28px;
-                font-weight: 500;
-                color: #575B5F;
+                color: #fff;
             }
-            .flexIcon{
+            .flexIcons{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width: 100%;
-                /* border: 3px green solid; */
                   .tweetIcons {
           display: flex;
           align-items: center;
@@ -179,18 +141,4 @@ export const CommentPageStyle = styled.div`
               text-align: center;
             }
         }
-                }
-        }
-        .repliesContainer{
-            margin-top: 20px;
-        }
-        .showReplies{
-            color: #1d9aef;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: 400;
-            margin-top: 20px auto;
-        }
-    }
-}
 `

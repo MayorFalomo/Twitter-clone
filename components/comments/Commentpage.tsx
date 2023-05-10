@@ -3,14 +3,23 @@ import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
 import React, {useContext, useState} from 'react'
-import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineBars, AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { BsFillHeartFill } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
+import { MdClose } from 'react-icons/md'
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
+import { TbCalendarTime } from 'react-icons/tb'
+import { IoLocationOutline } from 'react-icons/io5'
+import Navbar from '../navbar/Navbar'
+import Replymodal from './Replymodal'
+import Showreplies from './Showreplies'
 
 type Props = {}
 
+//Parent component is comments
 const Commentpage = (props: any) => {
 
     const { suggestedUsers, currentUser } = useContext(AppContext)
@@ -29,14 +38,21 @@ const Commentpage = (props: any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false)
   const [modalLink, setModalLink] = useState<string>("");
   const [urlParams, setUrlParams] = useState<string>(" ");
-  const [getUsername, setGetUsername] = useState<string>("");
+  const [getCommentId, setGetCommentId] = useState<string>("");
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
+  const [newId, setNewId] = useState<string>(props.comment?.newId)
   const [createdAt, setCreatedAt] = useState<number>(commentId)
-  const [reply, setReply] = useState<any>([])
+  const [replyId, setReplyId] = useState<any>("")
   const [like, setLike] = useState<any>([])
   const [retweetReply, setRetweetReply] = useState<any>([])
+  const [singleTweets, setSingleTweets] = useState<any>([])
+    const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
+  const [successComment, setSuccessComment] = useState<boolean>(false)
+  const [emoji, setEmoji] = useState<boolean>(false);
+  const [showReplies, setShowReplies] = useState<boolean>(false);
+  const [replyArray, setReplyArray] = useState<any>(props.comment.comment)
 
   // const [postId, setPostId] = useState<number>(props.tweetProps?._id)
 
@@ -54,7 +70,27 @@ function generateId (len:any) {
   return Array.from(arr, dec2hex).join('')
   }
   
-
+ const uploadImage = (files: any) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    formData.append("upload_preset", "t3dil6ur");
+    axios
+      .post("https://api.cloudinary.com/v1_1/dsghy4siv/image/upload", formData)
+      .then((res) => setPicture(res.data.url))
+      .catch((err) => console.log(err));
+      setSuccessfulUpload(true)
+    };
+    
+  const uploadVideo = (files: any) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    formData.append("upload_preset", "t3dil6ur");
+    axios
+      .post("https://api.cloudinary.com/v1_1/dsghy4siv/video/upload", formData)
+      .then((res) => setVideo(res.data.url))
+      .catch((err) => console.log(err));
+      setSuccessfulUpload(true)
+    };
    //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
@@ -76,7 +112,7 @@ function generateId (len:any) {
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
-      newId: generateId(24),
+      retweetId: generateId(24),
     }
     await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
@@ -130,11 +166,10 @@ function generateId (len:any) {
         video,
         postId,
         createdAt,
-        newId: generateId(24),
-        reply,
+        replyId: generateId(24),
         like,
         retweet
-    }
+     }
       await axios.put(`http://localhost:7000/api/tweets/replies-comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")
@@ -148,14 +183,22 @@ function generateId (len:any) {
   
    const handleClick = (e: any) => {
      e.preventDefault()
-     setUrlParams(props.tweet?._id)
+     setUrlParams(props.comment?.newId)
+     setGetCommentId(props.comment?.postId)
      setCommentModal(true)
   };
 
-  console.log(props.comment.like, "props likes array");
-  console.log(likesArray, "likes array");
+  const handleShowReplies = () => {
+    setUrlParams(props.comment?.newId)
+    setShowReplies(true)
+  }
+
+  // console.log(props.comment.like, "props likes array");
+  // console.log(urlParams, "comment id");
   
-  likesArray?.some((e: any) => console.log(e.username == currentUser.username))
+  // likesArray?.some((e: any) => console.log(e.username == currentUser.username))
+  // console.log(props.comment, "This is the comment array");
+  // console.log(newId, "new Id");
   
 
     return (
@@ -175,17 +218,18 @@ function generateId (len:any) {
                     <p className='tweet-caption' style={{fontSize: 28, fontWeight: 400}} >{props.comment?.comments} </p>
             {/* {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image'> </div> : ""} */}
           {props.comment?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.comment?.picture})` }} className='tweet-image' ></div> : ""}
-          <div className='tweetOptions' >
+          <div className='tweetOption' >
             <div className='flexIconsAndValues' >
-              <p>
+              <p onClick={handleClick} >
                   {
                         <FaRegComment
                       className="likeIcon"
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
-                }</p>
-              <span>{0} </span>
-            </div>
+                  }</p>
+                {commentModal ? <div className='replyModal' ><Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div> : "" }
+                      <span>{props.comment.comment?.length} </span>
+                  </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
                 {
@@ -249,8 +293,11 @@ function generateId (len:any) {
                       style={{ cursor: "pointer", fontSize: 35 }}
                       />
                 }</p>
-            </div>
               </div>
+            </div>
+              {showReplies? <div className='repliesContainer' ><Showreplies currentUser={currentUser} getCommentId={getCommentId} urlParams={urlParams} replyArray={replyArray} suggestedUsers={suggestedUsers} /> </div> : ""}
+            {props.comment.comment?.length > 0 && !showReplies ? <p onClick={handleShowReplies} className='showReplies' >Show Replies </p> : ""}
+            { showReplies ? <p onClick={() => setShowReplies(false) } className='showReplies' >Hide Replies </p> : "" }
           </div>
             </div>
             </CommentPageStyle>
