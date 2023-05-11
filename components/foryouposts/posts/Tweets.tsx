@@ -17,7 +17,7 @@ const Tweets = (props: any) => {
   // console.log(bookmarks);
 
   useEffect(() => {
-    axios.get(`http://localhost:7000/api/users`)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
       .then((res) => setUserMap(res.data)).catch((err) => console.log(err)
       )
   }, [])

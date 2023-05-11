@@ -38,7 +38,7 @@ const Suggestedpeople = (props: any) => {
      try {
       //  console.log(followAUser, "Follow object");
        setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
-       await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
+       await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
        setFollowingButton(true)
       //  setNoOfFollowings()
@@ -55,7 +55,7 @@ const Suggestedpeople = (props: any) => {
     // console.log(data, "This is data");
     
     try {
-     await axios.put(`http://localhost:7000/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
+     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
         .catch((err) => console.log(err));
         currentUser.following?.filter((val: any) => console.log(val.usersId === props.suggestedUsers?._id , "vals id"))
       let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)

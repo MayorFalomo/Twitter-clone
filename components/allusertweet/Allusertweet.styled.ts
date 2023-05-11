@@ -32,20 +32,25 @@ export const AllUserTweets = styled.div`
         .flexUserInfo{
             display: flex;
             align-items: center;
-            gap: 30px;
-            span{
-                color: #575B5F;
-                font-size: 20px;
+            gap: 10px;
+            .usersUsername{
+                /* color: #575B5F; */
+                font-size: 26px;
                 font-weight: 500;
             }
             .createdAt{
                  display: list-item;
                 list-style: disc outside none;
+                margin-left: 25px;
             }
-            h1:hover{
+            .usersUsername:hover{
                 text-decoration: underline;
                 cursor:pointer;
             }
+        }
+        .video{
+            border:1px solid #575B5F;
+            border-radius: 30px;
         }
         .tweetOptions{
             display: flex;

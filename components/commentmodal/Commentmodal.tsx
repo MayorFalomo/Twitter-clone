@@ -16,7 +16,7 @@ type Props = {}
 
 const CommentModal = (props:any) => {
     
-      const commentId = Date.now()
+      const commentId = new Date()
 
   const {currentUser} = useContext(AppContext)
   const [emoji, setEmoji] = useState<boolean>(false);
@@ -31,7 +31,7 @@ const CommentModal = (props:any) => {
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [postId, setPostId] = useState<number>(singleTweets?._id)
-  const [createdAt, setCreatedAt] = useState<number>(commentId)
+  const [createdAt, setCreatedAt] = useState<any>(commentId)
   const [successComment, setSuccessComment] = useState<boolean>(false)
 
      const uploadImage = (files: any) => {
@@ -57,7 +57,7 @@ const CommentModal = (props:any) => {
   };
       
     useEffect(() => {
-        axios.get(`http://localhost:7000/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
+        axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
             .catch((err) => console.log(err))
     }, [])
   
@@ -73,7 +73,7 @@ const CommentModal = (props:any) => {
              postId: singleTweets?._id ,
              createdAt,
          }
-         await axios.put(`http://localhost:7000/api/tweets/comments/`, commentData).catch((err) => console.log(err))
+         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments/`, commentData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
         //  setSingleTweets({

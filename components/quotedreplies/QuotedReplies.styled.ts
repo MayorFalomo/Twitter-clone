@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
-export const CommentStyled = styled.div`
+export const QuotedReplies = styled.div`
 .postsContainer{
-    border-bottom: 2px rgb(47, 51, 54) solid;
+display: flex;
+align-items: flex-start;
+gap: 10px;
+/* margin: 25px auto; */
+border-top: 2px rgb(47, 51, 54) solid;
+border-bottom: 2px rgb(47, 51, 54) solid;
+padding: 10px;
 .profilePicture{
     background-color: black;
     background-position: center;
@@ -14,12 +20,49 @@ export const CommentStyled = styled.div`
     border-radius:50%;
 }
 .subPostsContainer{
+    /* display: flex;
+    align-items: flex-start;
+    gap: 20px; */
+    /* border: 2px rgb(47, 51, 54) solid; */
     width: 100%;
+    /* margin: 5px 5px; */
+    /* padding: 10px; */
+ .subQuotedTweet{
+            border: 2px rgb(47, 51, 54) solid;
+            padding: 20px;
+            border-radius: 20px;
+            .mainTweetDetails{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .profilePic{
+                    width:40px;
+                    height:40px;
+                    background-color: black;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    object-fit: cover;
+                    object-position: center;
+                    border-radius: 50%;
+                }
+                p{
+                margin-top: 25px;
+                font-size: 26px;
+                font-weight: 700;
+                line-height: 35px;
+            }
+            }
+           
+        }
 .flexTweetProfileDetails{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        /* border: 2px yellow solid; */
+        /* padding: 5px 0; */
+       
         .tweetProfileDetails{
             width: 100%;
             display: flex;
@@ -27,7 +70,7 @@ export const CommentStyled = styled.div`
             gap: 5px;
             /* border: 2px green solid; */
             .userName{
-                font-size: 28px;
+                font-size: 24px;
             }
             .userAt{
                 font-size: 20px;
@@ -65,10 +108,26 @@ export const CommentStyled = styled.div`
                 }
             }
         }
+        .removeModalContainer {
+            position: relative;
+            .remove{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index:9;
+                color: #fff;
+                background-color: #000;
+                cursor: pointer;
+                width: 200px;
+                padding: 20px;
+                /* border: 2px red solid; */
+            }
+        }
     }
     .tweet-caption{
         font-size: 22px;
         margin: 20px auto;
+        line-height: 35px;
     }
     .tweet-image{
         /* height: 500px;
@@ -87,10 +146,11 @@ export const CommentStyled = styled.div`
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        object-fit: cover;
-        object-position: center;
+       object-fit: cover;
+       object-position: center;
         border-radius: 10px;
     }
+   
     .tweetOptions{
         display: flex;
         align-items: flex-start;
@@ -98,7 +158,7 @@ export const CommentStyled = styled.div`
         /* justify-content: space-around; */
         margin: 20px auto;
         color: #E2E4E4;
-        border: 2px red solid;
+        /* border: 2px red solid; */
     }
     .flexIconsAndValues{
         display: flex;
@@ -107,6 +167,18 @@ export const CommentStyled = styled.div`
         /* color: #1d9aef; */
         span{
             font-size: 20px;
+        }
+        .activeModal{
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            height: 50vh;
+            border-radius: 30px;
+            z-index: 9999;
+            background: black;
+            /* border: 2px red solid; */
         }
     }
     .showThread{
@@ -131,112 +203,6 @@ export const CommentStyled = styled.div`
         }
     }
 }
- form {
-      width: 100%;
-      display: flex;
-      align-items: start;
-      gap: 10px;
-      margin-top: 20px;
-      padding: 10px;
-      border-top: 1px solid #575B5F;
-      .userProfileDp{
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background-color: #000;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        border: 1px solid #fff;
-      }
-      .textAreaContainer {
-        position: relative;
-        width: 100%;
-        /* border: 3px red solid; */
-      }
 
-      .textArea {
-        width: 100%;
-        height: 180px;
-        background-color: transparent;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: none;
-        font-size: 25px;
-        outline: 0;
-        color: white;
-        white-space: wrap;
-        resize: none;
-      }
-      .textArea::placeholder {
-        font-size: 30px;
-        padding-top: 60px;
-      }
-      p {
-        /* border: none; */
-        /* outline: none;
-        padding: 7px 15px; */
-        /* position: absolute;
-        left: 0px;
-        top: 10px; */
-        background-color: transparent;
-        color: #1d9aef;
-        font-size: 22px;
-      }
-      .flexIcons {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        color: #1d9aef;
-        position: absolute;
-        /* left: 0; */
-        bottom: 15px;
-        width: 90%;
-        padding: 1px 10px;
-        /* border: 2px red solid; */
-
-        .tweetIcons {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          gap: 30px;
-          /* border: 2px red solid; */
-          .locationIcon {
-            opacity: 0.5;
-            cursor: default;
-          }
-        }
-        .pickerEmoji{
-          position: absolute;
-          bottom: -450px;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-        .tweetButton button {
-          padding: 10px 25px;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          font-size: 18px;
-          background-color: #1d9aef;
-          color: #fff;
-          border-radius: 25px;
-        }
-        .btn-primary{
-          opacity: 0.4;
-        }
-      }
-    }
-    .seeCommentMap{
-        .mappedContainer{
-        border-top: 2px #575B5F solid;
-        /* border-bottom: 2px #575B5F solid; */
-        margin: 5px auto;
-        padding: 10px;
-        }
-    }
 }
 `

@@ -12,7 +12,8 @@ type Props = {}
 
 //Parent component is Commentpage.tsx
 const Replymodal = (props: any) => {  
-          const commentId = Date.now()
+
+    const commentId = new Date()
 
    function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")
@@ -38,7 +39,7 @@ function generateId (len:any) {
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false);
   const [postId, setPostId] = useState<number>(singleTweets?._id)
-  const [createdAt, setCreatedAt] = useState<number>(commentId)
+  const [createdAt, setCreatedAt] = useState<any>(commentId)
   const [successComment, setSuccessComment] = useState<boolean>(false)
   const [newId, setNewId] = useState<any>(generateId(24))
   const [id, setId] = useState<any>()

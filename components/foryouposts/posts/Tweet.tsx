@@ -39,7 +39,7 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
     }
-    await axios.put(`http://localhost:7000/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
   }
@@ -53,7 +53,7 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -67,7 +67,7 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
     }
-    await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
   }
@@ -81,7 +81,7 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -102,7 +102,7 @@ const Tweet = (props: any) => {
       userDetail: currentUser?._id,
       saved: true,
     }
-    axios.post(`http://localhost:7000/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
+    axios.post(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
     )
     props.setAddedToBookmark(true)
     setTimeout(() => {
@@ -144,6 +144,7 @@ const Tweet = (props: any) => {
           </div>
           <p className='tweet-caption' >{props.tweet?.tweet} </p>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
+          {props.tweet?.video?.length > 1 ? <video width="100%" height='500px' controls src={`${props.tweet?.video}`} ></video>  : "" }
           <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>

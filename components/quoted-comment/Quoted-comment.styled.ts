@@ -135,7 +135,7 @@ box-shadow:  5px 5px 24px #afafaf,
         }
         .pickerEmoji{
           position: absolute;
-          bottom: 5px;
+          bottom: 85px;
           width: 100%;
           display: flex;
           justify-content: center;

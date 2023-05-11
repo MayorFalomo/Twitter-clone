@@ -12,6 +12,7 @@ import Slug from '../commentmodal/Commentmodal'
 
 type Props = {}
 
+//Parent component is SingleUsersTweet
 const Allusertweet = (props: any) => {
 
   const { currentUser, suggestedUsers } = useContext(AppContext)
@@ -81,16 +82,18 @@ const Allusertweet = (props: any) => {
         <div style={{ backgroundImage: `url(${props.allTweet?.profilePic})` }} className='userTweetPic' > </div>
         <div className='flexUserInfoContainer' >
           <div className='flexUserInfo' >
-          <h1>{props.allTweet?.username} </h1>
-          <span>{props.allTweet?.usersAt} </span>
-          <span className='createdAt' >{moment(new Date(props.allTweet?.createdAt)).fromNow()}</span>
-          </div>
-          <p className='tweetText' >{props.allTweet?.tweet} </p>
-                  <div className='tweetOptions' >
-            <div className='flexIconsAndValues' >
-              <p onClick={handleClick} >
-                  {
-                        <FaRegComment
+          <span className='usersUsername' >{props.allTweet?.username} </span>
+          <span style={{color: '#575B5F', fontSize: '20px', fontWeight: 500}} >{props.allTweet?.usersAt} </span>
+          <span className='createdAt' style={{color: '#575B5F', fontSize: '20px', fontWeight: 500}} >{moment(new Date(props.allTweet?.createdAt)).fromNow()}</span>
+              </div>
+              <p className='tweetText' >{props.allTweet?.tweet} </p>
+              {props.allTweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.allTweet?.picture})` }} className='tweet-image' ></div> : ""}
+              {props.allTweet?.video?.length > 1 ? <video width="100%" height='500px' controls className='video' src={`${props.allTweet?.video}`} ></video> : ""}
+              <div className='tweetOptions' >
+                <div className='flexIconsAndValues' >
+                  <p onClick={handleClick} >
+                    {
+                      <FaRegComment
                       className="likeIcon"
                       style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
                       />

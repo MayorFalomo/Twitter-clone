@@ -3,7 +3,6 @@ import Navbar from '@/components/navbar/Navbar'
 import Quoted from '@/components/quoted-comment/Quoted-comment'
 import Search from '@/components/search/Search'
 import Trends from '@/components/trends/Trends'
-import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { AppContext } from '@/helpers/Helpers'
 import { SingleTweetStyle } from '@/styles/Id.styled'
 import axios from 'axios'
@@ -11,13 +10,10 @@ import moment from 'moment'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
-import { AiOutlineBars, AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { BsArrowLeft, BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
+import { BsArrowLeft, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
-import { IoLocationOutline } from 'react-icons/io5'
-import { TbCalendarTime } from 'react-icons/tb'
 
 type Props = {}
 
@@ -40,7 +36,6 @@ export const getStaticProps = async (context: any) => {
   const id = context.params.id;
   const res = await fetch('http://localhost:7000/api/tweets/' + id)
   const data = await res.json()
-  console.log(context, "context");
   
   return {
     props: {
@@ -56,19 +51,8 @@ const Id = ({ tweetData }: any) => {
   const [tweetProps, setTweetProps] = useState<any>(tweetData)
 
   const [postId, setPostId] = useState(tweetData?._id)
-  // const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
-  const [emoji, setEmoji] = useState<boolean>(false);
-  const [everyOne, setEveryOne] = useState<boolean>(false);
-  const [tweet, setTweet] = useState<string>("");
-  const [picture, setPicture] = useState<string>("");
-  const [video, setVideo] = useState<string>("");
-  const [gif, setGif] = useState<string>("");
-  const [user, setUser] = useState<string>("");
-  const [cookies, setCookie] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
-  const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  // const [comments, setComments] = useState<string>("")
   const [likesArray, setLikesArray] = useState<any>(tweetData?.likes)
   const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
   const [retweet, setRetweet] = useState<boolean>(false)
@@ -81,7 +65,7 @@ const Id = ({ tweetData }: any) => {
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
     )
   }, [currentUser?._id]); 
 
@@ -93,7 +77,7 @@ const Id = ({ tweetData }: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: tweetProps._id,
     }
-    await axios.put(`http://localhost:7000/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
   }
@@ -106,7 +90,7 @@ const Id = ({ tweetData }: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -126,7 +110,7 @@ const Id = ({ tweetData }: any) => {
           usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: tweetData._id,
         }
-        axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+        axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData]);
         setNoOfLikesArray(likesArray?.length + 1);
       }
@@ -155,7 +139,7 @@ const Id = ({ tweetData }: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -176,7 +160,7 @@ const Id = ({ tweetData }: any) => {
       userDetail: currentUser?._id,
       saved: true,
     }
-    axios.post(`http://localhost:7000/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
+    axios.post(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
     )
     setAddedToBookmark(true)
     setTimeout(() => {
@@ -190,23 +174,17 @@ const Id = ({ tweetData }: any) => {
      setUrlParams(tweetProps?._id)
      setQuotedCommentModal(true)
   };
-    // console.log(tweets, "This is tweets");
 
   const handleOpenAndClose = (e: any) => {
     e.preventDefault()
     setQuotedCommentModal(true);
     setUrlParams(tweetProps?._id)
-    // setRetweetModal(false)
   }
  
   const params = useRouter()
-  // console.log(params, "This is params");
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
-
-
-  // console.log(urlParams, "retweet Modal");
   
   return (
     <SingleTweetStyle>
@@ -230,6 +208,7 @@ const Id = ({ tweetData }: any) => {
           </div>
           <p className='tweetText'>{tweetProps?.tweet}</p>
           { tweetProps?.picture.length > 0 ? <div style={{ background: `url(${tweetProps?.picture})` }} className='picture' > </div> : ""}
+          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={`${tweetProps?.video}`}  controls > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
               <span  style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
@@ -239,7 +218,7 @@ const Id = ({ tweetData }: any) => {
             <div className='tweetCount' >
               <div className='subTweetCount' >
               <p><span>{retweetArray.length} </span> Retweets </p>
-              <p><span>{0} </span> Quotes </p>
+              <Link href={'/quoted/' + postId} ><p><span>{tweetProps?.quoted?.length } </span> Quotes </p></Link>
               <p><span>{ likesArray.length} </span> Likes </p>
               <p><span>{0} </span> Bookmarks </p>
               </div>
@@ -341,7 +320,6 @@ const Id = ({ tweetData }: any) => {
         </div>
         <div className='leftGridSection' >
           <Search />
-          {/* <Whotofollow /> */}
           <Trends/>
         </div>
       </div>

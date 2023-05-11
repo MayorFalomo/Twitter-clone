@@ -6,9 +6,9 @@ import moment from 'moment'
 import Link from 'next/link'
 import React, {useState, useContext, useEffect} from 'react'
 import { useCookies } from 'react-cookie'
-import { AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineFileGif,} from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { IoLocationOutline } from 'react-icons/io5'
 import Commentpage from './Commentpage'
@@ -32,7 +32,7 @@ const Comments = (props: any) => {
     const [profileDp, setProfileDp] = useState<string>("");
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
-  const [like, setLike] = useState<any>([]);
+  const [likes, setLikes] = useState<any>([]);
   const [reply, setReply] = useState<any>([]);
   const [retweet, setRetweet] = useState<any>([]);
     const [createdAt, setCreatedAt] = useState<any>(commentId)
@@ -88,38 +88,40 @@ function generateId (len:any) {
     
   const handleComment = async (e: any) => {
     e.preventDefault()
-      const commentData = {
-        username: currentUser?.username,
-        usersAt: currentUser?.usersAt,
-        profileDp: currentUser?.profilePic,
-        comments,
-        picture,
-        video,
-        postId,
-        createdAt,
-        comment,
-        newId: generateId(24),
+    const commentData = {
+      username: currentUser?.username,
+      usersAt: currentUser?.usersAt,
+      profileDp: currentUser?.profilePic,
+      comments,
+      picture,
+      video,
+      postId,
+      createdAt,
+      comment,
+      newId: generateId(24),
+      likes,
+      retweet,
     }
     console.log(commentData, "created at")
-      await axios.put(`http://localhost:7000/api/tweets/comments`, commentData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")
     setVideo("")
-      props.setTweetProps({
-        ...props.tweetProps, comments: [
-          ...props.tweetProps.comments, commentData,
-        ]
-      })
-    }
+    props.setTweetProps({
+      ...props.tweetProps, comments: [
+        ...props.tweetProps.comments, commentData,
+      ]
+    })
+   
+  }
   
     // console.log(props.tweetProps._id, "single postId");
     // console.log(props.tweetProps, "single post");
-  //   console.log(props.tweetProps.comments, "singletweet comment");
+    console.log(props.tweetProps.comments, "singletweet comment");
   // console.log(commentId, "Date");
   // console.log(comments, "This is comments");
   // console.log(comments.length, "This is length");
   // console.log(successfulUpload, "This is comments");
-  
     
     
     return (
@@ -127,7 +129,14 @@ function generateId (len:any) {
       <div className='postsContainer' >
            <form onSubmit={handleComment} >
             <div style={{ backgroundImage: `url()`}} className="userProfileDp" > </div>
-          <div className="textAreaContainer">
+            <div className="textAreaContainer">
+               {everyOne ? (
+              <p>
+                Replying to <span>{props.tweetProps?.usersAt} </span>
+              </p>
+            ) : (
+              ""
+            )}
               <textarea className="textArea"
                 onFocus={() => setEveryOne(!false)}
               typeof="text"
@@ -135,13 +144,7 @@ function generateId (len:any) {
                 value={comments}
                 placeholder="Tweet your reply"
               />
-            {everyOne ? (
-              <p>
-                Replying to <span>{props.tweetProps?.usersAt} </span>
-              </p>
-            ) : (
-              ""
-            )}
+           
             <div className="flexIcons">
               <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>

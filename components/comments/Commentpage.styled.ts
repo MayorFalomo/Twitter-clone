@@ -3,16 +3,47 @@ import styled from "styled-components";
 export const CommentPageStyle = styled.div`
 
 .commentPageContainer{
-    display: flex;
+    /* display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 10px; */
     /* border: 2px red solid; */
+     .overlay{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.1px);
+        -webkit-backdrop-filter: blur(2.1px);
+    }
+    .removeOverlay{
+        display: none;
+    }
+    /* .repliesComponent{
+      border: 1px solid blue;
+    } */
+    /* .showRepliesContainer{
+      border: 3px solid green;
+    } */
+        /* .replyCon{
+      border: 3px solid red;
+    } */
     .subPostsContainer{
-        /* border: 2px green solid; */
-        .tweetOption{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    .tweetDetailsCon{
+      /* border: 2px blue solid; */
+      width: 100%;
+         .tweetOption{
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-top: 20px;
             /* border: #1d9aef 2px solid; */
             .flexIconsAndValues{
                 /* border: 2px red solid; */
@@ -181,7 +212,7 @@ export const CommentPageStyle = styled.div`
         }
                 }
         }
-        .repliesContainer{
+         .repliesContainer{
             margin-top: 20px;
         }
         .showReplies{
@@ -189,8 +220,20 @@ export const CommentPageStyle = styled.div`
             cursor: pointer;
             font-size: 20px;
             font-weight: 400;
-            margin-top: 20px auto;
+            margin-top: 35px auto;
         }
+       
     }
+     .subPostContainer{
+      border: solid 2px red;
+      /* display: flex;
+      align-items: center; */
+     }
+       
+    }
+    .subReplyCon{
+        margin: 30px auto;
+    }
+
 }
 `

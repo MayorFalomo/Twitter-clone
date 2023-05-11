@@ -15,9 +15,10 @@ import moment from 'moment';
 
 type Props = {}
 
+//Parent component is [id]
 const Quoted = (props: any) => {
 
-        const commentId = Date.now()
+        const commentId = new Date()
 
   const {currentUser} = useContext(AppContext)
   const [emoji, setEmoji] = useState<boolean>(false);
@@ -32,7 +33,7 @@ const Quoted = (props: any) => {
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [postId, setPostId] = useState<number>(singleTweets?._id)
-  const [createdAt, setCreatedAt] = useState<number>(commentId)
+  const [createdAt, setCreatedAt] = useState<any>(commentId)
   const [successComment, setSuccessComment] = useState<boolean>(false)
 
      const uploadImage = (files: any) => {
@@ -58,9 +59,20 @@ const Quoted = (props: any) => {
   };
       
     useEffect(() => {
-        axios.get(`http://localhost:7000/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
+        axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
             .catch((err) => console.log(err))
     }, [])
+  
+   function dec2hex (dec:any) {
+  return dec.toString(16).padStart(2, "0")
+  }
+  
+  // generateId :: Integer -> String
+function generateId (len:any) {
+  var arr = new Uint8Array((len || 40) / 2)
+  window.crypto.getRandomValues(arr)
+  return Array.from(arr, dec2hex).join('')
+  }
   
    const handleQuotedTweet = async (e:any) => {
          e.preventDefault();
@@ -72,9 +84,10 @@ const Quoted = (props: any) => {
              picture,
              video,
              postId: singleTweets?._id ,
-             createdAt,
+           createdAt,
+             newId: generateId(24)
          }
-         await axios.put(`http://localhost:7000/api/tweets/quote-tweet/`, quotedData).catch((err) => console.log(err))
+         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/quote-tweet/`, quotedData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
          setSingleTweets({
@@ -88,7 +101,7 @@ const Quoted = (props: any) => {
   }
 
     // console.log(props?.commentModal);
-    console.log(singleTweets?.quoted, "quoted comment modal");
+    // console.log(singleTweets?.quoted, "quoted comment modal");
     
     
   return (

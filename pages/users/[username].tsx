@@ -15,7 +15,7 @@ type Props = {}
 // console.log(router);
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:7000/api/users')
+  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users')
   const data = await res.json()
 
   const paths = data.map((path: any) => {
@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
     const username :string = context.params?.username;
-  const res = await fetch('http://localhost:7000/api/users/get-user/' + username);
+  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users/get-user/' + username);
   const data = await res.json();
   
   return {
@@ -50,7 +50,7 @@ const Slug = ({ users }: any) => {
       const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 
      useEffect(() => {
-     axios.get(`http://localhost:7000/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
+     axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [users?.username])
      
     

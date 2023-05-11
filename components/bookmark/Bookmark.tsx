@@ -40,7 +40,7 @@ const Bookmark = (props: any) => {
           usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: props.bookmark.postId,
         }
-        axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+        axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData])
         setNoOfLikesArray(likesArray?.length + 1);
       }
@@ -54,7 +54,7 @@ const Bookmark = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -67,7 +67,7 @@ const Bookmark = (props: any) => {
     };
 
      const handleRemoveBookmark = async () => {
-    axios.delete(`http://localhost:7000/api/bookmarks/delete-bookmark/${props.bookmark?.postId}`).catch((err) => console.log(err))
+    axios.delete(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/delete-bookmark/${props.bookmark?.postId}`).catch((err) => console.log(err))
          let filtered = bookmarks.filter((bookmark: any) => bookmark.postId !== props.bookmark.postId)         
     setBookmarks(filtered)
          setModalActive(false)

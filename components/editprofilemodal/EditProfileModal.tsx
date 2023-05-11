@@ -59,7 +59,7 @@ const EditProfileModal = (props: any) => {
             coverPhoto: coverPhoto.length > 1 ? coverPhoto : props.userProfile?.coverPhoto,
         };
         try {
-            await axios.put(`http://localhost:7000/api/users/${props.userProfile?._id}`, updatedUser)
+            await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/${props.userProfile?._id}`, updatedUser)
             .catch((err) => console.log(err))
             setUsername("")
             setBio("")

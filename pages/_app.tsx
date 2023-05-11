@@ -10,7 +10,7 @@ import { GetStaticProps } from "next";
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
 type Post = {
-  username: string,
+  // username: string,
 }
 
 export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) =>
   
   return {
     props: {
-      posts: posts,
+      posts: posts.reverse(),
     }
   };
 };
@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
-    fetch(`http://localhost:7000/api/users/${id}`).then((res) => res.json()).then((res) => {
+    fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
       setUser(res.user)
     }).catch((err) => {
       console.log(err)
@@ -58,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
    useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(`http://localhost:7000/api/tweets`);
+      const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
       setTweets(res.data);
       // setCompleted(true)
     };
@@ -76,7 +76,7 @@ export default function App({ Component, pageProps }: AppProps) {
     }, [])
   
   const getUserBookmarks = async (param:any) => {
-    const res = await axios.get(`http://localhost:7000/api/bookmarks/get-bookmark/${param}`)
+    const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/get-bookmark/${param}`)
     setBookmarks(res.data)
   }
 

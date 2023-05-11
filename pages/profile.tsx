@@ -20,13 +20,13 @@ const profile = (props: Props) => {
   
 
      useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
     )
      }, [cookies.user]);  
     
   
    useEffect(() => {
-     axios.get(`http://localhost:7000/api/tweets/get-tweet/${userProfile?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
+     axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${userProfile?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [userProfile?.username])
   
   // console.log(allUsersTweets);

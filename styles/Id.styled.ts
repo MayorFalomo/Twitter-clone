@@ -66,7 +66,7 @@ export const SingleTweetStyle = styled.div`
     }
     .picture {
         width: 95%;
-        height: 60%;
+        height: 50%;
         margin: 5px 10px;
         border-radius: 30px;
         background-color: #000;

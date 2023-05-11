@@ -33,6 +33,8 @@ const ForYouPosts = (props: any) => {
   const [user, setUser] = useState<string>("");
   const [cookies, setCookie] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
+  const [likes, setLikes] = useState<any>([])
+  const [retweet, setRetweet] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   // const [newDate, setNewDate] = useState<any>(false);
   
@@ -90,9 +92,11 @@ const ForYouPosts = (props: any) => {
       picture,
       gif,
       newDates,
+      likes,
+      retweet,
     }
     try {
-      await axios.post(`http://localhost:7000/api/tweets`, newTweet);
+      await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
       setTweets([...tweets, newTweet])
       setTweet(" ")
@@ -101,6 +105,8 @@ const ForYouPosts = (props: any) => {
       console.log(err);
     }
   }
+  
+  // console.log(tweets);
   
  
 

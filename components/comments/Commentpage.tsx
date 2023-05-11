@@ -2,7 +2,7 @@ import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { AiOutlineBars, AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
@@ -26,13 +26,13 @@ const Commentpage = (props: any) => {
     
   const views = Math.floor(Math.random() * suggestedUsers.length)
   
-      const commentId = Date.now()
+      const commentId = new Date()
 
   const [postId, setPostId] = useState(props.comment?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
   const [retweetArray, setRetweetArray] = useState<any>(props.comment?.retweet)
-  const [likesArray, setLikesArray] = useState<any>(props.comment?.like)
+  const [likesArray, setLikesArray] = useState<any>(props.comment?.likes)
   const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length)
   const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
   const [commentModal, setCommentModal] = useState<boolean>(false)
@@ -42,18 +42,18 @@ const Commentpage = (props: any) => {
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
-  const [newId, setNewId] = useState<string>(props.comment?.newId)
-  const [createdAt, setCreatedAt] = useState<number>(commentId)
-  const [replyId, setReplyId] = useState<any>("")
-  const [like, setLike] = useState<any>([])
+  const [newId, setNewId] = useState<string>(props.comment?.newId);
+  const [createdAt, setCreatedAt] = useState<any>(commentId);
+  const [replyId, setReplyId] = useState<any>("");
+  const [like, setLike] = useState<any>([]);
   const [retweetReply, setRetweetReply] = useState<any>([])
   const [singleTweets, setSingleTweets] = useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [successComment, setSuccessComment] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<boolean>(false);
   const [showReplies, setShowReplies] = useState<boolean>(false);
-  const [replyArray, setReplyArray] = useState<any>(props.comment.comment)
-
+  // const [replyArray, setReplyArray] = useState<any>(props.comment.comment)
+  const [replies, setReplies] = useState<any>(props.comment.comment)
   // const [postId, setPostId] = useState<number>(props.tweetProps?._id)
 
 
@@ -174,11 +174,18 @@ function generateId (len:any) {
     setComments(" ")
     setPicture("")
     setVideo("")
+      // props.setTweetProps({
+      //   ...props.tweetProps, comments: [
+      //     ...props.tweetProps.comments, commentData,
+      //   ]
+      // })
       props.setTweetProps({
-        ...props.tweetProps, comments: [
-          ...props.tweetProps.comments, commentData,
+      ...props.tweetProps, comments: {
+        ...props.tweetProps.comments, comment: [
+          ...props.tweetProps.comments.comment, commentData
         ]
-      })
+      }
+    })
     }
   
    const handleClick = (e: any) => {
@@ -190,6 +197,7 @@ function generateId (len:any) {
 
   const handleShowReplies = () => {
     setUrlParams(props.comment?.newId)
+    setGetCommentId(props.comment?.postId)
     setShowReplies(true)
   }
 
@@ -198,14 +206,26 @@ function generateId (len:any) {
   
   // likesArray?.some((e: any) => console.log(e.username == currentUser.username))
   // console.log(props.comment, "This is the comment array");
-  // console.log(newId, "new Id");
+
+  // useEffect(() => {
+  //   props.comment.comment.map((mappedComment: any) => {
+  //     return setReplies(mappedComment);
+  //   })
+  // })
+  // console.log(replies, "all replies");
+
+  console.log(props.comment, "length");
+  
   
 
     return (
       <CommentPageStyle>
-      <div className='commentPageContainer' >
+        <div className='commentPageContainer' >
+                    {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
+            {/* <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div> */}
+          <div className='subPostsContainer' >
             <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
-                 <div className='subPostsContainer' >
+            <div className='tweetDetailsCon' >
               <Link href={'/posts/' + props.comment?.postId} ><div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
               <span className='userName' > {props.comment?.username}</span>
@@ -228,7 +248,7 @@ function generateId (len:any) {
                       />
                   }</p>
                 {commentModal ? <div className='replyModal' ><Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div> : "" }
-                      <span>{props.comment.comment?.length} </span>
+                      <span>{props.comment?.comment?.length} </span>
                   </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
@@ -273,7 +293,7 @@ function generateId (len:any) {
                     )}
                   </p>
                 )}
-              <span>{props.comment?.like?.length} </span>
+              <span>{props?.comment?.likes?.length} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>
@@ -295,10 +315,13 @@ function generateId (len:any) {
                 }</p>
               </div>
             </div>
-              {showReplies? <div className='repliesContainer' ><Showreplies currentUser={currentUser} getCommentId={getCommentId} urlParams={urlParams} replyArray={replyArray} suggestedUsers={suggestedUsers} /> </div> : ""}
+           
             {props.comment.comment?.length > 0 && !showReplies ? <p onClick={handleShowReplies} className='showReplies' >Show Replies </p> : ""}
             { showReplies ? <p onClick={() => setShowReplies(false) } className='showReplies' >Hide Replies </p> : "" }
           </div>
+          </div>
+           {showReplies ? <div className="repliesComponent" ><Showreplies replies={replies} suggestedUsers={suggestedUsers} /> </div>
+              : ""}
             </div>
             </CommentPageStyle>
   )
