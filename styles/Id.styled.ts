@@ -46,6 +46,7 @@ export const SingleTweetStyle = styled.div`
             align-items: center;
             justify-content: space-between;
             margin-top: 30px;
+            margin-left: 10px;
         .subUserDetailsContainer{
             display: flex;
             align-items: center;
@@ -77,9 +78,10 @@ export const SingleTweetStyle = styled.div`
         object-fit: cover;
     }
     .tweetText{
-        font-size: 40px;
+        font-size: 30px;
         font-weight: 500;
-        margin: 20px auto;
+        margin: 20px 20px;
+        line-height: 35px;
     }
     .postDetailsContainer{
         .timeAndViews{
@@ -99,16 +101,19 @@ export const SingleTweetStyle = styled.div`
             padding-bottom: 25px;
             .subTweetCount{
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-around;
                 align-items: center;
-                width: 70%;
+                width: 100%;
             }
             p{
                 font-size: 24px;
-                /* border-top: 2px solid #fff  ;
-                border-bottom: 2px solid #fff;
-                padding: 20px auto; */
             }
+            p:hover{
+                text-decoration: underline;
+            }
+            /* .disabled{
+                opacity: 0.4;
+            } */
         }
     } .tweetOptions{
         display: flex;

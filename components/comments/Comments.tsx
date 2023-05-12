@@ -27,9 +27,6 @@ const Comments = (props: any) => {
     
     const [emoji, setEmoji] = useState<boolean>(false);
     const [everyOne, setEveryOne] = useState<boolean>(false);
-    const [username, setUsername] = useState<string>("");
-    const [usersAt, setUsersAt] = useState<string>("");
-    const [profileDp, setProfileDp] = useState<string>("");
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
   const [likes, setLikes] = useState<any>([]);
@@ -102,7 +99,6 @@ function generateId (len:any) {
       likes,
       retweet,
     }
-    console.log(commentData, "created at")
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")
@@ -117,7 +113,7 @@ function generateId (len:any) {
   
     // console.log(props.tweetProps._id, "single postId");
     // console.log(props.tweetProps, "single post");
-    console.log(props.tweetProps.comments, "singletweet comment");
+    // console.log(props.tweetProps.comments, "singletweet comment");
   // console.log(commentId, "Date");
   // console.log(comments, "This is comments");
   // console.log(comments.length, "This is length");

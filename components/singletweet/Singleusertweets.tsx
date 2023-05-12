@@ -88,6 +88,7 @@ const Singleusertweets = (props: any) => {
           </div>
             <p className='tweetText' >{props.allTweets?.tweet} </p>
             {props.allTweets?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.allTweets?.picture})` }} className='singleTweetImage' > </div> : ""}
+            {props.allTweets?.video?.length > 1 ? <video width="100%" height='500px' controls className='video' src={`${props.allTweets?.video}`} ></video> : ""}
                   <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>

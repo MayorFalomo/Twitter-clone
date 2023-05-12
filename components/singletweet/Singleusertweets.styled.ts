@@ -56,6 +56,7 @@ export const SingleUserTweetsStyle = styled.div`
                 background-position: center;
                 object-fit: cover;
                 object-position: center;
+                border: 3px red solid;
             }
         }
         .tweetOptions{

@@ -9,6 +9,7 @@ import { AllUserTweets } from './Allusertweet.styled'
 import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import Slug from '../commentmodal/Commentmodal'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -28,12 +29,10 @@ const Allusertweet = (props: any) => {
   const [getUsername, setGetUsername] = useState<string>("")
 
   const handleLikeEvent = () => {
-
     if (likesArray.includes(likesArray.username)) {
       console.log("You cannot like this tweet");
     }
     else {
-      // const handleAddLike = async () => {
         const likeData = {
           username: currentUser.username,
           profileDp: currentUser?.profilePic,
@@ -74,6 +73,7 @@ const Allusertweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length);
 
+    // console.log(props.allTweet?.picture);
     
     return (
         <AllUserTweets>
@@ -165,7 +165,8 @@ const Allusertweet = (props: any) => {
                       />
                 }</p>
             </div>
-                    </div>
+              </div>
+              <Link href={'/posts/' + props.allTweet?._id } className='showThread' >Show this thread</Link>
                     </div>
                     </div>
             </div>

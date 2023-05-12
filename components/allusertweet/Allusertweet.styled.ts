@@ -48,6 +48,17 @@ export const AllUserTweets = styled.div`
                 cursor:pointer;
             }
         }
+        .tweet-image{
+             background-color: black ;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+        border: 1px white solid;
+        height: 400px;
+        width: 100%;
+        border-radius: 15px;
+        }
         .video{
             border:1px solid #575B5F;
             border-radius: 30px;
@@ -82,6 +93,10 @@ export const AllUserTweets = styled.div`
         }
             }
            
+        }
+        .showThread{
+            color:  #1d9aef;
+            font-size: 22px;
         }
     }
 }

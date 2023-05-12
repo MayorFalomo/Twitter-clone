@@ -198,9 +198,9 @@ const Id = ({ tweetData }: any) => {
           </div>
           <div className='userDetailsContainer'>
           <div className='subUserDetailsContainer' >
-            <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div>
+           <Link href={'/posts/' + tweetProps?._id} > <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div></Link>
             <div>
-            <h1>{tweetProps?.username} </h1>
+            <Link href={'/posts/' + tweetProps?._id} ><h1>{tweetProps?.username} </h1></Link>
               <p>{tweetProps?.usersAt} </p>
               </div>
             </div>
@@ -220,7 +220,7 @@ const Id = ({ tweetData }: any) => {
               <p><span>{retweetArray.length} </span> Retweets </p>
               <Link href={'/quoted/' + postId} ><p><span>{tweetProps?.quoted?.length } </span> Quotes </p></Link>
               <p><span>{ likesArray.length} </span> Likes </p>
-              <p><span>{0} </span> Bookmarks </p>
+              <p className='disabled' ><span>{0} </span> Bookmarks </p>
               </div>
               </div>
             </div>

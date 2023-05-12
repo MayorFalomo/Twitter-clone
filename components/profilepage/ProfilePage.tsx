@@ -59,7 +59,7 @@ const ProfilePage = (props: any) => {
                     <div className='usersExtraInfo' >
                                 <span style={{ color: "#575B5F", fontWeight: 600 }}>{<CiLocationOn />} {props.userProfile?.location} </span>
                                 <span style={{ color: "#575B5F", fontWeight: 600 }}  className='usersLink' > {<AiOutlineLink />} {props.userProfile?.links} </span>
-                        <span style={{color: "#575B5F", fontWeight: 600}}>{<BsBalloon/>} {props.userProfile?.birthday} </span><br />
+                        <span style={{color: "#575B5F", fontWeight: 600}}>{<BsBalloon/>} Born {props.userProfile?.birthday} </span><br />
                             </div>
                                 <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.userProfile?.createdAt).format("MMMM YYYY")} </p>
                             </div>

@@ -108,6 +108,7 @@ form{
                 background-color: transparent;
                 outline: none;
                 border: none;
+                border-radius: 8px;
                 padding: 10px 5px;
                 color: white;
                 font-size: 24px;
@@ -156,31 +157,99 @@ form{
             }
             }
     }
-    .editBirth{
-        margin: 5px 20px;
+    .dateOfBirthCon{
         p{
             display: flex;
             align-items: center;
             gap: 35px;
             font-size: 20px;
-            color:  #575B5F;
-        }
-        span{
+            font-weight: 500;
+            /* color:  #575B5F; */
+            color: rgb(113,118,123);
+            margin-left: 20px;
+                span{
         display: list-item;
         list-style: disc outside none;
         color:  #1d9aef;
         font-size: 24px;
         cursor: pointer;
         }
+        }h1{
+         font-size: 30px;
+         padding: 5px 20px;
+        }
+    .editBirth{
+        margin: 5px 20px;
+        /* border: 3px red solid; */
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    
+        .editMonth{
+            border: 1px rgb(113,118,123) solid;
+            width: 250px;
+            border-radius: 10px;
+            /* padding: 2px 10px; */
+            p{
+               padding: 5px;
+               margin-left: 6px;
+            }
+             .month{
+            padding: 10px 1px ;
+            background-color: #000;
+            color: #fff;
+            font-size: 22px;
+            border: none;
+            outline: none;
+            width: 90%;
+        }
+        }
+        .editDay{
+            border: 1px rgb(113,118,123) solid;
+            width: 150px;
+            border-radius: 8px;
+            /* padding: 2px 10px; */
+            p{
+               padding: 5px;
+               margin-left: 6px;
+            }
+             .day{
+            padding: 10px 1px ;
+            background-color: #000;
+            color: #fff;
+            font-size: 22px;
+            border: none;
+            outline: none;
+            width: 90%;
+        }
+        }
+        .editYear{
+            border: 1px rgb(113,118,123) solid;
+            width: 200px;
+            border-radius: 8px;
+            /* padding: 2px 10px; */
+            p{
+               padding: 5px;
+               margin-left: 6px;
+            }
+             .year{
+            padding: 10px 1px ;
+            background-color: #000;
+            color: #fff;
+            font-size: 22px;
+            border: none;
+            outline: none;
+            width: 90%;
+        }
+        }  
     }
+}
     ul{
         margin: 20px 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        h1{
-            padding: 20px 5px;
-        }
+       
     }
     ul:hover{
         background-color: rgb(47, 51, 54);
