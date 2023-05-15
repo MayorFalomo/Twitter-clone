@@ -1,11 +1,12 @@
 import GlobalStyle from "@/GlobalStyle.styled";
 import Layout from "@/components/layout/Layout";
 import type { AppProps } from "next/app";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { GetStaticProps } from "next";
+import { ChatContext } from "@/helpers/ChatContext";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
@@ -93,6 +94,29 @@ export default function App({ Component, pageProps }: AppProps) {
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
   // console.log(noOfFollowing, "following");
 
+  const INITIAL_STATE = {
+    chatId: "null",
+    user: {},
+  }
+
+  const chatReducer = (state: any, action: any) => {
+    switch (action.type) {
+      case "CHANGE_USER":
+        return {
+          user: action.payload,
+          chatId: currentUser._id > action.payload.uid ?
+      currentUser._id + action.payload.uid
+      : action.payload.uid + currentUser._id
+        }
+      default:
+        return state;
+    }
+  }
+  // console.log(currentUser._id);
+  
+
+  const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
+
   return (
     <AppContext.Provider value={{
       isAuth,
@@ -111,8 +135,10 @@ export default function App({ Component, pageProps }: AppProps) {
       // following,
       // setNoOfFollowing,
     }}>
+      <ChatContext.Provider value={{data: state, dispatch}} >
       <GlobalStyle />
         <Component {...pageProps} />
+        </ChatContext.Provider>
     </AppContext.Provider>
   );
 }

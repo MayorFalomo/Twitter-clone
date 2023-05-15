@@ -18,7 +18,7 @@ import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 type Props = {}
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:7000/api/tweets')
+  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
   const data = await res.json()
 
   const paths = data.map((path: any) => {
@@ -34,7 +34,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
-  const res = await fetch('http://localhost:7000/api/tweets/' + id)
+  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets/' + id)
   const data = await res.json()
   
   return {

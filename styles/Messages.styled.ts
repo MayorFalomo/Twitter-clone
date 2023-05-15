@@ -3,20 +3,17 @@ import styled from "styled-components";
 export const MessagesStyle = styled.div`
 .messagesContainer{    
     display: grid;
-    grid-template-columns: 400px auto 800px;
+    grid-template-columns: 400px auto 600px;
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;
     .leftGrid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: auto;
     height: 100vh;
-    margin:0 auto;
-    /* border: #1d9aef 2px solid; */
+    border-right: rgb(47, 51, 54) 1px solid;
+    position: relative;
     h1{
         font-size: 40px;
-        /* border: 2px red solid; */
     }
     p{
         color: rgb(113,118,123);
@@ -32,16 +29,27 @@ export const MessagesStyle = styled.div`
         color: #fff;
         border: none;
         outline: none;
+        cursor: pointer;
     }
     .subLeftGrid{
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        /* height: 100vh; */
         /* border: 2px red solid; */
+        .subLeft{
+            /* border: 2px red solid; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
     }
-  }
-   .leftGridSection::-webkit-scrollbar {
+    
+  } 
+  .leftGrid::-webkit-scrollbar {
           width: 0;
     }
     .centerGridContainer::-webkit-scrollbar {
@@ -74,6 +82,51 @@ export const MessagesStyle = styled.div`
                 display: flex;
                 align-items: center;
                 gap: 20px;
+            }
+        }
+        .inputContainer{
+            /* border: 2px red solid; */
+            display: flex;
+            justify-content: center;
+        }
+        .searchInput{
+            padding: 10px 20px;
+            border: 1px rgb(113,118,123) solid;
+            outline: none;
+            margin-top: 20px;
+            font-size: 28px;
+            background-color: transparent;
+            width: 90%;
+            border-radius: 30px;
+            /* display: flex;
+            justify-content: center; */
+        }
+        .searchInput::placeholder{
+            color: rgb(113,118,123);
+            font-size: 18px;
+            text-align: center;
+        }
+        .userChat{
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 20px 5px;
+            margin-top:30px;
+            border: 1px rgb(113,118,123) solid ;
+            .profilePic{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: black;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                object-fit: cover;
+                object-position: center;
+                border: 2px white solid;
+            }
+            span{
+              font-size: 20px; 
             }
         }
     }

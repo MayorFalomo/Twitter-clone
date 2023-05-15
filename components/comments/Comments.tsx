@@ -34,7 +34,6 @@ const Comments = (props: any) => {
   const [retweet, setRetweet] = useState<any>([]);
     const [createdAt, setCreatedAt] = useState<any>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
-    const [gif, setGif] = useState<string>("");
     // const [tweet, setEmoji] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
     const [comment, setComment] =  useState<any>([])

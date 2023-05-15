@@ -1,0 +1,98 @@
+import styled from "styled-components";
+
+export const ChatStyled = styled.div`
+.chatCon{
+    /* border: 2px blue solid; */
+            /* padding: 20px auto; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+    .heading{
+        /* border: 1px solid green; */
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 30px;
+         background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(7.6px);
+            -webkit-backdrop-filter: blur(7.6px);
+            position: sticky;
+            top: 0;
+            left: 0;
+            padding: 15px;
+            z-index: 999;
+            width: 100%;
+        .profileDp{
+            width: 50px;
+            height: 50px;
+            border: 1px white solid;
+            border-radius: 50%;
+            background-color: #000;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: cover;
+            object-position: center;
+        }
+        .username{
+            font-size: 24px;
+        }
+    }
+    .inputCon{
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* height: 120px; */
+        border: 2px rgb(113,118,123) solid;
+        .inputSpan{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            gap: 20px;
+            background-color: rgb(32,35,39);
+            border-radius: 30px;
+            width: 95%;
+            .sendIcon{
+                margin-right: 20px;
+            }
+            button{
+                border: none;
+                background: none;
+            }
+            .pickerEmoji{
+          position: absolute;
+          bottom: 450px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        }
+        .inputTextArea{
+            padding:20px auto;
+            border-radius: 30px;
+            width: 100%;
+            height: 80px;
+            background-color: rgb(32,35,39);
+            color: #fff;
+            font-size: 24px;
+            border: none;
+            outline: none;
+            resize: none;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .inputTextArea::placeholder{
+            font-size: 22px;
+            font-weight: 500;
+            padding-top: 20px;
+            padding-left: 20px;
+            color: rgb(113,118,123)
+        }
+    }
+}
+`

@@ -1,7 +1,7 @@
 import { RegisterContainer } from '@/styles/Register.styled'
 import React, { useState, useContext } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
-import {auth, provider} from '../firebase-config'
+import {auth, db, provider} from '../firebase-config'
 import { BsTwitter } from 'react-icons/bs'
 import { FcGoogle } from 'react-icons/fc'
 import { IoMdClose } from 'react-icons/io'
@@ -10,6 +10,7 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { AppContext } from '@/helpers/Helpers'
 import Link from 'next/link'
+import { doc, setDoc } from 'firebase/firestore'
 
 
 type Props = {}
@@ -29,7 +30,7 @@ const register = (props: any) => {
    const signInWithGoogle = async () => {
         signInWithPopup(auth, provider).then((res) => {
             setCookie("user", res.user.uid, { path: "/" })
-            console.log(res.user);
+            // console.log(res.user);
             
             let userInfo = {
             userId: res.user.uid,
@@ -44,12 +45,19 @@ const register = (props: any) => {
             notifications: [],
             bio: "Regular Human",
             location: "Lagos, Nigeria",
-            birthday: "April 19th, 1999",
+            birthday: "April 19th, 2023",
             links: "https://mayowa-falomo.netlify.app"
 
             }
-            axios.post("http://localhost:7000/api/users/register", userInfo).catch((err) => { console.log(err) })
-                    getCurrentUser(res.user.uid)
+           axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => { console.log(err) })
+          getCurrentUser(res.user.uid)
+          setDoc(doc(db, "users", res.user.uid), {
+            uid: res.user.uid,
+            username: res.user.displayName,
+             usersAt: `@${userNames}`,
+            email: res.user.email,
+            profilePic: res.user.photoURL,
+          })
         }).then(() =>
             router.push("/")
      ).then(() => window.location.reload()).catch((err) => console.log(err))
@@ -57,7 +65,7 @@ const register = (props: any) => {
   
 
 //Sign up by creating account
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     createUserWithEmailAndPassword(auth, email, passwords).then((res) => {
       setCookie("user", res.user.uid, { path: "/" })
@@ -78,13 +86,23 @@ const register = (props: any) => {
         birthday: "April 19th, 1999",
         links: "https://mayowa-falomo.netlify.app"
       }
-      axios.post("http://localhost:7000/api/users/register", userInfo).then(() =>
+     
+      axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).then(() =>
         router.push("/")        
       ).then(() =>
         window.location.reload()
       ).catch((err) => { console.log(err) })
+        setDoc(doc(db, "users", res.user.uid), {
+            uid: res.user.uid,
+            username: userNames,
+            usersAt: `@${userNames}`,
+            email: res.user.email,
+            profilePic: 'https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg',
+        })
+      setDoc(doc(db, "userChats", res.user.uid), {})
       getCurrentUser(res.user.uid)
-            console.log(res.user.uid, "This is submit res");
+      
+            // console.log(res.user.uid, "This is submit res");
     }).catch((err) => console.log(err))
   }
 
@@ -106,8 +124,9 @@ const register = (props: any) => {
         .then((res) => setUserName(res.data[0]))
         .catch((err) => console.log(err))
     }
-  }
+  };
 
+  
   const getRandomPassword = () => {
     let passNum = ""
     let passChar = ""

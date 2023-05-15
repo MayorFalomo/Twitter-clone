@@ -19,15 +19,17 @@ type Props = {};
 
 const Navbar = (props: any) => {
 
-  const {twitterBlue, setTwitterBlue} = useContext(AppContext)
+  const {currentUser, twitterBlue, setTwitterBlue} = useContext(AppContext)
   const [cookies, setCookies] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
 
-   useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
-    )
-  }, [cookies.user]);  
+  //  useEffect(() => {
+  //   axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+  //   )
+  // }, [cookies.user]);  
   // console.log(cookies.user);
+  // console.log(currentUser);
+  
 
   
   
@@ -94,16 +96,16 @@ const Navbar = (props: any) => {
           </div>
           <div className="navProfileFlex" >
           <div className="navProfile">
-            <Link href="/profile" style={{backgroundImage: `url(${tweeterUser?.profilePic})`}} className="bgImg"></Link>
+            <Link href="/profile" style={{backgroundImage: `url(${currentUser?.profilePic})`}} className="bgImg"></Link>
             <div className="navSubProfile">
               <div className="navUsername" style={{ fontSize: 22 }}>
-                <Link href="/profile" >{tweeterUser?.username}</Link>
+                <Link href="/profile" >{currentUser?.username}</Link>
               </div>
               <div
                 className="navEmail"
                 style={{ fontSize: 22, color: "rgb()" }}
               >
-                {tweeterUser?.usersAt}
+                {currentUser?.usersAt}
               </div>
               </div>
             </div>
