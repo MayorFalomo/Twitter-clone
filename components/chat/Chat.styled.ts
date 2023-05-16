@@ -12,6 +12,7 @@ export const ChatStyled = styled.div`
         /* border: 1px solid green; */
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 20px;
         padding: 30px;
          background: rgba(255, 255, 255, 0.1);
@@ -24,7 +25,11 @@ export const ChatStyled = styled.div`
             padding: 15px;
             z-index: 999;
             width: 100%;
-        .profileDp{
+            .headingDetails{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .profileDp{
             width: 50px;
             height: 50px;
             border: 1px white solid;
@@ -39,6 +44,11 @@ export const ChatStyled = styled.div`
         .username{
             font-size: 24px;
         }
+            }
+      
+    }
+    .mapContainer{
+        /* border: 1px solid yellow; */
     }
     .inputCon{
         position: sticky;
@@ -62,10 +72,12 @@ export const ChatStyled = styled.div`
             button{
                 border: none;
                 background: none;
+                cursor: pointer;
             }
             .pickerEmoji{
           position: absolute;
-          bottom: 450px;
+          bottom: 100px;
+          left: 0;
           width: 100%;
           display: flex;
           justify-content: center;
@@ -91,7 +103,7 @@ export const ChatStyled = styled.div`
             font-weight: 500;
             padding-top: 20px;
             padding-left: 20px;
-            color: rgb(113,118,123)
+            color: rgb(113,118,123);
         }
     }
 }

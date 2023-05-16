@@ -2,7 +2,7 @@ import { ChatContext } from '@/helpers/ChatContext'
 import React, { useContext, useEffect, useState } from 'react'
 import { ChatStyled } from './Chat.styled';
 import { Timestamp, arrayUnion, doc, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
-import { db, storage } from '@/firebase-config';
+import { db, storage } from '../../firebase-config';
 import Message from '../message/Message';
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs';
 import { AiOutlineFileGif, AiOutlineSend } from 'react-icons/ai';
@@ -12,6 +12,7 @@ import axios from 'axios';
 import {v4 as uuid} from 'uuid';
 import { AppContext } from '@/helpers/Helpers';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { IoInformationCircleOutline } from 'react-icons/io5';
 
 
 type Props = {}
@@ -39,61 +40,129 @@ const Chat = (props: any) => {
         }
     }, [data.chatId])
 
-//     const uploadImage = (files: any) => {
-//     const formData = new FormData();
-//     formData.append("file", files[0]);
-//     formData.append("upload_preset", "t3dil6ur");
-//     axios
-//       .post("https://api.cloudinary.com/v1_1/dsghy4siv/image/upload", formData)
-//       .then((res) => setPicture(res.data.url))
-//       .catch((err) => console.log(err));
-//     setSuccessfulUpload(true)
-//   };
-//   const uploadVideo = (files: any) => {
-//     const formData = new FormData();
-//     formData.append("file", files[0]);
-//     formData.append("upload_preset", "t3dil6ur");
-//     axios
-//       .post("https://api.cloudinary.com/v1_1/dsghy4siv/video/upload", formData)
-//       .then((res) => setVideo(res.data.url))
-//       .catch((err) => console.log(err));
-//     setSuccessfulUpload(true)
-//   };
-
 
     // console.log(data.user.username);
 
-    console.log(messages);
+    // console.log(messages);
     
+    // const handleSubmit = async () => {
+    //     // e.preventDefault();
+    //     if (picture) {
+    //         const storageRef = ref(storage, uuid())
+    //         const uploadTask = uploadBytesResumable(storageRef, picture)
+    //         uploadTask.on((error:any) => {
+    //            return console.log(error, "There is an error");
+    //         }, async() => {
+    //             await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+    //                  console.log(downloadURL, "This is the download url")
+                     
+    //                  await updateDoc(doc(db, "chats", data.chatId), {
+    //                      messages: arrayUnion({
+    //                 id: uuid(),
+    //                 texts,
+    //                 senderId: currentUser?._id,
+    //                 date: Timestamp.now(),
+    //                 picture: downloadURL,
+    //                 video: downloadURL
+    //             })
+    //                  })
+    //         })
+    //         }
+    //         )
+    //     } else if(video) {
+    //         const storageRef = ref(storage, uuid())
+    //         const uploadTask = uploadBytesResumable(storageRef, video)
+    //         uploadTask.on((error:any) => {
+    //            return console.log(error, "There is an error");
+    //         }, async() => {
+    //             await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+    //                  await updateDoc(doc(db, "chats", data.chatId), {
+    //                      messages: arrayUnion({
+    //                 id: uuid(),
+    //                 texts,
+    //                 senderId: currentUser?._id,
+    //                 date: Timestamp.now(),
+    //                 video: downloadURL
+    //             })
+    //                  })
+    //         })
+    //         }
+    //         )
+    //     } else {
+    //         await updateDoc(doc(db, "chats", data.chatId), {
+    //             messages: arrayUnion({
+    //                 id: uuid(),
+    //                 texts,
+    //                 senderId: currentUser?._id,
+    //                 date: Timestamp.now(),
+    //                 // picture: picture,
+    //             })
+    //         })
+    //         await updateDoc(doc(db, "userChats", currentUser._id), {
+    //             [data.chatId + ".lastMessage"]: {
+    //                 texts,
+    //             },
+    //             [data.chatId + ".date"]: serverTimestamp(),
+    //         })
+    //         await updateDoc(doc(db, "userChats", data.user.uid), {
+    //             [data.chatId + ".lastMessage"]: {
+    //                 texts,
+    //             },
+    //             [data.chatId + ".date"] : serverTimestamp(),
+    //         })
+           
+    //     }
+    //      setTexts("")
+    //         setPicture(null)
+    // }
+
     const handleSubmit = async () => {
-        // e.preventDefault();
-        if (picture || video) {
-            const storageRef = ref(storage, uuid())
-            const uploadTask = uploadBytesResumable(storageRef, picture || video)
-            uploadTask.on((error:any) => {
-                console.log("error here");
-            }, () => {
-                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                     await updateDoc(doc(db, "chats", data.chatId), {
-                         messages: arrayUnion({
+        if (picture) {
+        const storageRef = ref(storage, uuid());
+        const uploadTask = uploadBytesResumable(storageRef, picture);
+        try {
+            await uploadTask;
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            await updateDoc(doc(db, "chats", data.chatId), {
+                messages: arrayUnion({
                     id: uuid(),
-                    texts,
+                    texts: texts?.length == 0 ? "" : texts ,
                     senderId: currentUser?._id,
                     date: Timestamp.now(),
                     picture: downloadURL,
-                })
-                     })
-            })
-            }
-            )
-        } else {
+                }),
+            });
+        } catch (error) {
+            console.log(error, "There is an error");
+        }
+    } else if (video) {
+        // Handle video upload and Firestore update similarly
+            const storageRef = ref(storage, uuid())
+            const uploadTask = uploadBytesResumable(storageRef, video);
+        try {
+            await uploadTask;
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
             await updateDoc(doc(db, "chats", data.chatId), {
+                messages: arrayUnion({
+                    id: uuid(),
+                    texts: texts?.length == 0 ? "" : texts,
+                    senderId: currentUser?._id,
+                    date: Timestamp.now(),
+                    // picture: downloadURL,
+                    video: downloadURL,
+                }),
+            });
+        } catch (error) {
+            console.log(error, "There is an error");
+        }
+    } else {
+        // Handle case without attachments
+             await updateDoc(doc(db, "chats", data.chatId), {
                 messages: arrayUnion({
                     id: uuid(),
                     texts,
                     senderId: currentUser?._id,
                     date: Timestamp.now(),
-                    // picture: picture,
                 })
             })
             await updateDoc(doc(db, "userChats", currentUser._id), {
@@ -108,10 +177,12 @@ const Chat = (props: any) => {
                 },
                 [data.chatId + ".date"] : serverTimestamp(),
             })
-            setTexts("")
-            setPicture(null)
-        }
     }
+
+    setTexts("");
+    setPicture(null);
+    }
+
 
      const handleKey = (e:any) => {
     e.code === "Enter" && handleSubmit() 
@@ -128,12 +199,17 @@ const Chat = (props: any) => {
       <div className='chatCon' >
                 <div>
                     <div className='heading'  >
-          <div className='profileDp' style={{backgroundImage: data.user?.profilePicture }} ></div>
-              <span className='username' >{data.user?.username}</span>
+                        <div className='headingDetails' >
+          <div className='profileDp' style={{backgroundImage: currentUser?.profilePic }} ></div>
+                            <span className='username' >{data.user?.username}</span>
+                        </div>
+                        <p>{<IoInformationCircleOutline fontSize={35} />} </p>
                 </div>
-                <div>
-                    {messages?.map((message: any) => (
-                        <Message message={message} key={message.id} />
+                <div  className='mapContainer' >
+                        {messages?.map((message: any) => (
+                        <div>
+                            <Message message={message} key={message.id} />
+                        </div>
                     ))}
                         </div>
                 </div>
@@ -158,14 +234,13 @@ const Chat = (props: any) => {
                 )}
                 {emoji ? (
                     <div className="pickerEmoji" >
-                        <Picker data={data} onEmojiSelect={(emoji: any) => setTexts(texts + emoji.native )
-                        } />
+                        <Picker data={data} onEmojiSelect={((emoji: any) => setTexts(texts + emoji.native) )} />
                     </div>
                 ) : (
                   ""
                 )}
                         <input typeof="text" onKeyDown={handleKey} onChange={(e) => setTexts(e.target.value) } value={texts} placeholder='Start a new message' className='inputTextArea' />
-                        <button  onClick={handleSubmit} >{<AiOutlineSend fontSize='40' color='#1d9aef' className='sendIcon' />}</button>
+                        { texts.length > 0 || picture !== null || video !== null ? <button onClick={handleSubmit} >{<AiOutlineSend fontSize='40' color='#1d9aef' className='sendIcon' />}</button> : <button disabled >{<AiOutlineSend fontSize='40' color='#1d9aef' className='sendIcon' />}</button> }
                     </div>
                     </div>
             </div>

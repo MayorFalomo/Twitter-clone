@@ -22,7 +22,7 @@ const messages = (props: any) => {
   const [username, setUsername] = useState<string>("")
   const [user, setUser] = useState<any>(null)
   const [err, setErr] = useState(false)
-  const [ChatComponentActive, setChatComponentActive] = useState<any>(false)
+  const [chatComponentActive, setChatComponentActive] = useState<any>(false)
   
   //This serach function works well
   const handleSearch = async () => {
@@ -89,7 +89,7 @@ const messages = (props: any) => {
     setUsername("")
   }
 
-  console.log(user, "this is users state");
+  // console.log(user, "this is users state");
   // console.log(currentUser);
   
   
@@ -117,11 +117,11 @@ const messages = (props: any) => {
               <span></span>
             </div>
           </div>}
-          <Chats/>
+          <Chats setChatComponentActive={setChatComponentActive} />
           </div>
         <div className='leftGrid' >
          
-          {ChatComponentActive ? <Chat /> :
+          {chatComponentActive ? <Chat /> :
             <div className='subLeftGrid' >
               <div  className='subLeft'>
               <h1>Select a message </h1>

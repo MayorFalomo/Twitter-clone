@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MessagesStyle = styled.div`
 .messagesContainer{    
     display: grid;
-    grid-template-columns: 400px auto 600px;
+    grid-template-columns: 400px auto 800px;
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;

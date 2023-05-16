@@ -33,7 +33,8 @@ const Chats = (props: any) => {
     // console.log(chat[1], "chat[1")
     // ));
     
-    const handleSelect = (u:any) => {
+    const handleSelect = (u: any) => {
+        props.setChatComponentActive(true)
         dispatch({ type: "CHANGE_USER", payload: u })
         console.log(dispatch({ type: "CHANGE_USER", payload: u}), "dispatch");
     }
