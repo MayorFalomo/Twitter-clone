@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, {useState, useContext, useEffect} from 'react'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
-import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { MdClose } from 'react-icons/md'
 import { TbCalendarTime } from 'react-icons/tb'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import Mappedreply from './Mappedreply'
+import EmojiPicker from 'emoji-picker-react';
+
 type Props = {}
 
 //Parent component is Commentpage.tsx
@@ -136,7 +136,7 @@ function generateId (len:any) {
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" color='1D9BF0' />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
@@ -144,8 +144,8 @@ function generateId (len:any) {
                   </span>
                 )}
                 {emoji ? (
-                <div className="pickerEmoji" >
-                    <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
+                  <div className="pickerEmoji" >
+                    <EmojiPicker onEmojiClick={(e) => setComments(comments + e.emoji) } />
                 </div>
                 ) : (
                   ""

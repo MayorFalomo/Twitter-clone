@@ -16,14 +16,14 @@ const Message = (props: any) => {
         ref.current?.scrollIntoView({behavior: 'smooth'})
     },[props.message])
     
-    console.log(props.message);
+    // console.log(props.message);
 
     // const timeStamp = new Date();
     // console.log(timeStamp);
 
     // const timeStamp =
     
-    console.log(props.message?.video);
+    // console.log(props.message?.picture, "picture");
     
 
     
@@ -36,44 +36,21 @@ const Message = (props: any) => {
             <div className='messageContainer' ref={ref} >
                 <div className={currentUser?._id == props.message?.senderId ? "currentUserTextContainer" : 'userTextContainer'} >
                     <p style={{ color: 'white' }} className={currentUser?._id == props.message?.senderId ? 'currentUsersText' : "usersText"} >{props.message?.texts?.length > 1 ? props.message?.texts : ""} </p>
-                  
-                    {/* <div style={{backgroundImage: `url(${props.message.senderId === currentUser._id ? currentUser.profilePic : data.user.profilePic  })`}}> </div> */}
                 </div>
-                <div className={currentUser?._id == props.message?.senderId ? 'picturesContainer' : "userPictureContainer"} >
-                    {currentUser?._id == props.message?.senderId && props.message?.picture?.length > 1 ?
-                        <div style={{ backgroundImage: `url(${props.message?.picture})` }} className='picture'> </div>
-                        :
-                        <div style={{ backgroundImage: `url(${props.message?.picture})` }} className='userPictureImg'> </div>
-                    }
-                        {/* <span style={{ color: 'rgb(113,118,123)', fontSize: 18}}className='span' >{ moment(props.message.date.seconds * 1000).format("LLL")} </span> */}
-                </div>
+
+                {props.message?.picture == undefined ? "" :
+                    <div className={currentUser?._id == props.message?.senderId ? 'picturesContainer' : "userPictureContainer"} >
+                        <div style={{ backgroundImage: `url(${props.message?.picture})` }} className={ currentUser?._id == props.message?.senderId ? 'picture' : 'userPictureImg' }> </div>
+                    </div>}
+                
                 <div className={currentUser?._id == props.message?.senderId ? "currentVideoContainer" : "userVideoContainer" } >
-                    {/* {currentUser?._id == props.message?.senderId && props.message?.video?.length > 1 ?
-                        <video controls className= "currentVideo" >
-                        <source src={props.message?.video?.length > 1 ? props.message?.video : ""} type="video/mp4" />
-                        </video>
-                        :
-                        <video controls className="userBgVideo" >
-                        <source src={props.message?.video?.length > 1 ? props.message?.video : ""} type="video/mp4" />
-                        </video>
-                    } */}
-                    {props.message?.video == undefined ? "" : <div>
-                        <video className={currentUser._id !== props.message?.senderId ?  "userBgVideo" : ""} controls loop>
-                            <source src={props?.message?.video} type="video/mp4" />
+                    {props.message?.video == undefined ? "" : <div className={currentUser?._id == props.message?.senderId  ? 'currentVideoContainer' : 'userVideoContainer '}  >
+                        <video className={currentUser._id == props.message?.senderId ?  "currentVideo" : "userBgVideo"} controls loop>
+                            <source src={props?.message?.video} />
                          </video>
-                    </div> }
+                    </div>}
+                    <span style={{ color: 'rgb(113,118,123)', fontSize: 18, margin: '1px 10px'  }} >{ moment(props.message.date.seconds * 1000).format("LLL")} </span>
                </div>
-                {/* <div className={ currentUser?._id == props.message?.senderId && props.message?.video?.length > 1  ? 'currentVideoContainer' : 'userVideoContainer '} >
-                    {currentUser?._id == props.message?.senderId && props.message?.video?.length > 1 ?
-                        <video className={"currentVideo"} controls loop>
-                            <source src={props.message?.video} type="video/mp4" />
-                        </video> : ""}
-                    {<video className={currentUser._id !== props.message?.senderId ?  "userBgVideo" : ""} controls loop>
-                             <source src={props?.message?.video} type="video/mp4" />
-                         </video>
-                    }
-                    <span style={{ color: 'rgb(113,118,123)', fontSize: 18}} >{ moment(props.message.date.seconds * 1000).format("LLL")} </span>
-                </div> */}
       </div>
             </MessageStyle>
   )

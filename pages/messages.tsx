@@ -101,15 +101,15 @@ const messages = (props: any) => {
         <header>
           <h1>Messages </h1>
           <div className='messageIcon' >
-            <span>{<AiOutlineSetting fontSize='40px' cursor='pointer' />} </span>
-            <span>{<BsEnvelopePlus  fontSize='40px' cursor='pointer' />} </span>
+            <span>{<AiOutlineSetting fontSize='30px' opacity={0.3} />} </span>
+            <span>{<BsEnvelopePlus  fontSize='30px' opacity={0.3} />} </span>
           </div>
         </header>
         <div className='inputContainer' >
           <input type='text' onKeyDown={handleKey} value={username} onChange={(e:any) => setUsername(e.target.value) }placeholder='Search Direct Messages' className='searchInput' />
           </div>
           {err && <p style={{ marginTop: 20}} > Error USER NOT FOUND</p> }
-          {user && <div style={{}} onClick={handleSelect } className="userChat">
+          {user && <div onClick={handleSelect } className="userChat">
             <div style={{ backgroundImage: `url(${user.profilePic})` }} className='profilePic' > </div>
             <div>
               <span>{user?.username} </span>

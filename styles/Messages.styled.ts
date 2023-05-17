@@ -74,7 +74,7 @@ export const MessagesStyle = styled.div`
             left: 0;
             padding: 15px;
             z-index: 99;
-            width: 95%;
+            width: 100%;
             p{
                 font-size: 35px;
             }
@@ -98,6 +98,7 @@ export const MessagesStyle = styled.div`
             background-color: transparent;
             width: 90%;
             border-radius: 30px;
+            color: #fff;
             /* display: flex;
             justify-content: center; */
         }

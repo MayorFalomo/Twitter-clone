@@ -19,8 +19,8 @@ export const MessageStyle = styled.div`
         border-top-right-radius: 40px;
         /* border-radius: 40px; */
         padding: 20px;
-        margin: 15px 10px;
-       line-height: 35px;
+        margin: 5px 10px;
+        line-height: 35px;
         width: 70%;
         max-width: max-content;
     }
@@ -40,7 +40,7 @@ export const MessageStyle = styled.div`
         border-top-right-radius: 40px;
         /* border-radius: 40px; */
         padding: 20px;
-        margin: 10px 10px;
+        margin: 5px 10px;
        line-height: 35px;
         width: 70%;
         max-width: max-content;
@@ -59,6 +59,8 @@ export const MessageStyle = styled.div`
       flex-direction: column;
       gap: 3px;
       align-items: flex-end;
+      margin: 15px 0;
+
         /* justify-content: flex-end; */
     .picture{
         width: 50%;
@@ -70,14 +72,16 @@ export const MessageStyle = styled.div`
         object-fit: cover;
         object-position: bottom;
         border-radius: 10px;
-      
+        margin-right: 10px;
         /* max-width: 400px; */
     }
 }
-.userpictureContainer{
+.userPictureContainer{
     /* border: 2px solid red; */
-      display: flex;
-        justify-content: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 2px;
+
     .userPictureImg{
         width: 50%;
         height: 400px;
@@ -88,6 +92,7 @@ export const MessageStyle = styled.div`
         object-fit: cover;
         object-position: bottom;
         border-radius: 10px;   
+        margin-left: 10px;
         /* max-width: 400px; */
     }
      .span{
@@ -96,20 +101,16 @@ export const MessageStyle = styled.div`
         }
 }
 .currentVideoContainer {
-    /* border: 2px solid red; */
+    /* border: 2px solid green; */
      display: flex;
       flex-direction: column;
       gap: 3px;
       align-items: flex-end;
+          margin: 10px 2px;
+              /* margin-bottom: 15px; */
     .currentVideo{
-        width: 70%;
-        height: 300px;
-    }
-    .hide{
-        display: none;
-        width: 0;
-        height: 0;
-        /* border: 2px red solid; */
+        width: 100%;
+        height: 400px;
     }
 }
 .userVideoContainer{
@@ -117,11 +118,12 @@ export const MessageStyle = styled.div`
     justify-content: flex-start;
      flex-direction: column;
       gap: 3px;
+              /* margin-bottom: 15px; */
     /* border: yellow 2px solid; */
     .userBgVideo{
           width: 70%;
         height: 400px;
-        border: green solid 2px;
+        /* border: green solid 2px; */
     }
 }
 }

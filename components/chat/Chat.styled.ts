@@ -8,6 +8,55 @@ export const ChatStyled = styled.div`
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
+            .subChatCon{
+                .userObject{
+                    border-bottom: 1px rgb(113,118,123) solid;
+                    padding: 70px;
+                    margin-bottom: 40px;
+                    /* display: flex; */
+
+                    .profilePic{
+                        border: 1px rgb(113,118,123) solid;
+                        width: 70px;
+                        height: 70px;
+                        /* border: 1px white solid; */
+                        border-radius: 50%;
+                        background-color: #000;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        object-fit: cover;
+                        object-position: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin:0 auto;
+                    }
+                    h2{
+                        text-align: center;
+                    }
+                    p{
+                        text-align: center;
+                    }
+                    .bio{
+                        margin: 20px auto;
+                    }
+                    .createdAt{
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 500;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 20px;
+                        margin: 5px auto;
+                        span{
+                            display: list-item;
+                            list-style: disc inside none;
+                        }
+                    }
+                }
+            }
     .heading{
         /* border: 1px solid green; */
         display: flex;
@@ -43,9 +92,13 @@ export const ChatStyled = styled.div`
         }
         .username{
             font-size: 24px;
+            cursor: pointer;
         }
-            }
+        .username:hover{
+            text-decoration: underline;
+        }
       
+        }
     }
     .mapContainer{
         /* border: 1px solid yellow; */

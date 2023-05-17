@@ -4,13 +4,12 @@ import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbCalendarTime } from 'react-icons/tb'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import axios from 'axios'
 import { MdClose } from 'react-icons/md'
 import { CommentModalStyle } from '@/components/commentmodal/Commentmodal.styled'
 import { useRouter } from 'next/router'
 import { AppContext } from '@/helpers/Helpers'
+import EmojiPicker from 'emoji-picker-react'
 
 type Props = {}
 
@@ -127,8 +126,9 @@ const CommentModal = (props:any) => {
                   </span>
                 )}
                 {emoji ? (
-                <div className="pickerEmoji" >
-                    <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
+                      <div className="pickerEmoji" >
+                        <EmojiPicker onEmojiClick={(e) => setComments(comments + e.emoji) } />
+                    {/* <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} /> */}
                 </div>
                 ) : (
                   ""

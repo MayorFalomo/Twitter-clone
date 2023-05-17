@@ -1,17 +1,16 @@
 import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import React, {useState, useEffect, useContext} from 'react'
 import { useCookies } from 'react-cookie'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
-import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbCalendarTime } from 'react-icons/tb'
 import { CommentModalStyle } from '../commentmodal/Commentmodal.styled'
 import { MdClose } from 'react-icons/md';
 import { QuotedCommentStyle } from './Quoted-comment.styled';
 import moment from 'moment';
+import EmojiPicker from 'emoji-picker-react';
 
 type Props = {}
 
@@ -147,7 +146,7 @@ function generateId (len:any) {
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" color='1D9BF0' />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
@@ -155,8 +154,8 @@ function generateId (len:any) {
                   </span>
                 )}
                 {emoji ? (
-                <div className="pickerEmoji">
-                    <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
+                  <div className="pickerEmoji">
+                    <EmojiPicker onEmojiClick={(e) => setComments(comments + e.emoji) } />
                 </div>
                 ) : (
                   ""

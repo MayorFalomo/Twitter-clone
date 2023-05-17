@@ -56,7 +56,7 @@ const register = (props: any) => {
             username: res.user.displayName,
              usersAt: `@${userNames}`,
             email: res.user.email,
-            profilePic: res.user.photoURL,
+            profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
           })
         }).then(() =>
             router.push("/")

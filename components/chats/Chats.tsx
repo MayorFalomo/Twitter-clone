@@ -38,8 +38,6 @@ const Chats = (props: any) => {
         dispatch({ type: "CHANGE_USER", payload: u })
         console.log(dispatch({ type: "CHANGE_USER", payload: u}), "dispatch");
     }
-
-    // console.log(currentUser._id, "users chats");
     
     
     return (
@@ -49,7 +47,7 @@ const Chats = (props: any) => {
               <div className="allUsersChat" style={{cursor: "pointer", }} key={chat[0]} onClick={() =>  handleSelect(chat[1].userInfo)} >
                   <div style={{backgroundImage: `url${chat[1].userInfo.profilePicture} `}} className='profilePic' > </div>
                   <div className='chatHeadingCon' >
-                      <h3>{chat[1].userInfo.username} </h3>
+                      <h2>{chat[1].userInfo.username} </h2>
                       <span>{chat[1].userInfo?.usersAt} </span>
                       <p>{chat[1].lastMessage?.texts?.slice(0, 50)}... </p>
                 </div>

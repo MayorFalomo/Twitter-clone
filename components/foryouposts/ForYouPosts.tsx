@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ForYouContainer } from "./ForYou.styled";
-import { BsCardImage, BsEmojiSmile } from "react-icons/bs";
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from "react-icons/bs";
 import { Grid } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import { AiOutlineBars, AiOutlineFileGif } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
 import { IoLocationOutline } from "react-icons/io5";
 import Axios from "axios";
 import Tweets from "./posts/Tweets";
@@ -16,6 +14,7 @@ import { AppContext } from "@/helpers/Helpers";
 import { log } from "console";
 import Tweet from "./posts/Tweet";
 import moment from "moment";
+import EmojiPicker from 'emoji-picker-react';
 
 type Props = {};
 
@@ -24,6 +23,7 @@ const ForYouPosts = (props: any) => {
   const { currentUser, tweets, setTweets } = useContext(AppContext)
 
   const [emoji, setEmoji] = useState<boolean>(false);
+  const [currentEmoji, setCurrentEmoji] = useState(null)
   const [everyOne, setEveryOne] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [tweet, setTweet] = useState<string>("");
@@ -59,7 +59,6 @@ const ForYouPosts = (props: any) => {
     setSuccessfulUpload(true)
   };
 
-  
 
   //Function to get current user from backend
   // const getCurrentUser = (id: string) => {
@@ -112,7 +111,7 @@ const ForYouPosts = (props: any) => {
 
   // console.log(newDates);
   
-  // console.log(tweet);
+  // console.log(currentEmoji);
   
 
 
@@ -153,7 +152,7 @@ const ForYouPosts = (props: any) => {
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" />}
+                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
@@ -161,7 +160,10 @@ const ForYouPosts = (props: any) => {
                   </span>
                 )}
                 {emoji ? (
-                  <div className="pickerEmoji" ><Picker data={data} onEmojiSelect={ (emoji:any) => setTweet(tweet + emoji.native)} /></div>
+                  <div className="pickerEmoji" >
+                    <EmojiPicker onEmojiClick={(e) => setTweet(tweet + e.emoji) } />
+                    {/* <Picker data={data} onEmojiSelect={(emoji: any) => setCurrentEmoji(emoji.native)} /> */}
+                  </div>
                 ) : (
                   ""
                 )}

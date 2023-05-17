@@ -1,8 +1,7 @@
 import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import moment from 'moment'
+import EmojiPicker from 'emoji-picker-react';
 import Link from 'next/link'
 import React, {useState, useContext, useEffect} from 'react'
 import { useCookies } from 'react-cookie'
@@ -161,7 +160,7 @@ function generateId (len:any) {
                 )}
                 {emoji ? (
                     <div className="pickerEmoji" >
-                      <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
+                        <EmojiPicker onEmojiClick={(e) => setComments(comments + e.emoji) } />
                     </div>
                 ) : (
                   ""

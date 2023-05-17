@@ -4,15 +4,16 @@ import { ChatStyled } from './Chat.styled';
 import { Timestamp, arrayUnion, doc, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase-config';
 import Message from '../message/Message';
-import { BsCardImage, BsEmojiSmile } from 'react-icons/bs';
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from 'react-icons/bs';
 import { AiOutlineFileGif, AiOutlineSend } from 'react-icons/ai';
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import axios from 'axios';
 import {v4 as uuid} from 'uuid';
 import { AppContext } from '@/helpers/Helpers';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { IoInformationCircleOutline } from 'react-icons/io5';
+import moment from 'moment';
+import EmojiPicker from 'emoji-picker-react';
+import Link from 'next/link';
 
 
 type Props = {}
@@ -28,8 +29,38 @@ const Chat = (props: any) => {
     const [video, setVideo] = useState<any>(null);
     const [emoji, setEmoji] = useState<boolean>(false);
     const [successfulUpload, setSuccessfulUpload] = useState<any>("")
+    const [userObject, setUserObject] = useState<any>()
 
-    console.log(data, "data");
+    useEffect(() => {
+        handleData()
+    }, [data.user.uid])
+
+        const handleData = async () => {
+            const waitForId = data.user.uid
+        
+            try {
+                await waitForId            
+                await axios.get((`https://twitter-clone-server-nu.vercel.app/api/users/${waitForId}`)).then((res) => setUserObject(res.data))
+                    .catch((err: any) => console.log(err)
+                    )
+            } catch (err) {
+                console.log(err);
+            
+            }
+        }
+    // })
+
+    // useEffect(() => {
+    //     handleData()
+    // }, [])
+    // handleData()
+    // },[])
+
+
+
+
+    console.log(userObject, "userObject");
+    
     
     useEffect(() => {
         const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
@@ -39,82 +70,6 @@ const Chat = (props: any) => {
             unSub()
         }
     }, [data.chatId])
-
-
-    // console.log(data.user.username);
-
-    // console.log(messages);
-    
-    // const handleSubmit = async () => {
-    //     // e.preventDefault();
-    //     if (picture) {
-    //         const storageRef = ref(storage, uuid())
-    //         const uploadTask = uploadBytesResumable(storageRef, picture)
-    //         uploadTask.on((error:any) => {
-    //            return console.log(error, "There is an error");
-    //         }, async() => {
-    //             await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-    //                  console.log(downloadURL, "This is the download url")
-                     
-    //                  await updateDoc(doc(db, "chats", data.chatId), {
-    //                      messages: arrayUnion({
-    //                 id: uuid(),
-    //                 texts,
-    //                 senderId: currentUser?._id,
-    //                 date: Timestamp.now(),
-    //                 picture: downloadURL,
-    //                 video: downloadURL
-    //             })
-    //                  })
-    //         })
-    //         }
-    //         )
-    //     } else if(video) {
-    //         const storageRef = ref(storage, uuid())
-    //         const uploadTask = uploadBytesResumable(storageRef, video)
-    //         uploadTask.on((error:any) => {
-    //            return console.log(error, "There is an error");
-    //         }, async() => {
-    //             await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-    //                  await updateDoc(doc(db, "chats", data.chatId), {
-    //                      messages: arrayUnion({
-    //                 id: uuid(),
-    //                 texts,
-    //                 senderId: currentUser?._id,
-    //                 date: Timestamp.now(),
-    //                 video: downloadURL
-    //             })
-    //                  })
-    //         })
-    //         }
-    //         )
-    //     } else {
-    //         await updateDoc(doc(db, "chats", data.chatId), {
-    //             messages: arrayUnion({
-    //                 id: uuid(),
-    //                 texts,
-    //                 senderId: currentUser?._id,
-    //                 date: Timestamp.now(),
-    //                 // picture: picture,
-    //             })
-    //         })
-    //         await updateDoc(doc(db, "userChats", currentUser._id), {
-    //             [data.chatId + ".lastMessage"]: {
-    //                 texts,
-    //             },
-    //             [data.chatId + ".date"]: serverTimestamp(),
-    //         })
-    //         await updateDoc(doc(db, "userChats", data.user.uid), {
-    //             [data.chatId + ".lastMessage"]: {
-    //                 texts,
-    //             },
-    //             [data.chatId + ".date"] : serverTimestamp(),
-    //         })
-           
-    //     }
-    //      setTexts("")
-    //         setPicture(null)
-    // }
 
     const handleSubmit = async () => {
         if (picture) {
@@ -189,7 +144,7 @@ const Chat = (props: any) => {
   }
     // console.log(messages, "messages");
     // console.log(data, "data");
-    // console.log(currentUser._id === props.message.senderId, "lets see" );
+    console.log(currentUser, "lets see");
     
 
     
@@ -197,21 +152,28 @@ const Chat = (props: any) => {
     return (
       <ChatStyled>
       <div className='chatCon' >
-                <div>
+                <div className='subChatCon' >
                     <div className='heading'  >
                         <div className='headingDetails' >
-          <div className='profileDp' style={{backgroundImage: currentUser?.profilePic }} ></div>
-                            <span className='username' >{data.user?.username}</span>
+          <div className='profileDp' style={{backgroundImage: `url(${userObject?.profilePic})`  }} ></div>
+                            <Link href={'/users/' + data.user?.username } ><span className='username' >{data.user?.username}</span></Link>
                         </div>
                         <p>{<IoInformationCircleOutline fontSize={35} />} </p>
-                </div>
+                    </div>
+                    <div className="userObject" >
+                        <div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div>
+                        <h2>{userObject?.username} </h2>
+                        <p>{userObject?.usersAt} </p>
+                        <h2 className='bio' >{userObject?.bio} </h2>
+                        <p className='createdAt' >Joined {moment(userObject?.createdAt).format("MM YYYY")} <span>{userObject?.followers?.length} Followers </span> </p>
+                    </div>
                 <div  className='mapContainer' >
                         {messages?.map((message: any) => (
-                        <div>
-                            <Message message={message} key={message.id} />
+                        <div  key={message.id} >
+                            <Message message={message} />
                         </div>
                     ))}
-                        </div>
+                    </div>
                 </div>
                 <div className='inputCon' >
                     <div className='inputSpan' >
@@ -225,7 +187,7 @@ const Chat = (props: any) => {
                     <input type="file" onChange={(e:any) => setVideo(e.target.files[0])} id="fileInputGif" style={{ display: "none" }} />
                     {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile color="#1d9aef" fontSize="30" cursor="pointer" />}
+                    {<BsEmojiSmileUpsideDown color="#1d9aef" fontSize="30" cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
@@ -234,7 +196,7 @@ const Chat = (props: any) => {
                 )}
                 {emoji ? (
                     <div className="pickerEmoji" >
-                        <Picker data={data} onEmojiSelect={((emoji: any) => setTexts(texts + emoji.native) )} />
+                        <EmojiPicker onEmojiClick={(e) => setTexts(texts + e.emoji) } />
                     </div>
                 ) : (
                   ""
@@ -249,3 +211,7 @@ const Chat = (props: any) => {
 }
 
 export default Chat;
+
+function async(arg0: () => void) {
+    throw new Error('Function not implemented.');
+}
