@@ -18,9 +18,16 @@ export const ForYouContainer = styled.div`
       background-size: cover;
       background-position: center;
       object-fit: cover;
+       @media (max-width: 500px ) {
+        display: none;
+      }
     }
     form {
       width: 100%;
+      /* border: 2px red solid; */
+      @media (max-width: 500px ) {
+        display: none;
+      }
       .textAreaContainer {
         position: relative;
         width: 100%;

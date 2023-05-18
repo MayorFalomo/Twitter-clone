@@ -41,7 +41,7 @@ export const HomeContainer = styled.div`
       grid-template-columns: 70px auto; 
       margin: 0 auto;
     }
-    @media (max-width: 620px ) {
+    @media (max-width: 600px ) {
       display: grid;
       grid-template-columns:auto; 
       margin: 0 auto;

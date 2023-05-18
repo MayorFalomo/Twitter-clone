@@ -18,6 +18,10 @@ padding: 10px;
     width: 70px;
     height: 70px;
     border-radius:50%;
+    @media (max-width: 500px ) {
+        width: 50px;
+        height: 50px;
+    }
 }
 .subPostsContainer{
     /* display: flex;
@@ -43,7 +47,7 @@ padding: 10px;
             /* border: 2px green solid; */
             .userName{
                 /* font-size: 28px; */
-                font-size: calc(20px + 0.25vw);
+                font-size: calc(18px + 0.25vw);
             }
             .userName:hover{
                 text-decoration: underline;
@@ -56,7 +60,7 @@ padding: 10px;
                 font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
-                margin-left: 25px;
+                margin-left: 20px;
                 color: rgb(113,118,123);
             }
             .tweetProfileFlex{
@@ -96,22 +100,32 @@ padding: 10px;
         /* height: 500px;
         width: 500px; */
         /* border: 3px blue solid; */
-        width: 100%;
+        /* width: 100%;
         height: 700px;
         object-fit: cover;
         object-position: center;
-        border-radius: 10px;
+        border-radius: 10px; */
     }
     .tweet-image{
-        border: 3px rgb(113,118,123);
+        border: 1px rgb(113,118,123) solid ;
         width: 100%;
         height: 700px;
-        background-position: center;
+        /* background-position: center; */
         background-repeat: no-repeat;
         background-size: cover;
        object-fit: cover;
        object-position: center;
         border-radius: 10px;
+         @media (max-width: 500px ) {
+        width: 100%;
+        height: 400px;
+    }
+    }
+    .tweetVideo{
+        width: 100%;
+        height: 500px;
+        border: 1px rgb(113, 118, 123) solid;
+        border-radius: 15px;
     }
     .tweetOptions{
         display: flex;
@@ -142,6 +156,14 @@ padding: 10px;
             background: black;
             /* border: 2px red solid; */
         }
+        p{
+            .likeIcon{
+            font-size: calc(20px + 0.25vw);
+            /* border: 2px solid red; */
+
+        }
+        }
+        
     }
     .showThread{
         display: flex;

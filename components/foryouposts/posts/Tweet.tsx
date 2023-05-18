@@ -144,14 +144,13 @@ const Tweet = (props: any) => {
           </div>
           <p className='tweet-caption' >{props.tweet?.tweet} </p>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
-          {props.tweet?.video?.length > 1 ? <video width="100%" height='500px' controls src={`${props.tweet?.video}`} ></video>  : "" }
+          {props.tweet?.video?.length > 1 ? <video className='tweetVideo' controls src={`${props.tweet?.video}`} ></video>  : "" }
           <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
-                      />
+                  style={{cursor: "pointer"}} />
             </p>
               <span>{props.tweet.comments?.length} </span>
               {commentModal ?  <div className="activeModal" ><CommentModal urlParams={urlParams} setCommentModal={setCommentModal} /> </div> : ""}
@@ -167,7 +166,7 @@ const Tweet = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "#00BA7C",
-                          fontSize: 35,
+                          // fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -175,7 +174,7 @@ const Tweet = (props: any) => {
                       <AiOutlineRetweet
                         className='likeIcon'
                         onClick={handleAddRetweet}
-                        style={{ fontSize: 35, cursor: "pointer",   }}
+                        style={{ cursor: "pointer",   }}
                       />
                     )}
                   </p>
@@ -193,7 +192,7 @@ const Tweet = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
+                          // fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -201,7 +200,7 @@ const Tweet = (props: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleAddLike}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
@@ -213,17 +212,17 @@ const Tweet = (props: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer" }}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
             </div>
-            <div>
+            <div className='flexIconsAndValues' >
               <p onClick={handleBookmark} >
                   {
                         <AiOutlineUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer" }}
                       />
                 }</p>
             </div>
