@@ -9,12 +9,15 @@ export const ChatStyled = styled.div`
             justify-content: space-between;
             height: 100vh;
             .subChatCon{
+                /* border: 2px red solid; */
                 .userObject{
                     border-bottom: 1px rgb(113,118,123) solid;
                     padding: 70px;
                     margin-bottom: 40px;
-                    /* display: flex; */
-
+                    @media(max-width: 430px) {
+                            /* width: 100%; */
+                            padding: 30px;
+                        }
                     .profilePic{
                         border: 1px rgb(113,118,123) solid;
                         width: 70px;
@@ -50,6 +53,10 @@ export const ChatStyled = styled.div`
                         align-items: center;
                         gap: 20px;
                         margin: 5px auto;
+                        /* border: 2px red solid; */
+                         @media(max-width: 430px) {
+                            width: 100%;
+                        }
                         span{
                             display: list-item;
                             list-style: disc inside none;
@@ -152,11 +159,11 @@ export const ChatStyled = styled.div`
             margin: 0 auto;
         }
         .inputTextArea::placeholder{
-            font-size: 22px;
             font-weight: 500;
             padding-top: 20px;
             padding-left: 20px;
             color: rgb(113,118,123);
+            font-size: calc(14px + 0.25vw) !important;
         }
     }
 }

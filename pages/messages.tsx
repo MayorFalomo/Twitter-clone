@@ -23,7 +23,9 @@ const messages = (props: any) => {
   const [user, setUser] = useState<any>(null)
   const [err, setErr] = useState(false)
   const [chatComponentActive, setChatComponentActive] = useState<any>(false)
-  
+  const [switchToChats, setSwitchToChats] = useState<boolean>(false)
+  const [isMobile, setIsMobile] = useState(false)
+
   //This serach function works well
   const handleSearch = async () => {
     const q = query(collection(db, "users"),
@@ -95,7 +97,7 @@ const messages = (props: any) => {
   
   return (
     <MessagesStyle>
-    <div className='messagesContainer' >
+      <div className={isMobile ? 'ChatActive' : "messagesContainer"} >
       <Navbar />
       <div className='centerGridContainer' >
         <header>
@@ -117,11 +119,11 @@ const messages = (props: any) => {
               <span></span>
             </div>
           </div>}
-          <Chats setChatComponentActive={setChatComponentActive} />
+          <Chats isMobile={isMobile} setIsMobile={setIsMobile} setChatComponentActive={setChatComponentActive} />
           </div>
         <div className='leftGrid' >
          
-          {chatComponentActive ? <Chat /> :
+          {chatComponentActive ? <div ><Chat isMobile={isMobile} setIsMobile={setIsMobile} /></div> :
             <div className='subLeftGrid' >
               <div  className='subLeft'>
               <h1>Select a message </h1>

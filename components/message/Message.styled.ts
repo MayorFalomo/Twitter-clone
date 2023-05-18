@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const MessageStyle = styled.div`
 .messageContainer {
-    /* border: 2px red solid; */
     .userTextContainer{
          width: 100%;
          display: flex;
@@ -12,56 +11,50 @@ export const MessageStyle = styled.div`
      .usersText {
         color: #fff;
         background-color: rgb(47,51,54);
-        font-size: 24px;
-        font-weight: 600;
+        font-size: calc(16px + 0.25vw) !important;
+        font-weight: 400;
         border-top-left-radius: 40px;
         border-bottom-right-radius: 40px;
         border-top-right-radius: 40px;
-        /* border-radius: 40px; */
         padding: 20px;
         margin: 5px 10px;
-        line-height: 35px;
+        line-height: 30px;
         width: 70%;
         max-width: max-content;
+         @media(max-width: 390px) {
+            width: 80%;
+        }
     }
     .currentUserTextContainer {
-        /* border: #1D9AEF 2px solid; */
         width: 100%;
          display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        /* margin-right: 15px; */
+        margin-top: 5px;
     .currentUsersText {
         color: #fff;
         background-color: #1D9AEF;
-        font-size: 24px;
-         border-top-left-radius: 40px;
+        font-size: calc(16px + 0.25vw);
+        border-top-left-radius: 40px;
         border-bottom-left-radius: 40px;
         border-top-right-radius: 40px;
-        /* border-radius: 40px; */
         padding: 20px;
         margin: 5px 10px;
-       line-height: 35px;
+        line-height: 30px;
         width: 70%;
         max-width: max-content;
-        /* border: 2px red solid; */
-    }
-   
-    .picture{
-        /* width: 60;
-        height: 60%; */
-        /* border-radius: 20px; */
+        @media(max-width: 390px) {
+            width: 80%;
+            margin:0px 10px;
+        }
     }
 }
 .picturesContainer{
-    /* border: 2px solid red; */
       display: flex;
       flex-direction: column;
       gap: 3px;
       align-items: flex-end;
       margin: 15px 0;
-
-        /* justify-content: flex-end; */
     .picture{
         width: 50%;
         height: 400px;
@@ -73,15 +66,16 @@ export const MessageStyle = styled.div`
         object-position: bottom;
         border-radius: 10px;
         margin-right: 10px;
-        /* max-width: 400px; */
+         @media(max-width: 430px) {
+            width: 70%;
+            height: 300px;
+        }
     }
 }
 .userPictureContainer{
-    /* border: 2px solid red; */
     display: flex;
     justify-content: flex-start;
     margin: 10px 2px;
-
     .userPictureImg{
         width: 50%;
         height: 400px;
@@ -93,37 +87,48 @@ export const MessageStyle = styled.div`
         object-position: bottom;
         border-radius: 10px;   
         margin-left: 10px;
-        /* max-width: 400px; */
-    }
-     .span{
-            /* color: rgb(47,51,54);
-            border: 2px red solid; */
+         @media(max-width: 430px) {
+            width: 70%;
+            height: 300px;
         }
+    }
 }
 .currentVideoContainer {
-    /* border: 2px solid green; */
-     display: flex;
-      flex-direction: column;
-      gap: 3px;
-      align-items: flex-end;
-          margin: 10px 2px;
-              /* margin-bottom: 15px; */
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-end;
+    margin: 10px 2px;
     .currentVideo{
         width: 100%;
         height: 400px;
+         @media(max-width: 430px) {
+           height: 300px;
+        }
+    }
+    .dates{
+        @media(max-width: 450px) {
+            font-size: calc(12px + 0.25vw) !important;
+            margin: 10px auto;
+        }
     }
 }
 .userVideoContainer{
-     display: flex;
+    display: flex;
     justify-content: flex-start;
-     flex-direction: column;
-      gap: 3px;
-              /* margin-bottom: 15px; */
-    /* border: yellow 2px solid; */
+    flex-direction: column;
+    gap: 3px;
     .userBgVideo{
-          width: 70%;
+        width: 70%;
         height: 400px;
-        /* border: green solid 2px; */
+        margin-top: 15px;
+        @media(max-width: 430px) {
+           height: 300px;
+           /* margin-top: 15px; */
+        }
+    }
+     @media(max-width: 450px) {
+        font-size: calc(12px + 0.25vw) !important;
     }
 }
 }

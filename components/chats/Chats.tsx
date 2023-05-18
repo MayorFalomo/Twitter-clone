@@ -7,15 +7,14 @@ import { ChatContext } from '@/helpers/ChatContext'
 
 type Props = {}
 
+//Parent component is messages.tsx page
 const Chats = (props: any) => {
 
     const { currentUser } = useContext(AppContext)
-    const { dispatch } = useContext(ChatContext)
-    
-    // console.log(dispatch, "dispatching");
-    
+    const { dispatch } = useContext(ChatContext)    
 
     const [chats, setChats] = useState<any>([])
+    const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
         const getChats = () => {
@@ -28,16 +27,29 @@ const Chats = (props: any) => {
     }
     currentUser?._id && getChats();
 }, [currentUser._id])
-
-    // Object.entries(chats).map((chat) => (
-    // console.log(chat[1], "chat[1")
-    // ));
     
     const handleSelect = (u: any) => {
         props.setChatComponentActive(true)
         dispatch({ type: "CHANGE_USER", payload: u })
-        console.log(dispatch({ type: "CHANGE_USER", payload: u}), "dispatch");
+        console.log(dispatch({ type: "CHANGE_USER", payload: u }), "dispatch");
+        if (window.innerWidth < 1000) {
+            props.setIsMobile(true)
+            console.log(props.isMobile, "isMOBILE")
+        } else {
+            setIsMobile(false)
+        }
     }
+
+
+//choose the screen size
+const handleResize = () => {
+if (window.innerWidth < 1000) {
+props.setIsMobile(false)
+} else {
+setIsMobile(false)
+}
+}
+    
     
     
     return (

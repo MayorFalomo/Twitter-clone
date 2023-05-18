@@ -49,7 +49,7 @@ const Message = (props: any) => {
                             <source src={props?.message?.video} />
                          </video>
                     </div>}
-                    <span style={{ color: 'rgb(113,118,123)', fontSize: 18, margin: '1px 10px'  }} >{ moment(props.message.date.seconds * 1000).format("LLL")} </span>
+                    <span style={{ color: 'rgb(113,118,123)', margin: '1px 10px'  }} className="dates" >{ moment(props.message.date.seconds * 1000).format("LLL")} </span>
                </div>
       </div>
             </MessageStyle>

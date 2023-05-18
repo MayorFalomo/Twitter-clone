@@ -14,6 +14,7 @@ import { IoInformationCircleOutline } from 'react-icons/io5';
 import moment from 'moment';
 import EmojiPicker from 'emoji-picker-react';
 import Link from 'next/link';
+import { IoMdClose } from 'react-icons/io';
 
 
 type Props = {}
@@ -141,7 +142,15 @@ const Chat = (props: any) => {
 
      const handleKey = (e:any) => {
     e.code === "Enter" && handleSubmit() 
-  }
+    }
+    
+    const handleResize = () => {
+if (window.innerWidth < 1000) {
+props.setIsMobile(false)
+} else {
+props.setIsMobile(false)
+}
+}
     // console.log(messages, "messages");
     // console.log(data, "data");
     console.log(currentUser, "lets see");
@@ -158,7 +167,7 @@ const Chat = (props: any) => {
           <div className='profileDp' style={{backgroundImage: `url(${userObject?.profilePic})`  }} ></div>
                             <Link href={'/users/' + data.user?.username } ><span className='username' >{data.user?.username}</span></Link>
                         </div>
-                        <p>{<IoInformationCircleOutline fontSize={35} />} </p>
+                        <p onClick={handleResize} >{props.isMobile ? <IoMdClose cursor='pointer' fontSize='35' /> : <IoInformationCircleOutline fontSize='35'/> }</p>
                     </div>
                     <div className="userObject" >
                         <div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div>
@@ -211,7 +220,3 @@ const Chat = (props: any) => {
 }
 
 export default Chat;
-
-function async(arg0: () => void) {
-    throw new Error('Function not implemented.');
-}

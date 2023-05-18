@@ -26,6 +26,12 @@ export const NavContainer = styled.div`
         display: flex;
         justify-content: flex-start;
         width: 70%;
+        /* border: 2px red solid; */
+         @media (max-width: 1500px ) {
+          display: flex;
+          justify-content: flex-end;
+         width: 90%;
+        }
         .twitterLogo {
           padding: 10px 10px;
           border-radius: 50%;
@@ -142,12 +148,17 @@ export const NavContainer = styled.div`
       justify-content: space-between;
       width: 100%;
       gap: 20px;
+       /* @media (max-width: 1500px) {
+          display: flex;
+          justify-content: flex-end;
+        } */
     .bgImg {
       border: 2px rgb(47, 51, 54) solid;
       height: 70px;
       width: 70px;
       border-radius: 50%;
       margin-right: 10px;
+     
     }
     .navProfile {
       display: flex;
@@ -156,6 +167,10 @@ export const NavContainer = styled.div`
       width: 100%;
       margin-bottom: 20px;
       /* border: 2px red solid; */
+        @media (max-width: 1500px) {
+          display: flex;
+          justify-content: flex-end;
+        }
       .navSubProfile {
         display: flex;
         flex-direction: column;
