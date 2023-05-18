@@ -46,8 +46,13 @@ padding: 10px;
             gap: 5px;
             /* border: 2px green solid; */
             .userName{
-                /* font-size: 28px; */
-                font-size: calc(18px + 0.25vw);
+            font-size: calc(18px + 0.25vw);
+            @media (max-width: 445px ) {
+                    font-size: calc(14px + 0.25vw);
+                }
+            @media (max-width: 420px ) {
+                    font-size: calc(14px + 0.25vw);
+                }
             }
             .userName:hover{
                 text-decoration: underline;
@@ -55,13 +60,20 @@ padding: 10px;
             .userAt{
                 font-size: calc(12px + 0.25vw);
                 color: rgb(113,118,123);
+                 @media (max-width: 380px ) {
+                    font-size: calc(10px + 0.25vw);
+                }
             }
             .createdAt{
                 font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
-                margin-left: 20px;
+                /* margin-left: 20px; */
                 color: rgb(113,118,123);
+                 @media (max-width: 380px ) {
+                font-size: calc(10px + 0.25vw);
+                list-style: none outside none;
+                }
             }
             .tweetProfileFlex{
                 display: flex;
@@ -74,20 +86,19 @@ padding: 10px;
                 align-items: center;
                 gap: 15px;
                 width: 100%;
-                li{
-                    /* display: flex; */
-                    width: 100%;
-                    /* list-style: ; */
-                    gap: 10px;
-                }
-               
             }
             p{
-                    /* border: #1d9aef 2px solid; */
                     width: 100%;
                 }
+              
             }
         }
+          .biDots{
+                font-size: calc(20px + 0.25vw);
+                @media (max-width: 455px ) {
+                    display: none;
+                }
+                }
     }
     .tweet-caption{
         /* font-size: 22px; */

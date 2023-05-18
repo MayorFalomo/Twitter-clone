@@ -169,7 +169,7 @@ const register = (props: any) => {
                 <div onClick={getRandomName} className='generateBtn' >generate username </div>
               </div>
               <div className='flex-Center' >
-                <input className='Input' type="text" value={passwords} onChange={(e: any) => setPasswords(e.target.value)} placeholder="Enter Password" />
+                <input className='Input' type="password" value={passwords} onChange={(e: any) => setPasswords(e.target.value)} placeholder="Enter Password" />
                 <div  className='generateBtn' onClick={() => setPasswords(getRandomPassword())} >generate password </div>
               </div>
               <div className='loginFlexBtn'  >

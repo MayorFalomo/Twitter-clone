@@ -25,20 +25,19 @@ background: #999999;
     top: 20px;
     color: black;
     font-size: 30px;
-    cursor: pointer;
+    /* cursor: pointer; */
     z-index: 9;
    }
     .loginLogo{
         display: flex;
         justify-content: center;
-        /* border: 2px red solid; */
         margin: 10px auto;
     }
     h1{
         display: flex;
         justify-content: center;
         margin: 20px auto;
-        font-size: 35px;
+        font-size: calc(25px + 0.25vw);
         color: black;
     }
     .googleBtn{
@@ -51,10 +50,16 @@ background: #999999;
         border: 1px black solid;
         outline: none;
         width: 50%;
-        font-size: 20px;
+        font-size: calc(16px + 0.25vw);
         border-radius: 25px;
         cursor: pointer;
         background-color: #fff;
+        @media (max-width: 570px ) {
+            width: 70%;
+        }
+        @media (max-width: 430px ) {
+            width: 90%;
+        }
     }
     .googleBtn:hover{
         background-color: #F0F0F0;
@@ -85,22 +90,13 @@ background: #999999;
             font-size: 25px;
             border: 1px black solid;
             outline: none;
+              @media (max-width: 500px ) {
+                width: 90%;
+                }
         }
         .Input::placeholder{
-            font-size: 18px;
+            font-size: calc(16px + 0.25vw);
         }
-        /* .passwordInput{
-            width:50%;
-            margin:auto;
-            padding:15px 20px;
-            border-radius: 5px;
-            font-size: 20px;
-            border: 1px black solid;
-            outline: none;
-        }
-        .passwordInput::placeholder{
-            font-size: 18px;
-        } */
         .loginFlexBtn{
             display: flex;
             flex-direction: column;
@@ -130,6 +126,9 @@ background: #999999;
             margin-top: 50px;
             font-size: 20px;
             color: black;
+              @media (max-width: 500px ) {
+                margin-top: 20px;
+                }
         }
     }
    

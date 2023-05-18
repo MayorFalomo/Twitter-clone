@@ -24,10 +24,6 @@ const config = {
 
 const login = (props: any) => {
 
-// axios.defaults.withCredentials = true;
-// const save = window.localStorage.getItem("userInfo");
-
-
     const router = useRouter()
 
     const { getCurrentUser } = useContext(AppContext)
@@ -92,7 +88,6 @@ const login = (props: any) => {
               <input className='Input' type="text" onChange={(e:any) => setPassword(e.target.value)} placeholder="Enter Password" />
               <div className='loginFlexBtn'  >
                   <button className='LoginSignInBtn' style={{backgroundColor: 'black', color: 'white'}} id='nextBtn' >Sign In </button>
-                            {/* <button className='LoginSignInBtn' id='backgroundHover' >  Forgot Password? </button> */}
                             { isAuth ? <p>Check email and password again!</p> : "" }
               </div>
               <p>Don't have an account? <Link href='register' ><span style={{color: '#1d9aef', cursor: 'pointer' }} >Sign up</span></Link> </p>

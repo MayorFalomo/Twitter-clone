@@ -41,7 +41,7 @@ const Singleuser = (props: any) => {
     // console.log(noOfFollowingsArray, "no of following");
     
     useEffect(() => {
-          axios.get(`http://localhost:7000/api/tweets/get-tweet/${props.user?.username}`)
+          axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${props.user?.username}`)
           .then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
     }, [props.user?.username])
 
@@ -66,7 +66,7 @@ const Singleuser = (props: any) => {
       //  console.log(followAUser, "Follow object");
          setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
         //  console.log(currentUser, currentUser);
-       await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
+       await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
          setFollowingButton(true)
         setNoOfFollowersArray(followersArray?.length + 1)
@@ -83,7 +83,7 @@ const Singleuser = (props: any) => {
     // console.log(data, "This is data");
     
     try {
-        await axios.put(`http://localhost:7000/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
+        await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
             .catch((err) => console.log(err));
         setNoOfFollowersArray(followersArray.length)
         let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)

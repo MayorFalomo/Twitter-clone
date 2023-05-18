@@ -140,7 +140,7 @@ const Tweet = (props: any) => {
               <span className='userAt'>{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span> : <span className='createdAt' >a few seconds ago </span> }
             </div>
-                  <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+                  <div>{<BiDotsHorizontalRounded className='biDots' cursor='pointer' />} </div>
           </div>
           <p className='tweet-caption' >{props.tweet?.tweet} </p>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}

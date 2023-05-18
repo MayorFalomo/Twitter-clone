@@ -17,13 +17,16 @@ background: #999999;
    padding: 10px;
    position: relative;
    margin: 0 20px;
+    @media (max-width: 380px ) {
+        height: 650px;
+    }
    .letterX{
     position:absolute;
     left: 20px;
     top: 20px;
     color: black;
     font-size: 30px;
-    cursor: pointer;
+    /* cursor: pointer; */
     z-index: 9;
    }
     .loginLogo{
@@ -36,7 +39,7 @@ background: #999999;
         display: flex;
         justify-content: center;
         margin: 20px auto;
-        font-size: 35px;
+        font-size: calc(26px + 0.25vw);
         color: black;
     }
     .googleBtn{
@@ -49,10 +52,16 @@ background: #999999;
         border: 1px  rgb(47, 51, 54, 0.5) solid;
         outline: none;
         width: 50%;
-        font-size: 20px;
+        font-size: calc(16px + 0.25vw);
         border-radius: 25px;
         cursor: pointer;
         background-color: #fff;
+         @media (max-width: 600px ) {
+            width: 70%;
+        }
+         @media (max-width: 400px ) {
+            width: 90%;
+        }
     }
     .googleBtn:hover{
         background-color: #F0F0F0;
@@ -81,6 +90,9 @@ background: #999999;
             margin: 0 auto;
             width: 80%;
             position:relative;
+              @media (max-width: 470px ) {
+                width: 95%;
+            }
             .generateBtn{
                 position: absolute;
                 right: 0;
@@ -102,9 +114,10 @@ background: #999999;
             border: 1px rgb(47, 51, 54, 0.5) solid ;
             outline: none;
             font-size: 20px;
+           
         }
         .Input::placeholder{
-            font-size: 18px;
+            font-size: calc(14px + 0.25vw);
         }
         .loginFlexBtn{
             display: flex;
@@ -120,6 +133,9 @@ background: #999999;
             border: 1px rgb(47, 51, 54, 0.5) solid;
             cursor:pointer;
             background-color: #fff;
+              @media (max-width: 420px ) {
+                width: 70%;
+                }
             }
             #backgroundHover:hover{
                 background-color: #E7E7E8;
@@ -135,6 +151,9 @@ background: #999999;
             margin-top: 50px;
             font-size: 20px;
             color:  rgb(47, 51, 54, 0.8);
+             @media (max-width: 420px ) {
+               margin-top: 30px;
+            }
         }
     }
    

@@ -95,23 +95,32 @@ export const HomeContainer = styled.div`
     /* border: 2px red solid; */
     a {
       /* font-size: 20px; */
-      /* border: 2px yellow solid; */
+      /* border: 1px yellow solid; */
       width: 60%;
       padding-top: 10px;
       text-align: center;
       cursor: pointer;
+      /* @media (max-width: 420px ) {
+        a{
+          width: 40%;
+        }
+      } */
     }
     a:hover {
       background-color: rgb(47, 51, 54);
     }
     li {
-      /* border: 2px red solid; */
+      /* border: 1px red solid; */
       width: 50%;
       margin: 0 auto;
       padding: 10px 20px;
       list-style: none;
       /* font-size: 24px; */
       font-size: calc(18px + 0.25vw);
+       @media (max-width: 440px ) {
+        width: 100%;
+        padding: 10px 0;
+      }
     }
     .linkActive li {
       border-bottom: 6px #1d9aef solid;
