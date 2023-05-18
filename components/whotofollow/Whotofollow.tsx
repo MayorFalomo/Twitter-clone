@@ -9,10 +9,55 @@ type Props = {}
 
 const Whotofollow = (props: any) => {
 
-  const {suggestedUsers} = useContext(AppContext)
+  const {suggestedUsers, setSuggestedUsers} = useContext(AppContext)
 
-   const [seeMoreUsers, setSeeMoreUsers] = useState<number>(3)
+  const [seeMoreUsers, setSeeMoreUsers] = useState<number>(3)
+  
+  // const generateRandomUsers = () => {
+  //   return Math.floor(Math.random() * suggestedUsers.length)
+  // }
 
+  // useEffect(() => {
+  //   getRandomUsers()
+  // }, [])
+
+  // const getRandomUsers = () => {
+  //   const randomUsers = [
+  //     generateRandomUsers(),
+  //     generateRandomUsers(),
+  //     generateRandomUsers()
+  //   ]
+  //   const selectedUsers = suggestedUsers.filter((suggestedUser: any) => randomUsers.includes(suggestedUser.id))
+  //   setSuggestedUsers(selectedUsers)
+  // }
+
+  // const getRandomUsers = () => {
+  //   const randomUsers: any[] = []
+
+  //   //Generate three ranndom indices
+  //   const randomIndices: number[] = [];
+  //   while (randomUsers.length < 3) {
+  //     const randomIndex = Math.floor(Math.random() * suggestedUsers.length);
+  //     if (!randomIndices.includes(randomIndex)) {
+  //       randomIndices.push(randomIndex);
+  //     }
+  //   }
+
+  //   // Retrieve the corressponding user objects
+  //   randomIndices.forEach((index) => {
+  //     randomUsers.push(suggestedUsers[index])
+  //   })
+  //   // return console.log(randomUsers);
+
+    
+  // }
+  // console.log(suggestedUsers, "suggested");
+
+  // console.log(getRandomUsers(), "function");
+  
+
+  // console.log(getRandomUsers, "function");
+  
   
 
 

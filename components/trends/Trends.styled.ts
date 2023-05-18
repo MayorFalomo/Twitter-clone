@@ -30,7 +30,8 @@ transition: all 0.3s ease;
     }
       .showMore{
         color: #1d9aef;
-        font-size: 24px;
+        /* font-size: 24px; */
+        font-size: calc(18px + 0.25vw);
         padding: 30px;
     }
     .showMore:hover{

@@ -7,7 +7,7 @@ align-items: flex-start;
 gap: 10px;
 /* margin: 25px auto; */
 border-top: 2px rgb(47, 51, 54) solid;
-border-bottom: 2px rgb(47, 51, 54) solid;
+/* border-bottom: 2px rgb(47, 51, 54) solid; */
 padding: 10px;
 .profilePicture{
     background-color: black;
@@ -42,14 +42,18 @@ padding: 10px;
             gap: 5px;
             /* border: 2px green solid; */
             .userName{
-                font-size: 28px;
+                /* font-size: 28px; */
+                font-size: calc(20px + 0.25vw);
+            }
+            .userName:hover{
+                text-decoration: underline;
             }
             .userAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 color: rgb(113,118,123);
             }
             .createdAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
                 margin-left: 25px;
@@ -82,9 +86,11 @@ padding: 10px;
         }
     }
     .tweet-caption{
-        font-size: 22px;
-        margin: 20px auto;
-        line-height: 35px;
+        /* font-size: 22px; */
+        font-size: calc(14px + 0.25vw);
+        margin: 10px auto;
+        line-height: 30px;
+        /* border: 2px red solid; */
     }
     .tweet-image{
         /* height: 500px;
@@ -154,8 +160,10 @@ padding: 10px;
             border: 2px white solid;
         }
         p{
-            font-size: 22px;
+            /* font-size: 22px; */
+            font-size: calc(14px + 0.25vw);
             color:#1d9aef ;
+            /* border: 2px red solid; */
         }
     }
 }

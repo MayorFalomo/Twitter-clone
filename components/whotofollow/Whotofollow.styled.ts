@@ -20,7 +20,8 @@ export const WhoToFollowStyled = styled.div`
 }
 .policies{
         color: rgb(113,118,123);
-        font-size: 18px;
+        /* font-size: 18px; */
+        font-size: calc(12px + 0.25vw);
         cursor: pointer;
         margin: 10px 20px;
         display: flex;

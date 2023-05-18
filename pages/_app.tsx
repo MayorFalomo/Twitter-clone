@@ -1,36 +1,48 @@
 import GlobalStyle from "@/GlobalStyle.styled";
-import Layout from "@/components/layout/Layout";
 import type { AppProps } from "next/app";
 import { useState, useEffect, useReducer } from "react";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { GetStaticProps } from "next";
+// import { GetStaticProps } from "next/app";
 import { ChatContext } from "@/helpers/ChatContext";
+import { GetServerSideProps } from "next";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
 type Post = {
-  // username: string,
+
 }
 
-export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
-  const res = await fetch(`http://localhost:7000/api/tweets`)
-  const posts: Post[] = await res.json()
+// export const getServerSideProps: GetServerSideProps = async (context: any) => {
   
-  return {
-    props: {
-      posts: posts.reverse(),
-    }
-  };
-};
+  // try {
+  //   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
+  //   const posts: Post[] = await res.json()
+  //   return {
+  //     props: {
+  //       posts: posts?.reverse(),
+      
+  //     },
+  //   };
+  // } catch (error) {
+  //   console.log(error);
+
+  //   return {
+  //     props: {
+  //       posts: [],
+      
+  //     },
+  //   };
+  // }
+// }
   
 export default function App({ Component, pageProps }: AppProps) {
 
-  const {posts} = pageProps
+  // const {posts} = pageProps
   const [isAuth, setIsAuth] = useState(true)
   const [user, setUser] = useState<any>(null)
-  const [tweets, setTweets] = useState<any>(posts)
+  const [tweets, setTweets] = useState<any>([])
   const [suggestedUsers, setSuggestedUsers] = useState<any>([])
   const [twitterBlue, setTwitterBlue] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<any>([])
@@ -53,14 +65,16 @@ export default function App({ Component, pageProps }: AppProps) {
   
   // console.log(user, "this is user");
 
-  // console.log(posts, "hellooooo APP");
+  // console.log(pageProps, "hellooooo APP");
   
-  
+  // useEffect(() => {
+  //   setTweets([...posts].reverse())
+  // }, [posts])
 
    useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
-      setTweets(res.data);
+      setTweets(res.data?.reverse());
       // setCompleted(true)
     };
     fetchPosts();
@@ -131,12 +145,10 @@ export default function App({ Component, pageProps }: AppProps) {
       setTweets,
       currentUser,
       bookmarks,
-      setBookmarks,
-      // following,
-      // setNoOfFollowing,
+      setBookmarks
     }}>
       <ChatContext.Provider value={{data: state, dispatch}} >
-      <GlobalStyle />
+        <GlobalStyle />
         <Component {...pageProps} />
         </ChatContext.Provider>
     </AppContext.Provider>

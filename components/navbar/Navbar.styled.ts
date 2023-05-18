@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const NavContainer = styled.div`
   /* border: 4px green solid; */
   nav{
+    @media(max-width: 600px) {
+      display: none;
+    }
   .navContainer {
     display: flex;
     flex-direction: column;
@@ -53,8 +56,16 @@ export const NavContainer = styled.div`
           /* border: 2px red solid; */
           padding: 10px;
           cursor: pointer;
+          @media (max-width: 1500px) {
+            display: flex;
+            justify-content: flex-end;
+            width: 90%;
+          }
        span{
         font-size: 28px;
+        @media (max-width: 1500px ) {
+          display: none;
+        }
        }
         
       }
@@ -80,8 +91,42 @@ export const NavContainer = styled.div`
         font-size: 25px;
         cursor: pointer;
         color: white;
+        @media (max-width: 1500px ) {
+          display: none;
+        }
       }
+       /* .tweetIconBtn{
+       display: none;
+        @media (max-width: 1500px ) {
+           display: flex;
+           justify-content: flex-end;
+        border-radius: 40px;
+        text-align: center;
+        background-color: #1d9aef;
+        border: none;
+        outline: none;
+        font-size: 35px;
+        cursor: pointer;
+        color: white;
+        }
+      } */
+      .quill{
+        /* border: 2px red solid; */
+        display: none;
+        .tweetIconBtn{
+          /* border: 2px green solid; */
+          display: flex;
+          justify-content: flex-end;
+          width: 90%;
+          font-size: 35px;
+          /* border-radius: 50%; */
+          /* padding: 20px; */
+        }
+        @media (max-width: 1500px) {
+          display: flex;
+        }
       }
+    }
       .writeTweet {
         /* border: 2px red solid; */
         padding: 15px;
@@ -115,8 +160,19 @@ export const NavContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 5px;
+        /* border: 2px solid red; */
+        @media (max-width: 1500px) {
+          display: none;
+        }
       }
+     
     }
+     .logOutIcon{
+        /* border: 2px solid red; */
+        @media (max-width: 1500px) {
+          display: none;
+        }
+      }
   }
 }
 .overlay{

@@ -23,10 +23,16 @@ export const SuggestedStyle = styled.div`
         background-size: cover;
         object-fit: cover;
         border-radius: 50%;
+        @media (max-width: 1830px) {
+            width: 50px;
+            height: 50px;
+        }
     }
     h3{
-        /* border: 3px red solid; */
-        font-size: 28px;
+        font-size: calc(14px + 0.25vw);
+    }
+    h3:hover{
+        text-decoration: underline;
     }
     p{
         color: rgb(113,118,123);

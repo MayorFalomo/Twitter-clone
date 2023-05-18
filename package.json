@@ -33,7 +33,6 @@
     "typescript": "4.9.5",
     "uuid": "^9.0.0"
   },
-  "proxy": "http://localhost:7000/api/",
   "dev": "NODE_OPTIONS='--inspect' next dev",
   "devDependencies": {
     "babel-plugin-styled-components": "^2.0.7"

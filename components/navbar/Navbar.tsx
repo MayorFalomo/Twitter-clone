@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavContainer } from "./Navbar.styled";
-import { RiHome7Line } from "react-icons/ri";
+import { RiHome7Line, RiQuillPenFill } from "react-icons/ri";
 import { TfiTwitter } from "react-icons/tfi";
 import { RiHashtag } from "react-icons/ri";
 import { BiBell, BiDotsHorizontalRounded } from "react-icons/bi";
@@ -89,9 +89,14 @@ const Navbar = (props: any) => {
                 <HiOutlineEllipsisHorizontalCircle className="navIcon" />
                   <span>More </span>
                   </div>
+                {/* <div className="navLinkItems">
+                <RiQuillPenLine className="tweetIconBtn" />
+                  <span>More </span>
+                  </div> */}
               </li>
 
-                <button className="tweetBtn">Tweet </button>
+              <button className="tweetBtn">Tweet </button>
+              <div className="quill" ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 50, borderRadius: "50px"}} />} </p></div>
             </ul>
           </div>
           <div className="navProfileFlex" >
@@ -103,13 +108,13 @@ const Navbar = (props: any) => {
               </div>
               <div
                 className="navEmail"
-                style={{ fontSize: 22, color: "rgb()" }}
+                style={{ fontSize: 22, }}
               >
                 {currentUser?.usersAt}
               </div>
               </div>
             </div>
-            <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+            <div className="logOutIcon" >{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
             </div>
         </div>
         {/* <div onClick={() => setT(false)} className={overlay ? "overlay" : ""} > </div> */}

@@ -26,7 +26,8 @@ export const TrendStyle = styled.div`
             }
         }
         h4{
-            font-size: 24px;
+            /* font-size: 20px; */
+            font-size: calc(16px + 0.25vw);
             margin-top: 5px;
         }
     }
