@@ -24,32 +24,22 @@ padding: 10px;
     }
 }
 .subPostsContainer{
-    /* display: flex;
-    align-items: flex-start;
-    gap: 20px; */
-    /* border: 2px rgb(47, 51, 54) solid; */
     width: 100%;
-    /* margin: 5px 5px; */
-    /* padding: 10px; */
-
 .flexTweetProfileDetails{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        /* border: 2px yellow solid; */
-        /* padding: 5px 0; */
         .tweetProfileDetails{
             width: 100%;
             display: flex;
             align-items: center;
             gap: 5px;
-            /* border: 2px green solid; */
             .userName{
             font-size: calc(18px + 0.25vw);
             @media (max-width: 445px ) {
-                    font-size: calc(14px + 0.25vw);
-                }
+                font-size: calc(14px + 0.25vw);
+            }
             @media (max-width: 420px ) {
                     font-size: calc(14px + 0.25vw);
                 }
@@ -68,7 +58,6 @@ padding: 10px;
                 font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
-                /* margin-left: 20px; */
                 color: rgb(113,118,123);
                  @media (max-width: 380px ) {
                 font-size: calc(10px + 0.25vw);
@@ -79,7 +68,6 @@ padding: 10px;
                 display: flex;
                 align-items: center;
                 gap: 25px;
-                /* border: 2px blue solid; */
                 width: 100%;
                 ul{
                 display: flex;
@@ -101,27 +89,14 @@ padding: 10px;
                 }
     }
     .tweet-caption{
-        /* font-size: 22px; */
-        font-size: calc(14px + 0.25vw);
+        font-size: calc(16px + 0.25vw);
         margin: 10px auto;
         line-height: 30px;
-        /* border: 2px red solid; */
-    }
-    .tweet-image{
-        /* height: 500px;
-        width: 500px; */
-        /* border: 3px blue solid; */
-        /* width: 100%;
-        height: 700px;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 10px; */
     }
     .tweet-image{
         border: 1px rgb(113,118,123) solid ;
         width: 100%;
         height: 700px;
-        /* background-position: center; */
         background-repeat: no-repeat;
         background-size: cover;
        object-fit: cover;

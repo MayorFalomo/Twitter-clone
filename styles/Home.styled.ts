@@ -80,10 +80,45 @@ export const HomeContainer = styled.div`
     .homeHeading {
     }
     h1 {
-      font-size: 35px;
-      /* font-size: calc(18px + 0.25vw); */
+      /* font-size: 35px; */
+      font-size: calc(22px + 0.25vw);
       padding: 20px;
-      /* margin: 10px 10px; */
+      @media 	(max-width: 600px ){
+        display: none;
+      }
+    }
+    .loginLogo{
+      font-size: calc(26px + 0.25vw);
+      margin-left: 10px;
+    }
+    .mobileHeader{
+      display: none;
+      /* border: 2px red solid; */
+      @media (max-width: 600px ) {
+        
+      display:flex;
+      justify-content: center;
+      position: relative;
+      z-index: 999;
+      .profilePicHeader{
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+        border: 1px solid rgb(47, 51, 54);
+        border-radius: 50%;
+        position: absolute;
+        left: 10px;
+        top: -10px;
+        z-index: 9;
+      }
+      .loginLogo{
+        z-index: 99;
+      }
+    }
     }
   }
   .centerGrid {

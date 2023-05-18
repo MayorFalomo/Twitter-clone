@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const TweetsContainer = styled.div`
 .tweetsContainer {
-    /* position: relative; */
-    /* border: 3px red solid; */
     .bookmarkAdded {
     background-color: #1d9aef;
     color: #fff;
@@ -13,12 +11,17 @@ export const TweetsContainer = styled.div`
     left: 40%;
     bottom: 70px;
     z-index: 999;
-    font-size: 24px;
+    font-size: calc(18px + 0.25vw);
     z-index: 9999;
     border-radius: 15px;
-    /* left: 50%;
-    right: 50%; */
-    /* width: ; */
+    @media (max-width: 600px ) {
+        position: fixed;
+        left: 25%;
+    }
+    @media (max-width: 400px ) {
+        position: fixed;
+        left: 18%;
+    }
     }
 }
 `

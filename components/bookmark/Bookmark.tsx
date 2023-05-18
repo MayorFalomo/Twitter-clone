@@ -72,9 +72,9 @@ const Bookmark = (props: any) => {
     setBookmarks(filtered)
          setModalActive(false)
          props.setRemovedBookmark(true)
-         setTimeout(() => {
-             props.setRemovedBookmark(false)
-         }, 3000)
+        //  setTimeout(() => {
+        //      props.setRemovedBookmark(false)
+        //  }, 3000)
   }
     
     const views = Math.floor(Math.random() * suggestedUsers?.length)
@@ -98,19 +98,20 @@ const Bookmark = (props: any) => {
               <span className='userAt'>{props.bookmark?.usersAt}</span>
               {props.tweet?.newDates == undefined ? <span className='createdAt' >{moment(new Date(props.bookmark?.createdAt)).fromNow()}</span> : <span className='createdAt' >a few seconds ago </span> }
             </div>
-                        <div className='removeModalContainer' >
-                            {<BiDotsHorizontalRounded onClick={handleRemove} fontSize='30px' cursor='pointer' />}
-                            {modalActive ? <span onClick={handleRemoveBookmark} className='remove' >Remove bookmark </span> : ""}
-                        </div>
+                <div className='removeModalContainer' >
+                  {<BiDotsHorizontalRounded onClick={handleRemove} fontSize='30px' cursor='pointer' />}
+                    {modalActive ? <span onClick={handleRemoveBookmark} className='remove' >Remove bookmark </span> : ""}
+                </div>
           </div>
           <p className='tweet-caption' >{props.bookmark?.tweet} </p>
           {props.bookmark?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.bookmark?.picture})` }} className='tweet-image' ></div> : ""}
+            {props.bookmark?.video?.length > 1 ? <video controls src={`${props.bookmark?.video}`} className='tweet-video' ></video> : ""}
           <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer" }}
                       />
             </p>
               <span>{props.bookmark.comments?.length} </span>
@@ -122,7 +123,7 @@ const Bookmark = (props: any) => {
                   <AiOutlineRetweet
                     onClick={() => setRetweet(false)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
+                    style={{ cursor: "pointer", color: "#00BA7C" }}
                   />
                 }</p> :
               <p>
@@ -130,7 +131,7 @@ const Bookmark = (props: any) => {
                     <AiOutlineRetweet
                     onClick={() => setRetweet(true)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
+                    style={{ cursor: "pointer", }}
                   />
                 }</p>}
               <span>{0} </span>
@@ -146,7 +147,6 @@ const Bookmark = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -154,7 +154,7 @@ const Bookmark = (props: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
@@ -166,7 +166,7 @@ const Bookmark = (props: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer", }}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
@@ -182,7 +182,7 @@ const Bookmark = (props: any) => {
             </div> */}
           </div>
             <div className='showThread' >
-          <div style={{ cursor: "pointer", backgroundImage: `url(${props.tweet?.profileDp})` }} className='subUserPhoto' > </div>
+          <div style={{ cursor: "pointer", backgroundImage: `url(${props.bookmark?.profileDp})` }} className='subUserPhoto' > </div>
               <Link href={'/posts/' + props.bookmark?.postId} >
                 <p>Show this thread </p>
               </Link>

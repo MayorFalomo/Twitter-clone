@@ -80,13 +80,14 @@ const bookmarks = (props: Props) => {
             </div>
             <span>{<BiDotsHorizontalRounded fontSize='40px' cursor='pointer' />}</span>
           </div>
-          <div>
+          {bookmarks?.length == 0 &&  <div className='numberOfBookmarks' >You have no bookmarks  </div>}
+          <div className='bookmark' >
             {bookmarks?.map((bookmark: any) => (
               <div key={bookmark?.postId} >
                 <Bookmark bookmark={bookmark} removedBookmark={removedBookmark} setRemovedBookmark={setRemovedBookmark} />
               </div>
             ))}
-                  {removedBookmark ? <p className="bookmarkAdded" >Tweet removed from bookmarks</p> : ""}
+                  {removedBookmark ? <p className="bookmarkRemoved" >Removed from bookmarks</p> : ""}
           </div>
          
         </div>

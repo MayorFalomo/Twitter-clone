@@ -6,7 +6,7 @@ display: flex;
 align-items: flex-start;
 gap: 10px;
 /* margin: 25px auto; */
-border-top: 2px rgb(47, 51, 54) solid;
+/* border-top: 2px rgb(47, 51, 54) solid; */
 border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px;
 .profilePicture{
@@ -42,14 +42,15 @@ padding: 10px;
             gap: 5px;
             /* border: 2px green solid; */
             .userName{
-                font-size: 28px;
+                font-size: calc(18px + 0.25vw);
             }
             .userAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 color: rgb(113,118,123);
             }
             .createdAt{
-                font-size: 20px;
+                /* font-size: 20px; */
+                font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
                 margin-left: 25px;
@@ -66,13 +67,6 @@ padding: 10px;
                 align-items: center;
                 gap: 15px;
                 width: 100%;
-                li{
-                    /* display: flex; */
-                    width: 100%;
-                    /* list-style: ; */
-                    gap: 10px;
-                }
-               
             }
             p{
                     /* border: #1d9aef 2px solid; */
@@ -97,22 +91,13 @@ padding: 10px;
         }
     }
     .tweet-caption{
-        font-size: 22px;
-        margin: 20px auto;
-        line-height: 35px;
+        /* font-size: 22px; */
+        font-size: calc(16px + 0.25vw);
+        margin: 5px auto;
+        line-height: 30px;
     }
     .tweet-image{
-        /* height: 500px;
-        width: 500px; */
-        /* border: 3px blue solid; */
-        width: 100%;
-        height: 700px;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 10px;
-    }
-    .tweet-image{
-        border: 3px rgb(113,118,123);
+        border: 1px solid rgb(113,118,123);
         width: 100%;
         height: 700px;
         background-position: center;
@@ -120,6 +105,21 @@ padding: 10px;
         background-size: cover;
        object-fit: cover;
        object-position: center;
+        border-radius: 10px;
+          @media (max-width: 500px ) {
+        width: 100%;
+        height: 400px;
+    }
+    }
+    .tweet-video{
+        border: 1px rgb(113,118,123) solid;
+        width: 100%;
+        height: 400px;
+        /* background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; */
+       /* object-fit: cover;
+       object-position: center; */
         border-radius: 10px;
     }
     .tweetOptions{
@@ -151,6 +151,13 @@ padding: 10px;
             background: black;
             /* border: 2px red solid; */
         }
+        /* p{
+            font-size: calc(28px + 0.25vw) !important; */
+        .likeIcon{
+            font-size: calc(24px + 0.25vw);
+            /* border: 2px red solid; */
+        /* } */
+    }
     }
     .showThread{
         display: flex;
@@ -169,7 +176,8 @@ padding: 10px;
             border: 2px white solid;
         }
         p{
-            font-size: 22px;
+            font-size: calc(16px + 0.25vw);
+            /* font-size: 22px; */
             color:#1d9aef ;
         }
     }

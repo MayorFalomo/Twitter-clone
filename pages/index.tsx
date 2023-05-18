@@ -11,6 +11,7 @@ import Tweets from "@/components/foryouposts/posts/Tweets";
 import { GetStaticProps } from "next";
 import { AppContext } from "@/helpers/Helpers";
 import { useRouter } from "next/router";
+import { BsTwitter } from "react-icons/bs";
 
 
 
@@ -64,7 +65,11 @@ export default function Home(props: any) {
             <main>
               <div className="homeHeader">
                 <div className="homeHeading">
-                  <h1>Home </h1>
+                  <h1 >Home </h1>
+                </div>
+                <div className="mobileHeader" >
+                  <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className="profilePicHeader" > </div>
+                  <p><BsTwitter className='loginLogo' style={{ color: ' #1d9aef' }} /></p>
                 </div>
                 <ul className="postGroup" >
                   <a

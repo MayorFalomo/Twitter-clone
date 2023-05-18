@@ -7,6 +7,44 @@ export const BookmarkStyle = styled.div`
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;
+    @media (max-width: 2070px ) {
+      display: grid;
+      grid-template-columns: 400px auto 500px ; 
+    }
+    @media (max-width: 1830px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+    }
+    @media (max-width: 1700px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1500px ) {
+      display: grid;
+      grid-template-columns: 100px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1300px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 10%;
+    } 
+    @media (max-width: 900px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 5%;
+    }
+    @media (max-width: 620px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 auto;
+    }
+    @media (max-width: 600px ) {
+      display: grid;
+      grid-template-columns:auto; 
+      margin: 0 auto;
+    }
     .centerGrid::-webkit-scrollbar {
           width: 0;
     }
@@ -31,6 +69,13 @@ export const BookmarkStyle = styled.div`
             z-index: 999;
             width: 100%;
         }
+        .numberOfBookmarks{
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 70vh;
+           font-size: calc(25px + 0.25vw);
+        }
     }
      .leftGrid{
     overflow: auto;
@@ -39,7 +84,7 @@ export const BookmarkStyle = styled.div`
    .leftGrid::-webkit-scrollbar {
           width: 0;
     }
-     .bookmarkAdded {
+     .bookmarkRemoved {
     background-color: #1d9aef;
     color: #fff;
     padding: 15px 20px;
@@ -48,12 +93,16 @@ export const BookmarkStyle = styled.div`
     left: 40%;
     bottom: 70px;
     z-index: 999;
-    font-size: 24px;
+    font-size: calc(18px + 0.25vw);
     z-index: 9999;
     border-radius: 15px;
-    /* left: 50%;
-    right: 50%; */
-    /* width: ; */
+    /* border: 2px red solid !important; */
+    @media (max-width: 600px) {
+        position: fixed;
+        left: 20%;
+        /* border: 2px red solid; */
+        /* width: 100%; */
+    }
     }
     
 }

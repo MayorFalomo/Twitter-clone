@@ -104,15 +104,6 @@ const ForYouPosts = (props: any) => {
       console.log(err);
     }
   }
-  
-  // console.log(tweets);
-  
- 
-
-  // console.log(newDates);
-  
-  // console.log(currentEmoji);
-  
 
 
   return (

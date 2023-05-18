@@ -23,8 +23,11 @@ export const ProfileStyled = styled.div`
         width: 100%;
         /* border: 2px red solid; */
         .profileUsersDetails{
+            h1{
+                font-size: calc(20px + 0.25vw);
+            }
             p{
-                font-size: 22px;
+                font-size: calc(14px + 0.25vw);
                 margin-top: 10px;
             }
     }
@@ -56,6 +59,18 @@ export const ProfileStyled = styled.div`
         position: absolute;
         bottom: -150px;
         left: 20px;
+        @media (max-width: 600px ) {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: -90px;
+        }
+        @media (max-width: 400px ) {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            bottom: -50px;
+        }
     }
     
     }
@@ -65,7 +80,7 @@ export const ProfileStyled = styled.div`
         align-items: flex-end;
         button{
         background-color: transparent;
-        font-size: 26px;
+        font-size: calc(18px + 0.25vw);
         padding: 15px 30px;
         margin: 20px 5px;
         color: white;
@@ -78,16 +93,41 @@ export const ProfileStyled = styled.div`
     .userDetailsContainer{
         margin-top: 60px;
         padding: 20px;
-        .usersExtraInfo{
+          @media (max-width: 600px ) {
+          margin-top: 10px;
+        }
+        h1{
+        font-size: calc(20px + 0.25vw);
+        }
+        p{
+        font-size: calc(16px + 0.25vw);
+        }
+        .usersBio{
+            p{
+                font-size: calc(20px + 0.25vw);
+            }
+        }
+        .usersExtraInfoContainer{
+            
+            .usersExtraInfo{
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 24px;
+            flex-wrap: wrap;
+            font-size: calc(14px + 0.25vw);
+            /* border: #1d9aef 2px solid; */
+            /* font-size: 24px; */
             .usersLink:hover{
                 text-decoration: underline;
                 cursor: pointer;
             }
         }
+        p{
+            /* border: 2px red solid; */
+            font-size: calc(14px + 0.25vw);
+        }
+        }
+       
     }
     .tweetsDetails{
         display: flex;
@@ -101,6 +141,7 @@ export const ProfileStyled = styled.div`
         }
         .border-bottom{
             border-bottom: 4px #1d9aef solid;
+            font-size: calc(16px + 0.25vw);
             /* background-color: red; */
         }
     }
@@ -119,6 +160,9 @@ export const ProfileStyled = styled.div`
         display: flex;
         align-items: center;
         gap: 20px;
+        span{
+            font-size: calc(18px + 0.25vw);
+        }
     }
     }
 }

@@ -42,7 +42,7 @@ const profile = (props: Props) => {
           </div>
           <div className='rightGridContainer' >
           <Search />
-          <Whotofollow />
+          {/* <Whotofollow /> */}
           <Trends/>
         </div>
       </div>
