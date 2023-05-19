@@ -8,12 +8,47 @@ export const SingleTweetStyle = styled.div`
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;
+     @media (max-width: 2070px ) {
+      display: grid;
+      grid-template-columns: 400px auto 500px ; 
+    }
+    @media (max-width: 1830px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+    }
+    @media (max-width: 1700px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1500px ) {
+      display: grid;
+      grid-template-columns: 100px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1300px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 10%;
+    } 
+    @media (max-width: 900px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 5%;
+    }
+    @media (max-width: 620px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 auto;
+    }
+    @media (max-width: 600px ) {
+      display: grid;
+      grid-template-columns:0 auto 0; 
+      margin: 0 auto;
+    }
     .leftGridSection {
-    /* border: 2px red solid; */
     overflow: auto;
     position: relative;
-    /* border-right: 1px solid rgb(47, 51, 54);
-    border-left: 1px solid rgb(47, 51, 54); */
   }
    .leftGridSection::-webkit-scrollbar {
           width: 0;
@@ -40,21 +75,27 @@ export const SingleTweetStyle = styled.div`
             padding: 15px;
             z-index: 999;
             width: 100%;
+            h1{
+            font-size: calc(20px + 0.25vw);
+            }
+            span{
+                font-size: calc(24px + 0.25vw);
+            }
         }
         .userDetailsContainer{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             margin-top: 30px;
             margin-left: 10px;
         .subUserDetailsContainer{
             display: flex;
-            align-items: center;
-            gap: 30px;
+            align-items: flex-start;
+            gap: 20px;
             .profilePic{
                 border: 1px white solid;
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
                 border-radius: 50%;
                 background-color: black;
                 background-repeat: no-repeat;
@@ -62,6 +103,11 @@ export const SingleTweetStyle = styled.div`
                 background-position: center;
                 object-fit: cover;
                 object-position: center;
+            }
+            .username {
+                h1{
+                    font-size: calc(20px + 0.25vw);
+                }
             }
         }
     }
@@ -78,17 +124,18 @@ export const SingleTweetStyle = styled.div`
         object-fit: cover;
     }
     .tweetText{
-        font-size: 30px;
+        /* font-size: 30px; */
+        font-size: calc(18px + 0.25vw);
         font-weight: 500;
         margin: 20px 20px;
-        line-height: 35px;
+        line-height: 30px;
     }
     .postDetailsContainer{
         .timeAndViews{
             display: flex;
             align-items: center;
-            gap: 35px;
-            margin: 30px auto;
+            gap: 25px;
+            margin: 30px 5px;
             .listStyle{
                 display: list-item;
                 list-style: disc outside none;
@@ -106,7 +153,10 @@ export const SingleTweetStyle = styled.div`
                 width: 100%;
             }
             p{
-                font-size: 24px;
+                font-size: calc(18px + 0.25vw);
+               @media (max-width: 400px ){
+                font-size: calc(14px + 0.25vw);
+               }
             }
             p:hover{
                 text-decoration: underline;
@@ -122,17 +172,17 @@ export const SingleTweetStyle = styled.div`
         margin: 20px auto;
         color: #E2E4E4;
         .bookmarkAdded {
-    background-color: #1d9aef;
-    color: #fff;
-    padding: 15px 20px;
-     margin: auto;
-    position: fixed;
-    left: 40%;
-    bottom: 70px;
-    z-index: 999;
-    font-size: 24px;
-    z-index: 9999;
-    border-radius: 15px;
+            background-color: #1d9aef;
+            color: #fff;
+            padding: 15px 20px;
+            margin: auto;
+            position: fixed;
+            left: 40%;
+            bottom: 70px;
+            z-index: 999;
+            font-size: 24px;
+            z-index: 9999;
+border-radius: 15px;
     /* left: 50%;
     right: 50%; */
     /* width: ; */
@@ -179,6 +229,9 @@ export const SingleTweetStyle = styled.div`
         span{
             font-size: 20px;
         }
+        .likeIcon{
+        font-size: calc(24px + 0.25vw);
+       }
     }
     .overlay{
         position: fixed;

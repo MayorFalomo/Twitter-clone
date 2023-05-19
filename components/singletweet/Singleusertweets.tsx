@@ -88,14 +88,14 @@ const Singleusertweets = (props: any) => {
           </div>
             <p className='tweetText' >{props.allTweets?.tweet} </p>
             {props.allTweets?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.allTweets?.picture})` }} className='singleTweetImage' > </div> : ""}
-            {props.allTweets?.video?.length > 1 ? <video width="100%" height='500px' controls className='video' src={`${props.allTweets?.video}`} ></video> : ""}
+            {props.allTweets?.video?.length > 1 ? <video controls className='video' src={`${props.allTweets?.video}`} ></video> : ""}
                   <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>
                   {
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
+                      style={{ cursor: "pointer", color: '#71767B' }}
                       />
                 }</p>
                 <span>{props.allTweets.comments?.length} </span>
@@ -107,7 +107,7 @@ const Singleusertweets = (props: any) => {
                   <AiOutlineRetweet
                     onClick={() => setRetweet(false)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
+                    style={{ cursor: "pointer", color: "#00BA7C" }}
                   />
                 }</p> :
               <p>
@@ -115,7 +115,7 @@ const Singleusertweets = (props: any) => {
                     <FaRetweet
                     onClick={() => setRetweet(true)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
+                    style={{ cursor: "pointer", color: '#71767B' }}
                   />
                 }</p>}
               <span>0 </span>
@@ -131,7 +131,6 @@ const Singleusertweets = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -139,7 +138,7 @@ const Singleusertweets = (props: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
@@ -151,7 +150,7 @@ const Singleusertweets = (props: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35,color: '#71767B' }}
+                      style={{ cursor: "pointer", color: '#71767B' }}
                       />}</p>
                                 <span>{views}{views > 10000 ? "k" : ""} </span>
             </div>
@@ -160,7 +159,7 @@ const Singleusertweets = (props: any) => {
                   {
                         <FiUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35, color: '#71767B' }}
+                      style={{ cursor: "pointer", color: '#71767B' }}
                       />
                 }</p>
             </div>

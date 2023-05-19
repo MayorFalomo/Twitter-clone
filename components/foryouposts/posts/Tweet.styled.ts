@@ -91,7 +91,7 @@ padding: 10px;
     .tweet-caption{
         font-size: calc(16px + 0.25vw);
         margin: 10px auto;
-        line-height: 30px;
+        line-height: 35px;
     }
     .tweet-image{
         border: 1px rgb(113,118,123) solid ;

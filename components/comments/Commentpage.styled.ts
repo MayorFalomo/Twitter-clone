@@ -3,10 +3,6 @@ import styled from "styled-components";
 export const CommentPageStyle = styled.div`
 
 .commentPageContainer{
-    /* display: flex;
-    align-items: flex-start;
-    gap: 10px; */
-    /* border: 2px red solid; */
      .overlay{
         position: fixed;
         left: 0;
@@ -23,22 +19,53 @@ export const CommentPageStyle = styled.div`
     .removeOverlay{
         display: none;
     }
-    /* .repliesComponent{
-      border: 1px solid blue;
-    } */
-    /* .showRepliesContainer{
-      border: 3px solid green;
-    } */
-        /* .replyCon{
-      border: 3px solid red;
-    } */
     .subPostsContainer{
       display: flex;
       align-items: flex-start;
       gap: 10px;
+       .profilePicture{
+            @media (max-width:600px) {
+            width: 50px;
+            height: 50px;
+          } 
+          }
     .tweetDetailsCon{
-      /* border: 2px blue solid; */
-      width: 100%;
+        width: 100%;
+      .tweetProfileDetails{
+        .userName{
+          font-size: calc(16px + 0.25vw) !important;
+          /* border: #1d9aef 2px solid; */
+        }
+        .usersAt{
+          /* border: 2px blue solid; */
+          font-size: calc(12px + 0.25vw) !important;
+        }
+        .createdAt{
+          font-size: calc(12px + 0.25vw) !important;
+          /* @media (max-width:550px) {
+            display: none;
+          }  */
+        }
+      }
+      .dottedIcon{
+          @media (max-width:670px) {
+            display: none;
+          } 
+      }
+      .tweet-image{
+        /* width: 100%;
+        height: 400px; */
+         @media (max-width:450px) {
+            height: 300px;
+          } 
+      }
+      .tweetVideo{
+        width: 100%;
+        height: 400px;
+         @media (max-width:450px) {
+            height: 300px;
+          } 
+      }
          .tweetOption{
             display: flex;
             align-items: center;
@@ -56,14 +83,10 @@ export const CommentPageStyle = styled.div`
             transform: translate(-50%, -50%);
             width: 60%;
             max-width: 40vw;
-            /* height: 50vh; */
             border-radius: 30px;
             z-index: 9999;
             background: black;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            /* .commentIcon {
-                border:2px red solid;
-            } */
             .commentModalContainer{
                 background-color: black;
                 padding: 20px;
@@ -90,8 +113,8 @@ export const CommentPageStyle = styled.div`
             flex-direction: column;
             gap: 10px;
         .ProfilePic{
-            width: 90px;
-            height: 90px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;

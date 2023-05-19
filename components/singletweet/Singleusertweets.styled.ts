@@ -6,7 +6,7 @@ export const SingleUserTweetsStyle = styled.div`
 .AllUserTweet{
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     padding: 20px; 	
     width: 100%;
     /* border: 3px green solid; */
@@ -17,30 +17,41 @@ export const SingleUserTweetsStyle = styled.div`
         background-size: cover;
         object-fit: cover;
         border: 1px white solid;
-        height: 90px;
-        width: 90px;
+        height: 70px;
+        width: 70px;
         border-radius: 50%;
+        @media (max-width: 400px) {
+            width: 40px;
+            height: 40px;
+        }
     }
     .flexUserInfoContainer{
         /* border: 2px blue solid; */
         width: 100%;
         p{
-            font-size: 25px;
+            font-size: calc(16px + 0.25vw);
+            line-height: 30px;
             font-weight: 400;
-            margin: 20px auto;
+            margin: 5px auto;
         }
         .flexUserInfo{
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 10px;
+            /* border: #1d9aef solid 2px; */
             span{
                 color: #575B5F;
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 font-weight: 500;
+                /* border: #1d9aef 2px solid; */
             }
             .createdAt{
                  display: list-item;
                 list-style: disc outside none;
+                margin-left: 20px;
+            }
+            h1{
+                font-size: calc(18px + 0.25vw);
             }
             h1:hover{
                 text-decoration: underline;
@@ -56,8 +67,13 @@ export const SingleUserTweetsStyle = styled.div`
                 background-position: center;
                 object-fit: cover;
                 object-position: center;
-                border: 3px red solid;
+                border: 1px rgb(47, 51, 54) solid;
+                @media (max-width: 450px ) {
+                    width: 250px;
+                    height: 250px;
+        }
             }
+           
         }
         .tweetOptions{
             display: flex;
@@ -70,10 +86,15 @@ export const SingleUserTweetsStyle = styled.div`
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                .likeIcon{
+                font-size: calc(26px + 0.25vw);
+                /* border: 2px red solid; */
+                }
                 span{
-                    font-size: 22px;
+                    font-size: calc(16px + 0.25vw);
                     font-weight: 700;
-                    color: rgb(47, 51, 54)
+                    color: rgb(47, 51, 54);
+                    /* border: 2px red solid; */
                 }
                 .activeModal{
                     position: fixed;
@@ -90,8 +111,18 @@ export const SingleUserTweetsStyle = styled.div`
             }  
         }
         .thread{
-            font-size: 22px;
+            font-size: calc(16px + 0.25vw);
             color: #1d9aef;
+        }
+        .video{
+            border: 2px solid rgb(47, 51, 54);
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            margin-top: 5px;
+             @media (max-width: 450px ) {
+            height: 300px;
+        }
         }
     }
 }

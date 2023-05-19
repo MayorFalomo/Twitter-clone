@@ -112,9 +112,7 @@ const Singleuser = (props: any) => {
       <div  className='profilePageStyled'>
            <div className='subProfileStyle'>
           <div className='subProfileFlex'>
-           {/* <ul> */}
-            <Link href='/' style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </Link>
-            {/* </ul> */}
+            <Link href='/' className='arrowLeft' >{<BsArrowLeft cursor='pointer' />} </Link>
             <div className='profileUsersDetails'>
             <h1>{props.user?.username} </h1>
               <p>{allUsersTweets.posts?.length} Tweets</p>
@@ -126,9 +124,9 @@ const Singleuser = (props: any) => {
                     </div>
                     {currentUser?.username === props.user?.username ? <div className='editProfileBtn'><button> Your profile </button></div> :
                         <div className='profilePageIcons' >
-                        <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </span>
-                        <span>{<RxEnvelopeClosed fontSize='30px' cursor='pointer' />} </span>
-                        <span>{<MdOutlineNotificationAdd fontSize='30px' cursor='pointer' />} </span>
+                        {/* <span>{<BiDotsHorizontalRounded />} </span> */}
+                        <span>{<RxEnvelopeClosed />} </span>
+                        {/* <span>{<MdOutlineNotificationAdd />} </span> */}
                             <div className='singleUserFollow' >
                                 {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
@@ -142,29 +140,29 @@ const Singleuser = (props: any) => {
                    {props.editProfileModal ? <EditProfileModal/> : "" }
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
                     <div className='userDetailsContainer' >
-                    <h1 style={{fontSize: 35, fontWeight: 800}} >{props.user?.username} </h1>
-                    <p style={{color: "#575B5F", fontSize: 24, fontWeight: 600}} >{props.user?.usersAt} </p>
-                    <div className='usersBio' style={{margin: '30px auto', fontSize: 24, fontWeight: 600}}>
+                    <h1 style={{ fontWeight: 800}} >{props.user?.username} </h1>
+                    <p style={{color: "#575B5F", fontWeight: 600}} className='usersAt' >{props.user?.usersAt} </p>
+                    <div className='usersBio' style={{margin: '30px auto', fontWeight: 600}}>
                         <p style={{color: '#BABBBC'}} >{props.user?.bio} </p>
                         </div>
                         <div className='usersExtraInfoContainer' style={{margin: '30px auto',}}>
                     <div className='usersExtraInfo' >
                                 <span style={{ color: "#575B5F", fontWeight: 600 }}>{<CiLocationOn />} {props.user?.location} </span>
-                                <span style={{ color: "#575B5F", fontWeight: 600 }}  className='usersLink' > {<AiOutlineLink />} {props.user?.links} </span>
+                                <a href={props.user?.links} target='_blank' ><span style={{ color: "#575B5F", fontWeight: 600 }}  className='usersLink' > {<AiOutlineLink />} {props.user?.links} </span></a>
                         <span style={{color: "#575B5F", fontWeight: 600}}>{<BsBalloon/>} {props.user?.birthday} </span><br />
                             </div>
-                                <p style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.user?.createdAt).format("MMMM YYYY")} </p>
+                                <p style={{ color: "#575B5F", fontWeight: 600 }} className='createdAt' >{<BiCalendar/>} Joined {moment(props.user?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
-                            <p style={{ fontSize: 24 }}> {props.user?.following?.length} <span>Following</span> </p>
-                            <p style={{ fontSize: 24 }}>{noOfFollowersArray} <span>Followers </span> </p>
+                            <p > {props.user?.following?.length} <span>Following</span> </p>
+                            <p>{noOfFollowersArray} <span>Followers </span> </p>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>
-                        <li onClick={(e:any) => handleClick(0)} className={current == 0  ? "border-bottom" : "no-border"} style={{ fontSize: 24, cursor: "pointer" }} >Tweets </li>
-                        <li onClick={(e:any) => handleClick(1)} className={current == 1 ? "border-bottom" : ""} style={{ fontSize: 24, cursor: "pointer" }}>Replies </li>
-                        <li onClick={(e:any) => handleClick(2)} style={{ fontSize: 24, cursor: "pointer" }}>Media </li>
-                        <li onClick={(e: any) => handleClick(3)} style={{ fontSize: 24, cursor: "pointer" }}> Likes</li>          
+                        <li onClick={(e:any) => handleClick(0)} className={current == 0  ? "border-bottom" : "no-border"} style={{ cursor: "pointer" }} >Tweets </li>
+                        <li onClick={(e:any) => handleClick(1)} className={current == 1 ? "border-bottom" : ""} style={{ cursor: "pointer" }}>Replies </li>
+                        <li onClick={(e:any) => handleClick(2)} className={current == 2 ? "border-bottom" : ""} style={{  cursor: "pointer" }}>Media </li>
+                        <li onClick={(e: any) => handleClick(3)} className={current == 3 ? "border-bottom" : ""} style={{ cursor: "pointer" }}> Likes</li>          
                     </ul>
                 {current == 0 && <div className="singleTweetsContainer" > {allUsersTweets?.posts?.map((allTweets:any) => (<div key={allTweets._id} className="singleTweet" ><Singleusertweets allTweets={allTweets} /> </div>) )} </div> }
                 {current == 1 && <SingleUserReplies/> }

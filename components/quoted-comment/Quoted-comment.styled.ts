@@ -5,16 +5,9 @@ export const QuotedCommentStyle = styled.div`
     background-color: black;
     padding: 20px;
     width: 100%;
-    /* height: 500px; */
-    /* max-width: 700px; */
    border-radius: 30px;
-   /* border: 2px green solid; */
-/* background: linear-gradient(145deg, #f0f0f0, #cacaca);
-box-shadow:  5px 5px 24px #afafaf,
-             -5px -5px 24px #ffffff; */
     .commentModalClose{
         padding: 5px;
-        /* border: 1px solid white; */
         width: 100%;
         margin-bottom: 10px;
     }

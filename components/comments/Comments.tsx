@@ -18,12 +18,9 @@ type Props = {}
 //Parent comment is [id].tsx
 const Comments = (props: any) => {
     
-    const { currentUser , suggestedUsers} = useContext(AppContext)
+    const { currentUser} = useContext(AppContext)
     
-    const timeAgo = Date.now()
-    const commentId = new Date()
-    // console.log(currentUser?.profileDp, "profile Dp");
-    
+    const commentId = new Date()    
     const [emoji, setEmoji] = useState<boolean>(false);
     const [everyOne, setEveryOne] = useState<boolean>(false);
   const [picture, setPicture] = useState<string>("");
@@ -33,15 +30,13 @@ const Comments = (props: any) => {
   const [retweet, setRetweet] = useState<any>([]);
     const [createdAt, setCreatedAt] = useState<any>(commentId)
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
-    // const [tweet, setEmoji] = useState<string>("");
     const [cookies, setCookie] = useCookies(["user"])
     const [comment, setComment] =  useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
   const [noCommentText, setNoCommentText] = useState<boolean>(false)
-    // const { suggestedUsers } = useContext(AppContext)
 
-  
+  //function to generate id
   function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")
   }
@@ -52,7 +47,8 @@ function generateId (len:any) {
   window.crypto.getRandomValues(arr)
   return Array.from(arr, dec2hex).join('')
   }
-    
+   
+  //Function to upload image
      const uploadImage = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -64,6 +60,7 @@ function generateId (len:any) {
       setSuccessfulUpload(true)
   };
 
+  //Function to upload video
   const uploadVideo = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -74,12 +71,6 @@ function generateId (len:any) {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
     };
-    
-    // useEffect(() => {
-    //     axios.get(`http:localhost7000/api/users/${cookies.user}`).then((res) => console.log(res)
-    //     ).catch((err) => console.log(err));
-    // })
-  
     
   const handleComment = async (e: any) => {
     e.preventDefault()
@@ -108,15 +99,6 @@ function generateId (len:any) {
     })
    
   }
-  
-    // console.log(props.tweetProps._id, "single postId");
-    // console.log(props.tweetProps, "single post");
-    // console.log(props.tweetProps.comments, "singletweet comment");
-  // console.log(commentId, "Date");
-  // console.log(comments, "This is comments");
-  // console.log(comments.length, "This is length");
-  // console.log(successfulUpload, "This is comments");
-    
     
     return (
       <CommentStyled>
@@ -142,20 +124,20 @@ function generateId (len:any) {
             <div className="flexIcons">
               <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="35" />}
+                  {<BsCardImage />}
                 </label>
                 <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="35" />}
+                  {<AiOutlineFileGif />}
                 </label>
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" />}
+                    {<BsEmojiSmile cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" />}
+                    {<BsEmojiSmile cursor="pointer" />}
                   </span>
                 )}
                 {emoji ? (
@@ -167,7 +149,7 @@ function generateId (len:any) {
                 )}
                 
                 <span className="locationIcon">
-                  {<IoLocationOutline fontSize="25" />}{" "}
+                  {<IoLocationOutline />}{" "}
                 </span>
               </div>
               {everyOne ? <div className="tweetButton">
@@ -175,7 +157,6 @@ function generateId (len:any) {
                     : <button className="btn-primary" disabled={comments.length == 0}>
                   Tweet
                 </button>}
-                   {/* <button type={successfulUpload || noCommentText ? 'submit' : 'button'}>Tweet</button> */}
               </div> : <div className="tweetButton"><button className="btn-primary" disabled>Tweet </button></div>
               }
             </div>

@@ -200,22 +200,6 @@ function generateId (len:any) {
     setGetCommentId(props.comment?.postId)
     setShowReplies(true)
   }
-
-  // console.log(props.comment.like, "props likes array");
-  // console.log(urlParams, "comment id");
-  
-  // likesArray?.some((e: any) => console.log(e.username == currentUser.username))
-  // console.log(props.comment, "This is the comment array");
-
-  // useEffect(() => {
-  //   props.comment.comment.map((mappedComment: any) => {
-  //     return setReplies(mappedComment);
-  //   })
-  // })
-  // console.log(replies, "all replies");
-
-  console.log(props.comment, "length");
-  
   
 
     return (
@@ -232,19 +216,19 @@ function generateId (len:any) {
               <span className='userAt'>{props.comment?.usersAt}</span>
               <span className='createdAt' >{moment(new Date(props.comment?.createdAt)).fromNow()}</span>
             </div>
-                  <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+                  <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>
             </Link>
-                    <p className='tweet-caption' style={{fontSize: 28, fontWeight: 400}} >{props.comment?.comments} </p>
-            {/* {props.tweet?.picture.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image'> </div> : ""} */}
+                    <p className='tweet-caption' style={{fontWeight: 400}} >{props.comment?.comments} </p>
           {props.comment?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.comment?.picture})` }} className='tweet-image' ></div> : ""}
+          {props.comment?.video?.length > 1 ? <video src={props.comment?.video} controls className='tweet-video' ></video> : ""}
           <div className='tweetOption' >
             <div className='flexIconsAndValues' >
               <p onClick={handleClick} >
                   {
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer", }}
                       />
                   }</p>
                 {commentModal ? <div className='replyModal' ><Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div> : "" }
@@ -256,7 +240,7 @@ function generateId (len:any) {
                   <AiOutlineRetweet
                     onClick={() => setRetweet(false)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
+                    style={{ cursor: "pointer", color: "#00BA7C" }}
                   />
                 }</p> :
               <p>
@@ -264,7 +248,7 @@ function generateId (len:any) {
                     <AiOutlineRetweet
                     onClick={() => setRetweet(true)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
+                    style={{ cursor: "pointer" }}
                   />
                 }</p>}
               <span>{0} </span>
@@ -280,7 +264,6 @@ function generateId (len:any) {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -288,7 +271,7 @@ function generateId (len:any) {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleAddLike}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
@@ -300,7 +283,7 @@ function generateId (len:any) {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer",}}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
@@ -310,7 +293,7 @@ function generateId (len:any) {
                   {
                         <AiOutlineUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer"}}
                       />
                 }</p>
               </div>

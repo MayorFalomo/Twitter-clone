@@ -58,11 +58,11 @@ const quoted = ({ quoted }: any) => {
         <Navbar />
         <div className="centerGrid" >
           <div className="quotedHeader" >
-            <Link href={'/posts/' + quotedProps._id} ><p>{<BsArrowLeft fontSize='40px' cursor='pointer' />}</p></Link>
+            <Link href={'/posts/' + quotedProps._id} ><p>{<BsArrowLeft cursor='pointer' />}</p></Link>
             <h2>Quoted Tweets </h2>
             </div>
           <div>
-            {quotedProps.quoted?.length == 0 ? <h1 className='noQuotesText' > No quoted Tweets  </h1> : quotedProps.quoted?.map((quoted: any) => (
+            {quotedProps.quoted?.length == 0 ? <h1 className='noQuotesText' > No quoted tweets  </h1> : quotedProps.quoted?.map((quoted: any) => (
               <div key={quoted?.newId} >
                 <QuotedReply quoted={quoted} quotedProps={quotedProps} />
                 {/* <Bookmark bookmark={bookmark} removedBookmark={removedBookmark} setRemovedBookmark={setRemovedBookmark} /> */}

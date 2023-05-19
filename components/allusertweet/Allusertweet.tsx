@@ -6,10 +6,10 @@ import { FiUpload } from 'react-icons/fi'
 import { BsFillHeartFill, BsHeart } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart, FaRetweet} from 'react-icons/fa'
 import { AllUserTweets } from './Allusertweet.styled'
-import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import Slug from '../commentmodal/Commentmodal'
 import Link from 'next/link'
+import { AppContext } from '../../helpers'
 
 type Props = {}
 

@@ -10,10 +10,6 @@ import React, {useEffect, useState} from 'react'
 
 type Props = {}
 
-// const router = useRouter()
-
-// console.log(router);
-
 export const getStaticPaths = async () => {
   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users')
   const data = await res.json()
@@ -70,7 +66,6 @@ const Slug = ({ users }: any) => {
       </div>
       <div className='rightGrid' >
         <Search />
-        <Whotofollow/>
         <Trends/>
           </div>
       </div>

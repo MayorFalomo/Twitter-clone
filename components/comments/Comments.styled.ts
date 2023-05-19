@@ -140,14 +140,18 @@ export const CommentStyled = styled.div`
       padding: 10px;
       border-top: 1px solid #575B5F;
       .userProfileDp{
-        width: 90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         background-color: #000;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         border: 1px solid #fff;
+        @media (max-width: 400px ) {
+          width: 50px;
+          height: 50px;
+        }
       }
       .textAreaContainer {
         position: relative;
@@ -159,27 +163,18 @@ export const CommentStyled = styled.div`
         width: 100%;
         height: 180px;
         background-color: transparent;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: none;
-        font-size: 25px;
+       border: none;
         outline: 0;
         color: white;
         white-space: wrap;
         resize: none;
+        font-size: calc(16px + 0.25vw);
       }
       .textArea::placeholder {
-        font-size: 30px;
+          font-size: calc(20px + 0.25vw);
         padding-top: 60px;
       }
       p {
-        /* border: none; */
-        /* outline: none;
-        padding: 7px 15px; */
-        /* position: absolute;
-        left: 0px;
-        top: 10px; */
         background-color: transparent;
         color: #1d9aef;
         font-size: 22px;
@@ -206,6 +201,18 @@ export const CommentStyled = styled.div`
           .locationIcon {
             opacity: 0.5;
             cursor: default;
+          }
+          label{
+            font-size: calc(24px + 0.25vw);
+             @media (max-width: 400px ) {
+                font-size: calc(18px + 0.25vw);        
+        }
+          }
+          span{
+            font-size: calc(24px + 0.25vw);
+              @media (max-width: 400px ) {
+                font-size: calc(18px + 0.25vw);        
+        }
           }
         }
         .pickerEmoji{

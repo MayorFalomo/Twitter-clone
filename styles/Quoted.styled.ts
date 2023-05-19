@@ -7,6 +7,44 @@ export const QuotedStyle = styled.div`
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;
+     @media (max-width: 2070px ) {
+      display: grid;
+      grid-template-columns: 400px auto 500px ; 
+    }
+    @media (max-width: 1830px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+    }
+    @media (max-width: 1700px ) {
+      display: grid;
+      grid-template-columns: 400px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1500px ) {
+      display: grid;
+      grid-template-columns: 100px auto 400px ; 
+      margin: 0 5%;
+    }
+    @media (max-width: 1300px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 10%;
+    } 
+    @media (max-width: 900px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 5%;
+    }
+    @media (max-width: 620px ) {
+      display: grid;
+      grid-template-columns: 70px auto; 
+      margin: 0 auto;
+    }
+    @media (max-width: 600px ) {
+      display: grid;
+      grid-template-columns:0 auto 0; 
+      margin: 0 auto;
+    }
     .centerGrid::-webkit-scrollbar {
           width: 0;
     }
@@ -24,7 +62,7 @@ export const QuotedStyle = styled.div`
         .quotedHeader{
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
             padding: 30px;
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -36,6 +74,9 @@ export const QuotedStyle = styled.div`
             /* padding: 15px; */
             z-index: 999;
             width: 100%;
+        }
+        p{
+            font-size: calc(22px + 0.25vw);
         }
     }
      .leftGrid{

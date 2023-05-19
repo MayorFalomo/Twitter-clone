@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SingleUserStyle = styled.div`
 .profilePageStyled {
+    /* border: 2px red solid; */
 .subProfileStyle{
     /* border: 1px rgb(47, 51, 54) solid; */
     position: relative;
@@ -20,11 +21,20 @@ export const SingleUserStyle = styled.div`
         padding: 15px;
         z-index: 999;
         width: 100%;
-        /* border: 2px red solid; */
+        .arrowLeft{
+            /* border: #1d9aef 2px solid; */
+            font-size: calc(20px + 0.25vw);
+        }
         .profileUsersDetails{
+            h1{
+                font-size: calc(18px + 0.25vw);         
+            }
             p{
-                font-size: 22px;
-                margin-top: 10px;
+                margin-top:5px;
+                font-size: calc(14px + 0.25vw);
+            }
+            a{
+                border: 2px solid red;
             }
     }
     }
@@ -42,8 +52,8 @@ export const SingleUserStyle = styled.div`
         border-bottom: 2px rgb(47, 51, 54) solid;
     }
     .profileDp{
-        height:300px;
-        width: 300px;
+        height:200px;
+        width: 200px;
         border-radius: 50%;
         background-color: black;
         background-position: center;
@@ -53,8 +63,14 @@ export const SingleUserStyle = styled.div`
         object-position: center;
         border: 2px black solid;
         position: absolute;
-        bottom: -150px;
+        bottom: -100px;
         left: 20px;
+        @media (max-width: 450px ) {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            bottom: -70px;
+        }
     }
     
     }
@@ -64,7 +80,8 @@ export const SingleUserStyle = styled.div`
         align-items: flex-end;
         button{
         background-color: transparent;
-        font-size: 26px;
+        /* font-size: 26px; */
+        font-size: calc(18px + 0.25vw);
         padding: 15px 30px;
         margin: 20px 5px;
         color: white;
@@ -75,17 +92,31 @@ export const SingleUserStyle = styled.div`
         }
     }
     .userDetailsContainer{
-        margin-top: 60px;
+        margin-top: 40px;
         padding: 20px;
+        h1{
+            font-size: calc(22px + 0.25vw);
+        }
+        .usersAt{
+            font-size: calc(16px + 0.25vw);
+        }
+        .usersBio{
+            font-size: calc(18px + 0.25vw);
+        }
         .usersExtraInfo{
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
-            font-size: 24px;
+            font-size: calc(16px + 0.25vw);     
             .usersLink:hover{
                 text-decoration: underline;
                 cursor: pointer;
             }
+        }
+        .createdAt{
+            font-size: calc(16px + 0.25vw);
+            margin-top: 5px;
         }
     }
     .tweetsDetails{
@@ -100,6 +131,7 @@ export const SingleUserStyle = styled.div`
         }
         .border-bottom{
             border-bottom: 4px #1d9aef solid;
+            font-size: calc(16px + 0.25vw);
             /* background-color: red; */
         }
     }
@@ -118,6 +150,10 @@ export const SingleUserStyle = styled.div`
         display: flex;
         align-items: center;
         gap: 20px;
+        p{
+            font-size: calc(16px + 0.25vw);
+        }
+        /* font-size: calc(18px + 0.25vw); */
     }
     .profilePageIcons{
         /* border: 2px red solid; */
@@ -129,21 +165,22 @@ export const SingleUserStyle = styled.div`
         span{
             border: 1px rgb(47, 51, 54) solid;
             border-radius: 50% ;
-            padding: 20px;
+            padding: 15px;
+            font-size: calc(20px + 0.25vw);
         };
         .singleUserFollow{
            .btn-follow{
         border-radius: 30px;
         padding:10px 20px;
         width: 120px;
-        font-size: 20px;
+        font-size: 18px;
         cursor: pointer;
     }
     .btn-following{
         border-radius: 30px;
         padding:10px 20px;
         width: 140px;
-        font-size: 20px;
+        font-size: 18px;
         cursor: pointer;
         background-color: transparent;
         color: white;

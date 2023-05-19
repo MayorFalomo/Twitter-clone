@@ -193,13 +193,13 @@ const Id = ({ tweetData }: any) => {
         <div className='centerGridContainer' >
           {<div className={quotedCommentModal ? 'overlay' : "removeOverlay"} > </div>}
           <div className='centerGridHeader' >
-            <Link href='/' ><span>{<BsArrowLeft fontSize='40px' cursor='pointer' />}  </span></Link>
+            <Link href='/' ><span>{<BsArrowLeft cursor='pointer' />}  </span></Link>
               <h1>Thread </h1>
           </div>
           <div className='userDetailsContainer'>
           <div className='subUserDetailsContainer' >
            <Link href={'/posts/' + tweetProps?._id} > <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div></Link>
-            <div>
+            <div className='username' >
             <Link href={'/posts/' + tweetProps?._id} ><h1>{tweetProps?.username} </h1></Link>
               <p>{tweetProps?.usersAt} </p>
               </div>
@@ -211,9 +211,9 @@ const Id = ({ tweetData }: any) => {
           { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={`${tweetProps?.video}`}  controls > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
-              <span  style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
-              <span className="listStyle" style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} >{moment(tweetProps?.createdAt).format("D MMMM, YYYY")} </span>
-              <span className='listStyle'  style={{ color: "#575B5F", fontSize: 24, fontWeight: 600 }} > {views} Views</span>
+              <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
+              <span className="listStyle" style={{ color: "#575B5F", fontWeight: 600 }} >{moment(tweetProps?.createdAt).format("D MMMM, YYYY")} </span>
+              <span className='listStyle'  style={{ color: "#575B5F", fontWeight: 600 }} > {views} Views</span>
             </div>
             <div className='tweetCount' >
               <div className='subTweetCount' >
@@ -230,7 +230,7 @@ const Id = ({ tweetData }: any) => {
                   {
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35}}
+                      style={{ cursor: "pointer",}}
                       />
                 }</p>
               <span>{tweetProps?.comments?.length} </span>
@@ -246,7 +246,6 @@ const Id = ({ tweetData }: any) => {
                         className='likeIcon'
                         style={{
                           color: "#00BA7C",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -254,7 +253,7 @@ const Id = ({ tweetData }: any) => {
                       <AiOutlineRetweet
                         className='likeIcon'
                         onClick={() => setRetweetModal(true)}
-                        style={{ fontSize: 35, cursor: "pointer",   }}
+                        style={{ cursor: "pointer",   }}
                       />
                   )}
                   {retweetModal ? <div className={retweetModal ? 'retweetModal' : "removeModal"} >
@@ -278,7 +277,6 @@ const Id = ({ tweetData }: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -286,7 +284,7 @@ const Id = ({ tweetData }: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
@@ -298,18 +296,18 @@ const Id = ({ tweetData }: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer"}}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
             </div>
-            <div>
+            <div className='flexIconsAndValues' >
               <p>
                   {
                   <AiOutlineUpload
                     onClick={handleBookmark}
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer"}}
                       />
                 }</p>
                 {addedToBookmark ? <p className="bookmarkAdded" >Tweet added to bookmark</p> : ""}
