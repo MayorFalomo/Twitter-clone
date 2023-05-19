@@ -9,7 +9,7 @@ import { AllUserTweets } from './Allusertweet.styled'
 import axios from 'axios'
 import Slug from '../commentmodal/Commentmodal'
 import Link from 'next/link'
-import { AppContext } from '../../helpers/Helpers'
+import { AppContext } from '@/helpers/Helpers'
 
 type Props = {}
 

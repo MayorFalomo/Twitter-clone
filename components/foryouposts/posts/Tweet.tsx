@@ -5,7 +5,6 @@ import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { Tweetstyled } from './Tweet.styled'
 import moment from 'moment';
 import Link from 'next/link';
-import { green } from 'colors';
 import { BsFillHeartFill } from 'react-icons/bs';
 import { AppContext } from '@/helpers/Helpers';
 import axios from 'axios';
