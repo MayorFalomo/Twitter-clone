@@ -58,7 +58,7 @@ const CommentModal = (props:any) => {
     useEffect(() => {
         axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
             .catch((err) => console.log(err))
-    }, [])
+    }, [props.urlParams])
   
    const handleComment = async (e:any) => {
          e.preventDefault();

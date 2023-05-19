@@ -1,12 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import GlobalStyle from "@/GlobalStyle.styled";
 import type { AppProps } from "next/app";
 import { useState, useEffect, useReducer } from "react";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-// import { GetStaticProps } from "next/app";
 import { ChatContext } from "@/helpers/ChatContext";
-import { GetServerSideProps } from "next";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
@@ -61,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
    useEffect(() => {
      getCurrentUser(cookies.user)   
-   }, []);
+   }, [cookies.user]);
   
   // console.log(user, "this is user");
 

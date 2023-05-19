@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Navbar from '@/components/navbar/Navbar'
 import QuotedReply from '@/components/quotedreplies/QuotedReplies'
 import QuotedReplies from '@/components/quotedreplies/QuotedReplies'

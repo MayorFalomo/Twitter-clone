@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChatContext } from '@/helpers/ChatContext'
 import React, { useContext, useEffect, useState } from 'react'
 import { ChatStyled } from './Chat.styled';

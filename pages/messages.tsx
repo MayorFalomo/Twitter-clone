@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Navbar from '@/components/navbar/Navbar'
 import { db } from '../firebase-config'
 import { AppContext } from '@/helpers/Helpers'

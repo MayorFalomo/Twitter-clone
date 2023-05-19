@@ -3,18 +3,13 @@ import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
 import React, {useContext, useState, useEffect} from 'react'
-import { AiOutlineBars, AiOutlineFileGif, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
-import { MdClose } from 'react-icons/md'
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
-import { TbCalendarTime } from 'react-icons/tb'
-import { IoLocationOutline } from 'react-icons/io5'
 import Navbar from '../navbar/Navbar'
-import Replymodal from './Replymodal'
+// import Replymodal from './Replymodal'
 import Showreplies from './Showreplies'
 
 type Props = {}
@@ -231,7 +226,11 @@ function generateId (len:any) {
                       style={{ cursor: "pointer", }}
                       />
                   }</p>
-                {commentModal ? <div className='replyModal' ><Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div> : "" }
+                  {/* {commentModal ? <div className='replyModal' >
+                    <Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div>
+                    :
+                    ""
+                  } */}
                       <span>{props.comment?.comment?.length} </span>
                   </div>
             <div  className='flexIconsAndValues'>

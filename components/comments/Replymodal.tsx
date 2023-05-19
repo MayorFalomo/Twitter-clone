@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
 import React, {useState, useContext, useEffect} from 'react'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'

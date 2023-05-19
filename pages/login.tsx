@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, {useContext, useState} from 'react'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import {auth, provider} from '../firebase-config'
@@ -54,7 +56,7 @@ const login = (props: any) => {
             links: "https://mayowa-falomo.netlify.app"
 
             }
-            axios.post("http://localhost:7000/api/users/login", userInfo).catch((err) => { console.log(err) })
+            axios.post("`https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo).catch((err) => { console.log(err) })
                     getCurrentUser(res.user.uid)
         }).then(() => router.push("/")).then(() =>
             window.location.reload()
@@ -70,6 +72,7 @@ const login = (props: any) => {
         ).catch((err) => setIsAuth(true)
         )
     }
+
     return (
       <LoginContainer>
             <div className='LoginPageContainer' >

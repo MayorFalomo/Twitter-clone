@@ -60,7 +60,7 @@ const Quoted = (props: any) => {
     useEffect(() => {
         axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
             .catch((err) => console.log(err))
-    }, [])
+    }, [props.urlParams])
   
    function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")

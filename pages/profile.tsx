@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Navbar from '@/components/navbar/Navbar'
 import ProfilePage from '@/components/profilepage/ProfilePage'
 import Search from '@/components/search/Search'
 import Trends from '@/components/trends/Trends'
-import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { ProfileStyled } from '@/styles/Profile.styled'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'

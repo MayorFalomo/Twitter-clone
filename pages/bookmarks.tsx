@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Bookmark from '@/components/bookmark/Bookmark'
 import Navbar from '@/components/navbar/Navbar'
 import Search from '@/components/search/Search'
@@ -15,58 +16,13 @@ import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 
 type Props = {}
 
-const bookmarks = (props: Props) => {
+const bookmarks = (props: any) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { bookmarks, currentUser } = useContext(AppContext)
 
-  //   const [postId, setPostId] = useState(props.tweet?._id)
-  // const [retweet, setRetweet] = useState<boolean>(false)
-  // const [likeTweet, SetLikeTweet] = useState<boolean>(false)
-  // const [likesArray, setLikesArray] = useState<any>(props.tweet.likes)
-  // const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
-  // const [commentModal, setCommentModal] = useState<boolean>(false)
-  // const [modalLink, setModalLink] = useState<string>("")
-  // const [urlParams, setUrlParams] = useState<string>(" ")
-  // const [getUsername, setGetUsername] = useState<string>("")
+  
   const [removedBookmark, setRemovedBookmark] = useState<boolean>(false)
-  //  const handleLikeEvent = () => {
-
-  //   if (likesArray.includes(likesArray.username)) {
-  //     console.log("You cannot like this tweet");
-  //   }
-  //   else {
-  //     // const handleAddLike = async () => {
-  //       const likeData = {
-  //         username: currentUser.username,
-  //         profileDp: currentUser?.profilePic,
-  //         usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-  //         postId: props.tweet._id,
-  //       }
-  //       axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
-  //       setLikesArray([...likesArray, likeData])
-  //       setNoOfLikesArray(likesArray?.length + 1);
-  //     }
-  // }
-
-  //  const removeLike = async () => {
-  //   SetLikeTweet(false)
-  //   const likeData = {
-  //     username: currentUser.username,
-  //     profileDp: currentUser?.profilePic,
-  //     usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-  //     postId,
-  //   }
-  //   await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
-  //   let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
-  //   setLikesArray(filtered)
-  //   setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
-  // }
-  // const handleClick = (e: any) => {
-  //    e.preventDefault()
-  //    setUrlParams(props.tweet?._id)
-  //    setCommentModal(true)
-  // };
-
-  console.log(bookmarks);
+  
   
   return (
     <BookmarkStyle>

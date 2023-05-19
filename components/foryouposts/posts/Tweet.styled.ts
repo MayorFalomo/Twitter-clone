@@ -29,6 +29,7 @@ padding: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        /* border: 2px red solid; */
         width: 100%;
         .tweetProfileDetails{
             width: 100%;
@@ -59,6 +60,7 @@ padding: 10px;
                 display: list-item;
                 list-style: disc outside none;
                 color: rgb(113,118,123);
+                margin-left: 20px;
                  @media (max-width: 380px ) {
                 font-size: calc(10px + 0.25vw);
                 list-style: none outside none;

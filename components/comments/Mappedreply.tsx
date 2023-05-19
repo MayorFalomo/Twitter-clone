@@ -12,7 +12,7 @@ const Mappedreply = (props: any) => {
         props.singleTweet.comments.map((single: any) => {
         return setMappedComment(single)
         })
-    }, [])
+    }, [props.singleTweet.comments])
     
     // const mapped = () => {
        

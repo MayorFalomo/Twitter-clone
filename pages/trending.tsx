@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import MappedTrends from '@/components/mappedTrends/MappedTrends'
 import Navbar from '@/components/navbar/Navbar'
 import Search from '@/components/search/Search'

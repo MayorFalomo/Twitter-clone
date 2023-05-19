@@ -5,7 +5,25 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Chatstyled } from './Chats.styled'
 import { ChatContext } from '@/helpers/ChatContext'
 
-type Props = {}
+interface Chat {
+  date: any
+  userInfo: {
+    uid: string;
+    username: string;
+      profilePicture: string;
+    date: {
+      seconds: number;
+      nanoseconds: number;
+    };
+  };
+  lastMessage: {
+    texts: string;
+    date: {
+      seconds: number;
+      nanoseconds: number;
+    };
+  };
+}
 
 //Parent component is messages.tsx page
 const Chats = (props: any) => {
@@ -13,13 +31,13 @@ const Chats = (props: any) => {
     const { currentUser } = useContext(AppContext)
     const { dispatch } = useContext(ChatContext)    
 
-    const [chats, setChats] = useState<any>([])
+    const [chats, setChats] = useState<Chat[]>([])
     const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
         const getChats = () => {
             const unsub = onSnapshot(doc(db, "userChats", currentUser._id), (doc) => {
-            setChats(doc.data())
+            setChats(doc.data() as Chat[])
         })
         return () => {
             unsub();
@@ -50,12 +68,15 @@ setIsMobile(false)
 }
 }
     
+    console.log(chats, "unmapped");
+
+   Object.entries(chats).map((chat:any) => console.log(chat?.lastMessage , "This is chat"))
     
     
     return (
       <Chatstyled>
       <div className='chatsContainer' >
-          {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date )?.map((chat: any) => (
+          {Object?.entries(chats)?.sort((a, b) => b[1].date - a[1].date )?.map((chat: any) => (
               <div className="allUsersChat" style={{cursor: "pointer", }} key={chat[0]} onClick={() =>  handleSelect(chat[1].userInfo)} >
                   <div style={{backgroundImage: `url${chat[1].userInfo.profilePicture} `}} className='profilePic' > </div>
                   <div className='chatHeadingCon' >
