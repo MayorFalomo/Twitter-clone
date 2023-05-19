@@ -19,19 +19,11 @@ type Props = {};
 
 const Navbar = (props: any) => {
 
-  const {currentUser, twitterBlue, setTwitterBlue} = useContext(AppContext)
+  const { currentUser, twitterBlue, setTwitterBlue } = useContext(AppContext)
+  
   const [cookies, setCookies] = useCookies(["user"])
   const [tweeterUser, setTweeterUser] = useState<any>([])
 
-  //  useEffect(() => {
-  //   axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
-  //   )
-  // }, [cookies.user]);  
-  // console.log(cookies.user);
-  // console.log(currentUser);
-  
-
-  
   
   return (
     <NavContainer>

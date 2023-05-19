@@ -12,6 +12,11 @@ export const CommentStyled = styled.div`
     width: 70px;
     height: 70px;
     border-radius:50%;
+    /* border: 2px red solid; */
+    @media (max-width: 450px ) {
+      width: 50px;
+      height: 50px;
+    }
 }
 .subPostsContainer{
     width: 100%;
@@ -27,14 +32,14 @@ export const CommentStyled = styled.div`
             gap: 5px;
             /* border: 2px green solid; */
             .userName{
-                font-size: 28px;
+              font-size: calc(16px + 0.25vw);
             }
             .userAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 color: rgb(113,118,123);
             }
             .createdAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);
                 display: list-item;
                 list-style: disc outside none;
                 margin-left: 25px;
@@ -67,7 +72,7 @@ export const CommentStyled = styled.div`
         }
     }
     .tweet-caption{
-        font-size: 22px;
+        font-size: calc(16px + 0.25vw);
         margin: 20px auto;
     }
     .tweet-image{
@@ -91,7 +96,7 @@ export const CommentStyled = styled.div`
         object-position: center;
         border-radius: 10px;
     }
-    .tweetOptions{
+    .tweetOption{
         display: flex;
         align-items: flex-start;
         justify-content: space-between;

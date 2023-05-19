@@ -34,17 +34,12 @@ export const CommentPageStyle = styled.div`
       .tweetProfileDetails{
         .userName{
           font-size: calc(16px + 0.25vw) !important;
-          /* border: #1d9aef 2px solid; */
         }
         .usersAt{
-          /* border: 2px blue solid; */
           font-size: calc(12px + 0.25vw) !important;
         }
         .createdAt{
           font-size: calc(12px + 0.25vw) !important;
-          /* @media (max-width:550px) {
-            display: none;
-          }  */
         }
       }
       .dottedIcon{
@@ -53,8 +48,6 @@ export const CommentPageStyle = styled.div`
           } 
       }
       .tweet-image{
-        /* width: 100%;
-        height: 400px; */
          @media (max-width:450px) {
             height: 300px;
           } 
@@ -71,10 +64,7 @@ export const CommentPageStyle = styled.div`
             align-items: center;
             justify-content: space-between;
             margin-top: 20px;
-            /* border: #1d9aef 2px solid; */
-            .flexIconsAndValues{
-                /* border: 2px red solid; */
-               
+            .flexIconsAndValues{               
             }
               .replyModal{
             position: fixed;
@@ -92,7 +82,6 @@ export const CommentPageStyle = styled.div`
                 padding: 20px;
                 .commentModalClose{
                     padding: 10px;
-                    /* border-bottom: 1px solid white; */
                     width: 100%;
                     margin-bottom: 20px;
                 }
@@ -100,7 +89,6 @@ export const CommentPageStyle = styled.div`
                     display: flex;
                     align-items: flex-start;
                     gap: 10px;
-                    /* border: 2px red solid; */
         .border{
             border-left: 1px solid #575B5F;
             height: 70px;
@@ -126,7 +114,6 @@ export const CommentPageStyle = styled.div`
         }
     }
     .replyDetails{
-        /* border: 2px green solid; */
         width: 90%;
         h1{
           span{
@@ -165,7 +152,7 @@ export const CommentPageStyle = styled.div`
                 line-height: 35px;
             }
             textarea::placeholder {
-                font-size: 28px;
+              font-size: calc(24px + 0.25vw);
                 font-weight: 500;
                 color: #575B5F;
             }

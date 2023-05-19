@@ -125,7 +125,7 @@ const Singleuser = (props: any) => {
                     {currentUser?.username === props.user?.username ? <div className='editProfileBtn'><button> Your profile </button></div> :
                         <div className='profilePageIcons' >
                         {/* <span>{<BiDotsHorizontalRounded />} </span> */}
-                        <span>{<RxEnvelopeClosed />} </span>
+                        <Link href='/messages' ><span>{<RxEnvelopeClosed />} </span></Link>
                         {/* <span>{<MdOutlineNotificationAdd />} </span> */}
                             <div className='singleUserFollow' >
                                 {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?

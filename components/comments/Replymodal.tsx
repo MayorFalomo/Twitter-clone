@@ -103,7 +103,6 @@ function generateId (len:any) {
   // console.log(props.urlParams, "urlParams");
   
   return (
-
      <div className='commentModalContainer' >
           <div className='commentModalClose' >
             {<MdClose onClick={() => props.setCommentModal(false)} fontSize={40} cursor='pointer' />} </div>

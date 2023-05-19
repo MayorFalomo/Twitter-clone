@@ -4,7 +4,7 @@ export const HomeContainer = styled.div`
   border: 1px rgb(47, 51, 54) solid;
     .mainHomePage {
     display: grid;
-    grid-template-columns: 400px auto 600px;
+    grid-template-columns: 400px auto 550px;
       overflow: hidden;
     height: 100vh;
     margin: 0 10%;
@@ -76,7 +76,9 @@ export const HomeContainer = styled.div`
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 9999999;
     padding: 20px 0;
+    border-bottom: rgb(47, 51, 54) 1px solid;
     .homeHeading {
     }
     h1 {

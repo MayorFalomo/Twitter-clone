@@ -9,7 +9,7 @@ import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
 import Navbar from '../navbar/Navbar'
-// import Replymodal from './Replymodal'
+import Replymodal from './Replymodal'
 import Showreplies from './Showreplies'
 
 type Props = {}
@@ -43,16 +43,11 @@ const Commentpage = (props: any) => {
   const [like, setLike] = useState<any>([]);
   const [retweetReply, setRetweetReply] = useState<any>([])
   const [singleTweets, setSingleTweets] = useState<any>([])
-    const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
+  const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [successComment, setSuccessComment] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<boolean>(false);
   const [showReplies, setShowReplies] = useState<boolean>(false);
-  // const [replyArray, setReplyArray] = useState<any>(props.comment.comment)
   const [replies, setReplies] = useState<any>(props.comment.comment)
-  // const [postId, setPostId] = useState<number>(props.tweetProps?._id)
-
-
-  // console.log(props.comment.likes, "likes array");
 
   function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")
@@ -85,7 +80,8 @@ function generateId (len:any) {
       .then((res) => setVideo(res.data.url))
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
-    };
+  };
+  
    //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
@@ -196,6 +192,8 @@ function generateId (len:any) {
     setShowReplies(true)
   }
   
+  console.log(props.comment?.length);
+  
 
     return (
       <CommentPageStyle>
@@ -226,11 +224,11 @@ function generateId (len:any) {
                       style={{ cursor: "pointer", }}
                       />
                   }</p>
-                  {/* {commentModal ? <div className='replyModal' >
+                  {commentModal ? <div className='replyModal' >
                     <Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div>
                     :
                     ""
-                  } */}
+                  }
                       <span>{props.comment?.comment?.length} </span>
                   </div>
             <div  className='flexIconsAndValues'>
@@ -287,7 +285,7 @@ function generateId (len:any) {
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
             </div>
-            <div>
+            <div className='flexIconsAndValues' >
               <p>
                   {
                         <AiOutlineUpload

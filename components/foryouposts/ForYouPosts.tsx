@@ -131,23 +131,23 @@ const ForYouPosts = (props: any) => {
             <div className="flexIcons">
               <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="25" />}
+                  {<BsCardImage />}
                 </label>
                 <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="25" />}
+                  {<AiOutlineFileGif />}
                 </label>
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 <span>
-                  {<AiOutlineBars fontSize="25" cursor="pointer" />}{" "}
+                  {<AiOutlineBars cursor="pointer" />}{" "}
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" />}
+                    {<BsEmojiSmileUpsideDown cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" />}
+                    {<BsEmojiSmile  cursor="pointer" />}
                   </span>
                 )}
                 {emoji ? (
@@ -160,10 +160,10 @@ const ForYouPosts = (props: any) => {
                 )}
                 
                 <span>
-                  {<TbCalendarTime fontSize="25" cursor="pointer" />}{" "}
+                  {<TbCalendarTime cursor="pointer" />}{" "}
                 </span>
                 <span className="locationIcon">
-                  {<IoLocationOutline fontSize="25" />}{" "}
+                  {<IoLocationOutline />}{" "}
                 </span>
               </div>
               {everyOne ? <div className="tweetButton">

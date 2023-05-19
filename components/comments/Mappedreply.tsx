@@ -14,15 +14,7 @@ const Mappedreply = (props: any) => {
         })
     }, [props.singleTweet.comments])
     
-    // const mapped = () => {
-       
-    // }
-    // mapped()
 
-    // console.log(mappedComment, "Mapped Comment");
-    // console.log(mappedComment?.newId, "Mapped Comment");
-    
-    
   return (
       <div>
         <h1>{mappedComment?.username} <span>{mappedComment?.usersAt} </span> <span>{moment(mappedComment?.createdAt).format("MMMM D")} </span>  </h1>

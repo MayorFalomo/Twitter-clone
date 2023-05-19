@@ -6,6 +6,9 @@ export const NavContainer = styled.div`
     @media(max-width: 600px) {
       display: none;
     }
+    .navContainer::-webkit-scrollbar{
+      width: 0;
+    }
   .navContainer {
     display: flex;
     flex-direction: column;
@@ -13,6 +16,7 @@ export const NavContainer = styled.div`
     justify-content: space-between;
     gap: 50px;
     height: 100vh;
+    overflow: auto;
     /* border-right: 1px rgb(47, 51, 54) solid; */
     .subNavContainer {
       /* border: 2px blue solid; */
@@ -20,7 +24,7 @@ export const NavContainer = styled.div`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 30px;
+      gap: 20px;
       width: 100%;
       .logoContainer {
         display: flex;
@@ -36,7 +40,7 @@ export const NavContainer = styled.div`
           padding: 10px 10px;
           border-radius: 50%;
           margin-top: 20px;
-          font-size: 35px;
+          font-size: calc(28px + 0.25vw);
         }
         .twitterLogo:hover {
           background-color: rgb(47, 51, 54);
@@ -68,7 +72,8 @@ export const NavContainer = styled.div`
             width: 90%;
           }
        span{
-        font-size: 28px;
+        /* font-size: 28px; */
+          font-size: calc(22px + 0.25vw);
         @media (max-width: 1500px ) {
           display: none;
         }
@@ -76,7 +81,7 @@ export const NavContainer = styled.div`
         
       }
        .navIcon{
-          font-size:35px;
+          font-size: calc(28px + 0.25vw);
           /* border: 2px blue solid; */
         }
          .navLinkItems:hover {
