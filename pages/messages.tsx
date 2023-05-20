@@ -12,6 +12,7 @@ import { FaSearch } from 'react-icons/fa'
 import Chats from '@/components/chats/Chats'
 import Chat from '@/components/chat/Chat'
 import { ChatContext } from '@/helpers/ChatContext'
+import MobileNav from '@/components/mobilenav/MobileNav'
 
 type Props = {}
 
@@ -133,6 +134,7 @@ const messages = (props: any) => {
                 </div>
             </div>}
         </div>
+          <div className="mobileNav" > <MobileNav/></div>
       </div>
     </MessagesStyle>
   )

@@ -30,7 +30,6 @@ const Chat = (props: any) => {
     const [picture, setPicture] = useState<any>(null);
     const [video, setVideo] = useState<any>(null);
     const [emoji, setEmoji] = useState<boolean>(false);
-    const [successfulUpload, setSuccessfulUpload] = useState<any>("")
     const [userObject, setUserObject] = useState<any>()
 
     useEffect(() => {
@@ -49,12 +48,7 @@ const Chat = (props: any) => {
                 console.log(err);
             
             }
-        }
-
-
-
-    // console.log(userObject, "userObject");
-    
+        }    
     
     useEffect(() => {
         const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
@@ -129,26 +123,23 @@ const Chat = (props: any) => {
     }
 
     setTexts("");
-    setPicture(null);
+        setPicture(null);
+        setVideo(null)
     }
 
-
+//Function to make the enter key send message too
      const handleKey = (e:any) => {
     e.code === "Enter" && handleSubmit() 
     }
     
+    //Function to check the innerwidth and decide what component to show
     const handleResize = () => {
-if (window.innerWidth < 1000) {
-props.setIsMobile(false)
-} else {
-props.setIsMobile(false)
-}
-}
-    // console.log(messages, "messages");
-    // console.log(data, "data");
-    console.log(currentUser, "lets see");
-    
-
+        if (window.innerWidth < 1000) {
+            props.setIsMobile(false)
+        } else {
+            props.setIsMobile(false)
+        }
+    }
     
 
     return (

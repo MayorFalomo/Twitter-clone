@@ -12,6 +12,7 @@ import { GetStaticProps } from "next";
 import { AppContext } from "@/helpers/Helpers";
 import { useRouter } from "next/router";
 import { BsTwitter } from "react-icons/bs";
+import MobileNav from "@/components/mobilenav/MobileNav";
 
 
 
@@ -34,6 +35,7 @@ export default function Home(props: any) {
   const { currentUser } = useContext(AppContext)
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
+  const [mobileNavCon, setMobileNav] = useState<boolean>(false)
 
   const handleClick = (param: boolean) => {
     setCurrent(param);
@@ -97,6 +99,7 @@ export default function Home(props: any) {
               <Search />
               <Trends />
             </div>
+            <div className="mobileNav" > <MobileNav/></div>
           </div>
         </HomeContainer>
       );

@@ -9,6 +9,7 @@ import { BsFillHeartFill } from 'react-icons/bs';
 import { AppContext } from '@/helpers/Helpers';
 import axios from 'axios';
 import CommentModal from '@/components/commentmodal/Commentmodal';
+import { RxHeart } from 'react-icons/rx';
 type Props = {}
 
 //parent component is tweets
@@ -111,6 +112,7 @@ const Tweet = (props: any) => {
     }, 3000)
   }
 
+  //Function to get the id of a tweet so it can be sent as a prop and open a modal 
   const handleClick = (e: any) => {
      e.preventDefault()
      setUrlParams(props.tweet?._id)
@@ -124,7 +126,7 @@ const Tweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
-console.log(props.tweet);
+// console.log(props.tweet);
 
   return (
       <Tweetstyled>
@@ -192,7 +194,7 @@ console.log(props.tweet);
                         }}
                       />
                     ) : (
-                      <FaRegHeart
+                      <RxHeart
                         className='likeIcon'
                         onClick={handleAddLike}
                         style={{ cursor: "pointer" }}

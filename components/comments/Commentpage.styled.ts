@@ -34,13 +34,13 @@ export const CommentPageStyle = styled.div`
         width: 100%;
       .tweetProfileDetails{
         .userName{
-          font-size: calc(16px + 0.25vw) !important;
+          font-size: calc(14px + 0.25vw) !important;
         }
         .usersAt{
-          font-size: calc(12px + 0.25vw) !important;
+          font-size: calc(10px + 0.25vw) !important;
         }
         .createdAt{
-          font-size: calc(12px + 0.25vw) !important;
+          font-size: calc(10px + 0.25vw) !important;
         }
       }
       .dottedIcon{
@@ -49,12 +49,12 @@ export const CommentPageStyle = styled.div`
           }
       }
       .tweet-caption{
-          font-size: calc(16px + 0.25vw) !important;
+          font-size: calc(14px + 0.25vw) !important;
           /* border: #1d9aef 2px solid !important; */
       }
       .tweet-image{
          @media (max-width:450px) {
-            height: 300px;
+            /* height: 300px; */
           } 
       }
       .tweetVideo{

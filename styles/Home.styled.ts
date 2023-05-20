@@ -8,6 +8,7 @@ export const HomeContainer = styled.div`
       overflow: hidden;
     height: 100vh;
     margin: 0 10%;
+    position: relative;
     @media (max-width: 2070px ) {
       display: grid;
       grid-template-columns: 400px auto 500px ; 
@@ -57,6 +58,20 @@ export const HomeContainer = styled.div`
    main::-webkit-scrollbar {
           width: 0;
         }
+    .mobileNav{
+    display: none;
+  }
+  @media (max-width: 600px ) {
+    .mobileNav{
+      display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+  }
+  }
   }
   .trendsContainer::-webkit-scrollbar {
     width: 0;
@@ -164,6 +179,8 @@ export const HomeContainer = styled.div`
       color: #575b5f;
     }
   }
+  
+
   
 }
 `;

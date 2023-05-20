@@ -19,13 +19,8 @@ const CommentModal = (props:any) => {
 
   const {currentUser} = useContext(AppContext)
   const [emoji, setEmoji] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
-  const [tweet, setTweet] = useState<string>("");
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
-  const [gif, setGif] = useState<string>("");
-  const [user, setUser] = useState<string>("");
-  const [cookies, setCookie] = useCookies(["user"])
   const [singleTweets, setSingleTweets] = useState<any>([])
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
@@ -80,11 +75,6 @@ const CommentModal = (props:any) => {
         //      ...singleTweets.comments, commentData,
         //  ]})
      }
-
-  // console.log(postId, "postId");
-  // console.log(singleTweets?._id, "tweet ID");
-  // console.log(createdAt, "comments");
-  // console.log(currentUser, "current User");
     
     return (
         <CommentModalStyle>

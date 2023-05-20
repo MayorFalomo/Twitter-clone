@@ -113,7 +113,7 @@ export const SingleTweetStyle = styled.div`
     }
     .picture {
         width: 95%;
-        height: 50%;
+        height: 80%;
         margin: 5px 10px;
         border-radius: 30px;
         background-color: #000;
@@ -122,7 +122,6 @@ export const SingleTweetStyle = styled.div`
         background-position: center;
         object-position: center;
         object-fit: cover;
-        /* border: 2px red solid; */
     }
     .tweetText{
         /* font-size: 30px; */

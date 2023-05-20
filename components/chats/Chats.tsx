@@ -56,22 +56,7 @@ const Chats = (props: any) => {
         } else {
             setIsMobile(false)
         }
-    }
-
-
-//choose the screen size
-const handleResize = () => {
-if (window.innerWidth < 1000) {
-props.setIsMobile(false)
-} else {
-setIsMobile(false)
-}
-}
-    
-    console.log(chats, "unmapped");
-
-   Object.entries(chats).map((chat:any) => console.log(chat?.lastMessage , "This is chat"))
-    
+    }    
     
     return (
       <Chatstyled>

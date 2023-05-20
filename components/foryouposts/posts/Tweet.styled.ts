@@ -115,7 +115,7 @@ padding: 10px;
         border: 1px rgb(113, 118, 123) solid;
         border-radius: 15px;
         position: relative;
-        z-index: 1;
+        z-index: -1;
     }
     .tweetOptions{
         display: flex;

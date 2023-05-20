@@ -29,6 +29,20 @@ export const MessagesStyle = styled.div`
             grid-template-columns: 0 auto 0;
             margin: 0 0;
         }
+           .mobileNav{
+    display: none;
+  }
+  @media (max-width: 600px ) {
+    .mobileNav{
+      display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+  }
+  }
     .leftGrid {
     overflow: auto;
     height: 100vh;
