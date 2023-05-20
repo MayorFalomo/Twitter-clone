@@ -16,7 +16,7 @@ import Link from 'next/link'
 
 type Props = {}
 
-const login = (props: any) => {
+const Login = (props: any) => {
 
     const router = useRouter()
 
@@ -93,4 +93,4 @@ const login = (props: any) => {
   )
 }
 
-export default login
+export default Login

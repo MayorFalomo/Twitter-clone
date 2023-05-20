@@ -7,6 +7,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { ChatContext } from "@/helpers/ChatContext";
 import { Router, useRouter } from "next/router";
+import Login from "./login";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
@@ -123,8 +124,9 @@ export default function App({ Component, pageProps }: AppProps) {
   // }
   
    if (pageProps.protected && !currentUser) {
-    router.push('/login')
-  } else{
+     router.push('/login')
+     return <Login/>
+  } 
 
     return (
       <AppContext.Provider value={{
@@ -149,5 +151,3 @@ export default function App({ Component, pageProps }: AppProps) {
       </AppContext.Provider>
     );
   }
-
-}
