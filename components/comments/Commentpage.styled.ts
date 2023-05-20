@@ -23,12 +23,13 @@ export const CommentPageStyle = styled.div`
       display: flex;
       align-items: flex-start;
       gap: 10px;
+      /* border: 2px yellow solid !important; */
        .profilePicture{
             @media (max-width:600px) {
             width: 50px;
             height: 50px;
           } 
-          }
+        }
     .tweetDetailsCon{
         width: 100%;
       .tweetProfileDetails{
@@ -45,7 +46,11 @@ export const CommentPageStyle = styled.div`
       .dottedIcon{
           @media (max-width:670px) {
             display: none;
-          } 
+          }
+      }
+      .tweet-caption{
+          font-size: calc(16px + 0.25vw) !important;
+          /* border: #1d9aef 2px solid !important; */
       }
       .tweet-image{
          @media (max-width:450px) {
@@ -64,7 +69,13 @@ export const CommentPageStyle = styled.div`
             align-items: center;
             justify-content: space-between;
             margin-top: 20px;
-            .flexIconsAndValues{               
+            border: none !important;
+            .flexIconsAndValues{  
+              .likeIcon{
+                @media (max-width: 450px ) {
+                  font-size: calc(18px + 0.25vw) !important;             
+                }
+              }            
             }
               .replyModal{
             position: fixed;
@@ -113,112 +124,7 @@ export const CommentPageStyle = styled.div`
             object-position: center;
         }
     }
-    .replyDetails{
-        width: 90%;
-        h1{
-          span{
-            font-size: 28px;
-            color: #575B5F ;
-          }
-        }
-        p{
-            font-size: 26px;
-        }
-        .tweet{
-            font-size: 26px;
-            margin-top: 20px;
-            color:  #575B5F;
-            span{
-                color: #1d9aef;
-                font-size: 28px;
-            }
-        }
-        form{
-            /* border: 1px solid blue; */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            textarea {
-                width: 100%;
-                height: 200px;
-                background: #000;
-                border: none;
-                outline: none;
-                margin-top: 20px;
-                font-size: 24px;
-                color: #fff;
-                resize: none;
-                white-space: wrap;
-                line-height: 35px;
-            }
-            textarea::placeholder {
-              font-size: calc(24px + 0.25vw);
-                font-weight: 500;
-                color: #575B5F;
-            }
-            .flexIcon{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                /* border: 3px green solid; */
-                  .tweetIcons {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          gap: 30px;
-          /* border: 2px red solid; */
-          .locationIcon {
-            opacity: 0.5;
-            cursor: default;
-          }
-        }
-        .pickerEmoji{
-          position: absolute;
-          bottom: -450px;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-        .tweetButton{
-          padding: 10px 25px;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          font-size: 18px;
-          background-color: #1d9aef;
-          color: #fff;
-          border-radius: 25px;
-          /* border-bottom-left-radius: 25px;
-          border-top-right-radius: 25px;
-          border-bottom-right-radius: 25px; */
-        }
-        .btn-primary{
-          padding: 10px 25px;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          font-size: 18px;
-          background-color: #1d9aef;
-          color: #fff;
-          border-radius: 25px;
-          opacity: 0.4;
-        }
       }
-    }
-    /* option {
-      border: none;
-      outline: 0;
-    } */
-  }
-            }
-            .successMessage{
-              /* border: 2px red solid; */
-              margin-top: 10px;
-              color: green;
-              font-size: 26px;
-              text-align: center;
-            }
         }
                 }
         }
@@ -234,11 +140,6 @@ export const CommentPageStyle = styled.div`
         }
        
     }
-     .subPostContainer{
-      border: solid 2px red;
-      /* display: flex;
-      align-items: center; */
-     }
        
     }
     .subReplyCon{

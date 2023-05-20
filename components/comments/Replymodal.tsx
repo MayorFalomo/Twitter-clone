@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
 import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
@@ -34,8 +34,6 @@ function generateId (len:any) {
   const [video, setVideo] = useState<string>("");
   const [like, setLike] = useState<any>([])
   const [retweet, setRetweet] = useState<any>([])
-  const [gif, setGif] = useState<string>("");
-  const [user, setUser] = useState<string>("");
   const [singleTweets, setSingleTweets] = useState<any>()
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false);
@@ -68,7 +66,7 @@ function generateId (len:any) {
     };
     
   useEffect(() => {
-    axios.get(`http://localhost:7000/api/tweets/${props.getCommentId}/${props.urlParams}`)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api//tweets/${props.getCommentId}/${props.urlParams}`)
       .then((res) => setSingleTweets(res.data.comments))
       .catch((err) => console.log(err))
   }, [])
@@ -90,7 +88,7 @@ function generateId (len:any) {
           like,
           retweet,
          }
-         await axios.put(`http://localhost:7000/api/tweets/${props.getCommentId}/${props.urlParams}/replies-comments`, commentData).catch((err) => console.log(err))
+         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.getCommentId}/${props.urlParams}/replies-comments`, commentData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
         //  setSingleTweets({
@@ -99,9 +97,7 @@ function generateId (len:any) {
         //  ]})
   }
   
-  // console.log(comments, "reply tweet comment");
-  // console.log(props.urlParams, "urlParams");
-  
+
   return (
      <div className='commentModalContainer' >
           <div className='commentModalClose' >
@@ -124,23 +120,23 @@ function generateId (len:any) {
                 <div className="flexIcon">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="35" color='1D9BF0' />}
+                  {<BsCardImage color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="35" color='1D9BF0' />}
+                  {<AiOutlineFileGif color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 <span>
-                  {<AiOutlineBars fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                  {<AiOutlineBars cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmileUpsideDown cursor="pointer" color='1D9BF0' />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmile cursor="pointer" color='1D9BF0' />}
                   </span>
                 )}
                 {emoji ? (

@@ -122,6 +122,7 @@ export const SingleTweetStyle = styled.div`
         background-position: center;
         object-position: center;
         object-fit: cover;
+        /* border: 2px red solid; */
     }
     .tweetText{
         /* font-size: 30px; */

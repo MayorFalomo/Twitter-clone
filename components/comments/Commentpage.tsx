@@ -212,7 +212,7 @@ function generateId (len:any) {
                   <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>
             </Link>
-                    <p className='tweet-caption' style={{fontWeight: 400}} >{props.comment?.comments} </p>
+                  <p className='tweet-caption' style={{fontWeight: 400}} >{props.comment?.comments} </p>
           {props.comment?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.comment?.picture})` }} className='tweet-image' ></div> : ""}
           {props.comment?.video?.length > 1 ? <video src={props.comment?.video} controls className='tweet-video' ></video> : ""}
           <div className='tweetOption' >

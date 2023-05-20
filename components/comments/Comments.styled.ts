@@ -76,17 +76,7 @@ export const CommentStyled = styled.div`
         margin: 20px auto;
     }
     .tweet-image{
-        /* height: 500px;
-        width: 500px; */
-        /* border: 3px blue solid; */
-        width: 100%;
-        height: 700px;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 10px;
-    }
-    .tweet-image{
-        border: 3px rgb(113,118,123);
+        border: 1px rgb(113,118,123);
         width: 100%;
         height: 700px;
         background-position: center;

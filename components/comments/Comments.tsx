@@ -95,9 +95,8 @@ function generateId (len:any) {
     props.setTweetProps({
       ...props.tweetProps, comments: [
         ...props.tweetProps.comments, commentData,
-      ]
+      ].reverse()
     })
-   
   }
     
     return (

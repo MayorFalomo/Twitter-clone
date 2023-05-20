@@ -166,7 +166,7 @@ const Id = ({ tweetData }: any) => {
     setTimeout(() => {
       setAddedToBookmark(false)
     }, 3000)
-    setBookmarks([...bookmarks, bookmarkData])    
+    setBookmarks([...bookmarks, bookmarkData].reverse())    
   }
 
   const handleClick = (e: any) => {

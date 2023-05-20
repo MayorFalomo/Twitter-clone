@@ -4,7 +4,7 @@ export const HomeContainer = styled.div`
   border: 1px rgb(47, 51, 54) solid;
     .mainHomePage {
     display: grid;
-    grid-template-columns: 400px auto 550px;
+    grid-template-columns: 400px auto 600px;
       overflow: hidden;
     height: 100vh;
     margin: 0 10%;
@@ -137,11 +137,10 @@ export const HomeContainer = styled.div`
       padding-top: 10px;
       text-align: center;
       cursor: pointer;
-      /* @media (max-width: 420px ) {
-        a{
-          width: 40%;
-        }
-      } */
+      @media (max-width: 420px ) {
+          /* width: 40%; */
+          /* padding-top: 0px; */
+      }
     }
     a:hover {
       background-color: rgb(47, 51, 54);
@@ -152,11 +151,10 @@ export const HomeContainer = styled.div`
       margin: 0 auto;
       padding: 10px 20px;
       list-style: none;
-      /* font-size: 24px; */
       font-size: calc(18px + 0.25vw);
        @media (max-width: 440px ) {
         width: 100%;
-        padding: 10px 0;
+        margin: 10px auto;
       }
     }
     .linkActive li {
