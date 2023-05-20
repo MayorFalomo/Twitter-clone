@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Navbar from '@/components/navbar/Navbar'
 import ProfilePage from '@/components/profilepage/ProfilePage'
 import Search from '@/components/search/Search'
 import Trends from '@/components/trends/Trends'
+import { AppContext } from '@/helpers/Helpers'
 import { ProfileStyled } from '@/styles/Profile.styled'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useContext} from 'react'
 import { useCookies } from 'react-cookie'
 
 type Props = {}
 
 const profile = (props: Props) => {
 
+  const {currentUser} = useContext(AppContext)
   const [cookies, setCookie] = useCookies(["user"])
   const [userProfile, setUserProfile] = useState<any>([])
   const [allUsersTweets, setAllUsersTweets] = useState<any>([])
@@ -19,17 +22,17 @@ const profile = (props: Props) => {
   // console.log(cookies.user, "id");
   
 
-     useEffect(() => {
-    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
-    )
-     }, [cookies.user]);  
+    //  useEffect(() => {
+    // axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`).then((res) => setUserProfile(res.data )).catch((err) => console.log(err)
+    // )
+    //  }, [cookies.user]);  
     
   
-   useEffect(() => {
-     axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${userProfile?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
-  }, [userProfile?.username])
+  //  useEffect(() => {
+  //    axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${currentUser?.username}`).then((res) => setAllUsersTweets(res.data.posts)).catch((err) => console.log(err))
+  // }, [currentUser?.username])
   
-  // console.log(allUsersTweets);
+  // console.log(currentUser);
   
 
 
@@ -38,7 +41,7 @@ const profile = (props: Props) => {
       <div className='profileStyleContainer' >
         <Navbar />
         <div className='centerGridContainer' >
-          <ProfilePage userProfile={userProfile} setUserProfile={setUserProfile} allUsersTweets={allUsersTweets} editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
+          <ProfilePage editProfileModal={editProfileModal} setEditProfileModal={setEditProfileModal}/>
           </div>
           <div className='rightGridContainer' >
           <Search />

@@ -1,14 +1,19 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useCookies } from 'react-cookie'
 import { BiCamera } from 'react-icons/bi'
 import { MdClose } from 'react-icons/md'
 import { TfiAngleRight } from 'react-icons/tfi'
 import { EditProfileStyle } from './EditProfile.styled'
+import { AppContext } from '@/helpers/Helpers'
+import { BsCheck2 } from 'react-icons/bs'
 
 type Props = {}
 
 const EditProfileModal = (props: any) => {
+
+    const { currentUser, setCurrentUser } = useContext(AppContext)
+    
     const [activeInput, setActiveInput] = useState<boolean>(false)
     const [currentActiveInput, setCurrentActiveInput] = useState<any>()
     const [emptyInput, setEmptyInput] = useState<boolean>(false)
@@ -23,6 +28,7 @@ const EditProfileModal = (props: any) => {
     const [currentMonth, setCurrentMonth] = useState<string>("April")
     const [currentYear, setCurrentYear] = useState<string>("2023")
     const [editDateActive, setEditDateActive] = useState<boolean>(false)
+    const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
 
     const maxNameLength = 50;
     const maxBioLength = 160;
@@ -36,8 +42,12 @@ const EditProfileModal = (props: any) => {
     await axios
       .post("https://api.cloudinary.com/v1_1/dsghy4siv/image/upload", formData)
       .then((res) => setProfilePic(res.data.url))
-      .catch((err) => console.log(err));
-    props.setUserProfile({ ...props.userProfile , ...formData})
+             .catch((err) => console.log(err));
+         setUploadSuccess(true);
+         setTimeout(() => {
+            setUploadSuccess(true)
+        }, 3000)
+    // setCurrentUser({ ...currentUser?.profilePic , ...profilePic})
     };
 
     const uploadCoverImage = async (files: any) => {
@@ -47,32 +57,36 @@ const EditProfileModal = (props: any) => {
     await axios
     .post("https://api.cloudinary.com/v1_1/dsghy4siv/image/upload", formData)
     .then((res) => setCoverPhoto(res.data.url))
-    .catch((err) => console.log(err));
-    props.setUserProfile({ ...props.userProfile , ...formData})
+            .catch((err) => console.log(err));
+        setUploadSuccess(true);
+        setTimeout(() => {
+            setUploadSuccess(false)
+        }, 3000)
+    // setCurrentUser({ ...currentUser?.coverPhoto , coverPhoto})
     };
     
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         // setBirthday()
         const updatedUser = {
-            userId: props.userProfile?._id,
-            username: username.length > 1 ? username : props.userProfile?.username,
-            bio: bio.length > 1 ? bio : props.userProfile?.bio,
-            location: location.length > 1 ? location : props.userProfile?.location,
-            links: links.length > 1 ? links : props.userProfile?.links,
-            profilePic: profilePic.length > 1 ? profilePic : props.userProfile?.ProfilePic,
-            coverPhoto: coverPhoto.length > 1 ? coverPhoto : props.userProfile?.coverPhoto,
+            userId: currentUser?._id,
+            username: username.length > 1 ? username : currentUser?.username,
+            bio: bio.length > 1 ? bio : currentUser?.bio,
+            location: location.length > 1 ? location : currentUser?.location,
+            links: links.length > 1 ? links : currentUser?.links,
+            profilePic: profilePic.length > 1 ? profilePic : currentUser?.ProfilePic,
+            coverPhoto: coverPhoto.length > 1 ? coverPhoto : currentUser?.coverPhoto,
             birthday: `${currentMonth} ${currentDay} ${currentYear}`,
         };
         try {
-            await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/${props.userProfile?._id}`, updatedUser)
+            await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`, updatedUser)
             .catch((err) => console.log(err))
             setUsername("")
             setBio("")
             setLocation("")
             setLinks("")
             setEditDateActive(false)
-            props.setUserProfile({ ...props.userProfile, ...updatedUser })
+            setCurrentUser({ ...currentUser, updatedUser })
             props.setEditProfileModal(false)
             } catch (err) {
             console.log(err);
@@ -100,22 +114,23 @@ const EditProfileModal = (props: any) => {
           <form onSubmit={handleSubmit} >
               <div className="formNavHeader" >
               <div className='flexNavHeader' >
-              <span onClick={() => props.setEditProfileModal(false)} >{<MdClose fontSize={35} cursor= 'pointer' />} </span>
+              <span onClick={() => props.setEditProfileModal(false)} >{<MdClose cursor= 'pointer' />} </span>
                   <h1>Edit profile </h1>
-                  </div>
+                        </div>
+                        {uploadSuccess ? <p>Image has been uploaded {<BsCheck2/>} </p> : "" }
                   <button className="submitBtn"type="submit" >Save </button>
               </div>
               <div className='editProfileImg' >
-                    <div style={{ backgroundImage: `url(${props.userProfile?.coverPhoto})` }} className='coverBg' >
+                    <div style={{ backgroundImage: `url(${currentUser?.coverPhoto})` }} className='coverBg' >
                         <div className='uploadCoverPhoto' >
-                                <label htmlFor='fileCover' className='camera' style={{ borderRadius: '50%', padding: 20}} >{<BiCamera fontSize={35} cursor='pointer' />} </label>
+                                <label htmlFor='fileCover' className='camera' style={{ borderRadius: '50%', padding: 20}} >{<BiCamera fontSize={30} cursor='pointer' />} </label>
                                 <input  onChange={(e:any) => uploadCoverImage(e.target.files)} type='file' id='fileCover' style={{ display: 'none' }} />
-                                <label htmlFor='fileRemove' onClick={() => setProfilePic("")} className='camera' style={{ borderRadius: '50%', padding: 20}} >{<MdClose fontSize={35} cursor='pointer' />} </label>
+                                <label htmlFor='fileRemove' onClick={() => setProfilePic("")} className='camera' style={{ borderRadius: '50%', padding: 20}} >{<MdClose fontSize={30} cursor='pointer' />} </label>
                                 <input onChange={(e:any) => uploadCoverImage("")} id='fileRemove' style={{ display: 'none' }} />
                         </div>
                   </div>
-                  <div style={{ backgroundImage: `url(${props.userProfile?.profilePic})` }} className='profilePicBg' >
-                      <label htmlFor='fileDp' className='camera' style={{ borderRadius: '50%', padding: 20}}>{<BiCamera fontSize={35} cursor='pointer' />} </label>
+                  <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='profilePicBg' >
+                      <label htmlFor='fileDp' className='camera' style={{ borderRadius: '50%', padding: 20}}>{<BiCamera fontSize={30} cursor='pointer' />} </label>
                       <input onChange={(e:any) => uploadImage(e.target.files)} type='file' id='fileDp' style={{ display: 'none'}}/>
                   </div>
               </div>
@@ -125,7 +140,7 @@ const EditProfileModal = (props: any) => {
                                 <label>Name </label>
                                 {currentActiveInput == 0 ? <span> {username.length} / { maxNameLength} </span> : ""}
                                 </div>
-                      <input onChange={(e:any) => setUsername(e.target.value) } value={username} onClick={() => setCurrentActiveInput(0)} maxLength={maxNameLength} type='text' placeholder={props.userProfile?.username}/>
+                      <input onChange={(e:any) => setUsername(e.target.value) } value={username} onClick={() => setCurrentActiveInput(0)} maxLength={maxNameLength} type='text' placeholder={currentUser?.username}/>
                         </div>
                         
                         <div className={currentActiveInput == 1 ? "activeInput" : "labelBorder"} >
@@ -133,21 +148,21 @@ const EditProfileModal = (props: any) => {
                                 <label>Bio </label>
                                 {currentActiveInput == 1 ? <span>  {bio.length} / { maxBioLength} </span> : ""}
                                 </div>
-                      <input onChange={(e: any) => setBio(e.target.value)} value={bio} onClick={() => setCurrentActiveInput(1)} maxLength={maxBioLength} type='text' placeholder={props.userProfile?.bio} />
+                      <input onChange={(e: any) => setBio(e.target.value)} value={bio} onClick={() => setCurrentActiveInput(1)} maxLength={maxBioLength} type='text' placeholder={currentUser?.bio} />
                       </div>
                         <div className={currentActiveInput == 2 ? "activeInput" : "labelBorder"} >
                             <div className='flexLabelBorder' >
                                 <label>Location </label>
                                 {currentActiveInput == 2 ? <span>  {location.length} / { maxLocationLength} </span> : ""}
                                 </div>
-                            <input onChange={(e: any) => setLocation(e.target.value)} value={location} onClick={() => setCurrentActiveInput(2)} maxLength={maxLocationLength} type='text' placeholder={props.userProfile.location} />
+                            <input onChange={(e: any) => setLocation(e.target.value)} value={location} onClick={() => setCurrentActiveInput(2)} maxLength={maxLocationLength} type='text' placeholder={currentUser.location} />
                       </div>
                         <div className={currentActiveInput == 3 ? "activeInput" : "labelBorder"} >
                             <div className='flexLabelBorder' >
                                 <label>Website </label>
                                 {currentActiveInput == 3 ? <span>  {links.length} / { maxWebsiteLength} </span> : ""}
                                 </div>
-                            <input onChange={(e: any) => setLinks(e.target.value)} value={links} onClick={() => setCurrentActiveInput(3)} maxLength={maxWebsiteLength} type='text' placeholder={props.userProfile?.links} />
+                            <input onChange={(e: any) => setLinks(e.target.value)} value={links} onClick={() => setCurrentActiveInput(3)} maxLength={maxWebsiteLength} type='text' placeholder={currentUser?.links} />
                         </div>
                         
                     </div>
@@ -230,7 +245,7 @@ const EditProfileModal = (props: any) => {
                             <option value='2005' >2005 </option>    
                             </select>
                             </div>
-                        </div> : <h1>{props.userProfile.birthday}</h1>}
+                        </div> : <h1>{currentUser.birthday}</h1>}
                         </div>
                     <ul>
                         <h1>Switch to professional </h1>

@@ -138,7 +138,7 @@ const Singleusertweets = (props: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", color: '#71767B' }}
                       />
                     )}
                   </p>

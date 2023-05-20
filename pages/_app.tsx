@@ -113,7 +113,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // if (!user) {
   //   router.push('/register')
   // } else {
-  console.log(currentUser);
+  // console.log(currentUser);
   
   // if (currentUser) {
   //   return console.log(true);
@@ -125,7 +125,7 @@ export default function App({ Component, pageProps }: AppProps) {
   
    if (pageProps.protected && !currentUser) {
      router.push('/login')
-     return <Login/>
+     return null
   } 
 
     return (

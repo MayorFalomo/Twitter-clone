@@ -5,7 +5,7 @@ import { AiOutlineLink } from 'react-icons/ai'
 import { BiCalendar, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsArrowLeft, BsBalloon } from 'react-icons/bs'
 import { CiLocationOn } from 'react-icons/ci';
-import { MdOutlineNotificationAdd } from 'react-icons/md'
+import { MdOutlineNotificationAdd, MdOutlineVerified } from 'react-icons/md'
 import { RxEnvelopeClosed } from 'react-icons/rx'
 import { SingleUserStyle } from './Singleuser.styled'
 import SingleUserReplies from './SingleUserReplies'
@@ -100,7 +100,7 @@ const Singleuser = (props: any) => {
     setCopied(!copied);
     };
 
-    // console.log(noOfFollowing);
+    console.log(noOfFollowersArray);
     
     
     return (
@@ -110,7 +110,8 @@ const Singleuser = (props: any) => {
           <div className='subProfileFlex'>
             <Link href='/' className='arrowLeft' >{<BsArrowLeft cursor='pointer' />} </Link>
             <div className='profileUsersDetails'>
-            <h1>{props.user?.username} </h1>
+                <h1>{props.user?.username} {noOfFollowersArray >= 5 ? <MdOutlineVerified color='#1d9aef' /> : ""} </h1>
+              {/* <h2 style={{color:'#1d9aef'}}  >{noOfFollowersArray >= 5 ? <MdOutlineVerified /> : "" }</h2> */}
               <p>{allUsersTweets.posts?.length} Tweets</p>
               </div>
           </div>
@@ -136,7 +137,8 @@ const Singleuser = (props: any) => {
                    {props.editProfileModal ? <EditProfileModal/> : "" }
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
                     <div className='userDetailsContainer' >
-                    <h1 style={{ fontWeight: 800}} >{props.user?.username} </h1>
+              <h1 style={{ fontWeight: 800 }} >{props.user?.username}  {noOfFollowersArray >= 5 ? <MdOutlineVerified color='#1d9aef' /> : ""} </h1>
+                              {/* <span style={{color:'#1d9aef'}}  >{noOfFollowersArray >= 5 ? <MdOutlineVerified color='#1d9aef' /> : "" }</span> */}
                     <p style={{color: "#575B5F", fontWeight: 600}} className='usersAt' >{props.user?.usersAt} </p>
                     <div className='usersBio' style={{margin: '30px auto', fontWeight: 600}}>
                         <p style={{color: '#BABBBC'}} >{props.user?.bio} </p>

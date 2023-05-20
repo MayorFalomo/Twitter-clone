@@ -7,7 +7,7 @@ const UsersReplies = (props: Props) => {
   return (
     <UserRepliesStyle>
     <div className="userRepliesContainer" >
-      UsersReplies
+     This page is in progress
       </div>
       </UserRepliesStyle>
   )

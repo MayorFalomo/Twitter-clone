@@ -9,6 +9,8 @@ export const SingleUserTweetsStyle = styled.div`
     gap: 10px;
     padding: 20px; 	
     width: 100%;
+     /* @media (max-width: 360px) {
+        } */
     /* border: 3px green solid; */
     .userTweetPic{
         background-color: black ;
@@ -16,7 +18,7 @@ export const SingleUserTweetsStyle = styled.div`
         background-repeat: no-repeat;
         background-size: cover;
         object-fit: cover;
-        border: 1px white solid;
+        border-top: 1px white solid;
         height: 70px;
         width: 70px;
         border-radius: 50%;

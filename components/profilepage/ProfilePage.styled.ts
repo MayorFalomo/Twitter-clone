@@ -44,6 +44,9 @@ export const ProfileStyled = styled.div`
         height: 350px;
         width: 100%;
         border-bottom: 2px rgb(47, 51, 54) solid;
+        @media (max-width: 400px ) {
+            height: 200px;
+        }
     }
     .profileDp{
         height:300px;
@@ -69,6 +72,7 @@ export const ProfileStyled = styled.div`
             width: 150px;
             height: 150px;
             position: absolute;
+            left: 5px;
             bottom: -50px;
         }
     }
@@ -92,9 +96,9 @@ export const ProfileStyled = styled.div`
     }
     .userDetailsContainer{
         margin-top: 60px;
-        padding: 20px;
+        padding: 10px;
           @media (max-width: 600px ) {
-          margin-top: 10px;
+          margin-top: 0px;
         }
         h1{
         font-size: calc(20px + 0.25vw);
@@ -115,8 +119,6 @@ export const ProfileStyled = styled.div`
             gap: 10px;
             flex-wrap: wrap;
             font-size: calc(14px + 0.25vw);
-            /* border: #1d9aef 2px solid; */
-            /* font-size: 24px; */
             .usersLink:hover{
                 text-decoration: underline;
                 cursor: pointer;
@@ -154,7 +156,7 @@ export const ProfileStyled = styled.div`
         width: 600px;
         height: 80vh;
         border-radius: 30px;
-        /* border: 2px red solid; */
+       
     }
     .followContainer{
         display: flex;
@@ -188,9 +190,12 @@ export const ProfileStyled = styled.div`
         /* border: 2px red solid; */
         .profileUsersDetails{
             p{
-                font-size: 22px;
-                margin-top: 10px;
+            font-size: calc(18px + 0.25vw);
+            margin-top: 10px;
             }
+    }
+    .arraowBack{
+        font-size: calc(24px + 0.25vw);
     }
     }
     .profilePhotoContainers{
@@ -268,20 +273,24 @@ export const ProfileStyled = styled.div`
     }
     .editProfileModal{
         position: fixed;
-        top: 50%;
+        top: 40%;
         left: 50%;
         z-index: 9999;
         transform: translate(-50%, -50%);
-        width: 40%;
-        height: 90vh;
+        width: 700px;
+        height: 60vh;
         border-radius: 30px;
-        /* position: relative; */
-        /* border: 2px red solid; */
         overflow: auto;
-        /* overflow-x: hidden; 	Hide horizontal scroll */
+       @media (max-width:1300px) {
+        width: 70% ;
+       }
+       @media (max-width:700px) {
+        width: 100% ;
+        height: 100vh;
+        bottom: 0;
+        transform: translate(-50%, -40%);
+       }
     }
-     /* .editProfileModal::-webkit-scrollbar {
-        } */
     .removeModal{
         display: none;
     }

@@ -198,9 +198,9 @@ const Id = ({ tweetData }: any) => {
           </div>
           <div className='userDetailsContainer'>
           <div className='subUserDetailsContainer' >
-           <Link href={'/posts/' + tweetProps?._id} > <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div></Link>
+           <Link href={'/users/' + tweetProps?.username} > <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div></Link>
             <div className='username' >
-            <Link href={'/posts/' + tweetProps?._id} ><h1>{tweetProps?.username} </h1></Link>
+            <Link href={'/users/' + tweetProps?.username} ><h1>{tweetProps?.username} </h1></Link>
               <p>{tweetProps?.usersAt} </p>
               </div>
             </div>

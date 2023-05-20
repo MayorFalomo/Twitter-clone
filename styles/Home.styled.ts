@@ -66,8 +66,8 @@ export const HomeContainer = styled.div`
       overflow: auto;
        height: 100vh;
         width: 100%;
-        /* border: 6px green solid; */
        position: relative;
+
 
   .homeHeader {
      background-color: rgba(0, 0, 0, 0.5); 
@@ -76,7 +76,7 @@ export const HomeContainer = styled.div`
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 9999999;
+    z-index: 99999999;
     padding: 20px 0;
     border-bottom: rgb(47, 51, 54) 1px solid;
     .homeHeading {
@@ -101,7 +101,7 @@ export const HomeContainer = styled.div`
       display:flex;
       justify-content: center;
       position: relative;
-      z-index: 999;
+      z-index: 999999;
       .profilePicHeader{
         width: 40px;
         height: 40px;
@@ -118,7 +118,7 @@ export const HomeContainer = styled.div`
         z-index: 9;
       }
       .loginLogo{
-        z-index: 99;
+        z-index: 9999;
       }
     }
     }

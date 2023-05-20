@@ -10,6 +10,7 @@ import EditProfileModal from '../editprofilemodal/EditProfileModal'
 import UsersReplies from '../usersreplies/UsersReplies'
 import Userstweet from '../userstweets/Userstweet'
 import { ProfileStyled } from './ProfilePage.styled'
+import { MdOutlineVerified} from 'react-icons/md'
 
 type Props = {}
 
@@ -23,43 +24,39 @@ const ProfilePage = (props: any) => {
     setCurrent(param);
     };
     
-    // console.log(following, "number")
-
-    // console.log(props.userProfile);
-    
-    
-    
     return (
       <ProfileStyled>
             <div className={props.editProfileModal ?  "opaque": 'profilePageStyled'} >
           <div className='subProfileStyle' >
           <div className='subProfileFlex' >
-            <Link href='/' style={{listStyle: 'none'}} >{<BsArrowLeft fontSize='40px' cursor='pointer' />} </Link>
+            <Link href='/' style={{listStyle: 'none'}} className='arrowBack' >{<BsArrowLeft cursor='pointer' />} </Link>
             <div className='profileUsersDetails' >
-            <h1>{props.userProfile?.username} </h1>
-              <p>{props.allUsersTweets.posts?.length} Tweets</p>
+                <h1>{currentUser?.username} </h1>
+                <span style={{color:'#1d9aef'}}  >{currentUser?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span>
+              {/* <p>{props.allUsersTweets.posts?.length} Tweets</p> */}
               </div>
           </div>
           <div className='profilePhotoContainers' >
-          <div style={{ backgroundImage: `url(${props.userProfile?.coverPhoto})` }} className='backDropPhoto' >  </div>
-            <div style={{ backgroundImage: `url(${props.userProfile?.profilePic})` }} className='profileDp'></div>
+          <div style={{ backgroundImage: `url(${currentUser?.coverPhoto})` }} className='backDropPhoto' >  </div>
+            <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='profileDp'></div>
           </div>
                     <div onClick={() => props.setEditProfileModal(!false)} className='editProfileBtn'><button> Edit Profile </button></div>
                     <div className={props.editProfileModal ? "overlay" : "hideOverlay"} > </div>
                     <div className={props.editProfileModal ? 'editProfileModal' : "removeModal"} >{props.editProfileModal ? <EditProfileModal userProfile={props.userProfile} setUserProfile={props.setUserProfile} setEditProfileModal={props.setEditProfileModal} />: ""}</div>
                     <div className='userDetailsContainer' >
-                    <h1 style={{ fontWeight: 800}} >{props.userProfile?.username} </h1>
-                    <p style={{color: "#575B5F", fontWeight: 600}} >{props.userProfile?.usersAt} </p>
-                    <div className='usersBio' style={{margin: '30px auto', fontWeight: 600}}>
-                        <p>{props.userProfile?.bio} </p>
+              <h1 style={{ fontWeight: 800 }} >{currentUser?.username} </h1>
+                      <span style={{color:'#1d9aef'}}  >{currentUser?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span>
+                    <p style={{color: "#575B5F", fontWeight: 500}} >{currentUser?.usersAt} </p>
+                    <div className='usersBio' style={{margin: '30px auto', fontWeight: 500}}>
+                        <p>{currentUser?.bio} </p>
                         </div>
                         <div className='usersExtraInfoContainer' style={{margin: '30px auto',}}>
                     <div className='usersExtraInfo' >
-                                <span style={{ color: "#575B5F" }}>{<CiLocationOn />} {props.userProfile?.location} </span>
-                                <span style={{ color: "#575B5F" }}  className='usersLink' > {<AiOutlineLink />} {props.userProfile?.links} </span>
-                        <span style={{color: "#575B5F", fontWeight: 600}}>{<BsBalloon/>} Born {props.userProfile?.birthday} </span><br />
+                                <span style={{ color: "#575B5F" }}>{<CiLocationOn />} {currentUser?.location} </span>
+                                <span style={{ color: "#575B5F" }}  className='usersLink' > {<AiOutlineLink />} {currentUser?.links} </span>
+                        <span style={{color: "#575B5F", fontWeight: 600}}>{<BsBalloon/>} Born {currentUser?.birthday} </span><br />
                             </div>
-                                <p style={{ color: "#575B5F",fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(props.userProfile?.createdAt).format("MMMM YYYY")} </p>
+                                <p style={{ color: "#575B5F",fontWeight: 600 }} >{<BiCalendar/>} Joined {moment(currentUser?.createdAt).format("MMMM YYYY")} </p>
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
                             <span>{currentUser?.following?.length} Following  </span>

@@ -30,9 +30,6 @@ const ForYouPosts = (props: any) => {
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
   const [gif, setGif] = useState<string>("");
-  const [user, setUser] = useState<string>("");
-  const [cookies, setCookie] = useCookies(["user"])
-  const [tweeterUser, setTweeterUser] = useState<any>([])
   const [likes, setLikes] = useState<any>([])
   const [retweet, setRetweet] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
@@ -75,10 +72,17 @@ const ForYouPosts = (props: any) => {
   // }, [cookies.user]);  
   // console.log(tweets, "This is tweets");
   
-  const presentDate = Date.now()
+  //Gives the current Date
+  console.log(Date.now());
   
-  const [newDates, setNewDates ]= useState( moment(new Date(presentDate)).fromNow())
-
+  const presentDate = new Date()
+  console.log(presentDate, "present Date");
+  
+  
+  const [newDates, setNewDates] = useState(moment(new Date(presentDate)).fromNow())
+  console.log(newDates, "New Dates");
+  
+  //Function to post Tweets
   const postTweet = async (e: any) => {
     e.preventDefault();
 
@@ -93,6 +97,7 @@ const ForYouPosts = (props: any) => {
       newDates,
       likes,
       retweet,
+      followers: currentUser.followers?.length,
     }
     try {
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);

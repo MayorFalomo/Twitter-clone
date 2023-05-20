@@ -66,9 +66,9 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
   }
 
   //Handle Remove Like 
@@ -80,12 +80,13 @@ const Tweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
-    setLikesArray(filtered)
-    setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+    setLikesArray(filtered)   	//filtered is a array with all the items that are not the likeData.username, this is the
+    setNoOfLikesArray(likesArray?.length - 1)
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
   }
 
+  //Add a Bookmark function
   const handleBookmark = () => {
     const bookmarkData = {
       profileDp: props.tweet?.profileDp,
@@ -101,15 +102,13 @@ const Tweet = (props: any) => {
       userDetail: currentUser?._id,
       saved: true,
     }
+      setBookmarks([...bookmarks, bookmarkData])    
     axios.post(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/addBookmark`, bookmarkData).catch((err) => console.log(err)
     )
     props.setAddedToBookmark(true)
     setTimeout(() => {
       props.setAddedToBookmark(false)
     }, 3000)
-    setBookmarks([...bookmarks, bookmarkData])
-    console.log("added to Bookmark");
-    
   }
 
   const handleClick = (e: any) => {
@@ -121,12 +120,11 @@ const Tweet = (props: any) => {
   const handleLink = (e: any) => {
     e.preventDefault()
     setGetUsername(props.tweet?.username)
-    //  setCommentModal(true)
   };
-  // console.log(props.tweet?.likes, "likes");
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
+console.log(props.tweet);
 
   return (
       <Tweetstyled>
@@ -135,7 +133,7 @@ const Tweet = (props: any) => {
                  <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >
                  <div className='tweetProfileDetails' >
-              <Link href={'/users/' + props.tweet?.username} className='userName' > {props.tweet?.username} </Link>
+              <Link href={'/users/' + props.tweet?.username} className='userName' > {props.tweet?.username}  </Link>
               <span className='userAt'>{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? <span className='createdAt' >{moment(new Date(props.tweet?.createdAt)).fromNow()}</span> : <span className='createdAt' >a few seconds ago </span> }
             </div>
@@ -165,7 +163,6 @@ const Tweet = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "#00BA7C",
-                          // fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -191,7 +188,6 @@ const Tweet = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          // fontSize: 35,
                           cursor: "pointer",
                         }}
                       />

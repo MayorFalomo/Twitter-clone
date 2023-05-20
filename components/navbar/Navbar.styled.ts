@@ -159,11 +159,14 @@ export const NavContainer = styled.div`
         } */
     .bgImg {
       border: 2px rgb(47, 51, 54) solid;
-      height: 70px;
-      width: 70px;
+      height: 70px;width: 70px;
       border-radius: 50%;
       margin-right: 10px;
-     
+      background-color: black;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
     }
     .navProfile {
       display: flex;

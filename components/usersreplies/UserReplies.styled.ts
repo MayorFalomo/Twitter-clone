@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const UserRepliesStyle = styled.div`
 .userRepliesContainer{
-    /* border: 2px red solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    font-size: calc(16px + 0.25vw);
 }
 `

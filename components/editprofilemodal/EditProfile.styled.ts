@@ -21,9 +21,19 @@ form{
             align-items: center;
             gap: 30px;
         }
+        span{
+        font-size: calc(24px + 0.25vw);
+        }
+        h1{
+        font-size: calc(20px + 0.25vw);
+        }
+        p{
+            color: #1d9aef;
+        }
         .submitBtn{
             padding: 10px 25px;
-            font-size: 24px;
+            font-size: calc(20px + 0.25vw);
+            /* font-size: 24px; */
             font-weight: 400 ;
             border-radius: 20px;
             border: none;
@@ -100,7 +110,8 @@ form{
                 justify-content: space-between;
             }
             label{
-                font-size: 24px;
+                font-size: calc(18px + 0.25vw);
+                /* font-size: 24px; */
                 font-weight: 500;
                 color: #575B5F;
             }
@@ -111,12 +122,11 @@ form{
                 border-radius: 8px;
                 padding: 10px 5px;
                 color: white;
-                font-size: 24px;
                 font-weight:600;
             }
             input::placeholder{
                 color:  #575B5F;
-                font-size: 24px;
+                font-size: calc(18px + 0.25vw);
                 font-weight:400
             }
         }
@@ -133,12 +143,14 @@ form{
                 justify-content: space-between;
             }
             label{
-                font-size: 24px;
+                /* font-size: 24px; */
+                font-size: calc(18px + 0.25vw);
                 font-weight: 500;
                 color: #575B5F;
             }
             span{
-                font-size: 24px;
+                font-size: calc(18px + 0.25vw);
+                /* font-size: 24px; */
                 color: #575B5F;
             }
             input{
@@ -152,7 +164,7 @@ form{
             }
             input::placeholder{
                 color:  #575B5F;
-                font-size: 24px;
+                font-size: calc(18px + 0.25vw);
                 font-weight:400;
             }
             }
@@ -162,7 +174,7 @@ form{
             display: flex;
             align-items: center;
             gap: 35px;
-            font-size: 20px;
+            font-size: calc(16px + 0.25vw);
             font-weight: 500;
             /* color:  #575B5F; */
             color: rgb(113,118,123);
@@ -171,25 +183,23 @@ form{
         display: list-item;
         list-style: disc outside none;
         color:  #1d9aef;
-        font-size: 24px;
+        /* font-size: 24px; */
+                font-size: calc(18px + 0.25vw);
         cursor: pointer;
         }
         }h1{
-         font-size: 30px;
+        font-size: calc(22px + 0.25vw);
          padding: 5px 20px;
         }
     .editBirth{
         margin: 5px 20px;
-        /* border: 3px red solid; */
         display: flex;
         align-items: center;
         gap: 20px;
-    
         .editMonth{
             border: 1px rgb(113,118,123) solid;
             width: 250px;
             border-radius: 10px;
-            /* padding: 2px 10px; */
             p{
                padding: 5px;
                margin-left: 6px;
@@ -198,7 +208,7 @@ form{
             padding: 10px 1px ;
             background-color: #000;
             color: #fff;
-            font-size: 22px;
+            font-size: calc(18px + 0.25vw);
             border: none;
             outline: none;
             width: 90%;
@@ -217,7 +227,7 @@ form{
             padding: 10px 1px ;
             background-color: #000;
             color: #fff;
-            font-size: 22px;
+            font-size: calc(20px + 0.25vw);
             border: none;
             outline: none;
             width: 90%;

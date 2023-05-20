@@ -1,31 +1,26 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import Allusertweet from '../allusertweet/Allusertweet'
 import { UserTweetStyle } from './Userstweet.styled'
+import { AppContext } from '@/helpers/Helpers'
 
 type Props = {}
 
-const Userstweet = (props: any) => {
-  const [cookies, setCookie] = useCookies(["user"])
-  const [userObject, setUserObject] = useState<any>([])
-  const [allUsersTweets, setAllUsersTweets] = useState<any>([])
-  
-  useEffect(() => {
-    axios.get(`http://localhost:7000/api/users/${cookies.user}`).then((res) => setUserObject(res.data)).catch((err) => console.log(err)
-    )
-  }, [cookies.user])
+//Parent component is ProfilePage.tsx
 
+const Userstweet = (props: any) => {
+
+  const { currentUser } = useContext(AppContext)
   
+  const [allUsersTweets, setAllUsersTweets] = useState<any>([])
+
+  //Function to get the currentUsers tweet
   useEffect(() => {
-     axios.get(`http://localhost:7000/api/tweets/get-tweet/${userObject?.username}`)
+     axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${currentUser?.username}`)
       .then((res) => setAllUsersTweets(res.data))
       .catch((err) => console.log(err))
-  }, [userObject?.username])  //Only run once, not on every render. 描述如何在组件
-
-  // console.log(userObject, "userObject");
-  
-  // console.log(allUsersTweets?.posts, "All the posts");
+  }, [currentUser?.username])
   
 
 

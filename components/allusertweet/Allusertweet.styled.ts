@@ -6,8 +6,8 @@ export const AllUserTweets = styled.div`
 .AllUserTweet{
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 20px; 	
+    gap: 10px;
+    padding: 5px; 	
     width: 100%;
     /* border: 3px green solid; */
     .userTweetPic{
@@ -17,9 +17,14 @@ export const AllUserTweets = styled.div`
         background-size: cover;
         object-fit: cover;
         border: 1px white solid;
-        height: 90px;
-        width: 90px;
+        height: 70px;
+        width: 70px;
         border-radius: 50%;
+        @media (max-width: 400px ) {
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+        }
     }
     .flexUserInfoContainer{
         /* border: 2px blue solid; */
@@ -27,7 +32,8 @@ export const AllUserTweets = styled.div`
         p{
             font-size: 25px;
             font-weight: 400;
-            margin: 20px auto;
+            margin: 10px auto;
+            /* border: 2px solid red; */
         }
         .flexUserInfo{
             display: flex;
@@ -35,18 +41,22 @@ export const AllUserTweets = styled.div`
             gap: 10px;
             .usersUsername{
                 /* color: #575B5F; */
-                font-size: 26px;
-                font-weight: 500;
+                font-size: calc(16px + 0.25vw);
             }
             .createdAt{
                  display: list-item;
                 list-style: disc outside none;
-                margin-left: 25px;
+                margin-left: 15px;
+                font-size: calc(14px + 0.25vw);
             }
             .usersUsername:hover{
                 text-decoration: underline;
                 cursor:pointer;
             }
+        }
+        .tweetText{
+            font-size: calc(16px + 0.25vw);
+            line-height: 30px;
         }
         .tweet-image{
              background-color: black ;
@@ -75,8 +85,8 @@ export const AllUserTweets = styled.div`
                 align-items: center;
                 gap: 10px;
                 span{
-                    font-size: 22px;
-                    font-weight: 700;
+                    font-size: calc(14px + 0.25vw);
+                    font-weight: 400;
                     color: rgb(47, 51, 54)
                 }
                 .activeModal{
@@ -96,7 +106,7 @@ export const AllUserTweets = styled.div`
         }
         .showThread{
             color:  #1d9aef;
-            font-size: 22px;
+            font-size: calc(16px + 0.25vw);
         }
     }
 }
