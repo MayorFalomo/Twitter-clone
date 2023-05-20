@@ -27,7 +27,7 @@ export const MessagesStyle = styled.div`
         }
       @media (max-width: 600px ) {
             grid-template-columns: 0 auto 0;
-            margin: 0 5%;
+            margin: 0 0;
         }
       /* @media (max-width: 640px ) {
             grid-template-columns: 0 auto 0;
