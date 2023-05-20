@@ -6,40 +6,19 @@ import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { ChatContext } from "@/helpers/ChatContext";
+import { Router, useRouter } from "next/router";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
 type Post = {
 
 }
-
-// export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  
-  // try {
-  //   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
-  //   const posts: Post[] = await res.json()
-  //   return {
-  //     props: {
-  //       posts: posts?.reverse(),
-      
-  //     },
-  //   };
-  // } catch (error) {
-  //   console.log(error);
-
-  //   return {
-  //     props: {
-  //       posts: [],
-      
-  //     },
-  //   };
-  // }
-// }
   
 export default function App({ Component, pageProps }: AppProps) {
 
-  // const {posts} = pageProps
-  const [isAuth, setIsAuth] = useState(true)
+  const router = useRouter();
+
+  const [isAuth, setIsAuth] = useState<boolean>(true)
   const [user, setUser] = useState<any>(null)
   const [tweets, setTweets] = useState<any>([])
   const [suggestedUsers, setSuggestedUsers] = useState<any>([])
@@ -58,9 +37,9 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   };
 
-   useEffect(() => {
-     getCurrentUser(cookies.user)   
-   }, [cookies.user]);
+  useEffect(() => {
+    getCurrentUser(cookies.user)
+  }, [cookies.user]);
   
   // console.log(user, "this is user");
 
@@ -70,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
   //   setTweets([...posts].reverse())
   // }, [posts])
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
       setTweets(res.data?.reverse());
@@ -79,17 +58,17 @@ export default function App({ Component, pageProps }: AppProps) {
     fetchPosts();
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
-    }, [])
+  }, [])
   
-    useEffect(() => {
+  useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
       .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
-    }, [])
+  }, [])
   
-  const getUserBookmarks = async (param:any) => {
+  const getUserBookmarks = async (param: any) => {
     const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/get-bookmark/${param}`)
     setBookmarks(res.data)
   }
@@ -118,8 +97,8 @@ export default function App({ Component, pageProps }: AppProps) {
         return {
           user: action.payload,
           chatId: currentUser._id > action.payload.uid ?
-      currentUser._id + action.payload.uid
-      : action.payload.uid + currentUser._id
+            currentUser._id + action.payload.uid
+            : action.payload.uid + currentUser._id
         }
       default:
         return state;
@@ -130,26 +109,45 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
 
-  return (
-    <AppContext.Provider value={{
-      isAuth,
-      user,
-      setUser,
-      setCurrentUser,
-      suggestedUsers,
-      setSuggestedUsers,
-      twitterBlue,
-      setTwitterBlue,
-      tweets,
-      setTweets,
-      currentUser,
-      bookmarks,
-      setBookmarks
-    }}>
-      <ChatContext.Provider value={{data: state, dispatch}} >
-        <GlobalStyle />
-        <Component {...pageProps} />
+  // if (!user) {
+  //   router.push('/register')
+  // } else {
+  console.log(currentUser);
+  
+  // if (currentUser) {
+  //   return console.log(true);
+    
+  // } else {
+  //   console.log(false);
+    
+  // }
+  
+   if (pageProps.protected && !currentUser) {
+    router.push('/login')
+  } else{
+
+    return (
+      <AppContext.Provider value={{
+        isAuth,
+        user,
+        setUser,
+        setCurrentUser,
+        suggestedUsers,
+        setSuggestedUsers,
+        twitterBlue,
+        setTwitterBlue,
+        tweets,
+        setTweets,
+        currentUser,
+        bookmarks,
+        setBookmarks
+      }}>
+        <ChatContext.Provider value={{ data: state, dispatch }} >
+          <GlobalStyle />
+          <Component {...pageProps} />
         </ChatContext.Provider>
-    </AppContext.Provider>
-  );
+      </AppContext.Provider>
+    );
+  }
+
 }

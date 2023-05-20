@@ -63,9 +63,7 @@ const Singleuser = (props: any) => {
             usersId: urlParams,
      }
      try {
-      //  console.log(followAUser, "Follow object");
          setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
-        //  console.log(currentUser, currentUser);
        await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
          setFollowingButton(true)
@@ -95,8 +93,6 @@ const Singleuser = (props: any) => {
     }
   }
     
-    // console.log(currentUser, "current user");
-    // console.log(props.userProfile, "All tweets");
      const handleCopyToClipboard = (param:any) => {
     navigator.clipboard.writeText(
       `https://insttagg-server.vercel.app/post/${param}`

@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const TrendStyle = styled.div`
-  /* border: 2px red solid; */
    .trendContainer{
-    /* border: 3px red solid; */
     margin: auto 20px;
     display: flex;
     align-items: center;

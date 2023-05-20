@@ -199,5 +199,14 @@ export const SingleUserStyle = styled.div`
         border-bottom: 1px solid rgb(47, 51, 54);
     }
 }
+.singleUserReplies{
+    /* border: 1px solid rgb(47, 51, 54); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    font-size: calc(18px + 0.25vw);
+
+}
 }
 `;

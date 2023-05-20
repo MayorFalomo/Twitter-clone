@@ -50,18 +50,10 @@ const Chat = (props: any) => {
             
             }
         }
-    // })
-
-    // useEffect(() => {
-    //     handleData()
-    // }, [])
-    // handleData()
-    // },[])
 
 
 
-
-    console.log(userObject, "userObject");
+    // console.log(userObject, "userObject");
     
     
     useEffect(() => {
@@ -171,8 +163,8 @@ props.setIsMobile(false)
                         <p onClick={handleResize} >{props.isMobile ? <IoMdClose cursor='pointer' fontSize='35' /> : <IoInformationCircleOutline fontSize='35'/> }</p>
                     </div>
                     <div className="userObject" >
-                        <div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div>
-                        <h2>{userObject?.username} </h2>
+                        <Link href={'/users/' + userObject?.username } ><div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div></Link>
+                        <Link href={'/users/' + userObject?.username} ><h2>{userObject?.username} </h2></Link>
                         <p>{userObject?.usersAt} </p>
                         <h2 className='bio' >{userObject?.bio} </h2>
                         <p className='createdAt' >Joined {moment(userObject?.createdAt).format("MM YYYY")} <span>{userObject?.followers?.length} Followers </span> </p>

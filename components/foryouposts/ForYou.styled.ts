@@ -84,6 +84,12 @@ export const ForYouContainer = styled.div`
             opacity: 0.5;
             cursor: default;
           }
+          label{
+              font-size: calc(22px + 0.25vw);
+          }
+          span{
+            font-size: calc(22px + 0.25vw);
+          }
         }
         .pickerEmoji{
           position: absolute;

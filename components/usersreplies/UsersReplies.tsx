@@ -1,10 +1,15 @@
 import React from 'react'
+import { UserRepliesStyle } from './UserReplies.styled'
 
 type Props = {}
 
 const UsersReplies = (props: Props) => {
   return (
-    <div>UsersReplies</div>
+    <UserRepliesStyle>
+    <div className="userRepliesContainer" >
+      UsersReplies
+      </div>
+      </UserRepliesStyle>
   )
 }
 

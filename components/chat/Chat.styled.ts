@@ -38,6 +38,9 @@ export const ChatStyled = styled.div`
                     h2{
                         text-align: center;
                     }
+                    h2:hover{
+                        text-decoration: underline;
+                    }
                     p{
                         text-align: center;
                     }
@@ -71,21 +74,21 @@ export const ChatStyled = styled.div`
         justify-content: space-between;
         gap: 20px;
         padding: 30px;
-         background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(7.6px);
-            -webkit-backdrop-filter: blur(7.6px);
-            position: sticky;
-            top: 0;
-            left: 0;
-            padding: 15px;
-            z-index: 999;
-            width: 100%;
-            .headingDetails{
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                .profileDp{
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7.6px);
+        -webkit-backdrop-filter: blur(7.6px);
+        position: sticky;
+        top: 0;
+        left: 0;
+        padding: 15px;
+        z-index: 999;
+        width: 100%;
+        .headingDetails{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .profileDp{
             width: 50px;
             height: 50px;
             border: 1px white solid;
@@ -107,15 +110,11 @@ export const ChatStyled = styled.div`
       
         }
     }
-    .mapContainer{
-        /* border: 1px solid yellow; */
-    }
     .inputCon{
         position: sticky;
-        bottom: 0;
+        bottom: -10px;
         left: 0;
         width: 100%;
-        /* height: 120px; */
         border: 2px rgb(113,118,123) solid;
         .inputSpan{
             display: flex;
@@ -126,6 +125,9 @@ export const ChatStyled = styled.div`
             background-color: rgb(32,35,39);
             border-radius: 30px;
             width: 95%;
+            @media (max-width: 600px) {
+                width: 100%;
+            }
             .sendIcon{
                 margin-right: 20px;
             }

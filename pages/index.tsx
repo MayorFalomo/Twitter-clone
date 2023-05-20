@@ -91,7 +91,6 @@ export default function Home(props: any) {
                   <ForYouPosts />
                   <Tweets />
                 </div>}
-                {/* {current ? <FollowersPosts /> : <ForYouPosts/>} */}
               </div>
             </main>
             <div className="trendsContainer" >

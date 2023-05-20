@@ -16,14 +16,6 @@ import Link from 'next/link'
 
 type Props = {}
 
-
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-};
-
 const login = (props: any) => {
 
     const router = useRouter()

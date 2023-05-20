@@ -29,10 +29,6 @@ export const MessagesStyle = styled.div`
             grid-template-columns: 0 auto 0;
             margin: 0 0;
         }
-      /* @media (max-width: 640px ) {
-            grid-template-columns: 0 auto 0;
-            margin: 0 auto;
-        } */
     .leftGrid {
     overflow: auto;
     height: 100vh;
@@ -40,7 +36,6 @@ export const MessagesStyle = styled.div`
     position: relative;
     h1{
         font-size: calc(28px + 0.25vw);
-        /* border: 2px red solid; */
     }
     p{
         color: rgb(113,118,123);
