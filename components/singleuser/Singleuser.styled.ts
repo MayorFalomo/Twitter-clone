@@ -50,6 +50,9 @@ export const SingleUserStyle = styled.div`
         height: 350px;
         width: 100%;
         border-bottom: 2px rgb(47, 51, 54) solid;
+          @media (max-width: 450px ) {
+            height: 200px;
+        }
     }
     .profileDp{
         height:200px;
@@ -189,7 +192,6 @@ export const SingleUserStyle = styled.div`
     }
     .btn-following:hover{
         color: red;
-        border: 2px red solid;
         transition: 0.3s ease;
     }
         }

@@ -202,9 +202,9 @@ function generateId (len:any) {
                     {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
             {/* <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div> */}
           <div className='subPostsContainer' >
-            <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div>
+            <Link href={'/users/' + props.comment?.username } className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></Link>
             <div className='tweetDetailsCon' >
-              <Link href={'/posts/' + props.comment?.postId} ><div className='flexTweetProfileDetails' >
+              <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
               <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.username}</Link>
               <span className='userAt'>{props.comment?.usersAt}</span>
@@ -212,7 +212,6 @@ function generateId (len:any) {
             </div>
                   <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>
-            </Link>
                   <p className='tweet-caption' style={{fontWeight: 400}} >{props.comment?.comments} </p>
           {props.comment?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.comment?.picture})` }} className='tweet-image' ></div> : ""}
           {props.comment?.video?.length > 1 ? <video src={props.comment?.video} controls className='tweet-video' ></video> : ""}

@@ -73,8 +73,9 @@ export const SingleTweetStyle = styled.div`
             top: 0;
             left: 0;
             padding: 15px;
-            z-index: 999;
+            z-index: 1;
             width: 100%;
+            /* border: #1d9aef 2px solid; */
             h1{
             font-size: calc(20px + 0.25vw);
             }
@@ -182,17 +183,13 @@ export const SingleTweetStyle = styled.div`
             z-index: 999;
             font-size: 24px;
             z-index: 9999;
-border-radius: 15px;
-    /* left: 50%;
-    right: 50%; */
-    /* width: ; */
-    }
+            border-radius: 15px;
+        }
     }
     .flexIconsAndValues{
         display: flex;
         align-items:center;
         gap: 10px;
-        /* color: #1d9aef; */
         .retweetIcon{
             position: relative;
             .retweetModal{
@@ -209,17 +206,28 @@ border-radius: 15px;
                 cursor: pointer;
                 .activeModal{
                     /* border: 2px red solid; */
-                    width: 40%;
-                    max-height: 60vh;
+                    width: 40vw;
+                    height: 60vh;
                     position: fixed;
                     top: 40%;
                     left: 50%;
                     -ms-transform: translate(-50%, -50%);
                     transform: translate(-50%, -50%);
-                    z-index:999;
+                    z-index:999999999;
                     border-radius: 30px;
                     background-color: #000;
                     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+                    @media (max-width: 1400px ) {
+                        width: 70%;
+                    }
+                    @media (max-width: 750px ) {
+                        width: 100%;
+                        height: 100vh;
+                        bottom: 0;
+                        transform: translate(-50%, -40%);
+                        position: fixed;
+                        z-index: 9999999999;
+                    }
                 }
             }
             .removeModal{

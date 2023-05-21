@@ -23,8 +23,8 @@ export const QuotedCommentStyle = styled.div`
             writing-mode: vertical; */
         }
         .ProfilePic{
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;
@@ -33,6 +33,14 @@ export const QuotedCommentStyle = styled.div`
             background-position: center;
             object-fit: cover;
             object-position: center;
+            @media (max-width: 520px ) {
+              width: 50px;
+              height: 50px;
+            }
+            @media (max-width: 440px ) {
+              width: 30px;
+              height: 30px;
+            }
         }
     }
     form{
@@ -45,25 +53,21 @@ export const QuotedCommentStyle = styled.div`
             height: 100px;
             background-color:black;
             color: white;
-            font-size: 20px;
-            /* border: 1px solid #575b5f; */
+           font-size: calc(20px + 0.25vw);
             resize: none;
             border: none;
             outline: none;
-            white-space: wrap;
+            white-space: pre-wrap;
             line-height: 35px;
         }
         .textArea::-webkit-scrollbar{
             width: 0;
         }
         .textArea::placeholder{
-            font-size: 25px;
             padding: 45px;
+            font-size: calc(16px + 0.25vw);
         }
         .select{
-            /* position: absolute;
-            top: 10px;
-            left: 20px; */
             padding: 5px 7px;
             cursor: pointer;
             background-color: black;
@@ -74,12 +78,11 @@ export const QuotedCommentStyle = styled.div`
     }
     .tweetDetailsContainer{
         border: 1px solid #575b5f;
-        /* padding: 10px; */
         border-radius: 30px;
     .tweetDetails{
         display: flex; 
         align-items: center;
-        gap: 30px;
+        gap: 10px;
         .tweetProfilePic{
             width: 50px;
             height: 50px;
@@ -91,10 +94,23 @@ export const QuotedCommentStyle = styled.div`
             background-position: center;
             object-fit: cover;
             object-position: center;
-        }   
+             @media (max-width: 520px ) {
+              width: 30px;
+              height: 30px;
+            }
+        }
         .createdAt{
             display: list-item;
             list-style: disc outside none;
+            margin-left: 15px;
+            font-size: calc(12px + 0.25vw);
+            @media (max-width: 400px ) {
+              display: none;
+            }
+            
+        }
+        .usersAt{
+            font-size: calc(12px + 0.25vw);
         }
     }
     .pictures{
@@ -108,6 +124,9 @@ export const QuotedCommentStyle = styled.div`
             background-position: center;
             object-fit: cover;
             object-position: center;
+              @media (max-width: 440px ) {
+              height: 150px;
+            }
         }
 }
      .flexIcons{
@@ -124,6 +143,14 @@ export const QuotedCommentStyle = styled.div`
           .locationIcon {
             opacity: 0.5;
             cursor: default;
+             @media (max-width: 520px ) {
+             display: none;
+            }
+          }
+          .calendar{
+             @media (max-width: 520px ) {
+           display: none;
+            }
           }
         }
         .pickerEmoji{

@@ -171,6 +171,8 @@ const Singleuser = (props: any) => {
               {allUsersTweets.posts?.length == 0 && <div className="noTweetMessage" ><p>This user has no tweets</p> </div>}
             </div>}
                 {current == 1 && <SingleUserReplies/> }
+                {current == 2 && <SingleUserReplies/> }
+                {current == 3 && <SingleUserReplies/> }
                 </div>
             </div>
             </SingleUserStyle>

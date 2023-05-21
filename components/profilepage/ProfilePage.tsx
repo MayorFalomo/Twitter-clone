@@ -29,7 +29,7 @@ const ProfilePage = (props: any) => {
             <div className={props.editProfileModal ?  "opaque": 'profilePageStyled'} >
           <div className='subProfileStyle' >
           <div className='subProfileFlex' >
-            <Link href='/' style={{listStyle: 'none'}} className='arrowBack' >{<BsArrowLeft cursor='pointer' />} </Link>
+            <Link href='/' style={{listStyle: 'none'}} className='arrowBack' >{<BsArrowLeft cursor='pointer' fontSize={25} />} </Link>
             <div className='profileUsersDetails' >
                 <h1>{currentUser?.username} </h1>
                 <span style={{color:'#1d9aef'}}  >{currentUser?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span>
@@ -71,6 +71,8 @@ const ProfilePage = (props: any) => {
                     </ul>
                 {current == 0 && <Userstweet/> }
                 {current == 1 && <UsersReplies/> }
+                {current == 2 && <UsersReplies/> }
+                {current == 3 && <UsersReplies/> }
                 </div>
             </div>
             </ProfileStyled>

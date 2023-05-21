@@ -107,7 +107,7 @@ function generateId (len:any) {
        <QuotedCommentStyle>
       <div className='commentModalContainer' >
           <div className='commentModalClose' >
-          {<MdClose onClick={handleClose} fontSize={40} cursor='pointer' />} </div>
+          {<MdClose onClick={handleClose} fontSize={30} cursor='pointer' />} </div>
         <div className='subCommentModal' >
           <div style={{backgroundImage: `url(${currentUser.profilePic})`}} className='ProfilePic' > </div>
           <form onSubmit={handleQuotedTweet} >
@@ -122,35 +122,36 @@ function generateId (len:any) {
               <div style={{padding: 10}} >
             <div className='tweetDetails' >
             <span style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='tweetProfilePic' > </span>
-            <span style={{ fontSize: 28, fontWeight: 400 }} >{singleTweets?.username} </span>
-                <span  style={{ fontSize: 20, fontWeight: 400, color: 'rgb(113,118,123)' }}>{singleTweets?.usersAt}</span>
-                <span  style={{ fontSize: 20, fontWeight: 400, color: 'rgb(113,118,123)' }} className='createdAt' >{moment(singleTweets?.createdAt).format("MMMM D")} </span>
+            <span style={{ fontWeight: 400 }} >{singleTweets?.username} </span>
+                <span  style={{ fontWeight: 400, color: 'rgb(113,118,123)' }} className='usersAt' >{singleTweets?.usersAt}</span>
+                <span  style={{ fontWeight: 400, color: 'rgb(113,118,123)' }} className='createdAt' >{moment(singleTweets?.createdAt).format("MMMM D")} </span>
             </div>
             <p className='tweet' >{singleTweets?.tweet} </p>
-                <p style={{ color: '#1d9aef', fontSize: '24px', opacity: 0.4 }}>Show this Thread </p>
+                <p style={{ color: '#1d9aef', opacity: 0.4 }}>Show this Thread </p>
                 </div>
               {singleTweets?.picture?.length >1 ? <div style={{ backgroundImage: `url(${singleTweets?.picture})` }} className='pictures' > </div> : ""}
+              {singleTweets?.video?.length >1 ? <video src={singleTweets?.picture} className='videos' /> : ""}
             </div>
               <div className="flexIcons">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="35" color='1D9BF0' />}
+                  {<BsCardImage color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="35" color='1D9BF0' />}
+                  {<AiOutlineFileGif color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 <span>
-                  {<AiOutlineBars fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                  {<AiOutlineBars cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmileUpsideDown fontSize="25" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmileUpsideDown cursor="pointer" color='1D9BF0' />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmile cursor="pointer" color='1D9BF0' />}
                   </span>
                 )}
                 {emoji ? (
@@ -161,11 +162,11 @@ function generateId (len:any) {
                   ""
                 )}
                 
-                <span>
-                  {<TbCalendarTime fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                <span className='calendar' >
+                  {<TbCalendarTime cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 <span className="locationIcon">
-                  {<IoLocationOutline fontSize="35" color='1D9BF0' />}{" "}
+                  {<IoLocationOutline color='1D9BF0' />}{" "}
                 </span>
               </div>
                 {successfulUpload == true || comments?.length > 0 ? <button type="submit" className="tweetButton" >Tweet</button> : <button className="btn-primary" disabled>
@@ -174,63 +175,6 @@ function generateId (len:any) {
               </div>
           </form>
           </div>
-                {/* <div className='subCommentModal' >
-                    <div className='profileImages' >
-              <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='ProfilePic'> </div>
-              <div className='border' > </div>
-                        <div style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='ProfilePic' > </div>
-                        </div>
-              <div className='replyDetails' >
-                  <h1>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h1>
-                  <p >{singleTweets?.tweet?.slice(0, 85)}... </p>
-                  <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p>
-        <form onSubmit={handleQuotedTweet} >
-              <textarea onChange={(e) => setComments(e.target.value)} value={comments} typeof='text' placeholder='Tweet your reply' />
-              
-                <div className="flexIcons">
-                <div className="tweetIcons">
-                <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="35" color='1D9BF0' />}
-                </label>
-                <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
-                <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="35" color='1D9BF0' />}
-                </label>
-                <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
-                <span>
-                  {<AiOutlineBars fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
-                </span>
-                {emoji ? (
-                  <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" color='1D9BF0' />}
-                  </span>
-                ) : (
-                  <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" color='1D9BF0' />}
-                  </span>
-                )}
-                {emoji ? (
-                <div className="pickerEmoji">
-                    <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} />
-                </div>
-                ) : (
-                  ""
-                )}
-                
-                <span>
-                  {<TbCalendarTime fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
-                </span>
-                <span className="locationIcon">
-                  {<IoLocationOutline fontSize="35" color='1D9BF0' />}{" "}
-                </span>
-              </div>
-                {successfulUpload == true || comments?.length > 0 ? <button type="submit" className="tweetButton" >Tweet</button> : <button className="btn-primary" disabled>
-                  Tweet
-                </button>}
-              </div>
-                  </form>
-            </div>
-          </div> */}
               {successComment ? <div className="successMessage" >Your comment has been sent </div> : "" }
             </div>
             </QuotedCommentStyle>
