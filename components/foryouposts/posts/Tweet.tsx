@@ -130,7 +130,8 @@ const Tweet = (props: any) => {
 
   return (
       <Tweetstyled>
-           <div className='postsContainer' >
+      <div className='postsContainer' >
+            {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
             <Link href={'/users/' + props.tweet?.username} className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></Link>
                  <div className='subPostsContainer' >
               <div className='flexTweetProfileDetails' >

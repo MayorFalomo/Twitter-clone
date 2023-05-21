@@ -2,13 +2,12 @@ import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
+import { BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
-import Navbar from '../navbar/Navbar'
 import Showreplies from './Showreplies'
 import Reply from './Replymodal';
 
@@ -194,7 +193,7 @@ function generateId (len:any) {
   }
   
   // console.log(props.comment?.length);
-  console.log(urlParams, "comments urlparams");
+  // console.log(urlParams, "comments urlparams");
   
 
     return (

@@ -144,24 +144,20 @@ export const HomeContainer = styled.div`
   .postGroup {
     display: flex;
     justify-content: space-around;
-    /* border: 2px red solid; */
     a {
-      /* font-size: 20px; */
-      /* border: 1px yellow solid; */
       width: 60%;
       padding-top: 10px;
       text-align: center;
       cursor: pointer;
-      @media (max-width: 420px ) {
-          /* width: 40%; */
-          /* padding-top: 0px; */
+      @media (max-width: 600px ) {
+          padding-top: 0px;
+          margin-top: 20px;
       }
     }
     a:hover {
-      background-color: rgb(47, 51, 54);
+      background-color: #181818;
     }
     li {
-      /* border: 1px red solid; */
       width: 50%;
       margin: 0 auto;
       padding: 10px 20px;
@@ -169,7 +165,7 @@ export const HomeContainer = styled.div`
       font-size: calc(18px + 0.25vw);
        @media (max-width: 440px ) {
         width: 100%;
-        margin: 10px auto;
+        margin-top: 10px;
       }
     }
     .linkActive li {

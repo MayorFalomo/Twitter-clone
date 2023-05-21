@@ -11,7 +11,6 @@ background: #999999;
     .subLoginPage{
     width: 600px;
     height: 600px;
-    /* min-height: 80%; */
    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
    background-color: #FFFFFF;
    border-radius: 25px;
@@ -19,6 +18,9 @@ background: #999999;
    position: relative;
    /* border: 2px red solid; */
    margin: 0 20px;
+   @media (max-width: 600px ) {
+    width: max-content;
+   }
    .letterX{
     position:absolute;
     left: 20px;
@@ -37,7 +39,7 @@ background: #999999;
         display: flex;
         justify-content: center;
         margin: 20px auto;
-        font-size: calc(25px + 0.25vw);
+        font-size: calc(22px + 0.25vw);
         color: black;
     }
     .googleBtn{
@@ -54,8 +56,8 @@ background: #999999;
         border-radius: 25px;
         cursor: pointer;
         background-color: #fff;
-        @media (max-width: 570px ) {
-            width: 70%;
+        @media (max-width: 600px ) {
+            width: 78%;
         }
         @media (max-width: 430px ) {
             width: 90%;
@@ -87,7 +89,7 @@ background: #999999;
             margin:auto;
             padding:10px 20px;
             border-radius: 5px;
-            font-size: 25px;
+            font-size: calc(16px + 0.25vw);
             border: 1px black solid;
             outline: none;
               @media (max-width: 500px ) {
@@ -95,7 +97,7 @@ background: #999999;
                 }
         }
         .Input::placeholder{
-            font-size: calc(16px + 0.25vw);
+            font-size: calc(12px + 0.25vw);
         }
         .loginFlexBtn{
             display: flex;
@@ -106,7 +108,7 @@ background: #999999;
             width:50%;
             padding:10px 20px;
             border-radius: 20px;
-            font-size: 20px;
+            font-size: calc(16px + 0.25vw);
             margin:auto;
             border: 1px grey solid;
             cursor:pointer;
@@ -124,8 +126,8 @@ background: #999999;
         p{
             text-align:center;
             margin-top: 50px;
-            font-size: 20px;
             color: black;
+            font-size: calc(14px + 0.25vw);
               @media (max-width: 500px ) {
                 margin-top: 20px;
                 }

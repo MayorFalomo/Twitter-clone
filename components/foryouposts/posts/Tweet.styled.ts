@@ -5,10 +5,24 @@ export const Tweetstyled = styled.div`
 display: flex;
 align-items: flex-start;
 gap: 10px;
-/* margin: 25px auto; */
 border-top: 2px rgb(47, 51, 54) solid;
-/* border-bottom: 2px rgb(47, 51, 54) solid; */
 padding: 10px;
+.overlay{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.1px);
+        -webkit-backdrop-filter: blur(2.1px);
+    }
+     .removeOverlay{
+        display: none;
+    }
 .profilePicture{
     background-color: black;
     background-position: center;
@@ -29,7 +43,6 @@ padding: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* border: 2px red solid; */
         width: 100%;
         .tweetProfileDetails{
             width: 100%;
@@ -121,35 +134,40 @@ padding: 10px;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        /* justify-content: space-around; */
         margin: 20px auto;
         color: #E2E4E4;
-        /* border: 2px red solid; */
     }
     .flexIconsAndValues{
         display: flex;
         align-items:center;
         gap: 10px;
-        /* color: #1d9aef; */
         span{
             font-size: 20px;
         }
         .activeModal{
             position: fixed;
-            top: 30%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40vw;
+            width: 700px;
             height: 50vh;
             border-radius: 30px;
-            z-index: 9999;
+            z-index: 9999999999;
             background: black;
-            /* border: 2px red solid; */
+           @media (max-width: 1300px ) {
+            width: 70%;
+           }
+           @media (max-width: 750px ) {
+            width: 100%;
+            height: 100vh;
+            bottom: 0;
+            transform: translate(-50%, -40%);
+            transition: all 0.4s ease;
+           }
         }
         p{
             .likeIcon{
             font-size: calc(20px + 0.25vw);
-            /* border: 2px solid red; */
 
         }
         }
@@ -159,7 +177,6 @@ padding: 10px;
         display: flex;
         align-items: center;
         gap: 20px;
-        /* border: #1d9aef 2px solid; */
         .subUserPhoto{
             width: 50px;
             height: 50px;
@@ -172,10 +189,8 @@ padding: 10px;
             border: 2px white solid;
         }
         p{
-            /* font-size: 22px; */
             font-size: calc(14px + 0.25vw);
             color:#1d9aef ;
-            /* border: 2px red solid; */
         }
     }
 }

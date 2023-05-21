@@ -1,13 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { useCookies } from 'react-cookie'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
-import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbCalendarTime } from 'react-icons/tb'
 import axios from 'axios'
 import { MdClose } from 'react-icons/md'
 import { CommentModalStyle } from '@/components/commentmodal/Commentmodal.styled'
-import { useRouter } from 'next/router'
 import { AppContext } from '@/helpers/Helpers'
 import EmojiPicker from 'emoji-picker-react'
 
@@ -80,7 +78,7 @@ const CommentModal = (props:any) => {
         <CommentModalStyle>
       <div className='commentModalContainer' >
           <div className='commentModalClose' >
-            {<MdClose onClick={() => props.setCommentModal(false)} fontSize={40} cursor='pointer' />} </div>
+            {<MdClose onClick={() => props.setCommentModal(false)} fontSize={35} cursor='pointer' />} </div>
                 <div className='subCommentModal' >
                     <div className='profileImages' >
               <div style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='ProfilePic'> </div>
@@ -88,7 +86,7 @@ const CommentModal = (props:any) => {
                         <div style={{ backgroundImage: `url(${currentUser.profilePic})` }} className='ProfilePic' > </div>
                         </div>
               <div className='replyDetails' >
-                  <h1>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h1>
+                  <h3>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h3>
                   <p >{singleTweets?.tweet?.slice(0, 85)}... </p>
                   <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p>
         <form onSubmit={handleComment} >
@@ -96,39 +94,38 @@ const CommentModal = (props:any) => {
                 <div className="flexIcons">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage fontSize="35" color='1D9BF0' />}
+                  {<BsCardImage color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadImage(e.target.files) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif fontSize="35" color='1D9BF0' />}
+                  {<AiOutlineFileGif color='1D9BF0' />}
                 </label>
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 <span>
-                  {<AiOutlineBars fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                  {<AiOutlineBars cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile fontSize="25" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmileUpsideDown cursor="pointer" color='1D9BF0' />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile fontSize="35" cursor="pointer" color='1D9BF0' />}
+                    {<BsEmojiSmile cursor="pointer" color='1D9BF0' />}
                   </span>
                 )}
                 {emoji ? (
                       <div className="pickerEmoji" >
                         <EmojiPicker onEmojiClick={(e) => setComments(comments + e.emoji) } />
-                    {/* <Picker data={data} onEmojiSelect={(emoji: any) => setComments(comments + emoji.native)} /> */}
                 </div>
                 ) : (
                   ""
                 )}
                 
-                <span>
-                  {<TbCalendarTime fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                <span className='calendarIcon' >
+                  {<TbCalendarTime cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 <span className="locationIcon">
-                  {<IoLocationOutline fontSize="35" color='1D9BF0' />}{" "}
+                  {<IoLocationOutline color='1D9BF0' />}{" "}
                 </span>
               </div>
                 {successfulUpload == true || comments?.length > 0 ? <button type="submit" className="tweetButton" >Tweet</button> : <button className="btn-primary" disabled>
