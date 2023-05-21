@@ -180,9 +180,11 @@ const Id = ({ tweetData }: any) => {
     e.preventDefault()
     setQuotedCommentModal(true);
     setUrlParams(tweetProps?._id)
+    setRetweetModal(false);
   }
  
   const params = useRouter()
+console.log(quotedCommentModal);
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
@@ -209,7 +211,7 @@ const Id = ({ tweetData }: any) => {
           </div>
           <p className='tweetText'>{tweetProps?.tweet}</p>
           { tweetProps?.picture.length > 0 ? <img src={tweetProps?.picture} className='picture' alt='img'/> : ""}
-          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={`${tweetProps?.video}`}  controls > </video> : ""}
+          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
               <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
@@ -257,11 +259,15 @@ const Id = ({ tweetData }: any) => {
                         style={{ cursor: "pointer",   }}
                       />
                   )}
-                  {retweetModal ? <div className={retweetModal ? 'retweetModal' : "removeModal"} >
-                <span onClick={handleOpenAndClose} >Quote Tweet </span>
-                { quotedCommentModal ?  <div className="activeModal" ><Quoted urlParams={urlParams} setRetweetModal={setRetweetModal} quotedCommentModal={quotedCommentModal} setQuotedCommentModal={setQuotedCommentModal} setCommentModal={setCommentModal} /> </div> : null}
-                <span onClick={handleAddRetweet} >Retweet </span>
-              </div> : "" }
+                  {retweetModal ?
+                    <div className='retweetModal' >
+                      <span onClick={handleOpenAndClose} >Quote Tweet </span>
+                      <span onClick={handleAddRetweet} >Retweet </span>
+                    </div>
+                    :
+                    ""
+                  }
+                   {quotedCommentModal && <div className="activeModal" ><Quoted urlParams={urlParams} setRetweetModal={setRetweetModal} quotedCommentModal={quotedCommentModal} setQuotedCommentModal={setQuotedCommentModal} setCommentModal={setCommentModal} /> </div>}
                   </div>
               )}
              

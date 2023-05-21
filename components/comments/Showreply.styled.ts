@@ -7,8 +7,8 @@ export const ShowReplyStyle = styled.div`
     align-items: flex-start;
     gap: 15px;
     .ProfilePicture{
-            width: 90px;
-            height: 90px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;
@@ -31,16 +31,17 @@ export const ShowReplyStyle = styled.div`
             .tweetProfileDetails{
                 display: flex;
                 align-items: center;
-                gap: 15px;
+                gap: 5px;
                 .userName{
-                font-size: 28px;
+                font-size: calc(18px + 0.25vw) !important;             
+
             }
             .userAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw);             
                 color: rgb(113,118,123);
             }
             .createdAt{
-                font-size: 20px;
+                font-size: calc(12px + 0.25vw) !important;             
                 display: list-item;
                 list-style: disc outside none;
                 margin-left: 25px;
@@ -52,13 +53,15 @@ export const ShowReplyStyle = styled.div`
                 gap: 25px;
                 /* border: 2px blue solid; */
                 width: 100%;
-            p{
-                    width: 100%;
-                }
             }
             
             }
+           
         }
+         .repliedText{
+                font-size: calc(14px + 0.25vw);
+                margin-top: 15px;
+            }
         .tweetOption{
             display: flex;
             align-items: center;
@@ -76,14 +79,10 @@ export const ShowReplyStyle = styled.div`
             transform: translate(-50%, -50%);
             width: 60%;
             max-width: 40vw;
-            /* height: 50vh; */
             border-radius: 30px;
             z-index: 9999;
             background: black;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            /* .commentIcon {
-                border:2px red solid;
-            } */
             .commentModalContainer{
                 background-color: black;
                 padding: 20px;
@@ -110,8 +109,8 @@ export const ShowReplyStyle = styled.div`
             flex-direction: column;
             gap: 10px;
         .ProfilePic{
-            width: 90px;
-            height: 90px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;

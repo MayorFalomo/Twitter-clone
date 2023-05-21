@@ -115,13 +115,20 @@ export const QuotedCommentStyle = styled.div`
     }
     .pictures{
             width: 100%;
-            /* max-width: 600px; */
             height: 400px;
-            /* max-height: 400px; */
             background-color: black;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            object-fit: cover;
+            object-position: center;
+              @media (max-width: 440px ) {
+              height: 150px;
+            }
+        }
+    .videos{
+            width: 100%;
+            height: 200px;
             object-fit: cover;
             object-position: center;
               @media (max-width: 440px ) {
@@ -139,7 +146,6 @@ export const QuotedCommentStyle = styled.div`
           align-items: center;
           justify-content: space-around;
           gap: 30px;
-          /* border: 2px red solid; */
           .locationIcon {
             opacity: 0.5;
             cursor: default;

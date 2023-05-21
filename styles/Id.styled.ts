@@ -8,6 +8,7 @@ export const SingleTweetStyle = styled.div`
     overflow: hidden;
     height: 100vh;
     margin: 0 10%;
+    position: relative;
      @media (max-width: 2070px ) {
       display: grid;
       grid-template-columns: 400px auto 500px ; 
@@ -117,10 +118,6 @@ export const SingleTweetStyle = styled.div`
         height: 80%;
         margin: 5px 10px;
         border-radius: 30px;
-        /* background-color: #000;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center; */
         object-position: center;
         object-fit: cover;
     }
@@ -204,8 +201,16 @@ export const SingleTweetStyle = styled.div`
                 font-size: 20px;
                 line-height: 35px;
                 cursor: pointer;
-                .activeModal{
-                    /* border: 2px red solid; */
+               
+            }
+        }
+        span{
+            font-size: 20px;
+        }
+        .likeIcon{
+        font-size: calc(24px + 0.25vw);
+       }
+        .activeModal{
                     width: 40vw;
                     height: 60vh;
                     position: fixed;
@@ -229,18 +234,9 @@ export const SingleTweetStyle = styled.div`
                         z-index: 9999999999;
                     }
                 }
-            }
-            .removeModal{
-                display: none;
-            }
-        }
-        span{
-            font-size: 20px;
-        }
-        .likeIcon{
-        font-size: calc(24px + 0.25vw);
-       }
     }
+
+}
     .overlay{
         position: fixed;
         left: 0;
@@ -253,10 +249,10 @@ export const SingleTweetStyle = styled.div`
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(2.1px);
         -webkit-backdrop-filter: blur(2.1px);
+        /* border: 2px red solid; */
     }
     .removeOverlay{
         display: none;
     }
-}
   }
 `

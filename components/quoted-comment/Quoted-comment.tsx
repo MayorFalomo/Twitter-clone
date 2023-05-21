@@ -11,6 +11,7 @@ import { MdClose } from 'react-icons/md';
 import { QuotedCommentStyle } from './Quoted-comment.styled';
 import moment from 'moment';
 import EmojiPicker from 'emoji-picker-react';
+import Link from 'next/link'
 
 type Props = {}
 
@@ -100,7 +101,7 @@ function generateId (len:any) {
   }
 
     // console.log(props?.commentModal);
-    // console.log(singleTweets?.quoted, "quoted comment modal");
+    console.log(singleTweets, "quoted comment modal");
     
     
   return (
@@ -127,10 +128,10 @@ function generateId (len:any) {
                 <span  style={{ fontWeight: 400, color: 'rgb(113,118,123)' }} className='createdAt' >{moment(singleTweets?.createdAt).format("MMMM D")} </span>
             </div>
             <p className='tweet' >{singleTweets?.tweet} </p>
-                <p style={{ color: '#1d9aef', opacity: 0.4 }}>Show this Thread </p>
+                <Link href={'/posts/' + singleTweets?._id } style={{ color: '#1d9aef', opacity: 0.4 }}>Show this Thread </Link>
                 </div>
               {singleTweets?.picture?.length >1 ? <div style={{ backgroundImage: `url(${singleTweets?.picture})` }} className='pictures' > </div> : ""}
-              {singleTweets?.video?.length >1 ? <video src={singleTweets?.picture} className='videos' /> : ""}
+              {singleTweets?.video?.length > 0  && <video src={singleTweets?.video} controls className='videos' />}
             </div>
               <div className="flexIcons">
                 <div className="tweetIcons">

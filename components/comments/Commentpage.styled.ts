@@ -79,15 +79,21 @@ export const CommentPageStyle = styled.div`
             }
               .replyModal{
             position: fixed;
-            top: 30%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60%;
-            max-width: 40vw;
+            width: 600px;
+            /* max-width: 40vw; */
             border-radius: 30px;
             z-index: 9999;
             background: black;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            @media (max-width: 700px ) {
+              width: 100%;
+              height: 100vh;
+              bottom: 0;
+              transform: translate(-50%, -40%);
+            }
             .commentModalContainer{
                 background-color: black;
                 padding: 20px;

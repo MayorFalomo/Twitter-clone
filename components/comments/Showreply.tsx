@@ -29,17 +29,15 @@ const Showreply = (props: any) => {
       <div className='showReplyContainer' >
        <div className="profilePicture" style={{ backgroundImage: `url(${props.replies?.profileDp})` }} ></div>
                  <div className='subPostContainer' >
-          <Link href={'/posts/' + props.comment?.postId} >
             <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
               <span className='userName' > {props.reply?.username}</span>
               <span className='userAt'>{props.reply?.usersAt}</span>
               <span className='createdAt' >{moment(props.reply?.createdAt).format("MMMM D")}</span>
             </div>
-                  <div>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+                  <div>{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>
-            </Link>
-                    <p className='tweet-caption' style={{fontSize: 28, fontWeight: 400}} >{props.reply?.comments} </p>
+                    <p className='repliedText' style={{fontWeight: 400}} >{props.reply?.comments} </p>
           {props.reply?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.reply?.picture})` }} className='tweet-image' ></div> : ""}
           <div className='tweetOption' >
             <div className='flexIconsAndValues' >
@@ -47,7 +45,7 @@ const Showreply = (props: any) => {
                   {
                         <FaRegComment
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer"}}
                       />
                   }</p>
                       <span>{1} </span>
@@ -58,7 +56,7 @@ const Showreply = (props: any) => {
                   <AiOutlineRetweet
                     onClick={() => setRetweet(false)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}
+                    style={{ cursor: "pointer", color: "#00BA7C" }}
                   />
                 }</p> :
               <p>
@@ -66,7 +64,7 @@ const Showreply = (props: any) => {
                     <AiOutlineRetweet
                     onClick={() => setRetweet(true)}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
+                    style={{ cursor: "pointer",}}
                   />
                 }</p>}
               <span>{0} </span>
@@ -78,7 +76,6 @@ const Showreply = (props: any) => {
                         className='likeIcon'
                         style={{
                           color: "red",
-                          fontSize: 35,
                           cursor: "pointer",
                         }}
                       />
@@ -86,7 +83,7 @@ const Showreply = (props: any) => {
                       <FaRegHeart
                         className='likeIcon'
                         onClick={handleAddLike}
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                        style={{ cursor: "pointer" }}
                       />
                     )}
               <span>{props.comment?.like?.length} </span>
@@ -96,17 +93,17 @@ const Showreply = (props: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer", }}
                       />
                 }</p>
               <span>{props.views.toLocaleString()}{props.views > 1000 ? "k" : ""} </span>
             </div>
-            <div>
+            <div  className='flexIconsAndValues' >
               <p>
                   {
                         <AiOutlineUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer", }}
                       />
                 }</p>
               </div>

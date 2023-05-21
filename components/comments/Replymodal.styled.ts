@@ -5,6 +5,7 @@ export const ReplyPageStyle = styled.div`
 .commentModalContainer{
     background-color: black;
     padding: 20px;
+    border-radius: 20px;
     .commentModalClose{
         padding: 10px;
         /* border-bottom: 1px solid white; */
@@ -27,8 +28,8 @@ export const ReplyPageStyle = styled.div`
             flex-direction: column;
             gap: 10px;
         .ProfilePic{
-            width: 90px;
-            height: 90px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;
@@ -37,31 +38,38 @@ export const ReplyPageStyle = styled.div`
             background-position: center;
             object-fit: cover;
             object-position: center;
+            @media (max-width: 500px ) {
+              width: 40px;
+              height: 40px;
+            }
         }
     }
     .replyDetails{
         /* border: 2px green solid; */
-        width: 90%;
+        width: 100%;
         h1{
+          font-size: calc(18px + 0.25vw);
           span{
-            font-size: 28px;
+            font-size: calc(12px + 0.25vw) ;
             color: #575B5F ;
           }
         }
         p{
-            font-size: 26px;
+            font-size: calc(14px + 0.25vw);
         }
         .tweet{
-            font-size: 26px;
+            font-size: calc(16px + 0.25vw);
             margin-top: 20px;
             color:  #575B5F;
             span{
                 color: #1d9aef;
-                font-size: 28px;
+                font-size: calc(14px + 0.25vw);
             }
         }
         form{
             /* border: 1px solid red; */
+            display: flex;
+            flex-direction: column;
             textarea {
                 width: 100%;
                 height: 200px;
@@ -69,30 +77,39 @@ export const ReplyPageStyle = styled.div`
                 border: none;
                 outline: none;
                 margin-top: 20px;
-                font-size: 24px;
+                font-size: calc(16px + 0.25vw);         
                 color: #fff;
                 resize: none;
                 white-space: wrap;
                 line-height: 35px;
             }
             textarea::placeholder {
-                font-size: 28px;
-                color: #fff;
+               font-size: calc(20px + 0.25vw);
+                color: #575B5F;
             }
-            .flexIcons{
+            .flexIcon{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                width: 100%;
+                /* border: 2px blue solid !important; */
                   .tweetIcons {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          gap: 30px;
-          /* border: 2px red solid; */
-          .locationIcon {
-            opacity: 0.5;
-            cursor: default;
-          }
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    gap: 20px;
+                    .locationIcon {
+                      opacity: 0.5;
+                      cursor: default;
+                      @media (max-width: 470px) {
+                        display: none;
+                      }
+                    }
+                    .calendarIcon{
+                      @media (max-width: 470px) {
+                        display: none;
+                      }
+                    }
         }
         .pickerEmoji{
           position: absolute;
@@ -137,7 +154,7 @@ export const ReplyPageStyle = styled.div`
               /* border: 2px red solid; */
               margin-top: 10px;
               color: green;
-              font-size: 26px;
+              font-size: calc(14px + 0.25vw);
               text-align: center;
             }
         }

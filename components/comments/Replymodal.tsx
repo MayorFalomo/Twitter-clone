@@ -11,6 +11,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { ReplyPageStyle } from './Replymodal.styled'
 type Props = {}
 
+//Parent component is CommentPage.tsx
 const Reply = (props: any) => {
 
       const commentId = new Date()
@@ -70,10 +71,6 @@ function generateId (len:any) {
       .then((res) => setSingleTweets(res.data.comments))
       .catch((err) => console.log(err))
   }, [props.getCommentId, props.urlParams])
-
-  console.log(props.getCommentId, "get comment id");
-  console.log(props.urlParams, "url params");
-  
   
   //Function to handle commenting
       const handleComment = async (e:any) => {
@@ -100,7 +97,6 @@ function generateId (len:any) {
         //  ]})
   }
 
-  // console.log(singleTweets.comments, "single tweet");
   
  
   return (
@@ -123,7 +119,7 @@ function generateId (len:any) {
                   <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p>
         <form onSubmit={handleComment} >
             <textarea onChange={(e) => setComments(e.target.value) } value={comments} typeof='text' placeholder='Tweet your reply' />
-                <div className="flexIcons">
+                <div className="flexIcon">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
                   {<BsCardImage color='1D9BF0' />}
@@ -153,11 +149,11 @@ function generateId (len:any) {
                   ""
                 )}
                 
-                <span>
-                  {<TbCalendarTime fontSize="35" cursor="pointer" color='1D9BF0' />}{" "}
+                <span className='calendarIcon' >
+                  {<TbCalendarTime cursor="pointer" color='1D9BF0' />}{" "}
                 </span>
                 <span className="locationIcon">
-                  {<IoLocationOutline fontSize="35" color='1D9BF0' />}{" "}
+                  {<IoLocationOutline color='1D9BF0' />}{" "}
                 </span>
               </div>
                 {successfulUpload == true || comments?.length > 0 ? <button type="submit" className="tweetButton" >Reply</button> : <button className="btn-primary" disabled>
