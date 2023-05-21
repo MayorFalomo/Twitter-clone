@@ -122,6 +122,11 @@ background: #999999;
                 opacity: 0.85;
                 transition: 0.2s ease;
             }
+            span{
+                font-size: calc(12px + 0.25vw);
+                color: red;
+                text-align: center;
+            }
         }
         p{
             text-align:center;
@@ -129,7 +134,7 @@ background: #999999;
             color: black;
             font-size: calc(14px + 0.25vw);
               @media (max-width: 500px ) {
-                margin-top: 20px;
+                margin-top: 10px;
                 }
         }
     }

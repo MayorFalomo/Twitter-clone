@@ -24,7 +24,7 @@ const Login = (props: any) => {
     const [cookie, setCookie] = useCookies(["user"])
     const [email, setEmail] = useState<any>("")
     const [password, setPassword] = useState<any>("")
-    const [isAuth, setIsAuth] = useState<any>(false)
+    const [isAuth, setIsAuth] = useState<boolean>(false)
 
     
     const signInWithGoogle = async () => {
@@ -83,7 +83,7 @@ const Login = (props: any) => {
               <input className='Input' type="text" onChange={(e:any) => setPassword(e.target.value)} placeholder="Enter Password" />
               <div className='loginFlexBtn'  >
                   <button className='LoginSignInBtn' style={{backgroundColor: 'black', color: 'white'}} id='nextBtn' >Sign In </button>
-                            { isAuth ? <p>Check email and password again!</p> : "" }
+                { isAuth ? <span>Check email and password again!</span> : "" }
               </div>
               <p>Don't have an account? <Link href='register' ><span style={{color: '#1d9aef', cursor: 'pointer' }} >Sign up</span></Link> </p>
                     </form>

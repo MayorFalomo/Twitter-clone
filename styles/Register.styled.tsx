@@ -9,7 +9,7 @@ background: #999999;
     height: 100vh;
     margin: 0 auto;
     .subLoginPage{
-    width: 700px;
+    width: 600px;
     height: 700px;
    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
    background-color: #FFFFFF;
@@ -39,7 +39,7 @@ background: #999999;
         display: flex;
         justify-content: center;
         margin: 20px auto;
-        font-size: calc(26px + 0.25vw);
+        font-size: calc(22px + 0.25vw);
         color: black;
     }
     .googleBtn{
@@ -59,7 +59,7 @@ background: #999999;
          @media (max-width: 600px ) {
             width: 70%;
         }
-         @media (max-width: 400px ) {
+         @media (max-width: 430px ) {
             width: 90%;
         }
     }
@@ -110,19 +110,19 @@ background: #999999;
             margin:auto;
             padding:15px 20px;
             border-radius: 5px;
-            font-size: 25px;
+            font-size: calc(16px + 0.25vw);
             border: 1px rgb(47, 51, 54, 0.5) solid ;
             outline: none;
             font-size: 20px;
            
         }
         .Input::placeholder{
-            font-size: calc(14px + 0.25vw);
+            font-size: calc(12px + 0.25vw);
         }
         .loginFlexBtn{
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 10px;
             /* margin-top: 20px; */
             .LoginSignInBtn{
             width:50%;
@@ -148,15 +148,20 @@ background: #999999;
         }
         p{
             text-align:center;
-            margin-top: 50px;
-            font-size: 20px;
+            margin-top: 20px;
+            font-size: calc(14px + 0.25vw);
             color:  rgb(47, 51, 54, 0.8);
              @media (max-width: 420px ) {
-               margin-top: 30px;
+               margin-top: 10px;
             }
         }
     }
    
+    }
+    .errorText{
+        color: red;
+        text-align: center;
+        font-size: calc(14px + 0.25vw);
     }
 }
 `

@@ -26,6 +26,7 @@ const register = (props: any) => {
   const [passwords, setPasswords] = useState<string>("")
   const [cookies, setCookie] = useCookies(["user"])
   const [name, setName] = useState("")
+  const [isAuth, setIsAuth] = useState<boolean>(false)
 
   //Sign In With Google
    const signInWithGoogle = async () => {
@@ -38,7 +39,7 @@ const register = (props: any) => {
             username:  res.user.displayName,
             email: res.user.email,
             profilePic: res.user.photoURL,
-            coverPhoto: "https://www.whoa.in/201604-Whoa/be-you-be-unique-facebook-cover-pictures.jpg",
+            coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
             password: "123456",
             usersAt: `@${res.user.displayName}`,
             following: [],
@@ -50,7 +51,7 @@ const register = (props: any) => {
             links: "https://mayowa-falomo.netlify.app"
 
             }
-           axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => { console.log(err) })
+           axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => setIsAuth(true))
           getCurrentUser(res.user.uid)
           setDoc(doc(db, "users", res.user.uid), {
             uid: res.user.uid,
@@ -104,7 +105,7 @@ const register = (props: any) => {
       getCurrentUser(res.user.uid)
       
             // console.log(res.user.uid, "This is submit res");
-    }).catch((err) => console.log(err))
+    }).catch((err) => setIsAuth(true))
   }
 
   const getRandomEmail = () => {
@@ -174,9 +175,9 @@ const register = (props: any) => {
                 <div  className='generateBtn' onClick={() => setPasswords(getRandomPassword())} >generate password </div>
               </div>
               <div className='loginFlexBtn'  >
-                  <button type='submit' className='LoginSignInBtn' style={{backgroundColor: 'black', color: 'white'}} id='nextBtn' >Create account </button>
-                  {/* <button className='LoginSignInBtn' id='backgroundHover' >  Forgot Password? </button> */}
+                <button type='submit' className='LoginSignInBtn' style={{ backgroundColor: 'black', color: 'white' }} id='nextBtn' >Create account </button>
               </div>
+              { isAuth ? <span className='errorText' >There was an error, please try again!</span> : "" }
               <p>Have an account already?<Link href='login' ><span style={{color: '#1d9aef', cursor: 'pointer' }} >Log in</span></Link> </p>
                     </form>
                     </div>
