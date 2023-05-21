@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const SingleUserTweetsStyle = styled.div`
 .AllUserTweetContainer{
 /* border: 3px yellow solid; */
+
 .AllUserTweet{
     display: flex;
     align-items: flex-start;

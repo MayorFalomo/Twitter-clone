@@ -22,6 +22,7 @@ const Userstweet = (props: any) => {
       .catch((err) => console.log(err))
   }, [currentUser?.username])
   
+console.log(allUsersTweets.posts?.length);
 
 
   return (
@@ -31,7 +32,9 @@ const Userstweet = (props: any) => {
         <div key={allTweet._id} className='subAllTweet' >
           <Allusertweet allTweet={allTweet} />
         </div>
-      ))} </div>
+      ))}
+        </div>
+        {allUsersTweets.posts?.length == 0 && <div className='noTweetText' ><p>You Have No Tweets </p></div>}
       </div>
     </UserTweetStyle>
   )

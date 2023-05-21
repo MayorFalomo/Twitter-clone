@@ -289,6 +289,7 @@ export const ProfileStyled = styled.div`
         height: 100vh;
         bottom: 0;
         transform: translate(-50%, -40%);
+        border-radius: 0;
        }
     }
     .removeModal{

@@ -70,6 +70,8 @@ const Allusertweet = (props: any) => {
     setGetUsername(props.tweet?._username)
     //  setCommentModal(true)
   };
+
+  
   
   const views = Math.floor(Math.random() * suggestedUsers?.length);
 

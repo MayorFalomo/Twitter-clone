@@ -248,7 +248,7 @@ const EditProfileModal = (props: any) => {
                         </div> : <h1>{currentUser.birthday}</h1>}
                         </div>
                     <ul>
-                        <h1>Switch to professional </h1>
+                        <h2>Switch to professional </h2>
                         <span> {<TfiAngleRight />}</span>
                     </ul>
                 </form>

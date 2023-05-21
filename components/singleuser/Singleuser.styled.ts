@@ -198,13 +198,20 @@ export const SingleUserStyle = styled.div`
         border-top: 1px solid rgb(47, 51, 54);
         border-bottom: 1px solid rgb(47, 51, 54);
     }
+    .noTweetMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    font-size: calc( 14px + 0.25vw);
+}
 }
 .singleUserReplies{
     /* border: 1px solid rgb(47, 51, 54); */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 30vh;
     font-size: calc(18px + 0.25vw);
 
 }

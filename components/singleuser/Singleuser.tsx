@@ -100,7 +100,7 @@ const Singleuser = (props: any) => {
     setCopied(!copied);
     };
 
-    console.log(noOfFollowersArray);
+    // console.log(noOfFollowersArray);
     
     
     return (
@@ -162,7 +162,14 @@ const Singleuser = (props: any) => {
                         <li onClick={(e:any) => handleClick(2)} className={current == 2 ? "border-bottom" : ""} style={{  cursor: "pointer" }}>Media </li>
                         <li onClick={(e: any) => handleClick(3)} className={current == 3 ? "border-bottom" : ""} style={{ cursor: "pointer" }}> Likes</li>          
                     </ul>
-                {current == 0 && <div className="singleTweetsContainer" > {allUsersTweets?.posts?.map((allTweets:any) => (<div key={allTweets._id} className="singleTweet" ><Singleusertweets allTweets={allTweets} /> </div>) )} </div> }
+            {current == 0 && <div className="singleTweetsContainer" >
+              {allUsersTweets?.posts?.map((allTweets: any) =>
+              (<div key={allTweets._id} className="singleTweet" >
+                <Singleusertweets allTweets={allTweets} />
+              </div>
+              ))}
+              {allUsersTweets.posts?.length == 0 && <div className="noTweetMessage" ><p>This user has no tweets</p> </div>}
+            </div>}
                 {current == 1 && <SingleUserReplies/> }
                 </div>
             </div>

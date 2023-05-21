@@ -176,17 +176,15 @@ form{
             gap: 35px;
             font-size: calc(16px + 0.25vw);
             font-weight: 500;
-            /* color:  #575B5F; */
             color: rgb(113,118,123);
             margin-left: 20px;
                 span{
-        display: list-item;
-        list-style: disc outside none;
-        color:  #1d9aef;
-        /* font-size: 24px; */
-                font-size: calc(18px + 0.25vw);
-        cursor: pointer;
-        }
+                    display: list-item;
+                    list-style: disc outside none;
+                    color:  #1d9aef;
+                    font-size: calc(18px + 0.25vw);
+                    cursor: pointer;
+                }
         }h1{
         font-size: calc(22px + 0.25vw);
          padding: 5px 20px;
@@ -259,6 +257,9 @@ form{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        h2{
+            font-size: calc(20px + 0.25vw);    
+        }
        
     }
     ul:hover{
