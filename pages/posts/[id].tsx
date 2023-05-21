@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Comments from '@/components/comments/Comments'
 import Navbar from '@/components/navbar/Navbar'
 import Quoted from '@/components/quoted-comment/Quoted-comment'
@@ -7,6 +8,7 @@ import { AppContext } from '@/helpers/Helpers'
 import { SingleTweetStyle } from '@/styles/Id.styled'
 import axios from 'axios'
 import moment from 'moment'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
@@ -207,7 +209,7 @@ const Id = ({ tweetData }: any) => {
             <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />}</span>
           </div>
           <p className='tweetText'>{tweetProps?.tweet}</p>
-          { tweetProps?.picture.length > 0 ? <picture><img src={tweetProps?.picture} width={700} height={600} className='picture' alt='img'/></picture> : ""}
+          { tweetProps?.picture.length > 0 ? <img src={tweetProps?.picture} className='picture' alt='img'/> : ""}
           { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={`${tweetProps?.video}`}  controls > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >

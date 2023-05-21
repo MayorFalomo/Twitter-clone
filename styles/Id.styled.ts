@@ -116,10 +116,10 @@ export const SingleTweetStyle = styled.div`
         height: 80%;
         margin: 5px 10px;
         border-radius: 30px;
-        background-color: #000;
+        /* background-color: #000;
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: center; */
         object-position: center;
         object-fit: cover;
     }

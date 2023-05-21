@@ -11,8 +11,6 @@ import { BsPersonFill } from "react-icons/bs";
 import { HiOutlineEllipsisHorizontalCircle } from "react-icons/hi2";
 import { RiQuillPenLine } from "react-icons/ri";
 import Link from "next/link";
-import { useCookies } from "react-cookie";
-import axios from "axios";
 import { AppContext } from "@/helpers/Helpers";
 
 type Props = {};
@@ -21,9 +19,7 @@ const Navbar = (props: any) => {
 
   const { currentUser, twitterBlue, setTwitterBlue } = useContext(AppContext)
   
-  const [cookies, setCookies] = useCookies(["user"])
-  const [tweeterUser, setTweeterUser] = useState<any>([])
-
+ 
   
   return (
     <NavContainer>
