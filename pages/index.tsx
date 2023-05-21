@@ -21,7 +21,7 @@ type Post = {
 }
 
 // export const getStaticProps: GetStaticProps<{posts: Post[]}> = async(context) => {
-//   const res = await fetch(`http://localhost:7000/api/tweets`)
+//   const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets`)
 //   const posts: Post[] = await res.json()
   
 //   return { props: { posts } };

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { AiOutlineBars, AiOutlineFileGif } from 'react-icons/ai'
@@ -8,13 +8,12 @@ import { MdClose } from 'react-icons/md'
 import { TbCalendarTime } from 'react-icons/tb'
 import Mappedreply from './Mappedreply'
 import EmojiPicker from 'emoji-picker-react';
-
+import { ReplyPageStyle } from './Replymodal.styled'
 type Props = {}
 
-//Parent component is Commentpage.tsx
-const Replymodal = (props: any) => {  
+const Reply = (props: any) => {
 
-    const commentId = new Date()
+      const commentId = new Date()
 
    function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")
@@ -65,14 +64,18 @@ function generateId (len:any) {
       setSuccessfulUpload(true)
     };
     
+  //UseEffect to get the comment being replied
   useEffect(() => {
-    axios.get(`https://twitter-clone-server-nu.vercel.app/api//tweets/${props.getCommentId}/${props.urlParams}`)
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.getCommentId}/${props.urlParams}`)
       .then((res) => setSingleTweets(res.data.comments))
       .catch((err) => console.log(err))
-  }, [])
+  }, [props.getCommentId, props.urlParams])
 
+  console.log(props.getCommentId, "get comment id");
+  console.log(props.urlParams, "url params");
   
   
+  //Function to handle commenting
       const handleComment = async (e:any) => {
          e.preventDefault();
         const commentData = {
@@ -96,9 +99,12 @@ function generateId (len:any) {
         //      ...singleTweets.comments, commentData,
         //  ]})
   }
-  
 
+  // console.log(singleTweets.comments, "single tweet");
+  
+ 
   return (
+    <ReplyPageStyle>
      <div className='commentModalContainer' >
           <div className='commentModalClose' >
             {<MdClose onClick={() => props.setCommentModal(false)} fontSize={40} cursor='pointer' />} </div>
@@ -112,12 +118,12 @@ function generateId (len:any) {
           {singleTweets?.map((singleTweet:any) => (
             <div key={singleTweet._id} ><Mappedreply singleTweet={singleTweet} setId={setId} /> </div>
           ))}
-                  {/* <h1>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h1>
+                  <h1>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h1>
                   <p >{singleTweets?.tweet?.slice(0, 85)}... </p>
-                  <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p> */}
+                  <p className='tweet' >Replying to <span> {singleTweets?.usersAt} </span> </p>
         <form onSubmit={handleComment} >
             <textarea onChange={(e) => setComments(e.target.value) } value={comments} typeof='text' placeholder='Tweet your reply' />
-                <div className="flexIcon">
+                <div className="flexIcons">
                 <div className="tweetIcons">
                 <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
                   {<BsCardImage color='1D9BF0' />}
@@ -162,8 +168,9 @@ function generateId (len:any) {
             </div>
           </div>
               {successComment ? <div className="successMessage" >Your comment has been sent </div> : "" }
-            </div>
+      </div>
+      </ReplyPageStyle>
   )
 }
 
-export default Replymodal;
+export default Reply;

@@ -126,7 +126,7 @@ const Id = ({ tweetData }: any) => {
   //     usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
   //     postId: props.tweet._id,
   //   }
-  //   await axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+  //   await axios.put(`https://twitter-clone-server-nu.vercel.app/api//tweets/liketweet`, likeData).catch((err) => console.log(err))
   //   setLikesArray([...likesArray, likeData])    
   //   setNoOfLikesArray(likesArray.length + 1 );
   // }

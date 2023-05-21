@@ -9,8 +9,9 @@ import { BsCardImage, BsEmojiSmile, BsFillHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
 import Navbar from '../navbar/Navbar'
-import Replymodal from './Replymodal'
 import Showreplies from './Showreplies'
+import Reply from './Replymodal';
+
 
 type Props = {}
 
@@ -90,7 +91,7 @@ function generateId (len:any) {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
     }
-    await axios.put(`http://localhost:7000/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
   }
@@ -105,7 +106,7 @@ function generateId (len:any) {
       postId,
       retweetId: generateId(24),
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -124,7 +125,7 @@ function generateId (len:any) {
       createdAt,
       likeId: generateId(24)
     }
-    await axios.put(`http://localhost:7000/api/tweets/comment-liketweet`, likeData).catch((err) => console.log("Cannot like "))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comment-liketweet`, likeData).catch((err) => console.log("Cannot like "))
     // setLikesArray([...likesArray, likeData])
     // setNoOfLikesArray(likesArray.length + 1 );
     // console.log("successfully liked this comment");
@@ -140,7 +141,7 @@ function generateId (len:any) {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -161,7 +162,7 @@ function generateId (len:any) {
         like,
         retweet
      }
-      await axios.put(`http://localhost:7000/api/tweets/replies-comments`, commentData).catch((err) => console.log(err))
+      await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/replies-comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")
     setVideo("")
@@ -192,7 +193,8 @@ function generateId (len:any) {
     setShowReplies(true)
   }
   
-  console.log(props.comment?.length);
+  // console.log(props.comment?.length);
+  console.log(urlParams, "comments urlparams");
   
 
     return (
@@ -225,7 +227,7 @@ function generateId (len:any) {
                       />
                   }</p>
                   {commentModal ? <div className='replyModal' >
-                    <Replymodal currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div>
+                    <Reply currentUser={currentUser} setCommentModal={setCommentModal} getCommentId={getCommentId} urlParams={urlParams} newId={newId} /></div>
                     :
                     ""
                   }

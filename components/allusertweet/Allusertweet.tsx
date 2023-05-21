@@ -39,7 +39,7 @@ const Allusertweet = (props: any) => {
           usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: props.allTweet._id,
         }
-        axios.put(`http://localhost:7000/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
+        axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData])
         setNoOfLikesArray(likesArray?.length + 1);
       }
@@ -53,7 +53,7 @@ const Allusertweet = (props: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     } 	//takes the id of the post and removes it from the
-    await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
