@@ -196,12 +196,16 @@ export const CommentStyled = styled.div`
           .locationIcon {
             opacity: 0.5;
             cursor: default;
+              @media (max-width: 340px ) {
+                display: none ;
+        }
           }
           label{
             font-size: calc(24px + 0.25vw);
              @media (max-width: 400px ) {
                 font-size: calc(18px + 0.25vw);        
         }
+           
           }
           span{
             font-size: calc(24px + 0.25vw);

@@ -198,7 +198,7 @@ const Id = ({ tweetData }: any) => {
           </div>
           <div className='userDetailsContainer'>
           <div className='subUserDetailsContainer' >
-           <Link href={'/users/' + tweetProps?.username} > <div style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' > </div></Link>
+           <Link href={'/users/' + tweetProps?.username} style={{ backgroundImage: `url(${tweetProps?.profileDp})` }} className='profilePic' ></Link>
             <div className='username' >
             <Link href={'/users/' + tweetProps?.username} ><h1>{tweetProps?.username} </h1></Link>
               <p>{tweetProps?.usersAt} </p>
@@ -207,7 +207,7 @@ const Id = ({ tweetData }: any) => {
             <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />}</span>
           </div>
           <p className='tweetText'>{tweetProps?.tweet}</p>
-          { tweetProps?.picture.length > 0 ? <div style={{ background: `url(${tweetProps?.picture})` }} className='picture' > </div> : ""}
+          { tweetProps?.picture.length > 0 ? <picture><img src={tweetProps?.picture} width={700} height={600} className='picture' alt='img'/></picture> : ""}
           { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={`${tweetProps?.video}`}  controls > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >

@@ -7,7 +7,7 @@ import React, {useState, useContext, useEffect} from 'react'
 import { useCookies } from 'react-cookie'
 import { AiOutlineFileGif,} from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { BsCardImage, BsEmojiSmile, } from 'react-icons/bs'
+import { BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown, } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 import { IoLocationOutline } from 'react-icons/io5'
 import Commentpage from './Commentpage'
@@ -132,7 +132,7 @@ function generateId (len:any) {
                 <input type="file" onChange={(e) => uploadVideo(e.target.files)} id="fileInputGif" style={{ display: "none" }} />
                 {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmile cursor="pointer" />}
+                    {<BsEmojiSmileUpsideDown cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
