@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
+import MobileNav from '@/components/mobilenav/MobileNav'
 import Navbar from '@/components/navbar/Navbar'
 import ProfilePage from '@/components/profilepage/ProfilePage'
 import Search from '@/components/search/Search'
@@ -48,6 +49,7 @@ const profile = (props: Props) => {
           {/* <Whotofollow /> */}
           <Trends/>
         </div>
+          <div className="mobileNav" > <MobileNav/></div>
       </div>
       </ProfileStyled>
   )

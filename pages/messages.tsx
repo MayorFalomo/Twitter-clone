@@ -13,6 +13,7 @@ import Chats from '@/components/chats/Chats'
 import Chat from '@/components/chat/Chat'
 import { ChatContext } from '@/helpers/ChatContext'
 import MobileNav from '@/components/mobilenav/MobileNav'
+import { BiSearch } from 'react-icons/bi'
 
 type Props = {}
 
@@ -110,7 +111,8 @@ const messages = (props: any) => {
           </div>
         </header>
         <div className='inputContainer' >
-          <input type='text' onKeyDown={handleKey} value={username} onChange={(e:any) => setUsername(e.target.value) }placeholder='Search Direct Messages' className='searchInput' />
+            <input type='text' onKeyDown={handleKey} value={username} onChange={(e: any) => setUsername(e.target.value)} placeholder='Search Direct Messages' className='searchInput' />
+            <BiSearch className='biSearch' onClick={handleSearch} />
           </div>
           {err && <p style={{ marginTop: 20}} > Error USER NOT FOUND</p> }
           {user && <div onClick={handleSelect } className="userChat">

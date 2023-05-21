@@ -68,7 +68,6 @@ export const ChatStyled = styled.div`
                 }
             }
     .heading{
-        /* border: 1px solid green; */
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -107,9 +106,8 @@ export const ChatStyled = styled.div`
         .username:hover{
             text-decoration: underline;
         }
-      
-        }
     }
+}
     .inputCon{
         position: sticky;
         bottom: -10px;
@@ -130,6 +128,7 @@ export const ChatStyled = styled.div`
             }
             .sendIcon{
                 margin-right: 20px;
+                font-size: calc(24px + 0.25vw);
             }
             button{
                 border: none;
@@ -144,21 +143,28 @@ export const ChatStyled = styled.div`
           display: flex;
           justify-content: center;
         }
+        span{
+            font-size: calc(20px + 0.25vw);
+        }
+        label{
+            font-size: calc(20px + 0.25vw);
+        }
         }
         .inputTextArea{
             padding:20px auto;
             border-radius: 30px;
             width: 100%;
-            height: 80px;
+            height: 70px;
             background-color: rgb(32,35,39);
             color: #fff;
-            font-size: 24px;
+            font-size: calc(14px + 0.25vw);
             border: none;
             outline: none;
             resize: none;
             display: flex;
             justify-content: center;
             margin: 0 auto;
+            white-space: pre-wrap;
         }
         .inputTextArea::placeholder{
             font-weight: 500;

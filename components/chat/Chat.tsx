@@ -171,20 +171,20 @@ const Chat = (props: any) => {
                 <div className='inputCon' >
                     <div className='inputSpan' >
                     <label htmlFor="fileInputImage" style={{ cursor: "pointer", marginLeft: '10px' }}>
-                  {<BsCardImage color="#1d9aef" fontSize="25" />}
+                  {<BsCardImage color="#1d9aef" />}
                 </label>
                 <input type="file" onChange={(e:any) => setPicture(e.target.files[0]) } id="fileInputImage" style={{ display: "none" }} />
                 <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif color="#1d9aef" fontSize="30" />}
+                  {<AiOutlineFileGif color="#1d9aef" />}
                 </label>
                     <input type="file" onChange={(e:any) => setVideo(e.target.files[0])} id="fileInputGif" style={{ display: "none" }} />
                     {emoji ? (
                   <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmileUpsideDown color="#1d9aef" fontSize="30" cursor="pointer" />}
+                    {<BsEmojiSmileUpsideDown color="#1d9aef" cursor="pointer" />}
                   </span>
                 ) : (
                   <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile color="#1d9aef" fontSize="30" cursor="pointer" />}
+                    {<BsEmojiSmile color="#1d9aef" cursor="pointer" />}
                   </span>
                 )}
                 {emoji ? (
@@ -195,7 +195,9 @@ const Chat = (props: any) => {
                   ""
                 )}
                         <input typeof="text" onKeyDown={handleKey} onChange={(e) => setTexts(e.target.value) } value={texts} placeholder='Start a new message' className='inputTextArea' />
-                        { texts.length > 0 || picture !== null || video !== null ? <button onClick={handleSubmit} >{<AiOutlineSend fontSize='40' color='#1d9aef' className='sendIcon' />}</button> : <button disabled >{<AiOutlineSend fontSize='40' color='#1d9aef' className='sendIcon' />}</button> }
+                        {texts.length > 0 || picture !== null || video !== null ? <button onClick={handleSubmit} >{<AiOutlineSend color='#1d9aef' className='sendIcon' />}</button>
+                            :
+                            <button disabled >{<AiOutlineSend color='#1d9aef' className='sendIcon' />}</button>}
                     </div>
                     </div>
             </div>

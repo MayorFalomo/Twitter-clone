@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import MappedTrends from '@/components/mappedTrends/MappedTrends'
+import MobileNav from '@/components/mobilenav/MobileNav'
 import Navbar from '@/components/navbar/Navbar'
 import Search from '@/components/search/Search'
 import Whotofollow from '@/components/whotofollow/Whotofollow'
@@ -58,7 +59,8 @@ const trending = (props: any) => {
           <div className='rightGrid' >
           <Search />
               <Whotofollow />
-              </div>
+                </div>
+                          <div className="mobileNav" > <MobileNav/></div>
             </div>
             </TrendingStyled>
   )

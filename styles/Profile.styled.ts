@@ -47,6 +47,20 @@ export const ProfileStyled = styled.div`
       grid-template-columns:0 auto 0; 
       margin: 0 auto;
     }
+        .mobileNav{
+    display: none;
+  }
+  @media (max-width: 600px ) {
+    .mobileNav{
+      display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+  }
+  }
     .centerGridContainer{
     overflow: auto;
     border: 1px rgb(47, 51, 54) solid;
@@ -62,6 +76,19 @@ export const ProfileStyled = styled.div`
      .rightGridContainer::-webkit-scrollbar {
           width: 0px;
         }
-
+    .mobileNav{
+    display: none;
+  }
+  @media (max-width: 600px ) {
+    .mobileNav{
+      display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+    }
+  }
 }
 `

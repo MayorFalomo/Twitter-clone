@@ -1,34 +1,18 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { MessageStyle } from './Message.styled';
 import { AppContext } from '@/helpers/Helpers';
-import { ChatContext } from '@/helpers/ChatContext';
 import moment from 'moment';
 
 type Props = {}
 
 const Message = (props: any) => {
     const { currentUser } = useContext(AppContext)
-    const { data } = useContext(ChatContext)
 
     const ref = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         ref.current?.scrollIntoView({behavior: 'smooth'})
     },[props.message])
-    
-    // console.log(props.message);
-
-    // const timeStamp = new Date();
-    // console.log(timeStamp);
-
-    // const timeStamp =
-    
-    // console.log(props.message?.picture, "picture");
-    
-
-    
-    // console.log(currentUser);
-        // console.log(currentUser._id === props.message.senderId, "lets see" );
 
     
     return (

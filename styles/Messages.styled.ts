@@ -121,9 +121,17 @@ export const MessagesStyle = styled.div`
             }
         }
         .inputContainer{
-            /* border: 2px red solid; */
             display: flex;
             justify-content: center;
+            position: relative;
+            .biSearch{
+                position: absolute;
+                right: 40px;
+                top: 35px;
+                font-size: calc(24px + 0.25vw);
+                color: rgb(113,118,123);
+                cursor: pointer;
+            }
         }
         .searchInput{
             padding: 10px 20px;
