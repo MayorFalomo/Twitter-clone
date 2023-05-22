@@ -54,6 +54,7 @@ To deploy this project run
 - Real-time messaging (pictures and videos included).
 - Follow and Unfollow other users.
 - commenting on a tweet and replying comments.
+- liking comments.
 - Like, Retweet and Quote tweets.
 - Bookmark a tweet
 - Edit your profile
@@ -89,7 +90,7 @@ Getting Specific recommendations based on your likes and retweets.
 
 Like i said the challenges are numerous but the lessons to be Learned and potential experiences to be gained makes it all worth it.
 
-recording the number of views and storing them is another big challenge since i'd need to make it real-time and update when somebody views it and still find a way to still make the whole thing optimized.
+recording the number of views and storing them is another big challenge since i'd need to make it real-time and update when somebody views it and still find a way to still make the whole thing optimized so since i can't manually assign views i wrote a function that manually assigns views based on all the total registered number of users for each post.
 ## Run Locally
 
 Clone the project
