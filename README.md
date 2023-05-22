@@ -1,38 +1,118 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Tweeks
 
-First, run the development server:
+Tweeks is a full MERN Stack project and Twitter clone with both Backend and Frontend functionalities, The idea was to create something very similar to twitter in terms of both looks and at least some of it's functionalities.
+## Demo
+
+
+
+https://tweeks.netlify.app/register
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Tech Stack
+
+**Client:** Next Js, Styled Components
+
+**Backend:** Node Js, Express and MongoDB
+
+
+
+## Support
+
+For support, email mayorfalomo@gmail.com or contact me via any platform.
+
+
+## Optimizations
+
+What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
+
+I needed my web application to be fast so i used Next Js which is known for it's speed.
+
+I avoided making too many API Calls and instead used context to pass my data through out my application so the data is always readily available for users instead of requesting that same information from the server again.
+
+I stored each users information on a cookie that way, the users login and information is better secured and persists instead of using Local storage.
+
+When registering, I added a auto generate username, email and password functionality, so users can register with ease at a click of buttons, plus they don't have to remember all this info since it's all stored on a cookie that makes sure they are always logged in, of course the can all be edited later by each user if you don't like the names.
+
+i made sure Components were reusable so i didn't have to build as much many components as i should have from scratch.
+
+All useEffects have a dependency Array, so there's no chance of your browser crashing from too many repeated API calls.
+## Deployment
+
+To deploy this project run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Real-time messaging (pictures and videos included).
+- Follow and Unfollow other users.
+- commenting on a tweet and replying comments.
+- Like, Retweet and Quote tweets.
+- Bookmark a tweet
+- Edit your profile
+- View other peoples profiles
+- Posting Tweets, pictures and videos.
+- Get a verified badge if you get up to 5 followers.
+## 🛠 Skills
+Javascript, HTML, CSS...
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+React, Next Js, Typescript, Vue js...
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Styled Components, Sass , Tailwind
 
-## Learn More
+Node Js, Express, MongoDb...
 
-To learn more about Next.js, take a look at the following resources:
+Firebase.
+## Lessons Learned
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The challenges were numerous which is expected considering the scale of what i'm attempting to replicate and some of them i'd probably never get their solutions.
 
-## Deploy on Vercel
+Since Twitter closed down their API i had to find other solutions and think up ideas on what to adjust, Like Trends and hashtags, since, i couldn't do a proper trends i used a news Api has a better alternative of getting useful up-to-date data than to manually typing all of the trends, This way if anything users can see headlines of news events around the world and i have my data without manually typing all of that.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Creating Relationships and Synchronizing data across both the users their tweets and even the messaging is still a problem i'm working on solving.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Making all the comments reply-able is something i'm working on learning.
+
+Getting all a users likes, and all their replies is still something i'm figuring out.
+
+Showing only your followers post is still another part i'm figuring out moving forward.
+
+Getting Specific recommendations based on your likes and retweets.
+
+Like i said the challenges are numerous but the lessons to be Learned and potential experiences to be gained makes it all worth it.
+
+recording the number of views and storing them is another big challenge since i'd need to make it real-time and update when somebody views it and still find a way to still make the whole thing optimized.
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+

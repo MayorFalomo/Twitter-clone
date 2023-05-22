@@ -184,7 +184,7 @@ const Id = ({ tweetData }: any) => {
   }
  
   const params = useRouter()
-console.log(quotedCommentModal);
+console.log(tweetProps);
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
@@ -210,19 +210,21 @@ console.log(quotedCommentModal);
             <span>{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />}</span>
           </div>
           <p className='tweetText'>{tweetProps?.tweet}</p>
-          { tweetProps?.picture.length > 0 ? <img src={tweetProps?.picture} className='picture' alt='img'/> : ""}
-          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls > </video> : ""}
+          {tweetProps?.picture?.length > 0 ?
+            <img src={tweetProps?.picture} width={400} height={300} className='picture' alt='img' />
+            : ""}
+          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
               <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
-              <span className="listStyle" style={{ color: "#575B5F", fontWeight: 600 }} >{moment(tweetProps?.createdAt).format("D MMMM, YYYY")} </span>
-              <span className='listStyle'  style={{ color: "#575B5F", fontWeight: 600 }} > {views} Views</span>
+              <span className="listStyle" style={{ color: "#575B5F", fontWeight: 500 }} >{moment(tweetProps?.createdAt).format("D MMMM, YYYY")} </span>
+              <span className='listStyle'  style={{ color: "#575B5F", fontWeight: 500 }} > {views} Views</span>
             </div>
             <div className='tweetCount' >
               <div className='subTweetCount' >
-              <p><span>{retweetArray.length} </span> Retweets </p>
+              <p><span>{retweetArray?.length} </span> Retweets </p>
               <Link href={'/quoted/' + postId} ><p><span>{tweetProps?.quoted?.length } </span> Quotes </p></Link>
-              <p><span>{ likesArray.length} </span> Likes </p>
+              <p><span>{ likesArray?.length} </span> Likes </p>
               <p className='disabled' ><span>{0} </span> Bookmarks </p>
               </div>
               </div>

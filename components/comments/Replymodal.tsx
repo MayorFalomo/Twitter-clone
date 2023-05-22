@@ -72,7 +72,7 @@ function generateId (len:any) {
       .catch((err) => console.log(err))
   }, [props.getCommentId, props.urlParams])
   
-  //Function to handle commenting
+  //Function to handle Replying of a comment
       const handleComment = async (e:any) => {
          e.preventDefault();
         const commentData = {

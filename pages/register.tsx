@@ -62,7 +62,7 @@ const register = (props: any) => {
           })
         }).then(() =>
             router.push("/")
-     ).then(() => window.location.reload()).catch((err) => console.log(err))
+     ).then(() => window.location.reload()).catch(() => setIsAuth(true))
   }
   
 
@@ -105,7 +105,7 @@ const register = (props: any) => {
       getCurrentUser(res.user.uid)
       
             // console.log(res.user.uid, "This is submit res");
-    }).catch((err) => setIsAuth(true))
+    }).catch(() => setIsAuth(true))
   }
 
   const getRandomEmail = () => {

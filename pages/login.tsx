@@ -52,7 +52,7 @@ const Login = (props: any) => {
                     getCurrentUser(res.user.uid)
         }).then(() => router.push("/")).then(() =>
             window.location.reload()
-        ).catch((err) => console.log(err))
+        ).catch(() => setIsAuth(true))
     }
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,7 +61,7 @@ const Login = (props: any) => {
             setCookie("user", res.user.uid, { path: "/" })
         }).then(() => router.push("/") ).then(() =>
             window.location.reload()
-        ).catch((err) => setIsAuth(true)
+        ).catch(() => setIsAuth(true)
         )
     }
 

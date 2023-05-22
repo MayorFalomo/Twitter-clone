@@ -72,6 +72,7 @@ function generateId (len:any) {
       setSuccessfulUpload(true)
     };
     
+  //Function to handle commenting on a tweet
   const handleComment = async (e: any) => {
     e.preventDefault()
     const commentData = {
@@ -98,6 +99,24 @@ function generateId (len:any) {
       ].reverse()
     })
   }
+
+   //Add like function
+  const handleAddLike = async () => {
+    const likeData = {
+      username: currentUser.username,
+      profileDp: currentUser?.profileDp,
+      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      postId: props.comment._id,
+      createdAt,
+      likeId: generateId(24)
+    }
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/`, likeData).catch((err) => console.log("Cannot like "))
+    // setLikesArray([...likesArray, likeData])
+    // setNoOfLikesArray(likesArray.length + 1 );
+    // console.log("successfully liked this comment");
+    
+  }
+    // console.log(props.tweetProps);
     
     return (
       <CommentStyled>

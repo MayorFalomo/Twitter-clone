@@ -62,6 +62,9 @@ export const SingleTweetStyle = styled.div`
         height: 100vh;
         border-right: 1px solid rgb(47, 51, 54);
         border-left: 1px solid rgb(47, 51, 54);
+        @media (max-width: 600px) {
+            border: none;
+        }
         .centerGridHeader{
             display: flex;
             align-items: center;
@@ -231,6 +234,7 @@ export const SingleTweetStyle = styled.div`
                         bottom: 0;
                         transform: translate(-50%, -40%);
                         position: fixed;
+                        border-radius: 0;
                         z-index: 9999999999;
                     }
                 }

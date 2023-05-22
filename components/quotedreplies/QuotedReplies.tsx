@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import moment from 'moment'
@@ -18,47 +19,30 @@ const QuotedReply = (props: any) => {
     
      const [retweet, setRetweet] = useState<boolean>(false)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
-  const [likesArray, setLikesArray] = useState<any>()
-  const [noOfLikesArray, setNoOfLikesArray] = useState<any>()
-  const [commentModal, setCommentModal] = useState<boolean>(false)
-  const [modalLink, setModalLink] = useState<string>("")
-  const [urlParams, setUrlParams] = useState<string>(" ")
-  const [getUsername, setGetUsername] = useState<string>("")
-  const [modalActive, setModalActive] = useState<boolean>(false)
+  const [noOfRetweet, setNoOfRetweet] = useState<number>(0)
+  const [noOfLikes, setNoOfLikes] = useState<number>(0)
+  const [retweetTweet, setRetweetTweet] = useState<boolean>(false)
 
       const views = Math.floor(Math.random() * suggestedUsers?.length);
+  
+  const handleLike = () => {
+    SetLikeTweet(true)
+    setNoOfLikes(noOfLikes + 1 )
+  }
 
-    const removeLike = async () => {
-    }
-    // SetLikeTweet(false)
-    // const likeData = {
-    //   username: currentUser.username,
-    //   profileDp: currentUser?.profilePic,
-    //   usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-    //   postId,
-    // }
-    // await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
-    // let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
-    // setLikesArray(filtered)
-    // setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
-    //   const handleLikeEvent = () => {
-    // if (likesArray.includes(likesArray.username)) {
-    //   console.log("You cannot like this tweet");
-    // }
-    // else {
-    //   // const handleAddLike = async () => {
-    //     const likeData = {
-    //       username: currentUser.username,
-    //       profileDp: currentUser?.profilePic,
-    //       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-    //       postId: props.bookmark.postId,
-    //     }
-    //     axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
-    //     setLikesArray([...likesArray, likeData])
-    //     setNoOfLikesArray(likesArray?.length + 1);
-    //   }
-    // }
-    // console.log(props.quotedProps);
+   const removeLike = async () => {
+    SetLikeTweet(false)
+    setNoOfLikes(noOfLikes - 1 )
+  }
+  
+  const handleRetweet = () => {
+    setRetweet(true)
+    setNoOfRetweet(noOfRetweet + 1)
+  }
+  const removeRetweet = () => {
+    setRetweet(false)
+    setNoOfRetweet(noOfRetweet - 1)
+  }
     
     return (
       <QuotedReplies>
@@ -72,18 +56,18 @@ const QuotedReply = (props: any) => {
               <span className='createdAt' >{moment(props.quoted?.createdAt).format("MMMM D")} </span>
             </div>
                 <div className='removeModalContainer'>
-                  {<BiDotsHorizontalRounded  fontSize='30px' cursor='pointer' />}
-                  {modalActive ? <span className='remove' >Remove bookmark </span> : ""}
+                  {<BiDotsHorizontalRounded  cursor='pointer' />}
+                  {/* {modalActive ? <span className='remove' >Remove bookmark </span> : ""} */}
                 </div>
           </div>
           <p className='tweet-caption' >{props.quoted?.comments} </p>
-            {props.quoted?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.quoted?.picture})` }} className='tweet-image' ></div> : ""}
+            {props.quoted?.picture?.length > 1 ? <img src={props.quoted?.picture} className='picture' alt='img'/> : ""}
             <div className='subQuotedTweet' >
               <div className='mainTweetDetails' >
               <span style={{ backgroundImage: `url(${props.quotedProps.profileDp})`}} className='profilePic' > </span>
-              <span style={{fontSize: '24px'}} >{props.quotedProps.username} </span>
-              <span style={{fontSize: '20px', color: 'rgb(113,118,123)', fontWeight: 500}} >{props.quotedProps.usersAt} </span>
-                <span style={{fontSize: '20px', color: 'rgb(113,118,123)', fontWeight: 500, marginLeft: '20px', display: "list-item", listStyle: "disc outside none"}} >{moment(props.quotedProps?.createdAt).format("MMMM D")}  </span>
+              <span >{props.quotedProps.username} </span>
+              <span style={{ color: 'rgb(113,118,123)', fontWeight: 400}} className='mainTweetUsersAt' >{props.quotedProps.usersAt} </span>
+                <span style={{color: 'rgb(113,118,123)', fontWeight: 400, marginLeft: '20px', display: "list-item", listStyle: "disc outside none"}} className='mainTweetCreatedAt' >{moment(props.quotedProps?.createdAt).format("MMMM D")}  </span>
               </div>
               <p>{props.quotedProps.tweet} </p>
             </div>
@@ -92,7 +76,7 @@ const QuotedReply = (props: any) => {
               <p>
                 <FaRegComment
                   className="likeIcon"
-                  style={{ cursor: "pointer", fontSize: 35 }}
+                  style={{ cursor: "pointer", opacity: 0.4}}
                 />
             </p>
               <span>{0} </span>
@@ -102,20 +86,20 @@ const QuotedReply = (props: any) => {
               {retweet ? <p>
                 {
                   <AiOutlineRetweet
-                    onClick={() => setRetweet(false)}
+                    onClick={removeRetweet}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35, color: "#00BA7C" }}/>
+                    style={{ cursor: "pointer", color: "#00BA7C" }}/>
                   }</p>
                   :
               <p>
                 {
                     <AiOutlineRetweet
-                    onClick={() => setRetweet(true)}
+                    onClick={handleRetweet}
                     className="likeIcon"
-                    style={{ cursor: "pointer", fontSize: 35 }}
+                    style={{ cursor: "pointer" }}
                   />
                 }</p>}
-              <span>{0} </span>
+              <span>{noOfRetweet} </span>
             </div>
             <div className='flexIconsAndValues'>
               {likeTweet ? (
@@ -124,24 +108,24 @@ const QuotedReply = (props: any) => {
                         className='likeIcon'
                         style={{
                         color: "red",
-                        fontSize: 35,
                         cursor: "pointer",
                         }}
                       />
                     ) : (
                       <FaRegHeart
                         className='likeIcon'
-                        style={{ fontSize: 35, cursor: "pointer" }}
+                      style={{ cursor: "pointer" }}
+                      onClick={handleLike }
                       />
                     )}
-                <span>{0} </span>
+                <span>{noOfLikes} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer" }}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
@@ -151,7 +135,7 @@ const QuotedReply = (props: any) => {
                   {
                         <AiOutlineUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer", fontSize: 35 }}
+                      style={{ cursor: "pointer"}}
                       />
                 }</p>
             </div>

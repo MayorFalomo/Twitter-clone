@@ -115,7 +115,7 @@ function generateId (len:any) {
   
   
    //Add like function
-  const handleAddLike = async () => {
+  const handleCommentAddLike = async () => {
     const likeData = {
       username: currentUser.username,
       profileDp: currentUser?.profileDp,
@@ -124,9 +124,11 @@ function generateId (len:any) {
       createdAt,
       likeId: generateId(24)
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comment-liketweet`, likeData).catch((err) => console.log("Cannot like "))
+       
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.comment?.postId}/${props.comment?.newId}/like-comment`, likeData).catch((err) => console.log("Cannot like "))
+     setLikesArray([...likesArray, likeData])
+    setNoOfLikesArray(likesArray.length + 1 );
     // setLikesArray([...likesArray, likeData])
-    // setNoOfLikesArray(likesArray.length + 1 );
     // console.log("successfully liked this comment");
     
   }
@@ -134,19 +136,21 @@ function generateId (len:any) {
   //Handle Remove Like 
   const removeLike = async () => {
     setLikeTweet(false)
-    const likeData = {
-      username: currentUser.username,
-      profileDp: currentUser?.profilePic,
+    const unLikeData = {
+       username: currentUser.username,
+      profileDp: currentUser?.profileDp,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId,
+      postId: props.comment._id,
+      createdAt,
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
-    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.comment?.postId}/${props.comment?.newId}/unlike-comment`, unLikeData).catch((err) => console.log(err))
+        let filtered = likesArray.filter((item: any) => item.username !== unLikeData.username)
     setLikesArray(filtered)
-    setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+        setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
+
   }
 
-   const handleComment = async (e: any) => {
+   const handleCommentReply = async (e: any) => {
     e.preventDefault()
       const commentData = {
         username: currentUser?.username,
@@ -179,6 +183,7 @@ function generateId (len:any) {
     })
     }
   
+  //Function for getting the id of the post you want to comment on and sending it to the replymodal.tsx component
    const handleClick = (e: any) => {
      e.preventDefault()
      setUrlParams(props.comment?.newId)
@@ -191,10 +196,6 @@ function generateId (len:any) {
     setGetCommentId(props.comment?.postId)
     setShowReplies(true)
   }
-  
-  // console.log(props.comment?.length);
-  // console.log(urlParams, "comments urlparams");
-  
 
     return (
       <CommentPageStyle>
@@ -267,13 +268,14 @@ function generateId (len:any) {
                     ) : (
                       <FaRegHeart
                         className='likeIcon'
-                        onClick={handleAddLike}
+                        onClick={handleCommentAddLike}
                         style={{ cursor: "pointer" }}
                       />
                     )}
                   </p>
                 )}
-              <span>{props?.comment?.likes?.length} </span>
+              {/* <span>{props.comment?.likes?.length} </span> */}
+              <span>{noOfLikesArray} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>

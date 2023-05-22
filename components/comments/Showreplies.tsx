@@ -19,18 +19,6 @@ const Showreplies = (props: any) => {
 //   const [suggestedUsers, setSuggestedUsers] = useState<any>(props.suggestedUsers?.length)
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
 
-    // useEffect(() => {
-    //     props.replyArray.map((single: any) => {
-    //     return setMappedReplies(single)
-    //     })
-    // }, [])
-
-//     useEffect(() => {
-//     axios.get(`http://localhost:7000/api/tweets/${props.getCommentId}/${props.urlParams}`)
-//       .then((res) => setMappedReplies(res.data.comments))
-//       .catch((err) => console.log(err))
-//   }, [])
-
       //Add like function
   const handleAddLike = async () => {
   }

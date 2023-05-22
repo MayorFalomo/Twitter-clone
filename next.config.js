@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 
-module.exports = {
+const nextConfig = {
   compiler: {
     styledComponents: true,
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
+  },
 };
+
+module.exports = nextConfig;
