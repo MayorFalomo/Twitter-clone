@@ -71,7 +71,7 @@ Styled Components, Sass , Tailwind
 Node Js, Express, MongoDb...
 
 Firebase.
-## Lessons Learned
+## Lessons Learned and problems faced
 
 
 The challenges were numerous which is expected considering the scale of what i'm attempting to replicate and some of them i'd probably never get their solutions.
