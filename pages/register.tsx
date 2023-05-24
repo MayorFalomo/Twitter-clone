@@ -62,7 +62,7 @@ const register = (props: any) => {
           })
         }).then(() =>
             router.push("/")
-     ).then(() => window.location.reload()).catch(() => setIsAuth(true))
+     ).catch(() => setIsAuth(true))
   }
   
 
@@ -91,8 +91,6 @@ const register = (props: any) => {
      
       axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).then(() =>
         router.push("/")        
-      ).then(() =>
-        window.location.reload()
       ).catch((err) => { console.log(err) })
         setDoc(doc(db, "users", res.user.uid), {
             uid: res.user.uid,

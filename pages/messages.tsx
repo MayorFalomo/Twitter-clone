@@ -29,7 +29,7 @@ const messages = (props: any) => {
   const [switchToChats, setSwitchToChats] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  //This serach function works well
+  //This search function works well
   const handleSearch = async () => {
     const q = query(collection(db, "users"),
       where("username", "==", username));

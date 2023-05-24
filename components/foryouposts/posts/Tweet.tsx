@@ -28,16 +28,24 @@ const Tweet = (props: any) => {
   const [modalLink, setModalLink] = useState<string>("")
   const [urlParams, setUrlParams] = useState<string>(" ")
   const [getUsername, setGetUsername] = useState<string>("")
+  const [getTweetsUserName, setGetTweetsUserName] = useState<string>("")
 
   // console.log(likesArray && props.tweet.comments.length, "likes array");
 
   //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
-       username: currentUser.username,
+      username: props?.tweet.username,
+      currentUserName: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId: props.tweet._id,
+      postId: props.tweet?._id,
+      tweet: props.tweet?.tweet,
+      picture: props.tweet?.picture,
+      video: props.tweet?.video,
+      retweets: [...retweetArray], 	//copy the array, so we can manipulate it without affecting the original array. 	//this
+      likes: [...likesArray],
+
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
@@ -61,12 +69,17 @@ const Tweet = (props: any) => {
   
   //Add like function
   const handleAddLike = async () => {
+    
     const likeData = {
-       username: currentUser.username,
+       username: props.tweet.username, //This is the important bit
       profileDp: currentUser?.profileDp,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
+      currentUserId: currentUser._id,
+      currentUserName: currentUser.username,
     }
+    console.log(likeData, "likeData");
+    
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
@@ -115,7 +128,9 @@ const Tweet = (props: any) => {
   //Function to get the id of a tweet so it can be sent as a prop and open a modal 
   const handleClick = (e: any) => {
      e.preventDefault()
-     setUrlParams(props.tweet?._id)
+    setUrlParams(props.tweet?._id)
+    console.log(urlParams);
+    
      setCommentModal(true)
   };
 

@@ -11,6 +11,7 @@ import EmojiPicker from 'emoji-picker-react'
 
 type Props = {}
 
+//Parent component is tweet.tsx
 const CommentModal = (props:any) => {
     
       const commentId = new Date()

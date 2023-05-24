@@ -18,7 +18,7 @@ type Post = {
 export default function App({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
-
+  
   const [isAuth, setIsAuth] = useState<boolean>(true)
   const [user, setUser] = useState<any>(null)
   const [tweets, setTweets] = useState<any>([])

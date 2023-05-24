@@ -50,18 +50,14 @@ const Login = (props: any) => {
             }
             axios.post("`https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo).catch((err) => { console.log(err) })
                     getCurrentUser(res.user.uid)
-        }).then(() => router.push("/")).then(() =>
-            window.location.reload()
-        ).catch(() => setIsAuth(true))
+        }).then(() => router.push("/")).catch(() => setIsAuth(true))
     }
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         signInWithEmailAndPassword(auth, email, password).then((res) => {
             setCookie("user", res.user.uid, { path: "/" })
-        }).then(() => router.push("/") ).then(() =>
-            window.location.reload()
-        ).catch(() => setIsAuth(true)
+        }).then(() => router.push("/") ).catch(() => setIsAuth(true)
         )
     }
 

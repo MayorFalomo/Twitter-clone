@@ -64,11 +64,11 @@ const ForYouPosts = (props: any) => {
       tweet,
       video,
       picture,
-      gif,
       newDates,
       likes,
       retweet,
-      followers: currentUser.followers?.length,
+      followers: currentUser.followers?.length, //I am adding this so i can add verified user badges on the tl
+      userId: currentUser?._id,
     }
     try {
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
@@ -81,6 +81,7 @@ const ForYouPosts = (props: any) => {
     }
   }
 
+console.log(tweets);
 
   return (
     <ForYouContainer>
