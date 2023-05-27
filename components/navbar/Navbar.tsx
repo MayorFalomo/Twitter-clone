@@ -12,14 +12,25 @@ import { HiOutlineEllipsisHorizontalCircle } from "react-icons/hi2";
 import { RiQuillPenLine } from "react-icons/ri";
 import Link from "next/link";
 import { AppContext } from "@/helpers/Helpers";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 const Navbar = (props: any) => {
 
   const { currentUser, twitterBlue, setTwitterBlue } = useContext(AppContext)
-  
- 
+  const router = useRouter();
+  const currentRoute = router.pathname;
+
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/get-user/${currentUser?.username}`)
+        .then((res) => setUser(res.data) )
+    }
+  }, [currentUser?.username, currentRoute])
   
   return (
     <NavContainer>
@@ -33,55 +44,56 @@ const Navbar = (props: any) => {
               <Link href='/' ><li>
                 <div className="navLinkItems">
                 {<RiHome7Line className="navIcon"  />}
-                  <span>Home </span>
+                  <span  className="links" >Home </span>
                   </div>
               </li></Link>
               <Link href='/explore' ><li>
                 <div  className="navLinkItems" >
                 <RiHashtag className="navIcon"  />
-                  <span>Explore</span>
+                  <span  className="links" >Explore</span>
                   </div>
               </li></Link>
               <Link href='/notifications' ><li>
                 <div className="navLinkItems">
-                <BiBell className="navIcon" />
-                  <span>Notifications </span>
+                  <BiBell className="navIcon" />
+                  <span className="noOfNotifications" > {currentUser.notifications?.length  > 0 ? currentUser.notifications?.length : "" } </span>
+                  <span className="links" >Notifications </span>
                   </div>
               </li></Link>
               <Link href='/messages' ><li>
                 <div className="navLinkItems">
                 <RxEnvelopeClosed className="navIcon" />
-                  <span>Messages </span>
+                  <span  className="links" >Messages </span>
                   </div>
               </li></Link>
               <Link href='/bookmarks' ><li>
                 <div className="navLinkItems" >
                 <IoBookmarkOutline className="navIcon" />
-                  <span>Bookmarks </span>
+                  <span  className="links" >Bookmarks </span>
                   </div>
               </li></Link>
               <li>
                 <div onClick={() => setTwitterBlue(true)} className="navLinkItems">
                 <AiFillTwitterSquare className="navIcon" />
-                  <span>Twitter Blue </span>
+                  <span  className="links" >Twitter Blue </span>
                   </div>
               </li>
               <Link href='/profile' ><li>
                 <div className="navLinkItems">
                 <BsPersonFill className="navIcon" />
-                  <span>Profile </span>
+                  <span  className="links" >Profile </span>
                   </div>
               </li></Link>
-              <li>
+              <Link href='/more' ><li>
                 <div className="navLinkItems">
                 <HiOutlineEllipsisHorizontalCircle className="navIcon" />
-                  <span>More </span>
+                  <span  className="links" >More </span>
                   </div>
                 {/* <div className="navLinkItems">
                 <RiQuillPenLine className="tweetIconBtn" />
                   <span>More </span>
                   </div> */}
-              </li>
+              </li></Link>
 
               <button className="tweetBtn">Tweet </button>
               <div className="quill" ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 50, borderRadius: "50px"}} />} </p></div>

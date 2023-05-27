@@ -22,7 +22,7 @@ const Userstweet = (props: any) => {
       .catch((err) => console.log(err))
   }, [currentUser?.username])
   
-console.log(allUsersTweets.posts?.length);
+// console.log(allUsersTweets.posts?.length);
 
 
   return (

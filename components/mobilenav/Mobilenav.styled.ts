@@ -20,5 +20,17 @@ export const MobileNavStyle = styled.div`
         color: #1d9aef;
         font-size: calc(26px + 0.25vw );
     }
+    .notificationsCon{
+        position: relative;
+        .noOfNotifications{
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            background-color: #1d9aef;
+            padding: 5px;
+            font-size: calc(10px + 0.25vw);
+            border-radius: 50%;
+        }
+    }
 }
 `

@@ -1,24 +1,40 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BiBell, BiSearch } from 'react-icons/bi'
 import { RiHome7Line } from 'react-icons/ri'
 import { RxEnvelopeClosed } from 'react-icons/rx'
 import { MobileNavStyle } from './Mobilenav.styled'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { AppContext } from '@/helpers/Helpers'
 
 type Props = {}
 
 const MobileNav = (props: Props) => {
 
+  const {currentUser} = useContext(AppContext)
+  
   const router = useRouter();
   const currentRoute = router.pathname;
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/get-user/${currentUser?.username}`)
+        .then((res) => setUser(res.data) )
+    }
+  }, [currentUser?.username, currentRoute])
 
     return (
       <MobileNavStyle>
       <div className='mobileNavCon' >
           <Link href='/' ><span><RiHome7Line className={ currentRoute == '/' ? "activeRoute" : "navIcon"}  /></span></Link>
           <Link href='/trending' ><span><BiSearch className={currentRoute == '/trends' ? "activeRoute" : "navIcon"} /></span></Link>
-          <Link href='/notifications' ><span><BiBell className={currentRoute == '/notifications' ? "activeRoute" : "navIcon"} /></span></Link>
+          <div className="notificationsCon" >
+            <Link href='/notifications' ><span><BiBell className={currentRoute == '/notifications' ? "activeRoute" : "navIcon"} /> </span></Link>
+            <span className='noOfNotifications' >{currentUser?.notifications?.length > 0 ? currentUser?.notifications?.length : "" } </span>
+            </div>
           <Link href='/messages' ><span><RxEnvelopeClosed className={currentRoute =='/messages' ? "activeRoute" : "navIcon"} /></span></Link>
             </div>
             </MobileNavStyle>

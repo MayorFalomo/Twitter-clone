@@ -70,9 +70,8 @@ const Singleusertweets = (props: any) => {
      setCommentModal(true)
   };
 
-  console.log(props.allTweets.length, "This object");
-  console.log("hello");
-  
+  // console.log(props.allTweets, "This object");
+  // console.log("hello");
 
   const views = Math.floor(Math.random() * suggestedUsers?.length);
 
@@ -81,7 +80,7 @@ const Singleusertweets = (props: any) => {
       <div className="AllUserTweetContainer">
         {props.allTweets.length == 0 ? <div className="noTweetMessage" ><p>This user has no tweets</p> </div> :
           <div className='AllUserTweet'>
-            <div style={{ backgroundImage: `url(${props.allTweets?.profilePic})` }} className='userTweetPic' > </div>
+            <div style={{ backgroundImage: `url(${props.allTweets?.profileDp})` }} className='userTweetPic' > </div>
             <div className='flexUserInfoContainer' >
               <div className='flexUserInfo'>
                 <h1>{props.allTweets?.username} </h1>

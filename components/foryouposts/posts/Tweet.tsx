@@ -40,7 +40,7 @@ const Tweet = (props: any) => {
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet?._id,
-      tweet: props.tweet?.tweet,
+      tweets: props.tweet?.tweet,
       picture: props.tweet?.picture,
       video: props.tweet?.video,
       retweets: [...retweetArray], 	//copy the array, so we can manipulate it without affecting the original array. 	//this

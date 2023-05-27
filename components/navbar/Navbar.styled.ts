@@ -71,8 +71,8 @@ export const NavContainer = styled.div`
             justify-content: flex-end;
             width: 90%;
           }
-       span{
-        /* font-size: 28px; */
+       .links{
+        /* border: 2px blue solid; */
           font-size: calc(22px + 0.25vw);
         @media (max-width: 1500px ) {
           display: none;
@@ -83,6 +83,28 @@ export const NavContainer = styled.div`
        .navIcon{
           font-size: calc(28px + 0.25vw);
           /* border: 2px blue solid; */
+        }
+        .navLinkItems{
+          position: relative;
+          /* border: #1d9aef 2px solid; */
+          .noOfNotifications {
+            position: absolute;
+            left: 15px;
+            top: 5px;
+            padding: 5px;
+            background-color: #1d9aef;
+            color: #fff;
+            border-radius: 50%;
+            font-size: calc(10px + 0.25vw );
+            @media (max-width: 1500px) {
+              position: absolute;
+              left: 55px;
+            }
+            @media (max-width: 1300px) {
+              position: absolute;
+              left: 28px;
+            }
+          }
         }
          .navLinkItems:hover {
             background-color: rgb(47, 51, 54);

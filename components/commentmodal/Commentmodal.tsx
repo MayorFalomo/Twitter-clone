@@ -56,24 +56,27 @@ const CommentModal = (props:any) => {
   
    const handleComment = async (e:any) => {
          e.preventDefault();
-         const commentData = {
-             username: currentUser?.username,
-             usersAt: currentUser?.usersAt,
-             profileDp: currentUser?.profilePic,
-             comments,
-             picture,
-             video,
-             postId: singleTweets?._id ,
-             createdAt,
-         }
-         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments/`, commentData).catch((err) => console.log(err))
+     const commentData = {
+       username: singleTweets.username,
+       currentUsername: currentUser?.username,
+       usersAt: currentUser?.usersAt,
+       profileDp: currentUser?.profilePic,
+       comments,
+       picture,
+       video,
+       postId: singleTweets?._id,
+       createdAt,
+     }
+     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments/`, commentData).catch((err) => console.log(err))
      setComments(" ")
      setSuccessComment(true)
         //  setSingleTweets({
         //      ...singleTweets, comments: [
         //      ...singleTweets.comments, commentData,
         //  ]})
-     }
+  }
+  console.log(singleTweets.username);
+  
     
     return (
         <CommentModalStyle>

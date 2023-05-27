@@ -114,6 +114,7 @@ padding: 10px;
         height: 700px;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
        object-fit: cover;
        object-position: center;
         border-radius: 10px;

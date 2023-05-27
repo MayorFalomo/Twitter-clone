@@ -81,7 +81,7 @@ const ForYouPosts = (props: any) => {
     }
   }
 
-console.log(tweets);
+// console.log(tweets);
 
   return (
     <ForYouContainer>

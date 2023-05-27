@@ -2,6 +2,21 @@
 # Tweeks
 
 Tweeks is a full MERN Stack project and Twitter clone with both Backend and Frontend functionalities, The idea was to create something very similar to twitter in terms of both looks and at least some of it's functionalities.
+
+## Features
+
+- Real-time messaging (pictures and videos included).
+- Receive Notifications when your post is liked, retweeted, quoted and commented on.
+- Follow and Unfollow other users.
+- commenting on a tweet and replying comments.
+- liking comments.
+- Like, Retweet and Quote tweets.
+- Bookmark a tweet
+- Edit your profile
+- View other peoples profiles
+- Posting Tweets, pictures and videos.
+- Get a verified badge if you get up to 5 followers.
+
 ## Demo
 
 
@@ -49,18 +64,6 @@ To deploy this project run
 ```
 
 
-## Features
-
-- Real-time messaging (pictures and videos included).
-- Follow and Unfollow other users.
-- commenting on a tweet and replying comments.
-- liking comments.
-- Like, Retweet and Quote tweets.
-- Bookmark a tweet
-- Edit your profile
-- View other peoples profiles
-- Posting Tweets, pictures and videos.
-- Get a verified badge if you get up to 5 followers.
 ## 🛠 Skills
 Javascript, HTML, CSS...
 
