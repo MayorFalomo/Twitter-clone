@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 
   const paths = data.map((path: any) => {
     return {
-          params: { id: path._id || path.newId }
+          params: { id: path._id || path.newId || path.userId }
     }
   })
   return { 
@@ -184,7 +184,7 @@ const Id = ({ tweetData }: any) => {
   }
  
   const params = useRouter()
-console.log(tweetProps);
+// console.log(tweetProps);
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
