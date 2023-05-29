@@ -70,7 +70,7 @@ const Singleusertweets = (props: any) => {
      setCommentModal(true)
   };
 
-  // console.log(props.allTweets, "This object");
+  console.log(props.allTweets.picture?.length, "This object");
   // console.log("hello");
 
   const views = Math.floor(Math.random() * suggestedUsers?.length);

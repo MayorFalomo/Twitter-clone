@@ -93,12 +93,12 @@ const Singleuser = (props: any) => {
     }
   }
     
-     const handleCopyToClipboard = (param:any) => {
-    navigator.clipboard.writeText(
-      `https://insttagg-server.vercel.app/post/${param}`
-    );
-    setCopied(!copied);
-    };
+    //  const handleCopyToClipboard = (param:any) => {
+    // navigator.clipboard.writeText(
+    //   `https://insttagg-server.vercel.app/post/${param}`
+    // );
+    // setCopied(!copied);
+    // };
 
     // console.log(noOfFollowersArray);
     

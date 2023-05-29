@@ -45,7 +45,6 @@ const Tweet = (props: any) => {
       video: props.tweet?.video,
       retweets: [...retweetArray], 	//copy the array, so we can manipulate it without affecting the original array. 	//this
       likes: [...likesArray],
-
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
@@ -141,7 +140,7 @@ const Tweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
-// console.log(props.tweet);
+console.log(props.tweet?.profileDp, "profileDp");
 
   return (
       <Tweetstyled>
@@ -157,7 +156,7 @@ const Tweet = (props: any) => {
             </div>
                   <div>{<BiDotsHorizontalRounded className='biDots' cursor='pointer' />} </div>
           </div>
-          <p className='tweet-caption' >{props.tweet?.tweet} </p>
+          <Link href={'/posts/' + props.tweet?._id} className='tweet-caption' >{props.tweet?.tweet} </Link>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
           {props.tweet?.video?.length > 1 ? <video className='tweetVideo' controls src={`${props.tweet?.video}`} ></video>  : "" }
           <div className='tweetOptions'>
@@ -174,7 +173,7 @@ const Tweet = (props: any) => {
               {retweetArray && (
                   <p>
                     {retweetArray.some(
-                      (e: any) => e.username == currentUser?.username
+                      (e: any) => e.currentUserName == currentUser?.username
                     ) ? (
                       <AiOutlineRetweet
                         onClick={removeRetweet}
@@ -199,7 +198,7 @@ const Tweet = (props: any) => {
               {likesArray && (
                   <p>
                     {likesArray.some(
-                      (e: any) => e.username == currentUser?.username
+                      (e: any) => e.currentUserName == currentUser?.username
                     ) ? (
                       <BsFillHeartFill
                         onClick={removeLike}

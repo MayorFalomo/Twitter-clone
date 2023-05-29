@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 
   const paths = data.map((path: any) => {
     return {
-          params: { id: path._id }
+          params: { id: path._id || path.newId }
     }
   })
   return { 
@@ -65,10 +65,10 @@ const Id = ({ tweetData }: any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false)
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
-  useEffect(() => {
-    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
-    )
-  }, [currentUser?._id]); 
+  // useEffect(() => {
+  //   axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
+  //   )
+  // }, [currentUser?._id]); 
 
   const handleAddRetweet = async () => {
     setRetweetModal(false)
@@ -91,7 +91,7 @@ const Id = ({ tweetData }: any) => {
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -244,7 +244,7 @@ console.log(tweetProps);
                {retweetArray && (
                   <div className='retweetIcon'>
                     {retweetArray.some(
-                      (e: any) => e.username == currentUser?.username
+                      (e: any) => e.currentUserName == currentUser?.username
                     ) ? (
                       <AiOutlineRetweet
                         onClick={removeRetweet}
@@ -279,7 +279,7 @@ console.log(tweetProps);
                {likesArray && (
                   <p>
                     {likesArray.some(
-                      (e: any) => e.username == currentUser?.username
+                      (e: any) => e.currentUserName == currentUser?.username
                     ) ? (
                       <BsFillHeartFill
                         onClick={removeLike}

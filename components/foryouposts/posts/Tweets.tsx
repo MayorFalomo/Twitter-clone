@@ -16,11 +16,14 @@ const Tweets = (props: any) => {
 
   // console.log(bookmarks);
 
-  useEffect(() => {
-    axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
-      .then((res) => setUserMap(res.data)).catch((err) => console.log(err)
-      )
-  }, [])
+  // useEffect(() => {
+  //   axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
+  //     .then((res) => setUserMap(res.data)).catch((err) => console.log(err)
+  //     )
+  // }, [])
+  
+// console.log(userMap);
+  console.log(tweets, "these are tweets");
   
 
   

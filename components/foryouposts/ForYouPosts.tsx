@@ -53,6 +53,20 @@ const ForYouPosts = (props: any) => {
   
   const [newDates, setNewDates] = useState(moment(new Date(presentDate)).fromNow())
   
+  //function to generate id
+  function dec2hex (dec:any) {
+  return dec.toString(16).padStart(2, "0")
+  }
+  
+  // generateId :: Integer -> String
+function generateId (len:any) {
+  var arr = new Uint8Array((len || 40) / 2)
+  window.crypto.getRandomValues(arr)
+  return Array.from(arr, dec2hex).join('')
+  }
+
+  // console.log(currentUser);
+  
   //Function to post Tweets
   const postTweet = async (e: any) => {
     e.preventDefault();
@@ -68,7 +82,9 @@ const ForYouPosts = (props: any) => {
       likes,
       retweet,
       followers: currentUser.followers?.length, //I am adding this so i can add verified user badges on the tl
-      userId: currentUser?._id,
+      _id: currentUser?._id,
+      userId: currentUser?.userId,
+      newId: generateId(24),
     }
     try {
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);

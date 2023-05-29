@@ -75,7 +75,7 @@ const Allusertweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length);
 
-    // console.log(props.allTweet?.picture);
+    // console.log(props.allTweet?.picture?.length);
     
     return (
         <AllUserTweets>

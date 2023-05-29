@@ -61,8 +61,9 @@ export const SingleUserTweetsStyle = styled.div`
                 cursor:pointer;
             }
             .singleTweetImage{
-                width: 400px;
-                height: 400px;
+                border: 2px red solid;
+                width: 400px !important;
+                height: 400px !important;
                 border-radius: 20px;
                 background-color: #000;
                 background-repeat: no-repeat;
