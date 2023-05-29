@@ -59,7 +59,7 @@ const Id = (props:any) => {
   // console.log(router);
   
   const { id }  = router.query
-  // console.log(id, "This is id");
+  console.log(id, "This is id");
 
   const tweetData = tweets.find((post: any) => post?._id === id);
 
