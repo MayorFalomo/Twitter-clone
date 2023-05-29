@@ -139,7 +139,7 @@ const Tweet = (props: any) => {
   };
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
-  
+  const dynamic = props.tweet?._id
 // console.log(props.tweet?.profileDp, "profileDp");
 
   return (
@@ -241,7 +241,7 @@ const Tweet = (props: any) => {
           </div>
             <div className='showThread' >
           <div style={{ cursor: "pointer", backgroundImage: `url(${props.tweet?.profileDp})` }} className='subUserPhoto' > </div>
-              <Link href={'/posts/' + props.tweet?._id} >
+              <Link href="/posts/[id]" as={`/posts/${props.tweet?._id}`} >
                 <p>Show this thread </p>
               </Link>
             </div>

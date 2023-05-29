@@ -18,36 +18,54 @@ import { FaRegComment, FaRegHeart } from 'react-icons/fa'
 
 type Props = {}
 
-export const getStaticPaths = async () => {
-  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
-  const data = await res.json()
-
-  const paths = data.map((path: any) => {
-    return {
-          params: { id: path._id || path.newId || path.userId }
-    }
-  })
-  return { 
-    paths, 
-    fallback: false
-  }
-}
-
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets/' + id)
-  const data = await res.json()
+// export const getStaticPaths = async () => {
+//   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
+//   const data = await res.json()
+//   // console.log(data);
   
-  return {
-    props: {
-      tweetData: data
-    },
-  }
-}
+//   const paths = data.map((path: any) => {
+//     return {      
+//       params: { id: path._id }
+      
+//     }
+//   })
+//   return { 
+//     paths,     
+//     fallback: false
+//   }
+// }
 
-const Id = ({ tweetData }: any) => {
+// export const getStaticProps = async (context: any) => {
+//   const id = context.params.id;
+//   console.log(id,"This is id");
   
-  const {currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
+//   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets/' + id)
+//   const data = await res.json()
+//   console.log(data, "This is data");
+  
+//   return {
+//     props: {
+//       tweetData: data
+//     },
+//   }
+// }
+
+const Id = (props:any) => {
+  
+  const { currentUser, tweets, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
+  // console.log(tweetData, "tweetData");
+
+  const router = useRouter()
+  // console.log(router);
+  
+  const { id }  = router.query
+  // console.log(id, "This is id");
+
+  const tweetData = tweets.find((post: any) => post?._id === id);
+
+  // console.log(tweetData, "This is post");
+  
+  
   
   const [tweetProps, setTweetProps] = useState<any>(tweetData)
 
