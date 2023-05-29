@@ -140,7 +140,7 @@ const Tweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
-console.log(props.tweet?.profileDp, "profileDp");
+// console.log(props.tweet?.profileDp, "profileDp");
 
   return (
       <Tweetstyled>

@@ -83,7 +83,7 @@ function generateId (len:any) {
       retweet,
       followers: currentUser.followers?.length, //I am adding this so i can add verified user badges on the tl
       _id: currentUser?._id,
-      userId: currentUser?.userId,
+      userId: currentUser?.usersId,
       newId: generateId(24),
     }
     try {
@@ -97,7 +97,7 @@ function generateId (len:any) {
     }
   }
 
-// console.log(tweets);
+console.log(tweets);
 
   return (
     <ForYouContainer>

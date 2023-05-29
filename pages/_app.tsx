@@ -105,7 +105,7 @@ export default function App({ Component, pageProps }: AppProps) {
         return state;
     }
   }
-  // console.log(currentUser._id);
+  console.log(tweets);
   
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
