@@ -89,7 +89,7 @@ function generateId (len:any) {
     try {
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
-      setTweets([...tweets, newTweet].reverse())
+      setTweets([...tweets, newTweet])
       setTweet(" ")
       setPicture("")
       setVideo("")
