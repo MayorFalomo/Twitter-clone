@@ -28,7 +28,7 @@ const Comments = (props: any) => {
   const [likes, setLikes] = useState<any>([]);
   const [reply, setReply] = useState<any>([]);
   const [retweet, setRetweet] = useState<any>([]);
-    const [createdAt, setCreatedAt] = useState<any>(commentId)
+    const [createdAt, setCreatedAt] = useState<any>(moment(new Date(commentId)).fromNow())
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
     const [cookies, setCookie] = useCookies(["user"])
     const [comment, setComment] =  useState<any>([])
@@ -77,17 +77,18 @@ function generateId (len:any) {
     e.preventDefault()
     const commentData = {
       username: currentUser?.username,
+      // currentUsername: props.comment?.username ,
       usersAt: currentUser?.usersAt,
       profileDp: currentUser?.profilePic,
       comments,
       picture,
       video,
-      postId,
+      id: postId,
       createdAt,
       comment,
-      newId: generateId(24),
-      likes,
+       likes,
       retweet,
+      newId: generateId(24),
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
@@ -116,7 +117,7 @@ function generateId (len:any) {
     // console.log("successfully liked this comment");
     
   }
-    // console.log(props.tweetProps);
+    // console.log(props.tweetProps?.username, "tweetprops");
     
     return (
       <CommentStyled>

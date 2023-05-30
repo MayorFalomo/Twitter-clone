@@ -23,7 +23,7 @@ const Tweets = (props: any) => {
   // }, [])
   
 // console.log(userMap);
-  console.log(tweets, "these are tweets");
+  // console.log(tweets, "these are tweets");
   
 
   

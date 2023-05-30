@@ -87,6 +87,28 @@ export default function App({ Component, pageProps }: AppProps) {
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
   // console.log(noOfFollowing, "following");
 
+// useEffect(() => {
+//     const fetchNotifications = async () => {
+//       try {
+//         const response = await axios.get(
+//           `http://localhost:7000/api/users/${currentUser._id}/get-notifications`
+//         );
+//         setNotifications(response.data);
+//       } catch (error) {
+//         console.log('Error fetching notifications:', error);
+//       }
+//     };
+
+//     fetchNotifications();
+// }, [currentUser._id]);
+  
+    const [notifications, setNotifications] = useState<any>();
+// console.log(currentUser);
+
+  // console.log(notifications, "this is notifications");
+  
+  
+
   const INITIAL_STATE = {
     chatId: "null",
     user: {},
@@ -105,7 +127,7 @@ export default function App({ Component, pageProps }: AppProps) {
         return state;
     }
   }
-  console.log(tweets);
+  // console.log(notifications, "notifications");
   
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
@@ -142,7 +164,9 @@ export default function App({ Component, pageProps }: AppProps) {
         setTweets,
         currentUser,
         bookmarks,
-        setBookmarks
+        setBookmarks,
+        notifications,
+        setNotifications,
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

@@ -56,10 +56,10 @@ const Id = (props:any) => {
   // console.log(tweetData, "tweetData");
 
   const router = useRouter()
-  console.log(router);
+  // console.log(router);
   
   const { id }  = router.query
-  console.log(id, "This is id");
+  // console.log(id, "This is id");
 
   const tweetData = tweets.find((post: any) => post?._id === id)
 
@@ -262,7 +262,7 @@ const Id = (props:any) => {
                {retweetArray && (
                   <div className='retweetIcon'>
                     {retweetArray.some(
-                      (e: any) => e.currentUserName == currentUser?.username
+                      (e: any) => e?.currentUserName == currentUser?.username
                     ) ? (
                       <AiOutlineRetweet
                         onClick={removeRetweet}

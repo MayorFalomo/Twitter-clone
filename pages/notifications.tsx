@@ -1,3 +1,4 @@
+import Navbar from '@/components/navbar/Navbar'
 import Notifications from '@/components/notification/Notification'
 import React from 'react'
 
@@ -8,6 +9,7 @@ const notifications = (props: any) => {
   
   return (
     <div>
+      {/* <Navbar/> */}
       <Notifications />
     </div>
   )

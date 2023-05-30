@@ -19,7 +19,7 @@ type Props = {};
 
 const Navbar = (props: any) => {
 
-  const { currentUser, twitterBlue, setTwitterBlue } = useContext(AppContext)
+  const { currentUser, twitterBlue, setTwitterBlue, notifications, } = useContext(AppContext)
   const router = useRouter();
   const currentRoute = router.pathname;
 
@@ -31,6 +31,12 @@ const Navbar = (props: any) => {
         .then((res) => setUser(res.data) )
     }
   }, [currentUser?.username, currentRoute])
+
+  // console.log(currentUser);
+
+  // const router = useRouter()
+  
+  // console.log(router);
   
   return (
     <NavContainer>

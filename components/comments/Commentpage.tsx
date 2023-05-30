@@ -21,7 +21,10 @@ const Commentpage = (props: any) => {
     
   const views = Math.floor(Math.random() * suggestedUsers.length)
   
-      const commentId = new Date()
+  const commentId = new Date()
+  
+  console.log(props.comment.likes, "this is");
+  
 
   const [postId, setPostId] = useState(props.comment?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
@@ -181,13 +184,17 @@ function generateId (len:any) {
         ]
       }
     })
-    }
+  }
+  console.log(props.comment);
+  
   
   //Function for getting the id of the post you want to comment on and sending it to the replymodal.tsx component
    const handleClick = (e: any) => {
      e.preventDefault()
      setUrlParams(props.comment?.newId)
-     setGetCommentId(props.comment?.postId)
+     setGetCommentId(props.comment?._id || props.comment?.id || props.comment?.postId)
+     console.log(getCommentId, "commentId");
+     
      setCommentModal(true)
   };
 

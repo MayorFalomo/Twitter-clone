@@ -39,16 +39,13 @@ const Tweet = (props: any) => {
       currentUserName: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId: props.tweet?._id,
+      id: props.tweet?._id,
       tweets: props.tweet?.tweet,
-      picture: props.tweet?.picture,
-      video: props.tweet?.video,
-      retweets: [...retweetArray], 	//copy the array, so we can manipulate it without affecting the original array. 	//this
-      likes: [...likesArray],
-    }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
-    setRetweetArray([...retweetArray, retweetData])    
+    }      
+     setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
+   
   }
 
   //Remove Retweet
@@ -71,13 +68,13 @@ const Tweet = (props: any) => {
     
     const likeData = {
        username: props.tweet.username, //This is the important bit
-      profileDp: currentUser?.profileDp,
+      profileDp: currentUser?.profilePic,
       usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId: props.tweet._id,
-      currentUserId: currentUser._id,
+      tweets: props.tweet.tweet,
+      id: props.tweet?._id,
       currentUserName: currentUser.username,
     }
-    console.log(likeData, "likeData");
+    // console.log(likeData, "likeData");
     
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
@@ -139,9 +136,11 @@ const Tweet = (props: any) => {
   };
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
-  const dynamic = props.tweet?._id
+  // const dynamic = props.tweet?._id
 // console.log(props.tweet?.profileDp, "profileDp");
 
+  // console.log(currentUser.notifications, "this are notifications");
+  
   return (
       <Tweetstyled>
       <div className='postsContainer' >

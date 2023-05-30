@@ -64,7 +64,7 @@ const CommentModal = (props:any) => {
        comments,
        picture,
        video,
-       postId: singleTweets?._id,
+       id: singleTweets?._id,
        createdAt,
      }
      await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments/`, commentData).catch((err) => console.log(err))
@@ -74,6 +74,7 @@ const CommentModal = (props:any) => {
         //      ...singleTweets, comments: [
         //      ...singleTweets.comments, commentData,
         //  ]})
+    //  setComments([...setComments, commentData])
   }
   console.log(singleTweets.username);
   
