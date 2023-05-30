@@ -84,13 +84,17 @@ function generateId (len:any) {
       followers: currentUser.followers?.length, //I am adding this so i can add verified user badges on the tl
       // _id: currentUser?._id,
       userId: currentUser?.usersId,
-      newId: generateId(24),
+      _id: generateId(24),
     }
     try {
-      await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
+      await axios.post(`http://localhost:7000/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
       setTweets([...tweets, newTweet].reverse())
       setTweet(" ")
+      setPicture("")
+      setVideo("")
+      setLikes([])
+      setRetweet([])
       // console.log(tweets);
     } catch (err) {
       console.log(err);

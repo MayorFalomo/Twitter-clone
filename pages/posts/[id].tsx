@@ -56,12 +56,12 @@ const Id = (props:any) => {
   // console.log(tweetData, "tweetData");
 
   const router = useRouter()
-  // console.log(router);
+  console.log(router);
   
   const { id }  = router.query
   console.log(id, "This is id");
 
-  const tweetData = tweets.find((post: any) => post?._id === id);
+  const tweetData = tweets.find((post: any) => post?._id === id)
 
   // console.log(tweetData, "This is post");
   
@@ -201,7 +201,7 @@ const Id = (props:any) => {
     setRetweetModal(false);
   }
  
-  const params = useRouter()
+  // const params = useRouter()
 // console.log(tweetProps);
 
   
@@ -231,7 +231,7 @@ const Id = (props:any) => {
           {tweetProps?.picture?.length > 0 ?
             <img src={tweetProps?.picture} width={400} height={300} className='picture' alt='img' />
             : ""}
-          { tweetProps?.video.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning > </video> : ""}
+          { tweetProps?.video?.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
               <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
