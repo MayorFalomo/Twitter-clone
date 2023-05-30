@@ -241,7 +241,7 @@ const Tweet = (props: any) => {
           </div>
             <div className='showThread' >
           <div style={{ cursor: "pointer", backgroundImage: `url(${props.tweet?.profileDp})` }} className='subUserPhoto' > </div>
-              <Link href="/posts/[id]" as={`/posts/${props.tweet?._id}` || `/posts/${props.tweet?.newId}`} >
+              <Link href="/[id]" as={`${props.tweet?._id}`} >
                 <p>Show this thread </p>
               </Link>
             </div>
