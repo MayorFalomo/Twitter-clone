@@ -5,7 +5,7 @@ export const UserRepliesStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 60vh;
     font-size: calc(16px + 0.25vw);
 }
 `

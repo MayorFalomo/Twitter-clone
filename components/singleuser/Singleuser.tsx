@@ -26,10 +26,10 @@ const Singleuser = (props: any) => {
     const [copied, setCopied] = useState<boolean>(false)
     const [followingButton, setFollowingButton] = useState<boolean>(false)
     const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
-    const [urlParams, setUrlParams] = useState<string>(props.suggestedUser?._id)
-    const [usernames, setUsernames] = useState<string>(props.suggestedUser?.username)
-    const [usersAt, setUsersAt] = useState<string>(props.suggestedUser?.usersAt)
-    const [usersProfileDp, setUsersProfileDp] = useState<string>(props.suggestedUser?.profilePic)
+    const [urlParams, setUrlParams] = useState<string>(props.user?._id)
+    const [usernames, setUsernames] = useState<string>(props.user?.username)
+    const [usersAt, setUsersAt] = useState<string>(props.user?.usersAt)
+    const [usersProfileDp, setUsersProfileDp] = useState<string>(props.user?.profilePic)
     const [followersArray, setFollowersArray] = useState<any>(props.user?.following)
     const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(followersArray?.length)
 
@@ -45,12 +45,9 @@ const Singleuser = (props: any) => {
           .then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
     }, [props.user?.username])
 
+  //Handle follow of a user
      const handleFollow = async () => {
     // e.preventDefault()
-    setUrlParams(props.suggestedUser?._id)
-    setUsernames(props.suggestedUser?.username)
-    setUsersAt(props.suggestedUser?.usersAt)
-    setUsersProfileDp(props.suggestedUser?.profilePic)
     setFollowingButton(true)
            const followAUser = {
             currentUserName: currentUser?.username, 		//username of the user who is following the current user.
@@ -61,10 +58,12 @@ const Singleuser = (props: any) => {
             userToAddToAt: usersAt,
             userToAddToProfilePic: usersProfileDp, 	//username of the user who is following the current user.
             usersId: urlParams,
-     }
+       }
+       console.log(followAUser);
+       
      try {
          setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
-       await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
+       await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
          setFollowingButton(true)
         setNoOfFollowersArray(followersArray?.length + 1)
@@ -73,6 +72,7 @@ const Singleuser = (props: any) => {
         }
     }
     
+  //Handle Unfollowing of a user
     const handleRemoveFollower = async () => {
     const data = {
       userToBeUnfollowed: urlParams,

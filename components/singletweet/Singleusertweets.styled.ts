@@ -60,22 +60,7 @@ export const SingleUserTweetsStyle = styled.div`
                 text-decoration: underline;
                 cursor:pointer;
             }
-            .singleTweetImage{
-                border: 2px red solid;
-                width: 400px !important;
-                height: 400px !important;
-                border-radius: 20px;
-                background-color: #000;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                object-fit: cover;
-                object-position: center;
-                border: 1px rgb(47, 51, 54) solid;
-                @media (max-width: 450px ) {
-                    width: 250px;
-                    height: 250px;
-        }
+           
             }
            
         }
@@ -127,6 +112,22 @@ export const SingleUserTweetsStyle = styled.div`
              @media (max-width: 450px ) {
             height: 300px;
         }
+        }
+         .singleTweetImage{
+                border: 2px red solid;
+                width: 100%;
+                height: 400px;
+                border-radius: 20px;
+                background-color: #000;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                object-fit: cover;
+                object-position: center;
+                border: 1px rgb(47, 51, 54) solid;
+                @media (max-width: 450px ) {
+                    width: 100%;
+                    height: 250px;
         }
     }
 }

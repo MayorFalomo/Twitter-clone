@@ -53,19 +53,16 @@ const Tweet = (props: any) => {
     setRetweet(false)
     const retweetData = {
       username: currentUser.username,
-      profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId,
-    }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, retweetData).catch((err) => console.log(err))
-    let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
-    setRetweetArray(filtered)
+      id: postId,
+     }     
+     await axios.put(`http://localhost:7000/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))     
+    let filtered = retweetArray.filter((item: any) => item.currentUserName !== retweetData.username)
+     setRetweetArray(filtered)     
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
   
   //Add like function
   const handleAddLike = async () => {
-    
     const likeData = {
        username: props.tweet.username, //This is the important bit
       profileDp: currentUser?.profilePic,
@@ -73,9 +70,7 @@ const Tweet = (props: any) => {
       tweets: props.tweet.tweet,
       id: props.tweet?._id,
       currentUserName: currentUser.username,
-    }
-    // console.log(likeData, "likeData");
-    
+    }    
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
@@ -86,14 +81,13 @@ const Tweet = (props: any) => {
     SetLikeTweet(false)
     const likeData = {
       username: currentUser.username,
-      profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId,
+      id: postId,
     }
-    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+        await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+    let filtered = likesArray.filter((item: any) => item.currentUserName !== likeData.username)
+    
     setLikesArray(filtered)   	//filtered is a array with all the items that are not the likeData.username, this is the
     setNoOfLikesArray(likesArray?.length - 1)
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
   }
 
   //Add a Bookmark function
@@ -124,9 +118,7 @@ const Tweet = (props: any) => {
   //Function to get the id of a tweet so it can be sent as a prop and open a modal 
   const handleClick = (e: any) => {
      e.preventDefault()
-    setUrlParams(props.tweet?._id)
-    console.log(urlParams);
-    
+    setUrlParams(props.tweet?._id)    
      setCommentModal(true)
   };
 
@@ -137,7 +129,7 @@ const Tweet = (props: any) => {
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   // const dynamic = props.tweet?._id
-// console.log(props.tweet?.profileDp, "profileDp");
+// console.log(props.tweet, "tweet");
 
   // console.log(currentUser.notifications, "this are notifications");
   
