@@ -1,12 +1,13 @@
 import styled from "styled-components"
 
 export const NotificationsStyle = styled.div`
-.notificationsCon{
+ 
+.notificationsContainer{
     display: grid;
     grid-template-columns: 400px auto 600px;
     margin: 0 10%;
     overflow: hidden;
-    /* border: 2px red solid; */
+    position: relative;
     height: 100vh;
      @media (max-width: 2070px ) {
       display: grid;
@@ -46,24 +47,12 @@ export const NotificationsStyle = styled.div`
       grid-template-columns:0 auto 0; 
       margin: 0 auto;
     }
-        .mobileNav{
-    display: none;
-  }
-  @media (max-width: 600px ) {
-    .mobileNav{
-      display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    background-color: black;
-  }
-  }
+    
     .centerGridContainer{
     overflow: auto;
     border: 1px rgb(47, 51, 54) solid;
            /* border: 2px red solid;  */
+         
     }
     .centerGridContainer::-webkit-scrollbar {
           width: 0px;
@@ -77,31 +66,19 @@ export const NotificationsStyle = styled.div`
         }
     .mobileNav{
     display: none;
-  }
+    /* border: 2px blue solid; */
+    /* width: 100%; */
+    /* height: 100vh; */
   @media (max-width: 600px ) {
-    .mobileNav{
-      display: flex;
+      display: flex !important;
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 9999!important;
     width: 100%;
     background-color: black;
-    }
+    /* border: solid 2px red; */
   }
-   .mobileNav{
-    display: none;
-  }
-  @media (max-width: 600px ) {
-    .mobileNav{
-      display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    background-color: black;
-  }
-  }
+}
 }
 `

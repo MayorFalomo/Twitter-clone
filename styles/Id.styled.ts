@@ -124,6 +124,9 @@ export const SingleTweetStyle = styled.div`
         object-position: center;
         object-fit: cover;
     }
+    video{
+        border: #575B5F 1px solid;
+    }
     .tweetText{
         /* font-size: 30px; */
         font-size: calc(18px + 0.25vw);

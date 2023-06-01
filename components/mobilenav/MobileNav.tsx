@@ -12,7 +12,7 @@ type Props = {}
 
 const MobileNav = (props: Props) => {
 
-  const {currentUser} = useContext(AppContext)
+  const {currentUser, notifications} = useContext(AppContext)
   
   const router = useRouter();
   const currentRoute = router.pathname;
@@ -26,6 +26,8 @@ const MobileNav = (props: Props) => {
     }
   }, [currentUser?.username, currentRoute])
 
+  
+
     return (
       <MobileNavStyle>
       <div className='mobileNavCon' >
@@ -33,7 +35,7 @@ const MobileNav = (props: Props) => {
           <Link href='/trending' ><span><BiSearch className={currentRoute == '/trends' ? "activeRoute" : "navIcon"} /></span></Link>
           <div className="notificationsCon" >
             <Link href='/notifications' ><span><BiBell className={currentRoute == '/notifications' ? "activeRoute" : "navIcon"} /> </span></Link>
-            <span className='noOfNotifications' >{currentUser?.notifications?.length > 0 ? currentUser?.notifications?.length : "" } </span>
+            <span className='noOfNotifications' >{currentUser?.notifications?.length > 0 ? currentUser?.notifications?.length || notifications?.length : "" } </span>
             </div>
           <Link href='/messages' ><span><RxEnvelopeClosed className={currentRoute =='/messages' ? "activeRoute" : "navIcon"} /></span></Link>
             </div>

@@ -63,7 +63,7 @@ const Singleuser = (props: any) => {
        
      try {
          setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
-       await axios.put(`http://localhost:7000/api/users/follow-user`, followAUser)
+       await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
          setFollowingButton(true)
         setNoOfFollowersArray(followersArray?.length + 1)
@@ -84,7 +84,7 @@ const Singleuser = (props: any) => {
         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
             .catch((err) => console.log(err));
         setNoOfFollowersArray(followersArray.length)
-        let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)
+        let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.user?._id)
         setCurrentUser({ ...currentUser, following: [...filtered] })
         setFollowingButton(false)
     }
@@ -125,13 +125,13 @@ const Singleuser = (props: any) => {
                         <Link href='/messages' ><span>{<RxEnvelopeClosed />} </span></Link>
                         {/* <span>{<MdOutlineNotificationAdd />} </span> */}
                             <div className='singleUserFollow' >
-                                {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
+                                {currentUser.following?.some((e: any) => e.usersId === props.user?._id) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                                         onMouseLeave={() => setOnMouseHover(false)}
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>
                                     :
                                     <button onClick={handleFollow} className='btn-follow'
-                                        disabled={currentUser?.username == props.suggestedUser?.username} >Follow </button>}
+                                        disabled={currentUser?.username == props.user?.username} >Follow </button>}
                             </div>
                     </div>}
                    {props.editProfileModal ? <EditProfileModal/> : "" }

@@ -5,6 +5,9 @@ import { NotifyStyle } from './Notification.styled';
 import { IoSettingsOutline } from 'react-icons/io5';
 import UsersReplies from '../usersreplies/UsersReplies';
 import { NotificationsStyle } from '@/styles/Notifications.styled';
+import { BsFillPersonFill, BsHeart, BsHeartFill } from 'react-icons/bs';
+import { AiOutlineRetweet } from 'react-icons/ai';
+import MobileNav from '../mobilenav/MobileNav';
 
 const Notification = ({ notification }: any) => {
   const { currentUser, } = useContext(AppContext);
@@ -56,19 +59,28 @@ const Notification = ({ notification }: any) => {
   }
   } 
 
-  console.log(showLike);
+  // console.log(showLike);
+  console.log(notification);
   
   
 
   return (
     <NotifyStyle>
-      <div className='notificationsContainer' >
-        {showLike ? <p>Hellooooo </p> : "" }
-        <div style={{ backgroundImage: `url(${notification?.profileDp})` }} className='profileDp' > </div>
-        <span className='username' >{notification?.currentUserName} </span>
-        <p>{notification?.message}</p>
+      <div className='mainNotifyContainer' >
+        <div className='subNotificationsContainer'>
+        {showLike ? <span className='loveIcon' ><BsHeartFill color='#F91880' /> </span> : ""}
+        {showRetweets ? <span className='loveIcon' ><AiOutlineRetweet color='#00BA7C' /> </span> : ""}
+        {showAvatar ? <span className='loveIcon' ><BsFillPersonFill color='#1D9BF0' /> </span> : ""}
+        <div>
+            <div style={{ backgroundImage: `url(${notification?.profileDp})` }} className='profileDp' > </div>
+            <div className='notificationContent'>
+        <h3 className='username' >{notification?.currentUserName} </h3>
+              <p>{notification?.message}</p>
+              </div>
         <p>{notification?.tweets}</p>
-      </div>
+          </div>
+        </div>
+        </div>
       </NotifyStyle>
   );
 };
@@ -82,7 +94,7 @@ const Notifications = () => {
     
     const fetchNotifications = async () => {
       try {
-         const res =await axios.get(`http://localhost:7000/api/users/${currentUser?._id}/get-notifications` );
+         const res =await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications` );
         setNotification(res.data)
         // console.log(notification, "THis is notification");
         
@@ -101,7 +113,7 @@ const Notifications = () => {
 
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
-       const delayInMilliseconds = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+       const delayInMilliseconds = 180 * 1000; // 3 minutes in milliseconds
       const timeout = setTimeout(() => {
         handleClearNotifications();
       }, delayInMilliseconds); // 10 seconds delay
@@ -115,11 +127,11 @@ const Notifications = () => {
 
   const handleClearNotifications = async () => {
     try {
-     const res = await axios.put(`http://localhost:7000/api/users/clear-notifications/clear`, {
+     const res = await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/clear-notifications/clear`, {
           id: currentUser._id,
         });
         setNotification(res.data);
-        // setNotifications(notification);
+        setNotifications(notification);
     } catch (error) {
       console.log('Error clearing notifications:', error);
     }
@@ -166,12 +178,18 @@ const Notifications = () => {
 
   const renderNotifications = () => {
     if (notification?.length === 0) {
-      return <div style={{display: 'flex', justifyContent: 'center', height: '70vh', alignItems: 'center', fontSize: '20px' }}>No new notifications</div>;
+      return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh', fontSize: '20px' }}>
+        <p>No new notifications</p>
+                          {/* <div className="mobileNav" > <MobileNav/></div> */}
+      </div>;
     }
 
-    return notification?.map((notification: string, index: number) => (
-      <Notification key={index} notification={notification} />
-    ));
+    return <div>{notification?.map((notification: string, index: number) => (
+      <div key={index}  >
+        <Notification notification={notification} />
+      </div>
+    ))}
+    </div>;
   };
 
   return (
@@ -195,7 +213,8 @@ const Notifications = () => {
         </div>
                 {current == 1 && <UsersReplies/> }
                 {current == 2 && <UsersReplies/> }
-                {/* {current == 3 && <UsersReplies/> } */}
+                  {/* <div className="mobileNav" > <MobileNav/></div> */}
+
       </div>
       </NotifyStyle>
   );

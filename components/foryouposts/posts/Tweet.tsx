@@ -55,7 +55,7 @@ const Tweet = (props: any) => {
       username: currentUser.username,
       id: postId,
      }     
-     await axios.put(`http://localhost:7000/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))     
+     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))     
     let filtered = retweetArray.filter((item: any) => item.currentUserName !== retweetData.username)
      setRetweetArray(filtered)     
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -83,7 +83,7 @@ const Tweet = (props: any) => {
       username: currentUser.username,
       id: postId,
     }
-        await axios.put(`http://localhost:7000/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
+        await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.currentUserName !== likeData.username)
     
     setLikesArray(filtered)   	//filtered is a array with all the items that are not the likeData.username, this is the
@@ -149,7 +149,7 @@ const Tweet = (props: any) => {
           </div>
           <Link href={'/posts/' + props.tweet?._id} className='tweet-caption' >{props.tweet?.tweet} </Link>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
-          {props.tweet?.video?.length > 1 ? <video className='tweetVideo' controls src={`${props.tweet?.video}`} ></video>  : "" }
+          {props.tweet?.video?.length > 1 ? <video className='tweetVideo' src={`${props.tweet?.video}`} controls ></video>  : "" }
           <div className='tweetOptions'>
             <div className='flexIconsAndValues'>
               <p onClick={handleClick}>

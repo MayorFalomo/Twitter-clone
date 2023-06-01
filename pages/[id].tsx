@@ -231,7 +231,7 @@ const Id = (props:any) => {
           {tweetProps?.picture?.length > 0 ?
             <img src={tweetProps?.picture} width={400} height={300} className='picture' alt='img' />
             : ""}
-          { tweetProps?.video?.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning > </video> : ""}
+          { tweetProps?.video?.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning className='video' > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
               <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>

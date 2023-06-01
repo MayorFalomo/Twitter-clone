@@ -46,13 +46,14 @@ const Chats = (props: any) => {
     currentUser?._id && getChats();
 }, [currentUser._id])
     
+  //This function handles the clicking even for when you find a user
+  //
     const handleSelect = (u: any) => {
         props.setChatComponentActive(true)
         dispatch({ type: "CHANGE_USER", payload: u })
-        console.log(dispatch({ type: "CHANGE_USER", payload: u }), "dispatch");
+        // console.log(dispatch({ type: "CHANGE_USER", payload: u }), "dispatch");
         if (window.innerWidth < 1000) {
             props.setIsMobile(true)
-            console.log(props.isMobile, "isMOBILE")
         } else {
             setIsMobile(false)
         }

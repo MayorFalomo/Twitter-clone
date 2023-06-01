@@ -96,8 +96,10 @@ const messages = (props: any) => {
 
   // console.log(user, "this is users state");
   // console.log(currentUser);
+  console.log(isMobile);
   
-  
+  //isMobile state for chatActive and messagesContainer determines styling for the mobileNav that's the difference and
+  //most importantly tit toggles the display of the chat component
   return (
     <MessagesStyle>
       <div className={isMobile ? 'ChatActive' : "messagesContainer"} >

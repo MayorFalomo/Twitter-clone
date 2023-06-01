@@ -3,6 +3,22 @@ import styled from "styled-components"
 export const AllUserTweets = styled.div`
 .AllUserTweetContainer{
 /* border: 3px yellow solid; */
+.overlay{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99;
+        background: rgba(255, 255, 255, 0);
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.1px);
+        -webkit-backdrop-filter: blur(2.1px);
+    }
+     .removeOverlay{
+        display: none;
+    }
 .AllUserTweet{
     display: flex;
     align-items: flex-start;
@@ -30,7 +46,7 @@ export const AllUserTweets = styled.div`
         /* border: 2px blue solid; */
         width: 100%;
         p{
-            font-size: 25px;
+            font-size: calc(16px + 0.25vw);
             font-weight: 400;
             margin: 10px auto;
             /* border: 2px solid red; */
@@ -91,7 +107,7 @@ export const AllUserTweets = styled.div`
                 }
                 .activeModal{
                     position: fixed;
-                    top: 30%;
+                    top: 35%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                     width: 40vw;
@@ -99,7 +115,15 @@ export const AllUserTweets = styled.div`
                     border-radius: 30px;
                     z-index: 9999;
                     background: black;
-                    /* border: 2px red solid; */
+                    @media (max-width: 1100px ) {
+                        width: 70vw;
+                    }
+                    @media (max-width: 600px ) {
+                        width: 100%;
+                        height: 100%;
+                        transform: translate(-50%, -35%);
+                        border-radius: 0;
+                    }
         }
             }
            

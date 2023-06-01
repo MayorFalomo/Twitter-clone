@@ -13,7 +13,7 @@ const notifications = (props: any) => {
   
   return (
     <NotificationsStyle>
-     <div className='notificationsCon' >
+     <div className='notificationsContainer' >
         <Navbar />
         <div className='centerGridContainer' >
           <Notifications/>
@@ -22,7 +22,7 @@ const notifications = (props: any) => {
           <Search />
           <Trends/>
         </div>
-          <div className="mobileNav" > <MobileNav/></div>
+        <div className="mobileNav" > <MobileNav/></div>
       </div>
       </NotificationsStyle>
   )

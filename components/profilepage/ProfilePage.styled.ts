@@ -19,7 +19,7 @@ export const ProfileStyled = styled.div`
         top: 0;
         left: 0;
         padding: 15px;
-        z-index: 999;
+        z-index: 9;
         width: 100%;
         /* border: 2px red solid; */
         .profileUsersDetails{

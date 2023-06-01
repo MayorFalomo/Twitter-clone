@@ -62,7 +62,7 @@ const Navbar = (props: any) => {
               <Link href='/notifications' ><li>
                 <div className="navLinkItems">
                   <BiBell className="navIcon" />
-                  <span className="noOfNotifications" > {currentUser.notifications?.length  > 0 ? currentUser.notifications?.length : "" } </span>
+                  <span className="noOfNotifications" > {currentUser.notifications?.length  > 0 ? notifications?.length || currentUser.notifications?.length : "" } </span>
                   <span className="links" >Notifications </span>
                   </div>
               </li></Link>

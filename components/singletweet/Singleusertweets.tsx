@@ -127,7 +127,7 @@ const Singleusertweets = (props: any) => {
                       {likesArray.some(
                         (e: any) => e.username == currentUser?.username
                       ) ? (
-                        <BsFillHeartFill
+                        <BsFillHeartFill 
                           onClick={removeLike}
                           className='likeIcon'
                           style={{

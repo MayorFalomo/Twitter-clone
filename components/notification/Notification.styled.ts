@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NotifyStyle = styled.div`
 .notifyCon{
+    position: relative;
     .notifyHeader{
     /* border-bottom: 2px red solid; */
     .notificationsFlex{
@@ -33,12 +34,38 @@ export const NotifyStyle = styled.div`
         }
     }
     }
-    
+     .mobileNav{
+    /* display: none; */
+  @media (max-width: 600px ) {
+    .mobileNav{
+      display: flex;
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: black;
+    border: solid 2px yellow;
+  }
+  }
 }
-.notificationsContainer{
+}
+.mainNotifyContainer{
+      border-top: 1px solid rgb(47, 51, 54);
+    border-bottom: 1px solid rgb(47, 51, 54);
+.subNotificationsContainer{
+    display: flex;
+    align-items: start;
+    gap: 10px;
+  /* border: 2px red solid; */
+  /* display: none; */
+    margin: 30px;
+    .loveIcon {
+        font-size: calc(28px + 0.25vw)
+    }
     .profileDp{
-        width: 70px;
-        height: 70px;
+        width: 40px;
+        height: 40px;
         background-color: black;
         background-repeat: no-repeat;
         background-size: cover;
@@ -47,5 +74,18 @@ export const NotifyStyle = styled.div`
         object-position: center;
         border-radius: 50%;
     }
+    .notificationContent{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        p{
+            font-weight: 500;
+            font-size: calc(14px + 0.25vw);
+           
+        }
+    }
+}
 }
 `

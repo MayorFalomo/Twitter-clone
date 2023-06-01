@@ -106,10 +106,13 @@ export const CommentModalStyle = styled.div`
                      display: none;
                     }
           }
+           label{
+          font-size: calc(20px + 0.25vw);
+        }
         }
         .pickerEmoji{
           position: absolute;
-          bottom: -450px;
+          bottom: -320px;
           width: 100%;
           display: flex;
           justify-content: center;
@@ -135,6 +138,7 @@ export const CommentModalStyle = styled.div`
           border-radius: 25px;
           opacity: 0.4;
         }
+       
       }
     }
   }

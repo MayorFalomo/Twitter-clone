@@ -1,9 +1,9 @@
 import moment from 'moment'
 import React, {useContext, useState} from 'react'
-import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart } from 'react-icons/bi'
 import { FiUpload } from 'react-icons/fi'
-import { BsFillHeartFill, BsHeart } from 'react-icons/bs'
+import { BsFillHeartFill, BsHeart, BsHeartFill } from 'react-icons/bs'
 import { FaRegComment, FaRegHeart, FaRetweet} from 'react-icons/fa'
 import { AllUserTweets } from './Allusertweet.styled'
 import axios from 'axios'
@@ -80,8 +80,9 @@ const Allusertweet = (props: any) => {
     return (
         <AllUserTweets>
         <div className="AllUserTweetContainer" >
+                      {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
       <div className='AllUserTweet' >
-        <div style={{ backgroundImage: `url(${props.allTweet?.profilePic})` }} className='userTweetPic' > </div>
+        <div style={{ backgroundImage: `url(${props.allTweet?.profileDp})` }} className='userTweetPic' > </div>
         <div className='flexUserInfoContainer' >
           <div className='flexUserInfo' >
           <span className='usersUsername' >{props.allTweet?.username} </span>
@@ -128,7 +129,7 @@ const Allusertweet = (props: any) => {
                     {likesArray.some(
                       (e: any) => e.username == currentUser?.username
                     ) ? (
-                      <BsFillHeartFill
+                      <BsHeartFill
                         onClick={removeLike}
                         className='likeIcon'
                         style={{
@@ -138,7 +139,7 @@ const Allusertweet = (props: any) => {
                         }}
                       />
                     ) : (
-                      <FaRegHeart
+                      <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
                         style={{cursor: "pointer" }}

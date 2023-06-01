@@ -31,9 +31,7 @@ export const MessagesStyle = styled.div`
         }
            .mobileNav{
     display: none;
-  }
   @media (max-width: 600px ) {
-    .mobileNav{
       display: flex;
     position: fixed;
     bottom: 0;
@@ -42,7 +40,7 @@ export const MessagesStyle = styled.div`
     width: 100%;
     background-color: black;
   }
-  }
+}
     .leftGrid {
     overflow: auto;
     height: 100vh;
