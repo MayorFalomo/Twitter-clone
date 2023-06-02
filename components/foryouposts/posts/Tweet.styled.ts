@@ -5,7 +5,7 @@ export const Tweetstyled = styled.div`
 display: flex;
 align-items: flex-start;
 gap: 10px;
-border-top: 2px rgb(47, 51, 54) solid;
+border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px;
 .overlay{
         position: fixed;

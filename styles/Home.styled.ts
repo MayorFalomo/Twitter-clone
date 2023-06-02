@@ -92,17 +92,21 @@ export const HomeContainer = styled.div`
     top: 0;
     left: 0;
     z-index: 99999999;
-    padding: 20px 0;
+    padding: 15px 0;
     border-bottom: rgb(47, 51, 54) 1px solid;
     .homeHeading {
     }
     h1 {
-      /* font-size: 35px; */
       font-size: calc(22px + 0.25vw);
       padding: 20px;
       @media 	(max-width: 600px ){
         display: none;
       }
+    }
+    .hiddenloginLogo{
+      font-size: calc(26px + 0.25vw);
+      margin-left: 10px;
+      visibility: hidden;
     }
     .loginLogo{
       font-size: calc(26px + 0.25vw);
@@ -110,13 +114,17 @@ export const HomeContainer = styled.div`
     }
     .mobileHeader{
       display: none;
-      /* border: 2px red solid; */
       @media (max-width: 600px ) {
-        
       display:flex;
-      justify-content: center;
-      position: relative;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      width: 100%;
+      margin: auto;
+      top: 0;
       z-index: 999999;
+      transition-timing-function: ease-in;
+      transition: 0.4s;
       .profilePicHeader{
         width: 40px;
         height: 40px;
@@ -144,6 +152,9 @@ export const HomeContainer = styled.div`
   .postGroup {
     display: flex;
     justify-content: space-around;
+    @media (max-width: 460px ) {
+     display: none;
+    }
     a {
       width: 60%;
       padding-top: 10px;
@@ -153,6 +164,10 @@ export const HomeContainer = styled.div`
           padding-top: 0px;
           margin-top: 20px;
       }
+      /* @media (max-width: 460px ) {
+     display: none;
+     visibility: hidden;
+    } */
     }
     a:hover {
       background-color: #181818;

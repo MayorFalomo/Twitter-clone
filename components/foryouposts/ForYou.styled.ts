@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ForYouContainer = styled.div`
-  margin-top: 20px;
+  /* margin-top: 20px; */
   .forYouPostContainer {
     display: flex;
     align-items: flex-start;
@@ -38,7 +38,6 @@ export const ForYouContainer = styled.div`
         height: 170px;
         background-color: transparent;
         border: none;
-        /* font-size: 25px; */
         font-size: calc(20px + 0.25vw);
         outline: 0;
         color: white;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useContext, useState} from "react";
+import { useContext, useEffect, useState} from "react";
 import ForYouPosts from "@/components/foryouposts/ForYouPosts";
 import FollowersPosts from "@/components/followerspost/FollowersPosts";
 import { HomeContainer } from "@/styles/Home.styled";
@@ -9,7 +9,7 @@ import Trends from "@/components/trends/Trends";
 import Tweets from "@/components/foryouposts/posts/Tweets";
 import { AppContext } from "@/helpers/Helpers";
 import { useRouter } from "next/router";
-import { BsTwitter } from "react-icons/bs";
+import { BsStars, BsTwitter } from "react-icons/bs";
 import MobileNav from "@/components/mobilenav/MobileNav";
 import Link from "next/link";
 
@@ -22,13 +22,13 @@ export default function Home(props: any) {
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [mobileNavCon, setMobileNav] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(true)
 
   const handleClick = (param: boolean) => {
     setCurrent(param);
     setActive(!active);
   };
   
-
       return (
         <HomeContainer>
           <Head>
@@ -44,9 +44,11 @@ export default function Home(props: any) {
                 <div className="homeHeading">
                   <h1 >Home </h1>
                 </div>
-                <div className="mobileHeader" >
+                <div className={`mobileHeader`} >
                   <Link href='/profile' style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className="profilePicHeader" > </Link>
+                  <p><BsTwitter className='hiddenloginLogo' style={{ color: ' #1d9aef' }} /></p>
                   <p><BsTwitter className='loginLogo' style={{ color: ' #1d9aef' }} /></p>
+                  <p><BsStars className='loginLogo' style={{ color: ' #1d9aef' }} /></p>
                 </div>
                 <ul className="postGroup" >
                   <a

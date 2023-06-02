@@ -30,9 +30,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [searchPost, setSearchPost] = useState<string>("");
   const [tweetModal, setTweetModal] = useState<boolean>(false);
 
-    const  search  = useRouter();
-
-  console.log(search);
   
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
