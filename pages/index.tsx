@@ -18,7 +18,6 @@ import Link from "next/link";
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
 export default function Home(props: any) {
   
-  const router = useRouter()
   const { currentUser } = useContext(AppContext)
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);

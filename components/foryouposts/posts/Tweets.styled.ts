@@ -23,5 +23,25 @@ export const TweetsContainer = styled.div`
         left: 18%;
     }
     }
+    .quill{
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        z-index: 99;
+    }
+    .inactive{
+        position: fixed;
+        bottom: -200vh;
+        left: 0;
+        transition: all 0.4s ease;
+    }
+    .active{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999999999;
+        transition: all 0.4s ease;
+        background-color: black;
+    }
 }
 `

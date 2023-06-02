@@ -7,7 +7,6 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { ChatContext } from "@/helpers/ChatContext";
 import { Router, useRouter } from "next/router";
-import Login from "./login";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
 
@@ -28,7 +27,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const [bookmarks, setBookmarks] = useState<any>([])
   const [cookies, setCookie] = useCookies(["user"]);
   const [userFollowing, setUserFollowing] = useState<any>([])
+  const [searchPost, setSearchPost] = useState<string>("");
+  const [tweetModal, setTweetModal] = useState<boolean>(false);
 
+    const  search  = useRouter();
+
+  console.log(search);
+  
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
     fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
@@ -82,6 +87,14 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [currentUser])
 
+  //  useEffect(() => {
+  //   const fetchPosts = async (params:any) => {
+  //     const res = await axios.get(`https://blogaroo-backend.vercel.app/api/posts` + search);
+  //     ses(res.data);
+  //     setCompleted(true)
+  //   };
+  //   fetchPosts(skip);
+  // }, [search]);
   // console.log(bookmarks, "bookmarks");
 
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
@@ -167,6 +180,10 @@ export default function App({ Component, pageProps }: AppProps) {
         setBookmarks,
         notifications,
         setNotifications,
+        searchPost,
+        setSearchPost,
+        tweetModal,
+        setTweetModal
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

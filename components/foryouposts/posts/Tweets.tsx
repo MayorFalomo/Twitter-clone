@@ -5,11 +5,13 @@ import React, {useContext, useEffect, useState} from 'react'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import Tweet from './Tweet'
 import { TweetsContainer } from './Tweets.styled'
+import { RiQuillPenLine } from 'react-icons/ri'
+import TweetModal from '@/components/tweetmodal/Tweetmodal'
 
 
 const Tweets = (props: any) => {
 
-  const { tweets, bookmarks, } = useContext(AppContext)
+  const { tweets, bookmarks, tweetModal, setTweetModal } = useContext(AppContext)
   const [userMap, setUserMap] = useState<any>([])
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
@@ -37,6 +39,8 @@ const Tweets = (props: any) => {
               <Tweet tweet={tweet} setAddedToBookmark={setAddedToBookmark} />
                   </div>
           ))}
+          <div className="quill" onClick={() => setTweetModal(true)} ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 55, borderRadius: "50px" }} />} </p></div>
+          {TweetModal && <div className={tweetModal ? "active" : "inactive"} ><TweetModal/></div> }
                   {addedToBookmark ? <p className="bookmarkAdded" >Tweet added to bookmark</p> : ""}
            </div>
     </TweetsContainer>
