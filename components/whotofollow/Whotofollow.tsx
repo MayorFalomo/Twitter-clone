@@ -73,7 +73,7 @@ const Whotofollow = (props: any) => {
               <Suggestedpeople suggestedUser={suggestedUser} />
             </div>
           ))}
-          <Link href='trending' ><p className="showUsers" >Show more </p></Link>
+          <Link href='/connect' ><p className="showUsers" >Show more </p></Link>
         </div>
         </div>
         <div className='policies' >

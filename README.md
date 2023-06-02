@@ -6,15 +6,18 @@ Tweeks is a full MERN Stack project and Twitter clone with both Backend and Fron
 ## Features
 
 - Real-time messaging (pictures and videos included).
-- Receive Notifications when your post is liked, retweeted, quoted and commented on.
+- Receive Notifications when your post is liked, retweeted, quoted and commented on or being followed.
+- Notifications clear after 3 minutes though, this is to reduce the load on the database.
 - Follow and Unfollow other users.
 - commenting on a tweet and replying comments.
-- liking comments.
+- like and retweet comments.
 - Like, Retweet and Quote tweets.
-- Bookmark a tweet
-- Edit your profile
-- View other peoples profiles
+- Bookmark a tweet.
+- Edit your profile.
+- View other peoples profiles.
 - Posting Tweets, pictures and videos.
+- Connect with other users.
+- Search for a tweet.
 - Get a verified badge if you get up to 5 followers.
 
 ## Demo

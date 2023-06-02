@@ -24,6 +24,7 @@ const Tweets = (props: any) => {
   
 // console.log(userMap);
   // console.log(tweets, "these are tweets");
+  // console.log(process.env.NEXT_PUBLIC_API_KEY);
   
 
   

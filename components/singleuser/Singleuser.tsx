@@ -30,7 +30,7 @@ const Singleuser = (props: any) => {
     const [usernames, setUsernames] = useState<string>(props.user?.username)
     const [usersAt, setUsersAt] = useState<string>(props.user?.usersAt)
     const [usersProfileDp, setUsersProfileDp] = useState<string>(props.user?.profilePic)
-    const [followersArray, setFollowersArray] = useState<any>(props.user?.following)
+    const [followersArray, setFollowersArray] = useState<any>(props.user?.followers)
     const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(followersArray?.length)
 
      const handleClick = (param: any) => {
@@ -83,7 +83,7 @@ const Singleuser = (props: any) => {
     try {
         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
             .catch((err) => console.log(err));
-        setNoOfFollowersArray(followersArray.length)
+        setNoOfFollowersArray(followersArray?.length)
         let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.user?._id)
         setCurrentUser({ ...currentUser, following: [...filtered] })
         setFollowingButton(false)
@@ -102,6 +102,8 @@ const Singleuser = (props: any) => {
 
     // console.log(noOfFollowersArray);
     
+  // console.log(props.user);
+  
     
     return (
       <SingleUserStyle>
@@ -111,7 +113,6 @@ const Singleuser = (props: any) => {
             <Link href='/' className='arrowLeft' >{<BsArrowLeft cursor='pointer' />} </Link>
             <div className='profileUsersDetails'>
                 <h1>{props.user?.username} {noOfFollowersArray >= 5 ? <MdOutlineVerified color='#1d9aef' /> : ""} </h1>
-              {/* <h2 style={{color:'#1d9aef'}}  >{noOfFollowersArray >= 5 ? <MdOutlineVerified /> : "" }</h2> */}
               <p>{allUsersTweets.posts?.length} Tweets</p>
               </div>
           </div>
@@ -153,7 +154,7 @@ const Singleuser = (props: any) => {
                             </div>
                     <div className='followContainer' style={{marginBottom: 70}} >
                             <p > {props.user?.following?.length} <span>Following</span> </p>
-                            <p>{noOfFollowersArray} <span>Followers </span> </p>
+                            <p>{noOfFollowersArray } <span>Followers </span> </p>
                         </div>
                         </div>
                     <ul className='tweetsDetails'>
@@ -168,7 +169,7 @@ const Singleuser = (props: any) => {
                 <Singleusertweets allTweets={allTweets} />
               </div>
               ))}
-              {allUsersTweets.posts?.length == 0 && <div className="noTweetMessage" ><p>This user has no tweets</p> </div>}
+              {allUsersTweets.posts?.length == 0 && <div className="noTweetMessage" ><h3>This user has no tweets</h3> </div>}
             </div>}
                 {current == 1 && <SingleUserReplies/> }
                 {current == 2 && <SingleUserReplies/> }

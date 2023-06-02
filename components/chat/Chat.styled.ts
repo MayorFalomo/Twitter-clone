@@ -114,6 +114,9 @@ export const ChatStyled = styled.div`
         left: 0;
         width: 100%;
         border: 2px rgb(113,118,123) solid;
+        @media (max-width:600px ) {
+            bottom: 50px;
+        }
         .inputSpan{
             display: flex;
             align-items: center;
