@@ -44,7 +44,8 @@ const register = (props: any) => {
             usersAt: `@${res.user.displayName}`,
             following: [],
             followers: [],
-            notifications: [],
+              notifications: [],
+            retweeted: [],
             bio: "Regular Human",
             location: "Lagos, Nigeria",
             birthday: "April 19th, 2023",
@@ -62,7 +63,7 @@ const register = (props: any) => {
           })
         }).then(() =>
             router.push("/")
-     ).catch(() => setIsAuth(true))
+     ).then(() => window.location.reload() ).catch(() => setIsAuth(true))
   }
   
 
@@ -73,25 +74,26 @@ const register = (props: any) => {
       setCookie("user", res.user.uid, { path: "/" })
       
       const userInfo = {
-        userId: res.user.uid,
+        id: res.user.uid,
         username: userNames,
         email: email,
         password: passwords,
-        profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
+        profileDp: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
         coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
         usersAt: `@${userNames}`,
         following: [],
         followers: [],
         notifications: [],
+        retweeted: [],
         bio: "Regular Human",
-        location: "Lagos, Nigeria",
-        birthday: "April 19th, 1999",
-        links: "https://mayowa-falomo.netlify.app"
+        // location: "Lagos, Nigeria",
+        // birthday: "April 19th, 1999",
+        // links: "https://mayowa-falomo.netlify.app"
       }
      
       axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).then(() =>
-        router.push("/")        
-      ).catch((err) => { console.log(err) })
+        router.push("/")
+      ).then(() =>  window.location.reload() ).catch((err) =>  err && setIsAuth(true))
         setDoc(doc(db, "users", res.user.uid), {
             uid: res.user.uid,
             username: userNames,
@@ -103,7 +105,7 @@ const register = (props: any) => {
       getCurrentUser(res.user.uid)
       
             // console.log(res.user.uid, "This is submit res");
-    }).catch(() => setIsAuth(true))
+    }).catch((err) => console.log(err))
   }
 
   const getRandomEmail = () => {

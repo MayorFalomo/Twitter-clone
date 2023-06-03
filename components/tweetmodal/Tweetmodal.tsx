@@ -90,26 +90,29 @@ function generateId (len:any) {
       _id: generateId(24),
     }
     try {
+        console.log(newTweet);
+        
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
-      setTweets([...tweets, newTweet].reverse())
+      setTweets([...tweets, newTweet])
       setTweet(" ")
       setPicture("")
       setVideo("")
       setLikes([])
       setRetweet([])
+      setTweetModal(false)
       // console.log(tweets);
     } catch (err) {
       console.log(err);
     }
   }
 
-console.log(tweetModal, "tweetsModal");
 
     return (
         <TweetModalStyled>
             <div className="tweetPostContainer" >
-                <div className="heading" >
+                <form onSubmit={postTweet} >
+                    <div className="heading" >
                     <BsArrowLeftShort onClick={() => setTweetModal(false)}  fontSize={35} cursor='pointer' />
                 <div>
                     {everyOne ? <div className="tweetButton">
@@ -120,7 +123,6 @@ console.log(tweetModal, "tweetsModal");
               }
                     </div>
                 </div>
-            <form onSubmit={postTweet} >
       <div className="subTweetPostContainer">
                     <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className="userProfilePicture"></div>
                     <div className="formArea" >

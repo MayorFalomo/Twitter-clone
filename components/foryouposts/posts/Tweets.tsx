@@ -11,7 +11,7 @@ import TweetModal from '@/components/tweetmodal/Tweetmodal'
 
 const Tweets = (props: any) => {
 
-  const { tweets, bookmarks, tweetModal, setTweetModal } = useContext(AppContext)
+  const { tweets, bookmarks, tweetModal, setTweetModal, lastTweetRef } = useContext(AppContext)
   const [userMap, setUserMap] = useState<any>([])
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
@@ -35,7 +35,7 @@ const Tweets = (props: any) => {
       <TweetsContainer>
             <div className='tweetsContainer' >
           {tweets?.map((tweet: any,index:any) => (
-            <div key={index} >
+            <div key={index} ref={lastTweetRef} >
               <Tweet tweet={tweet} setAddedToBookmark={setAddedToBookmark} />
                   </div>
           ))}

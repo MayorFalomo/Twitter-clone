@@ -32,12 +32,15 @@ const Chat = (props: any) => {
     const [emoji, setEmoji] = useState<boolean>(false);
     const [userObject, setUserObject] = useState<any>()
 
+    console.log(data, "this is data");
+    
     useEffect(() => {
         handleData()
     }, [data.user.uid])
 
         const handleData = async () => {
             const waitForId = data.user.uid
+        console.log(waitForId);
         
             try {
                 await waitForId            

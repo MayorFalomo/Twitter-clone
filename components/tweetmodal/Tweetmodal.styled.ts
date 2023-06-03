@@ -83,6 +83,7 @@ export const TweetModalStyled = styled.div`
         }
         .pickerEmoji{
           position: absolute;
+          left: 0px;
           bottom: -450px;
           width: 100%;
           display: flex;

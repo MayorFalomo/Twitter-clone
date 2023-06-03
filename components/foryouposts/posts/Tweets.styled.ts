@@ -28,6 +28,14 @@ export const TweetsContainer = styled.div`
         bottom: 70px;
         right: 20px;
         z-index: 99;
+        display: none;
+        @media (max-width: 500px ) {
+            display: flex;
+             position: fixed;
+        bottom: 70px;
+        right: 20px;
+        z-index: 99;
+        }
     }
     .inactive{
         position: fixed;

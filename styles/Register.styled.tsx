@@ -51,7 +51,7 @@ background: #999999;
         padding: 10px 20px;
         border: 1px  rgb(47, 51, 54, 0.5) solid;
         outline: none;
-        width: 50%;
+        width: 55%;
         font-size: calc(16px + 0.25vw);
         border-radius: 25px;
         cursor: pointer;

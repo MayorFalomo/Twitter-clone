@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import GlobalStyle from "@/GlobalStyle.styled";
 import type { AppProps } from "next/app";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect, useReducer, useRef } from "react";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -29,11 +29,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const [userFollowing, setUserFollowing] = useState<any>([])
   const [searchPost, setSearchPost] = useState<string>("");
   const [tweetModal, setTweetModal] = useState<boolean>(false);
-
+ const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
   
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
-    fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
+    fetch(`http://localhost:7000/api/users/${id}`).then((res) => res.json()).then((res) => {
       setUser(res.user)
     }).catch((err) => {
       console.log(err)
@@ -52,14 +54,110 @@ export default function App({ Component, pageProps }: AppProps) {
   //   setTweets([...posts].reverse())
   // }, [posts])
 
+ const observer = useRef<IntersectionObserver | null>(null);
+  const lastTweetRef = useRef<HTMLDivElement>(null);
+
+//  const handleObserver: IntersectionObserverCallback = ([entry]) => {
+//     if (entry.isIntersecting) {
+//       // Load more tweets when the last tweet element comes into view
+//       loadMoreTweets();
+//     }
+//  };
+  
+  
+  const loadMoreTweets = async () => {
+    if (currentPage >= totalPages) {
+      return; // No more tweets to load
+    }
+
+    const nextPage = currentPage + 1;
+    const res = await axios.get(`http://localhost:7000/api/tweets?page=${nextPage}`);
+    const newTweets = res.data.reverse();
+
+    setTweets((prevTweets: any) => [...prevTweets, ...newTweets]);
+    console.log(tweets);
+    
+    setCurrentPage(nextPage);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
-      setTweets(res.data?.reverse());
-      // setCompleted(true)
+    // Initialize the Intersection Observer when the component mounts
+    observer.current = new IntersectionObserver(handleObserver);
+    if (lastTweetRef.current) {
+      observer.current.observe(lastTweetRef.current);
+    }
+
+    return () => {
+      // Cleanup the Intersection Observer when the component unmounts
+      if (observer.current) {
+        observer.current.disconnect();
+      }
     };
-    fetchPosts();
   }, []);
+
+  //  useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
+  //     const reversedTweets = res.data.reverse();
+  //     setTweets(reversedTweets);
+  //     setTotalPages(res.headers["x-total-pages"]);
+  //   };
+  //   fetchPosts();
+  // }, []);
+ 
+  const fetchPosts = async () => {
+  if (loading) return; // Prevent multiple simultaneous requests
+  setLoading(true);
+
+  try {
+    const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
+    const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
+    const reversedTweets = tweetsArray.reverse();
+    setTweets((prevTweets:any) => [...prevTweets, ...reversedTweets]);
+    setTotalPages(res.headers["x-total-pages"]);
+    setCurrentPage((prevPage) => prevPage + 1);
+  } catch (error) {
+    console.error('Error fetching tweets:', error);
+  } finally {
+    setLoading(false);
+  }
+  };
+  
+  const handleObserver = (entries:any) => {
+  const target = entries[0];
+  if (target.isIntersecting) {
+    fetchPosts();
+  }
+  };
+  
+  useEffect(() => {
+  const observer = new IntersectionObserver(handleObserver);
+  if (lastTweetRef.current) {
+    observer.observe(lastTweetRef.current);
+  }
+
+  return () => {
+    if (lastTweetRef.current) {
+      observer.unobserve(lastTweetRef.current);
+    }
+  };
+}, [lastTweetRef]);
+//   const handleObserver = (entries) => {
+//   const target = entries[0];
+//   if (target.isIntersecting) {
+//     fetchPosts();
+//   }
+// };
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
+  //     setTweets(res.data?.reverse());
+  //     // setCompleted(true)
+  //   };
+  //   fetchPosts();
+  // }, []);
+
+ 
 
   useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
@@ -116,6 +214,7 @@ export default function App({ Component, pageProps }: AppProps) {
 // console.log(currentUser);
 
   // console.log(notifications, "this is notifications");
+  console.log(tweets);
   
   
 
@@ -180,7 +279,8 @@ export default function App({ Component, pageProps }: AppProps) {
         searchPost,
         setSearchPost,
         tweetModal,
-        setTweetModal
+        setTweetModal,
+        lastTweetRef,
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />
