@@ -206,6 +206,9 @@ const Id = (props:any) => {
 
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
+  // console.log(postId, "this is postId");
+  // console.log(tweetProps?._id, "this is tweetedPros");
+  
   
   return (
     <SingleTweetStyle>
@@ -241,7 +244,7 @@ const Id = (props:any) => {
             <div className='tweetCount' >
               <div className='subTweetCount' >
               <p><span>{retweetArray?.length} </span> Retweets </p>
-              <Link href={'/quoted/' + postId} ><p><span>{tweetProps?.quoted?.length } </span> Quotes </p></Link>
+              <Link href={`/quoted/${tweetProps?._id}`} ><p><span>{tweetProps?.quoted?.length } </span> Quotes </p></Link>
               <p><span>{ likesArray?.length} </span> Likes </p>
               <p className='disabled' ><span>{0} </span> Bookmarks </p>
               </div>

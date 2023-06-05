@@ -185,7 +185,7 @@ function generateId (len:any) {
       }
     })
   }
-  console.log(props.comment);
+  // console.log(props.comment);
   
   
   //Function for getting the id of the post you want to comment on and sending it to the replymodal.tsx component

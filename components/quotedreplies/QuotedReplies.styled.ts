@@ -45,6 +45,7 @@ padding: 10px;
                     object-fit: cover;
                     object-position: center;
                     border-radius: 50%;
+                    border: 1px white solid;
                 }
              
             }

@@ -36,6 +36,10 @@ position: sticky;
         position:absolute;
         left:8px;
         top: 10px;
+        border: none;
+        outline: none;
+        color: #fff;
+        background-color: transparent;
         /* border: 2px blue solid; */
     }
 }

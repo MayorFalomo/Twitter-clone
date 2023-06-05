@@ -96,13 +96,9 @@ const Notifications = () => {
       try {
          const res =await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications` );
         setNotification(res.data)
-        // console.log(notification, "THis is notification");
         
            // Clear notifications
               setNotifications(notification)
-        // await axios.put(
-        //   `http://localhost:7000/api/users/${currentUser._id}/clear-notifications`,
-        // );
       } catch (error) {
         console.log('Error fetching notifications:', error);
       }

@@ -31,11 +31,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [tweetModal, setTweetModal] = useState<boolean>(false);
  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
   
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
-    fetch(`http://localhost:7000/api/users/${id}`).then((res) => res.json()).then((res) => {
+    fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
       setUser(res.user)
     }).catch((err) => {
       console.log(err)
@@ -45,117 +46,46 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     getCurrentUser(cookies.user)
   }, [cookies.user]);
-  
-  // console.log(user, "this is user");
 
-  // console.log(pageProps, "hellooooo APP");
+  const observerRef = useRef(null);
   
-  // useEffect(() => {
-  //   setTweets([...posts].reverse())
-  // }, [posts])
-
- const observer = useRef<IntersectionObserver | null>(null);
-  const lastTweetRef = useRef<HTMLDivElement>(null);
-
-//  const handleObserver: IntersectionObserverCallback = ([entry]) => {
-//     if (entry.isIntersecting) {
-//       // Load more tweets when the last tweet element comes into view
-//       loadMoreTweets();
-//     }
-//  };
-  
-  
-  const loadMoreTweets = async () => {
-    if (currentPage >= totalPages) {
-      return; // No more tweets to load
+   const fetchMoreTweets = async () => {
+    if (!isLoading) {
+      setIsLoading(true);
+      try {
+        const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}`);
+        const tweetsArray = Array.isArray(res.data.posts) ? res.data.posts : Array.from(res.data.posts);
+        setTweets((prevTweets:any) => [...prevTweets, ...tweetsArray]);
+        setCurrentPage((prevPage) => prevPage + 1);
+      } catch (error) {
+        console.error('Error fetching tweets:', error);
+      }
+      setIsLoading(false);
     }
+   };
+  
+   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const isIntersecting = entries[0].isIntersecting;
+      setIsIntersecting(isIntersecting);
+    });
 
-    const nextPage = currentPage + 1;
-    const res = await axios.get(`http://localhost:7000/api/tweets?page=${nextPage}`);
-    const newTweets = res.data.reverse();
-
-    setTweets((prevTweets: any) => [...prevTweets, ...newTweets]);
-    console.log(tweets);
-    
-    setCurrentPage(nextPage);
-  };
-
-  useEffect(() => {
-    // Initialize the Intersection Observer when the component mounts
-    observer.current = new IntersectionObserver(handleObserver);
-    if (lastTweetRef.current) {
-      observer.current.observe(lastTweetRef.current);
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
     }
 
     return () => {
-      // Cleanup the Intersection Observer when the component unmounts
-      if (observer.current) {
-        observer.current.disconnect();
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
       }
     };
   }, []);
 
-  //  useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
-  //     const reversedTweets = res.data.reverse();
-  //     setTweets(reversedTweets);
-  //     setTotalPages(res.headers["x-total-pages"]);
-  //   };
-  //   fetchPosts();
-  // }, []);
- 
-  const fetchPosts = async () => {
-  if (loading) return; // Prevent multiple simultaneous requests
-  setLoading(true);
-
-  try {
-    const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
-    const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
-    const reversedTweets = tweetsArray.reverse();
-    setTweets((prevTweets:any) => [...prevTweets, ...reversedTweets]);
-    setTotalPages(res.headers["x-total-pages"]);
-    setCurrentPage((prevPage) => prevPage + 1);
-  } catch (error) {
-    console.error('Error fetching tweets:', error);
-  } finally {
-    setLoading(false);
-  }
-  };
-  
-  const handleObserver = (entries:any) => {
-  const target = entries[0];
-  if (target.isIntersecting) {
-    fetchPosts();
-  }
-  };
-  
   useEffect(() => {
-  const observer = new IntersectionObserver(handleObserver);
-  if (lastTweetRef.current) {
-    observer.observe(lastTweetRef.current);
-  }
-
-  return () => {
-    if (lastTweetRef.current) {
-      observer.unobserve(lastTweetRef.current);
+    if (isIntersecting && !isLoading) {
+      fetchMoreTweets();
     }
-  };
-}, [lastTweetRef]);
-//   const handleObserver = (entries) => {
-//   const target = entries[0];
-//   if (target.isIntersecting) {
-//     fetchPosts();
-//   }
-// };
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get(`http://localhost:7000/api/tweets?page=${currentPage}`);
-  //     setTweets(res.data?.reverse());
-  //     // setCompleted(true)
-  //   };
-  //   fetchPosts();
-  // }, []);
+  }, [isIntersecting, isLoading]);
 
  
 
@@ -182,40 +112,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [currentUser])
 
-  //  useEffect(() => {
-  //   const fetchPosts = async (params:any) => {
-  //     const res = await axios.get(`https://blogaroo-backend.vercel.app/api/posts` + search);
-  //     ses(res.data);
-  //     setCompleted(true)
-  //   };
-  //   fetchPosts(skip);
-  // }, [search]);
-  // console.log(bookmarks, "bookmarks");
-
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
-  // console.log(noOfFollowing, "following");
-
-// useEffect(() => {
-//     const fetchNotifications = async () => {
-//       try {
-//         const response = await axios.get(
-//           `http://localhost:7000/api/users/${currentUser._id}/get-notifications`
-//         );
-//         setNotifications(response.data);
-//       } catch (error) {
-//         console.log('Error fetching notifications:', error);
-//       }
-//     };
-
-//     fetchNotifications();
-// }, [currentUser._id]);
   
-    const [notifications, setNotifications] = useState<any>();
-// console.log(currentUser);
-
-  // console.log(notifications, "this is notifications");
-  console.log(tweets);
-  
+    const [notifications, setNotifications] = useState<any>();  
   
 
   const INITIAL_STATE = {
@@ -240,19 +139,6 @@ export default function App({ Component, pageProps }: AppProps) {
   
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
-
-  // if (!user) {
-  //   router.push('/register')
-  // } else {
-  // console.log(currentUser);
-  
-  // if (currentUser) {
-  //   return console.log(true);
-    
-  // } else {
-  //   console.log(false);
-    
-  // }
   
    if (pageProps.protected && !currentUser) {
      router.push('/login')
@@ -280,7 +166,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setSearchPost,
         tweetModal,
         setTweetModal,
-        lastTweetRef,
+        observerRef
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

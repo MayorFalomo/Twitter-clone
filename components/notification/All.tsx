@@ -31,9 +31,9 @@ const AllNotifications = () => {
     
     const fetchNotifications = async () => {
       try {
-         const res =await axios.get(`http://localhost:7000/api/users/${currentUser?._id}/get-notifications` );
+         const res =await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications` );
         setNotification(res.data)
-        console.log(notification, "THis is notification");
+        // console.log(notification, "THis is notification");
         
            // Clear notifications
               setNotifications(notification)
@@ -63,7 +63,7 @@ const AllNotifications = () => {
 
   const handleClearNotifications = async () => {
     try {
-     const res = await axios.put(`http://localhost:7000/api/users/clear-notifications/clear`, {
+     const res = await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/clear-notifications/clear`, {
           id: currentUser._id,
         });
         setNotification(res.data);

@@ -43,11 +43,14 @@ const QuotedReply = (props: any) => {
     setRetweet(false)
     setNoOfRetweet(noOfRetweet - 1)
   }
+
+  console.log(props.quotedProps);
+  
     
     return (
       <QuotedReplies>
         <div className='postsContainer' >
-            <Link href={'/users/' + props.quoted?.username} className="profilePicture" style={{ backgroundImage: `url(${props.quoted?.profileDp})` }} ></Link>
+            <Link href={'/users/' + props.quoted?.username} className="profilePicture" style={{ backgroundImage: `url(${props.quoted?.profileDp || props.quoted?.photo})` }} ></Link>
                  <div className='subPostsContainer'>
               <div className='flexTweetProfileDetails'>
                  <div className='tweetProfileDetails'>
@@ -64,7 +67,7 @@ const QuotedReply = (props: any) => {
             {props.quoted?.picture?.length > 1 ? <img src={props.quoted?.picture} className='picture' alt='img'/> : ""}
             <div className='subQuotedTweet' >
               <div className='mainTweetDetails' >
-              <span style={{ backgroundImage: `url(${props.quotedProps.profileDp})`}} className='profilePic' > </span>
+              <span style={{ backgroundImage: `url(${props.quotedProps?.profileDp})`}} className='profilePic' > </span>
               <span >{props.quotedProps.username} </span>
               <span style={{ color: 'rgb(113,118,123)', fontWeight: 400}} className='mainTweetUsersAt' >{props.quotedProps.usersAt} </span>
                 <span style={{color: 'rgb(113,118,123)', fontWeight: 400, marginLeft: '20px', display: "list-item", listStyle: "disc outside none"}} className='mainTweetCreatedAt' >{moment(props.quotedProps?.createdAt).format("MMMM D")}  </span>
