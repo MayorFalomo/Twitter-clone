@@ -63,25 +63,10 @@ export const getStaticProps = async (context:any) => {
 };
 const quoted = ({quotedData}: any) => {
 
-  // console.log(quoteds);
   
     const {tweets, currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
-const router = useRouter()
-  console.log(router.query, "router query");
-  
-  const { quoted }  = router.query
-  // console.log(quoted, "This is id");
-
-  // const quotedProps = tweets.find((post: any) => post?._id === id)
 
   const [quotedProps, setQuotedProps] = useState<any>(quotedData)
-  
-  // console.log(quotedProps, "quoted Props");
-  // console.log(quotedProps.quoted, "quoted Props id");
-
-  // console.log(quotedProps, "quoted Object");
-  
-  // console.log(quotedProps, "this is quotedProps");
   
 
   return (
@@ -90,7 +75,7 @@ const router = useRouter()
         <Navbar />
         <div className="centerGrid" >
           <div className="quotedHeader" >
-            <Link href={'/posts/' + quotedProps?._id } ><p>{<BsArrowLeft cursor='pointer' />}</p></Link>
+            <Link href="/" ><p>{<BsArrowLeft cursor='pointer' />}</p></Link>
             <h2>Quoted Tweets </h2>
             </div>
           <div>

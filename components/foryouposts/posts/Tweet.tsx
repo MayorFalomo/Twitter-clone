@@ -30,7 +30,6 @@ const Tweet = (props: any) => {
   const [getUsername, setGetUsername] = useState<string>("")
   const [getTweetsUserName, setGetTweetsUserName] = useState<string>("")
 
-  // console.log(likesArray && props.tweet.comments.length, "likes array");
 
   //Retweet Function
   const handleAddRetweet = async () => {
@@ -128,10 +127,6 @@ const Tweet = (props: any) => {
   };
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
-  // const dynamic = props.tweet?._id
-// console.log(props.tweet, "tweet");
-
-  // console.log(currentUser.notifications, "this are notifications");
   
   return (
       <Tweetstyled>

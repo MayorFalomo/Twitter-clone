@@ -29,11 +29,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [userFollowing, setUserFollowing] = useState<any>([])
   const [searchPost, setSearchPost] = useState<string>("");
   const [tweetModal, setTweetModal] = useState<boolean>(false);
- const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+ const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
-  
+  const [navigation, setNavigation] = useState<boolean>(false);
+
   //Function to get current user from backend
   const getCurrentUser = (id: string) => {
     fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
@@ -166,7 +167,9 @@ export default function App({ Component, pageProps }: AppProps) {
         setSearchPost,
         tweetModal,
         setTweetModal,
-        observerRef
+        observerRef,
+        navigation,
+        setNavigation,
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

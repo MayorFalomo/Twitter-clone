@@ -33,7 +33,6 @@ const ProfilePage = (props: any) => {
             <div className='profileUsersDetails' >
                 <h1>{currentUser?.username} </h1>
                 <span style={{color:'#1d9aef'}}  >{currentUser?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span>
-              {/* <p>{props.allUsersTweets.posts?.length} Tweets</p> */}
               </div>
           </div>
           <div className='profilePhotoContainers' >

@@ -72,6 +72,7 @@ export const HomeContainer = styled.div`
     background-color: black;
   }
   }
+  
   }
   .trendsContainer::-webkit-scrollbar {
     width: 0;
@@ -143,6 +144,25 @@ export const HomeContainer = styled.div`
       .loginLogo{
         z-index: 9999;
       }
+    }
+    .closedNavigation{
+      position: fixed;
+      left: -200vw;
+      top: 0;
+      width: 50vw;
+      height: 100vh;
+      background-color: #000;
+      transition:all 0.4s ease;
+    }
+    .openNavigation{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 80vw;
+      height: 100vh;
+      background-color: #000;
+      z-index: 99999999999999;
+      transition: all 0.4s ease;
     }
     }
   }

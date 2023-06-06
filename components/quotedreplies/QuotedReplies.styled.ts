@@ -5,7 +5,6 @@ export const QuotedReplies = styled.div`
 display: flex;
 align-items: flex-start;
 gap: 10px;
-/* margin: 25px auto; */
 border-top: 2px rgb(47, 51, 54) solid;
 border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px;
@@ -14,19 +13,13 @@ padding: 10px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border: 1px white solid;
+    border: 1px rgb(47, 51, 54) solid;
     width: 70px;
     height: 70px;
     border-radius:50%;
 }
 .subPostsContainer{
-    /* display: flex;
-    align-items: flex-start;
-    gap: 20px; */
-    /* border: 2px rgb(47, 51, 54) solid; */
     width: 100%;
-    /* margin: 5px 5px; */
-    /* padding: 10px; */
  .subQuotedTweet{
             border: 2px rgb(47, 51, 54) solid;
             padding: 20px;
@@ -45,7 +38,7 @@ padding: 10px;
                     object-fit: cover;
                     object-position: center;
                     border-radius: 50%;
-                    border: 1px white solid;
+                    border: 1px  rgb(47, 51, 54) solid;
                 }
              
             }

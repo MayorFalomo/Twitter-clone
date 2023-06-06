@@ -12,13 +12,16 @@ import { useRouter } from "next/router";
 import { BsStars, BsTwitter } from "react-icons/bs";
 import MobileNav from "@/components/mobilenav/MobileNav";
 import Link from "next/link";
+import Navigation from "@/components/navigation/Navigation";
 
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
 export default function Home(props: any) {
   
-  const { currentUser } = useContext(AppContext)
+  const { currentUser, navigation, setNavigation } = useContext(AppContext)
+
+
   const [current, setCurrent] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [mobileNavCon, setMobileNav] = useState<boolean>(false)
@@ -28,6 +31,10 @@ export default function Home(props: any) {
     setCurrent(param);
     setActive(!active);
   };
+
+  const handleOpenNavigation = () => {
+    setNavigation(true)
+  }
   
       return (
         <HomeContainer>
@@ -45,10 +52,11 @@ export default function Home(props: any) {
                   <h1 >Home </h1>
                 </div>
                 <div className={`mobileHeader`} >
-                  <Link href='/profile' style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className="profilePicHeader" > </Link>
+                  <div onClick={handleOpenNavigation} style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className="profilePicHeader" > </div>
                   <p><BsTwitter className='hiddenloginLogo' style={{ color: ' #1d9aef' }} /></p>
                   <p><BsTwitter className='loginLogo' style={{ color: ' #1d9aef' }} /></p>
                   <p><BsStars className='loginLogo' style={{ color: ' #1d9aef' }} /></p>
+                  <div className={navigation ? 'openNavigation' : "closedNavigation"} ><Navigation/></div>
                 </div>
                 <ul className="postGroup" >
                   <a

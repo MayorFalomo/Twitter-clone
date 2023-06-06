@@ -52,6 +52,7 @@ const Commentpage = (props: any) => {
   const [showReplies, setShowReplies] = useState<boolean>(false);
   const [replies, setReplies] = useState<any>(props.comment.comment)
 
+  //generateId
   function dec2hex (dec:any) {
   return dec.toString(16).padStart(2, "0")
   }
