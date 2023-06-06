@@ -4,62 +4,28 @@ import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import Suggestedpeople from '../suggested/Suggestedpeople'
 import { WhoToFollowStyled } from './Whotofollow.styled'
+import { shuffle } from 'lodash';
 
 type Props = {}
 
 const Whotofollow = (props: any) => {
 
-  const {suggestedUsers, setSuggestedUsers} = useContext(AppContext)
+  const {suggestedUsers} = useContext(AppContext)
 
-  const [seeMoreUsers, setSeeMoreUsers] = useState<number>(3)
-  
-  // const generateRandomUsers = () => {
-  //   return Math.floor(Math.random() * suggestedUsers.length)
-  // }
+  // const [seeMoreUsers, setSeeMoreUsers] = useState<number>(3)
+  const [randomUsers, setRandomUsers] = useState<any[]>([]);
 
-  // useEffect(() => {
-  //   getRandomUsers()
-  // }, [])
+  useEffect(() => {
+    const shuffledUsers = shuffle(suggestedUsers)
 
-  // const getRandomUsers = () => {
-  //   const randomUsers = [
-  //     generateRandomUsers(),
-  //     generateRandomUsers(),
-  //     generateRandomUsers()
-  //   ]
-  //   const selectedUsers = suggestedUsers.filter((suggestedUser: any) => randomUsers.includes(suggestedUser.id))
-  //   setSuggestedUsers(selectedUsers)
-  // }
-
-  // const getRandomUsers = () => {
-  //   const randomUsers: any[] = []
-
-  //   //Generate three ranndom indices
-  //   const randomIndices: number[] = [];
-  //   while (randomUsers.length < 3) {
-  //     const randomIndex = Math.floor(Math.random() * suggestedUsers.length);
-  //     if (!randomIndices.includes(randomIndex)) {
-  //       randomIndices.push(randomIndex);
-  //     }
-  //   }
-
-  //   // Retrieve the corressponding user objects
-  //   randomIndices.forEach((index) => {
-  //     randomUsers.push(suggestedUsers[index])
-  //   })
-  //   // return console.log(randomUsers);
-
+    const randomThreeUsers = shuffledUsers.slice(0, 3)
     
+    setRandomUsers(randomThreeUsers)
+  },[suggestedUsers])
+  
+  // const showRandomUsers = () => {
+  //   const shuffledObjects = shuffle(suggestedUsers)
   // }
-  // console.log(suggestedUsers, "suggested");
-
-  // console.log(getRandomUsers(), "function");
-  
-
-  // console.log(getRandomUsers, "function");
-  
-  
-
 
 
   return (
@@ -68,7 +34,7 @@ const Whotofollow = (props: any) => {
        <div className="suggestFollows" >
         <h1>Who to follow </h1>
          <div className="mapContainer" >
-          {suggestedUsers.slice(0, seeMoreUsers).map((suggestedUser: any, index: string) => (
+          {randomUsers?.map((suggestedUser: any, index: number) => (
             <div key={index} className='whoToFollow' >
               <Suggestedpeople suggestedUser={suggestedUser} />
             </div>

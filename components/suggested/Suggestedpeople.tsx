@@ -8,7 +8,7 @@ type Props = {}
 
 const Suggestedpeople = (props: any) => {
 
-  const { currentUser, setCurrentUser, setNoOfFollowings, noOfFollowings } = useContext(AppContext)
+  const { currentUser, setCurrentUser,  } = useContext(AppContext)
   
   const [followingButton, setFollowingButton] = useState<boolean>(false)
   const [onMouseHover, setOnMouseHover] = useState<boolean>(false)
@@ -19,7 +19,6 @@ const Suggestedpeople = (props: any) => {
   const [followActive, setFollowActive] = useState<boolean>(false);
 
    const handleClick = async () => {
-    // e.preventDefault()
     setUrlParams(props.suggestedUser?._id)
     setUsernames(props.suggestedUser?.username)
     setUsersAt(props.suggestedUser?.usersAt)
@@ -36,7 +35,6 @@ const Suggestedpeople = (props: any) => {
             usersId: urlParams,
      }
      try {
-      //  console.log(followAUser, "Follow object");
        setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
        await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
          .catch((err) => console.log(err))
@@ -51,9 +49,7 @@ const Suggestedpeople = (props: any) => {
     const data = {
       userToBeUnfollowed: urlParams,
       currentUser: currentUser?._id,
-    }    
-    // console.log(data, "This is data");
-    
+    }        
     try {
      await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
         .catch((err) => console.log(err));
@@ -69,14 +65,6 @@ const Suggestedpeople = (props: any) => {
     }
   }
 
-
- 
-  // console.log(currentUser);
-  // console.log(usernames);
-  // console.log(usersAt);
-  // console.log(usersProfileDp, "usersPic");
-  // console.log(urlParams, "User to add to  user Id");
-  
   
   return (
     <SuggestedStyle>
@@ -88,7 +76,6 @@ const Suggestedpeople = (props: any) => {
               <p>{props.suggestedUser.usersAt} </p>
           </div>
         </div>
-        {/* { currentUser?._id !== props.suggestedUser?._id ? */}
           <div>
             {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
               <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}

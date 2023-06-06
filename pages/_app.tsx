@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [bookmarks, setBookmarks] = useState<any>([])
   const [cookies, setCookie] = useCookies(["user"]);
   const [userFollowing, setUserFollowing] = useState<any>([])
-  const [searchPost, setSearchPost] = useState<string>("");
+  const [searchTweets, setSearchTweets] = useState<string>("");
   const [tweetModal, setTweetModal] = useState<boolean>(false);
  const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (!isLoading) {
       setIsLoading(true);
       try {
-        const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}`);
+        const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}&search=$=${searchTweets}`);
         const tweetsArray = Array.isArray(res.data.posts) ? res.data.posts : Array.from(res.data.posts);
         setTweets((prevTweets:any) => [...prevTweets, ...tweetsArray]);
         setCurrentPage((prevPage) => prevPage + 1);
@@ -89,29 +89,33 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [isIntersecting, isLoading]);
 
  
-
+//useEffect to load the currentUser info
   useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
   }, [])
   
+  //useEffect to load all registered users
   useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users`)
       .then((res: any) => setSuggestedUsers(res.data)).catch((err: any) => console.log(err))
   }, [])
+
   
+  //function to get all bookmarks of the currentUser
   const getUserBookmarks = async (param: any) => {
     const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/bookmarks/get-bookmark/${param}`)
     setBookmarks(res.data)
   }
 
+  //This useEffect would run when currentUser?._id gets a value
   useEffect(() => {
     if (isAuth) {
       getUserBookmarks(currentUser?._id)
     } else {
       console.log("no user")
     }
-  }, [currentUser])
+  }, [currentUser?._id])
 
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
   
@@ -123,6 +127,7 @@ export default function App({ Component, pageProps }: AppProps) {
     user: {},
   }
 
+  //Reducer to manage chats
   const chatReducer = (state: any, action: any) => {
     switch (action.type) {
       case "CHANGE_USER":
@@ -163,8 +168,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setBookmarks,
         notifications,
         setNotifications,
-        searchPost,
-        setSearchPost,
+        searchTweets,
+        setSearchTweets,
         tweetModal,
         setTweetModal,
         observerRef,

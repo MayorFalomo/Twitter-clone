@@ -51,5 +51,12 @@ export const TweetsContainer = styled.div`
         transition: all 0.4s ease;
         background-color: black;
     }
+   
+    h2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    }
 }
 `

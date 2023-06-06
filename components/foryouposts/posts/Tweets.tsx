@@ -20,13 +20,13 @@ const Tweets = (props: any) => {
     return (
       <TweetsContainer>
             <div className='tweetsContainer' >
-          {tweets?.map((tweet: any, index: any) => {
+          {tweets?.length > 0 ? tweets?.map((tweet: any, index: any) => {
               return (
                  <div key={tweet._id} ref={index === tweets.length -1 ? observerRef : null }>
                   <Tweet tweet={tweet} setAddedToBookmark={setAddedToBookmark} />
             </div>
               )            
-          })}
+          }) : <div className='noTweetsMessage' ><h2>No tweets found </h2> </div> }
           <div ref={observerRef} style={{ height: '10px' }} />
           <div className="quill" onClick={() => setTweetModal(true)} ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 55, borderRadius: "50px" }} />} </p></div>
           {TweetModal && <div className={tweetModal ? "active" : "inactive"} ><TweetModal/></div> }

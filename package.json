@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-     "export": "next export"
+    "export": "next export"
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
@@ -15,6 +15,7 @@
     "@giphy/js-fetch-api": "^4.7.1",
     "@giphy/react-components": "^6.7.0",
     "@netlify/plugin-nextjs": "^4.37.2",
+    "@types/lodash.shuffle": "^4.2.7",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",

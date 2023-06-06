@@ -58,9 +58,6 @@ const Notification = ({ notification }: any) => {
     setShowAvatar(false)
   }
   } 
-
-  // console.log(showLike);
-  console.log(notification);
   
   
 
@@ -109,7 +106,7 @@ const Notifications = () => {
 
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
-       const delayInMilliseconds = 180 * 1000; // 3 minutes in milliseconds
+       const delayInMilliseconds = 18 * 1000; // 3 minutes in milliseconds
       const timeout = setTimeout(() => {
         handleClearNotifications();
       }, delayInMilliseconds); // 10 seconds delay
