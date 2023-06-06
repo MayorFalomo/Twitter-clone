@@ -1,6 +1,6 @@
 import React, { useContext, useState,} from 'react'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
-import { AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { Tweetstyled } from './Tweet.styled'
 import moment from 'moment';
@@ -195,7 +195,7 @@ const Tweet = (props: any) => {
                         }}
                       />
                     ) : (
-                      <RxHeart
+                      <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleAddLike}
                         style={{ cursor: "pointer" }}

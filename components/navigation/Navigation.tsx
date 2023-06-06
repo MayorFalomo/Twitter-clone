@@ -54,31 +54,31 @@ const Navigation = (props: Props) => {
                         <li>
                             <div className='flexLinks' >
                                 <Link href="/profile"  ><span className='navIcons' ><IoPersonOutline /> </span></Link>
-                                <Link href="/profile"  ><span>Profile </span> </Link>
+                                <Link href="/profile" ><span  className='navTexts' >Profile </span> </Link>
                                 </div>
                         </li>
                         <li>
                             <div className='flexLinks' >
                                 <Link href="/"  ><span className='navIcons' ><AiFillTwitterSquare /> </span></Link>
-                                <Link href="/"  ><span>Twitter Blue </span> </Link>
+                                <Link href="/"  ><span className='navTexts' >Twitter Blue </span> </Link>
                                 </div>
                         </li>
                         <li>
                             <div className='flexLinks' >
                                 <Link href="/profile"  ><span className='navIcons' ><BsLink /> </span></Link>
-                                <Link href="/profile"  ><span>Connect </span> </Link>
+                                <Link href="/profile"  ><span  className='navTexts' >Connect </span> </Link>
                                 </div>
                         </li>
                         <li>
                             <div className='flexLinks' >
                                 <Link href="/bookmarks"  ><span className='navIcons' ><IoBookmarkOutline /> </span></Link>
-                                <Link href="/bookmarks"  ><span>Bookmarks </span> </Link>
+                                <Link href="/bookmarks"  ><span  className='navTexts' >Bookmarks </span> </Link>
                                 </div>
                         </li>
                         <li>
                             <div className='flexLinks' >
                                 <Link href="/"  ><span className='navIcons' ><MdOutlineVerified /> </span></Link>
-                                <Link href="/"  ><span>Verified Orgs </span> </Link>
+                                <Link href="/"  ><span className='navTexts' >Verified Orgs </span> </Link>
                                 </div>
                         </li>
                

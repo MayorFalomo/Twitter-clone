@@ -31,6 +31,7 @@ const TweetModal = (props: any) => {
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   // const [newDate, setNewDate] = useState<any>(false);
   
+  //Function to upload image
   const uploadImage = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -41,6 +42,8 @@ const TweetModal = (props: any) => {
       .catch((err) => console.log(err));
     setSuccessfulUpload(true)
   };
+
+  //function to upload video
   const uploadVideo = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -52,6 +55,7 @@ const TweetModal = (props: any) => {
     setSuccessfulUpload(true)
   };
   
+  //Returns current Date
   const presentDate = new Date()  
   
   const [newDates, setNewDates] = useState(moment(new Date(presentDate)).fromNow())
@@ -89,9 +93,7 @@ function generateId (len:any) {
       userId: currentUser?.usersId,
       _id: generateId(24),
     }
-    try {
-        console.log(newTweet);
-        
+    try {        
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
       setTweets([...tweets, newTweet])

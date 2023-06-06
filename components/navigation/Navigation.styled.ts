@@ -68,7 +68,10 @@ export const NavigationStyle = styled.div`
                 align-items: flex-start;
                 gap: 30px;
                 .navIcons{
-                    font-size: calc(26px + 0.25vw)
+                    font-size: calc(20px + 0.25vw)
+                }
+                .navTexts{
+                    font-size: calc(16px + 0.25vw)
                 }
                }
             }

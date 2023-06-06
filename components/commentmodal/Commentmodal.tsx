@@ -76,7 +76,6 @@ const CommentModal = (props:any) => {
         //  ]})
     //  setComments([...setComments, commentData])
   }
-  console.log(singleTweets.username);
   
     
     return (

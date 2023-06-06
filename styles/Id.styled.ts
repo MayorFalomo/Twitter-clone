@@ -126,6 +126,7 @@ export const SingleTweetStyle = styled.div`
     }
     video{
         border: #575B5F 1px solid;
+        border-radius: 30px;
     }
     .tweetText{
         /* font-size: 30px; */

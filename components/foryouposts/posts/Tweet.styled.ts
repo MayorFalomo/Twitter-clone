@@ -73,7 +73,7 @@ padding: 10px;
                 display: list-item;
                 list-style: disc outside none;
                 color: rgb(113,118,123);
-                margin-left: 15px;
+                margin-left: 25px;
                  @media (max-width: 400px ) {
                 font-size: calc(10px + 0.25vw);
                 list-style: none outside none;
@@ -110,9 +110,11 @@ padding: 10px;
         line-height: 30px;
     }
     .tweet-image{
+        margin-top: 10px;
         border: 1px rgb(113,118,123) solid ;
         width: 100%;
         height: 700px;
+        background-color: #000;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -125,12 +127,13 @@ padding: 10px;
     }
     }
     .tweetVideo{
+        margin-top: 10px;
         width: 100%;
         height: 500px;
         border: 1px rgb(113, 118, 123) solid;
         border-radius: 15px;
         position: relative;
-        z-index: -1;
+        /* z-index: -1; */
     }
     .tweetOptions{
         display: flex;
@@ -144,7 +147,7 @@ padding: 10px;
         align-items:center;
         gap: 10px;
         span{
-            font-size: 20px;
+            font-size: calc(16px + 0.25vw);
         }
         .activeModal{
             position: fixed;
@@ -169,7 +172,7 @@ padding: 10px;
         }
         p{
             .likeIcon{
-            font-size: calc(20px + 0.25vw);
+            font-size: calc(18px + 0.25vw);
 
         }
         }
