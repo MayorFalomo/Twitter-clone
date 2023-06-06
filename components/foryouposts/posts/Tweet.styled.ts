@@ -73,10 +73,11 @@ padding: 10px;
                 display: list-item;
                 list-style: disc outside none;
                 color: rgb(113,118,123);
-                margin-left: 20px;
-                 @media (max-width: 380px ) {
+                margin-left: 15px;
+                 @media (max-width: 400px ) {
                 font-size: calc(10px + 0.25vw);
                 list-style: none outside none;
+                margin-left: 3px;
                 }
             }
             .tweetProfileFlex{
@@ -106,7 +107,7 @@ padding: 10px;
     .tweet-caption{
         font-size: calc(16px + 0.25vw);
         margin: 10px auto;
-        line-height: 35px;
+        line-height: 30px;
     }
     .tweet-image{
         border: 1px rgb(113,118,123) solid ;

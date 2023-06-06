@@ -169,7 +169,7 @@ const Allusertweet = (props: any) => {
                 }</p>
             </div>
               </div>
-              <Link href={'/posts/' + props.allTweet?._id } className='showThread' >Show this thread</Link>
+              <Link href="/[id]" as={`${props.allTweet?._id}`} className='showThread' >Show this thread</Link>
                     </div>
           </div>
           {/* {props.allTweet?.length == 0 && <h1>This user has no Tweet </h1> } */}

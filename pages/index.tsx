@@ -22,14 +22,13 @@ export default function Home(props: any) {
   const { currentUser, navigation, setNavigation } = useContext(AppContext)
 
 
-  const [current, setCurrent] = useState<boolean>(false);
+  const [current, setCurrent] = useState<number>(0);
   const [active, setActive] = useState<boolean>(false);
   const [mobileNavCon, setMobileNav] = useState<boolean>(false)
   const [show, setShow] = useState<boolean>(true)
 
-  const handleClick = (param: boolean) => {
+  const handleClick = (param: any) => {
     setCurrent(param);
-    setActive(!active);
   };
 
   const handleOpenNavigation = () => {
@@ -60,21 +59,21 @@ export default function Home(props: any) {
                 </div>
                 <ul className="postGroup" >
                   <a
-                    className={active ? "linkActive" : "link"}
-                    onClick={() => handleClick(false)}
+                    className={current == 0 ? "linkActive" : "link"}
+                    onClick={() => handleClick(0)}
                   >
                     <li> For you </li>
                   </a>
                   <a
-                    className={!active ? "linkActive" : "link"}
-                    onClick={() => handleClick(true)}
+                    className={current == 1 ? "linkActive" : "link"}
+                    onClick={() => handleClick(1)}
                   >
                     <li> Following </li>
                   </a>
                 </ul>
               </div>
               <div className="centerGrid" >
-                {current == true ? <div><FollowersPosts /></div> : <div>
+                {current == 1 ? <div><FollowersPosts /></div> : <div>
                   <ForYouPosts />
                   <Tweets />
                 </div>}

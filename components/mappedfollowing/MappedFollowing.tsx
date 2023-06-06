@@ -1,15 +1,16 @@
-import { AppContext } from '@/helpers/Helpers';
-import axios from 'axios';
-import Link from 'next/link';
 import React, { useContext, useState } from 'react'
-import { MdOutlineVerified } from 'react-icons/md';
-import { MappedFollowerStyled } from './Mappedfollowers.styled';
-import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { MappedFollowerStyled } from '../mappedfollowers/Mappedfollowers.styled'
+import Link from 'next/link'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
+import axios from 'axios'
+import { AppContext } from '@/helpers/Helpers'
+import { MdOutlineVerified } from 'react-icons/md'
 
 type Props = {}
 
-const MappedFollowers = (props: any) => {
+const MappedFollowing = (props: any) => {
 
+    
     const { currentUser, setCurrentUser } = useContext(AppContext);
 
        const [current, setCurrent] = useState<any>(0)
@@ -83,32 +84,31 @@ const MappedFollowers = (props: any) => {
     }
     }
 
-    console.log(props.followers, "this is props");
+    console.log(props.following);
     
-
-    return (
-      <MappedFollowerStyled>
+  return (
+    <MappedFollowerStyled>
       <div className='subConnectFlex' >
-              <div style={{ backgroundImage: `url(${props.followers?.profileDp})` }} className='bgImg' ></div>
+              <div style={{ backgroundImage: `url(${props.following?.profilePic})` }} className='bgImg' ></div>
                     <div className='followFlex' >
                         <div>
-                      <Link href={'/users/' + props.followers?.username} ><h3>{props.followers?.username} <span style={{color:'#1d9aef'}}  >{props.suggest?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span> </h3></Link>
-                            <p style={{ color: "#575B5F" }} className='usersAt' >{props.followers?.usersAt} </p>
-                            <p>{props.followers?.bio} </p>
+                      <Link href='/' ><h3>{props.following?.name} <span style={{color:'#1d9aef'}}  >{props.suggest?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span> </h3></Link>
+                            <p style={{ color: "#575B5F" }} className='usersAt' >{props.following?.userAt} </p>
+                            <p>{props.following?.bio} </p>
                             </div>
                             <div className='singleUserFollow' >
-                                {currentUser.followers?.some((e: any) => e._id === props.follower?.userId) ?
+                                {currentUser.following?.some((e: any) => e._id === props.follower?.userId) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                                         onMouseLeave={() => setOnMouseHover(false)}
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>
                                     :
-                                    <button onClick={handleFollow} className='btn-follow' disabled={currentUser?.username == props?.followers?.username} >Follow </button>}
+                                    <button onClick={handleFollow} className='btn-follow' disabled={currentUser?.username == props?.following?.name} >Follow </button>}
                         <BiDotsHorizontalRounded/>
                             </div>
                   </div>
-            </div>
-            </MappedFollowerStyled>
+          </div>
+          </MappedFollowerStyled>
   )
 }
 
-export default MappedFollowers;
+export default MappedFollowing

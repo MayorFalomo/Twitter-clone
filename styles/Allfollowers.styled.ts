@@ -126,6 +126,7 @@ export const AllFollowersStyle = styled.div`
   .postGroup {
     display: flex;
     justify-content: space-around;
+    border-bottom: #575b5f 1px solid;
     @media (max-width: 460px ) {
      /* display: none; */
     }

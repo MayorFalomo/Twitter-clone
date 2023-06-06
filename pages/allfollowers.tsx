@@ -1,9 +1,9 @@
 import Followers from '@/components/followers/Followers'
+import Following from '@/components/following/Following'
 import MobileNav from '@/components/mobilenav/MobileNav'
 import Navbar from '@/components/navbar/Navbar'
 import Search from '@/components/search/Search'
 import Trends from '@/components/trends/Trends'
-import UsersReplies from '@/components/usersreplies/UsersReplies'
 import { AppContext } from '@/helpers/Helpers'
 import { AllFollowersStyle } from '@/styles/Allfollowers.styled'
 import Link from 'next/link'
@@ -23,19 +23,20 @@ const allfollowers = (props: Props) => {
     // setActive(true);
   };
 
-    console.log(currentUser);
+    // console.log(currentUser);
     
 
     return (
       <AllFollowersStyle>
-      <div>
            <div className='connectStyleContainer' >
         <Navbar />
                 <div className='centerGridContainer' >
                     <div className='connectDetails' >
                 <Link href='/' style={{listStyle: 'none'}} className='arrowBack' >{<BsArrowLeft cursor='pointer' fontSize={25} />} </Link>
-                      <h2>{currentUser?.username} </h2>
-                      <span>{currentUser?.usersAt} </span>
+                      <div>
+                            <h2>{currentUser?.username} </h2>
+                            <span style={{ color: "#575B5F" }} >{currentUser?.usersAt} </span>
+                        </div>
                       
               </div>
              <ul className="postGroup" >
@@ -51,19 +52,17 @@ const allfollowers = (props: Props) => {
                   >
                     <li> Following </li>
                             </a>
-                          
                         </ul>
-                    {current == 0 && <Followers />}
-                {current == 1 && <UsersReplies/> }
+                {current == 0 && <Followers />}
+                {current == 1 && <Following/> }
                 
                     </div>
-          </div>
           <div className='rightGridContainer' >
           <Search />
           <Trends/>
         </div>
-          <div className="mobileNav" > <MobileNav/></div>
-            </div>
+                <div className="mobileNav" > <MobileNav /></div>
+                </div>
             </AllFollowersStyle>
   )
 }

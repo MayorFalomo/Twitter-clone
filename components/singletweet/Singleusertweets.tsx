@@ -70,7 +70,7 @@ const Singleusertweets = (props: any) => {
      setCommentModal(true)
   };
 
-  // console.log(props.allTweets.picture?.length, "This object");
+  console.log(props.allTweets, "This object");
   // console.log("hello");
 
   const views = Math.floor(Math.random() * suggestedUsers?.length);
@@ -165,7 +165,7 @@ const Singleusertweets = (props: any) => {
                     }</p>
                 </div>
               </div>
-              <Link href={'/posts/' + props.allTweets?._id} className="thread" >Show this thread </Link>
+              <Link href="/[id]" as={`/${props.allTweets?._id}`}className="thread" >Show this thread </Link>
             </div>
           </div>
         }

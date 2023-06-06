@@ -44,10 +44,7 @@ const Commentpage = (props: any) => {
   const [createdAt, setCreatedAt] = useState<any>(commentId);
   const [replyId, setReplyId] = useState<any>("");
   const [like, setLike] = useState<any>([]);
-  const [retweetReply, setRetweetReply] = useState<any>([])
-  const [singleTweets, setSingleTweets] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  const [successComment, setSuccessComment] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<boolean>(false);
   const [showReplies, setShowReplies] = useState<boolean>(false);
   const [replies, setReplies] = useState<any>(props.comment.comment)
@@ -64,6 +61,7 @@ function generateId (len:any) {
   return Array.from(arr, dec2hex).join('')
   }
   
+  //upload image function
  const uploadImage = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -74,7 +72,7 @@ function generateId (len:any) {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
     };
-    
+    //function to upload video
   const uploadVideo = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);

@@ -44,7 +44,7 @@ const QuotedReply = (props: any) => {
     setNoOfRetweet(noOfRetweet - 1)
   }
 
-  console.log(props.quotedProps);
+  // console.log(props.quotedProps);
   
     
     return (

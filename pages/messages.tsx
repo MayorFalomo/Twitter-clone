@@ -11,7 +11,6 @@ import { BsEnvelopePlus } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import Chats from '@/components/chats/Chats'
 import Chat from '@/components/chat/Chat'
-import { ChatContext } from '@/helpers/ChatContext'
 import MobileNav from '@/components/mobilenav/MobileNav'
 import { BiSearch } from 'react-icons/bi'
 
@@ -20,16 +19,14 @@ type Props = {}
 const messages = (props: any) => {
 
   const { currentUser, suggestedUsers } = useContext(AppContext)
-  const {dispatch} = useContext(ChatContext)
 
   const [username, setUsername] = useState<string>("")
   const [user, setUser] = useState<any>(null)
   const [err, setErr] = useState(false)
   const [chatComponentActive, setChatComponentActive] = useState<any>(false)
-  const [switchToChats, setSwitchToChats] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  //This search function works well
+  //This search function query's firestore for a username that is the same as the username inputted by the user.
   const handleSearch = async () => {
     const q = query(collection(db, "users"),
       where("username", "==", username));
@@ -44,7 +41,7 @@ const messages = (props: any) => {
     }
   }
 
-  //This function works well too
+  //This function runs if the enter key is pressed and searches for the users
   const handleKey = (e: any) => {
     e.code === "Enter" && handleSearch() 
     setChatComponentActive(true)
@@ -52,7 +49,7 @@ const messages = (props: any) => {
 
   const handleSelect = async () => {
     
-    //Check whether the group exists or not(inside chats in firestore), If not create one
+    //Check whether the chat group exists or not(inside chats in firestore), If not create one
     const combinedId = currentUser._id > user.uid ?
       currentUser._id + user.uid
       : user.uid + currentUser._id;
@@ -63,7 +60,7 @@ const messages = (props: any) => {
         //Create chat in chats collection
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
         
-        //Create user chats
+        //Create user chats with the user that was returned after searching
         await updateDoc(doc(db, "userChats", currentUser._id), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,

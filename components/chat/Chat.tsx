@@ -31,8 +31,6 @@ const Chat = (props: any) => {
     const [video, setVideo] = useState<any>(null);
     const [emoji, setEmoji] = useState<boolean>(false);
     const [userObject, setUserObject] = useState<any>()
-
-    console.log(data, "this is data");
     
     useEffect(() => {
         handleData()

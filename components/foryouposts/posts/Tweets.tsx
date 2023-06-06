@@ -13,7 +13,6 @@ const Tweets = (props: any) => {
   const { tweets, bookmarks, tweetModal, setTweetModal, observerRef } = useContext(AppContext)
   const [userMap, setUserMap] = useState<any>([])
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
-  // const observerRef = useRef<HTMLDivElement>(observerTarget.current);
     
 
   

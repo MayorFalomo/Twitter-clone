@@ -2,17 +2,12 @@ import styled from "styled-components";
 
 export const SingleUserTweetsStyle = styled.div`
 .AllUserTweetContainer{
-/* border: 3px yellow solid; */
-
 .AllUserTweet{
     display: flex;
     align-items: flex-start;
     gap: 10px;
     padding: 20px; 	
     width: 100%;
-     /* @media (max-width: 360px) {
-        } */
-    /* border: 3px green solid; */
     .userTweetPic{
         background-color: black ;
         background-position: center;
@@ -22,6 +17,8 @@ export const SingleUserTweetsStyle = styled.div`
         border-top: 1px white solid;
         height: 70px;
         width: 70px;
+        min-width: 40px;
+        min-height: 40px;
         border-radius: 50%;
         @media (max-width: 400px) {
             width: 40px;
@@ -29,7 +26,6 @@ export const SingleUserTweetsStyle = styled.div`
         }
     }
     .flexUserInfoContainer{
-        /* border: 2px blue solid; */
         width: 100%;
         p{
             font-size: calc(16px + 0.25vw);
@@ -60,9 +56,7 @@ export const SingleUserTweetsStyle = styled.div`
                 text-decoration: underline;
                 cursor:pointer;
             }
-           
             }
-           
         }
         .tweetOptions{
             display: flex;
@@ -70,14 +64,12 @@ export const SingleUserTweetsStyle = styled.div`
             justify-content: space-between;
             gap: 20px;
             width: 80%;
-            /* border: 2px red solid; */
             .flexIconsAndValues{
                 display: flex;
                 align-items: center;
                 gap: 10px;
                 .likeIcon{
                 font-size: calc(26px + 0.25vw);
-                /* border: 2px red solid; */
                 }
                 span{
                     font-size: calc(16px + 0.25vw);
