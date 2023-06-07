@@ -83,10 +83,6 @@ const Id = (props:any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false)
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
-  // useEffect(() => {
-  //   axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`).then((res) => setTweeterUser(res.data)).catch((err) => console.log(err)
-  //   )
-  // }, [currentUser?._id]); 
 
   const handleAddRetweet = async () => {
     setRetweetModal(false)
@@ -201,15 +197,8 @@ const Id = (props:any) => {
     setRetweetModal(false);
   }
  
-  // const params = useRouter()
-// console.log(tweetProps);
-
   
   const views = Math.floor(Math.random() * suggestedUsers.length)
-  // console.log(postId, "this is postId");
-  // console.log(tweetProps?._id, "this is tweetedPros");
-  
-  
   return (
     <SingleTweetStyle>
       <div className={'singleTweetContainer'} >

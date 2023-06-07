@@ -15,7 +15,6 @@ type Props = {}
 const trending = (props: any) => {
 
     const [trendingObject, setTrendingObject] = useState<any>([])
-    const [guardianObject, setGuardianObject] = useState<any>([])
 
     
    useEffect(() => {
@@ -33,27 +32,6 @@ const trending = (props: any) => {
     fetchData();
 }, []);
     
-//    useEffect(() => {
-//          axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`)
-//             .then((res) => setTrendingObject(res.data.results))
-//             .catch((err) => console.log(err)25e9b037490044f88305b1f5b40c99ae
-//         )
-//     },[])
-    
-    // useEffect(() => {
-    //     axios.get(`https://content.guardianapis.com/search?page=2&q=debate&api-key=test`)
-    //         .then((res) => setGuardianObject(res.data.articles))
-    //         .catch((err) => console.log(err)
-    //     )
-    // }, [])
-    
-    // const uniqueId = Math.floor(Date.now() * Math.random())
-    // console.log(uniqueId, "This is uniqueId");
-    
-
-    // console.log(trendingObject, "This is newscatcher Obj");
-    
-
     return (
       <TrendingStyled>
       <div className='trendingContainer' >

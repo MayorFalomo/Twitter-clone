@@ -79,10 +79,7 @@ const CommentModal = (props:any) => {
         //      ...singleTweets.comments, commentData,
         //  ]})
     //  setComments([...setComments, commentData])
-  }
-  
-  console.log(singleTweets?.username, "singleTweets username");
-  
+  }  
     
     return (
         <CommentModalStyle>
