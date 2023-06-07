@@ -20,7 +20,7 @@ const trending = (props: any) => {
     
    useEffect(() => {
     const fetchData = async () => {
-        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_APP_News}`);
+        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=25e9b037490044f88305b1f5b40c99ae`);
         const objects = res.data.articles.map((news:any) => {
             return {
                 ids: Math.floor(Date.now() * Math.random()),

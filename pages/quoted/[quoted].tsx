@@ -63,9 +63,6 @@ export const getStaticProps = async (context:any) => {
 };
 const quoted = ({quotedData}: any) => {
 
-  
-    const {tweets, currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
-
   const [quotedProps, setQuotedProps] = useState<any>(quotedData)
   
 
@@ -84,14 +81,12 @@ const quoted = ({quotedData}: any) => {
                 <QuotedReply quoted={quoted} quotedProps={quotedProps} />
               </div>
             ))}
-                  {/* {removedBookmark ? <p className="bookmarkAdded" >Tweet removed from bookmarks</p> : ""} */}
           </div>
          
         </div>
       <div className='leftGrid' >
         <Search />
         <Trends />
-        {/* <Whotofollow/> */}
       </div>
       </div>
       </QuotedStyle>
