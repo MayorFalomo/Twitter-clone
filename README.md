@@ -103,6 +103,8 @@ Like i said the challenges are numerous but the lessons to be Learned and potent
 Recording the number of views and storing them is another big challenge since i'd need to make it real-time and update when somebody views it and still find a way to still make the whole thing optimized so since i can't manually assign views i wrote a function that manually assigns views based on all the total registered number of users for each post.
 
 The cookie might not save on mobile devices but works excellently well for systems.
+
+Another problem users would face is in messaging, Since firebase handles real-time messaging and mongoDb is my actual database, if you change your name it would change on mongoDb but it doesn't change on firestore, so other users would have to search you by your original name, The naming has to be exact.
 ## Run Locally
 
 Clone the project
