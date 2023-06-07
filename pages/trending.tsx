@@ -13,25 +13,45 @@ import { RiSettings5Line } from 'react-icons/ri'
 type Props = {}
 
 const trending = (props: any) => {
+
     const [trendingObject, setTrendingObject] = useState<any>([])
     const [guardianObject, setGuardianObject] = useState<any>([])
 
-    // useEffect(() => {
-    //     axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`)
-    //         .then((res) => setTrendingObject(res.data.results))
-    //         .catch((err) => console.log(err)
-    //     )
-    // },[])
+    
+   useEffect(() => {
+    const fetchData = async () => {
+        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_APP_News}`);
+        const objects = res.data.articles.map((news:any) => {
+            return {
+                ids: Math.floor(Date.now() * Math.random()),
+                ...news,
+            };
+        });
+        setTrendingObject(objects);
+    };
+
+    fetchData();
+}, []);
+    
+//    useEffect(() => {
+//          axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`)
+//             .then((res) => setTrendingObject(res.data.results))
+//             .catch((err) => console.log(err)25e9b037490044f88305b1f5b40c99ae
+//         )
+//     },[])
+    
     // useEffect(() => {
     //     axios.get(`https://content.guardianapis.com/search?page=2&q=debate&api-key=test`)
-    //         .then((res) => setGuardianObject(res.data))
+    //         .then((res) => setGuardianObject(res.data.articles))
     //         .catch((err) => console.log(err)
     //     )
     // }, [])
     
-    // const uniqueId = parseInt(Date.now() * Math.random());
+    // const uniqueId = Math.floor(Date.now() * Math.random())
+    // console.log(uniqueId, "This is uniqueId");
+    
 
-    // console.log(trendingObject);
+    // console.log(trendingObject, "This is newscatcher Obj");
     
 
     return (
@@ -41,19 +61,19 @@ const trending = (props: any) => {
                 <div className='centerGrid'>
                     <div className='center-Header' >
                     <ul>
-                        <li>{<BsArrowLeft fontSize='40px' cursor='pointer' />} </li>
+                        <li>{<BsArrowLeft  cursor='pointer' />} </li>
                         <li>Trends </li>
                     </ul>
-                        <h1>{<RiSettings5Line fontSize='40px' cursor='pointer'/>} </h1>
+                        <h1>{<RiSettings5Line cursor='pointer'/>} </h1>
                     </div>
                     <div>
-                        {/* {trendingObject.map((index: any, trendingNews:any) => {
+                        {trendingObject?.map((trendingNews:any ) => {
                             return (
-                                <div key={index}>
+                                <div key={trendingNews?.ids }>
                                     <MappedTrends trendingNews={trendingNews} />
                                 </div>
                             )
-                        })} */}
+                        })}
                 </div>
           </div>
           <div className='rightGrid' >

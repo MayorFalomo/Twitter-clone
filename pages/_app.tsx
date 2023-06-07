@@ -26,11 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentUser, setCurrentUser] = useState<any>([])
   const [bookmarks, setBookmarks] = useState<any>([])
   const [cookies, setCookie] = useCookies(["user"]);
-  const [userFollowing, setUserFollowing] = useState<any>([])
   const [searchTweets, setSearchTweets] = useState<string>("");
   const [tweetModal, setTweetModal] = useState<boolean>(false);
  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
   const [navigation, setNavigation] = useState<boolean>(false);
@@ -55,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setIsLoading(true);
       try {
         const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}&search=$=${searchTweets}`);
-        const tweetsArray = Array.isArray(res.data.posts) ? res.data.posts : Array.from(res.data.posts);
+        const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
         setTweets((prevTweets:any) => [...prevTweets, ...tweetsArray]);
         setCurrentPage((prevPage) => prevPage + 1);
       } catch (error) {
@@ -86,7 +84,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (isIntersecting && !isLoading) {
       fetchMoreTweets();
     }
-  }, [isIntersecting, isLoading]);
+  }, [isIntersecting, !isLoading]);
 
  
 //useEffect to load the currentUser info

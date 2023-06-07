@@ -19,7 +19,7 @@ type Props = {};
 
 const Navbar = (props: any) => {
 
-  const { currentUser, twitterBlue, setTwitterBlue, notifications, } = useContext(AppContext)
+  const { currentUser, twitterBlue, setTwitterBlue, notifications, setCommentModal } = useContext(AppContext)
   const router = useRouter();
   const currentRoute = router.pathname;
 
@@ -53,7 +53,7 @@ const Navbar = (props: any) => {
                   <span  className="links" >Home </span>
                   </div>
               </li></Link>
-              <Link href='/explore' ><li>
+              <Link href='/trending' ><li>
                 <div  className="navLinkItems" >
                 <RiHashtag className="navIcon"  />
                   <span  className="links" >Explore</span>
@@ -101,7 +101,7 @@ const Navbar = (props: any) => {
                   </div> */}
               </li></Link>
 
-              <button className="tweetBtn">Tweet </button>
+              <button  className="tweetBtn">Tweet </button>
               <div className="quill" ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 50, borderRadius: "50px"}} />} </p></div>
             </ul>
           </div>

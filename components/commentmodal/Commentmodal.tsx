@@ -23,7 +23,6 @@ const CommentModal = (props:any) => {
   const [singleTweets, setSingleTweets] = useState<any>([])
   const [comments, setComments] = useState<any>(singleTweets?.comments) //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  const [postId, setPostId] = useState<number>(singleTweets?._id)
   const [createdAt, setCreatedAt] = useState<any>(commentId)
   const [successComment, setSuccessComment] = useState<boolean>(false)
 
@@ -48,11 +47,16 @@ const CommentModal = (props:any) => {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
   };
-      
-    useEffect(() => {
-        axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`).then((res) => setSingleTweets(res.data))
-            .catch((err) => console.log(err))
-    }, [props.urlParams])
+  
+  //This useEffect runs only when the value of props.urlParams has arrived
+  useEffect(() => {    
+    if (props.urlParams) {
+        axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/${props.urlParams}`)
+            .then((res) => setSingleTweets(res.data))
+            .catch((err) => console.log(err));
+    }
+}, [props.urlParams]);
+  
   
    const handleComment = async (e:any) => {
          e.preventDefault();
@@ -76,6 +80,8 @@ const CommentModal = (props:any) => {
         //  ]})
     //  setComments([...setComments, commentData])
   }
+  
+  console.log(singleTweets?.username, "singleTweets username");
   
     
     return (

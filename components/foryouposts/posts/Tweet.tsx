@@ -15,7 +15,7 @@ type Props = {}
 //parent component is tweets
 const Tweet = (props: any) => {
 
-  const { currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
+  const { currentUser, suggestedUsers, bookmarks, setBookmarks,} = useContext(AppContext)
 
   const [postId, setPostId] = useState(props.tweet?._id)
   const [retweet, setRetweet] = useState<boolean>(false)
@@ -24,11 +24,11 @@ const Tweet = (props: any) => {
   const [likesArray, setLikesArray] = useState<any>(props.tweet?.likes)
   const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length)
   const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length)
-  const [commentModal, setCommentModal] = useState<boolean>(false)
   const [modalLink, setModalLink] = useState<string>("")
   const [urlParams, setUrlParams] = useState<string>(" ")
   const [getUsername, setGetUsername] = useState<string>("")
   const [getTweetsUserName, setGetTweetsUserName] = useState<string>("")
+  const [commentModal, setCommentModal] = useState<boolean>(false)
 
 
   //Retweet Function
@@ -44,7 +44,6 @@ const Tweet = (props: any) => {
      setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
-   
   }
 
   //Remove Retweet
@@ -121,10 +120,10 @@ const Tweet = (props: any) => {
      setCommentModal(true)
   };
 
-  const handleLink = (e: any) => {
-    e.preventDefault()
-    setGetUsername(props.tweet?.username)
-  };
+  // const handleLink = (e: any) => {
+  //   e.preventDefault()
+  //   setGetUsername(props.tweet?.username)
+  // };
   
   const views = Math.floor(Math.random() * suggestedUsers?.length)
   
