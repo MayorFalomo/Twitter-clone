@@ -96,7 +96,7 @@ export const TrendingStyled = styled.div`
     justify-content: space-between;
     gap: 20px;
     h4{
-      font-size: calc(12px + 0.25vw );
+      font-size: calc(14px + 0.25vw );
       font-weight: 800;
       line-height: 30px;
     }

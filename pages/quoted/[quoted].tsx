@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
     const data = await res.json();
     console.log(data?.posts, "this is data");
     
-    const paths = data.posts?.map((tweet:any) => ({
+    const paths = data?.map((tweet:any) => ({
       params: {
         quoted: tweet?._id.toString()
       }
