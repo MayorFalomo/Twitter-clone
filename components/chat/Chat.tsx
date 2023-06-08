@@ -109,7 +109,7 @@ const Chat = (props: any) => {
                     date: Timestamp.now(),
                 })
             })
-            await updateDoc(doc(db, "userChats", currentUser._id), {
+            await updateDoc(doc(db, "userChats", currentUser?._id), {
                 [data.chatId + ".lastMessage"]: {
                     texts,
                 },

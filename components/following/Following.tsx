@@ -9,7 +9,7 @@ const Following = (props: any) => {
 
   return (
       <div>
-            {currentUser.following?.length > 0 ? <div className='mappedContainer' >
+            {currentUser?.following?.length > 0 ? <div className='mappedContainer' >
               {currentUser?.following?.map((following: any) => (
                   <div key={following?._id} className="subMapped" >
                       <MappedFollowing following={following} />

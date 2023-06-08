@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
       try {
         const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}&search=$=${searchTweets}`);
         const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
-        setTweets((prevTweets:any) => [...prevTweets, ...tweetsArray]);
+        setTweets((prevTweets: any) => [...prevTweets, ...tweetsArray]);
         setCurrentPage((prevPage) => prevPage + 1);
       } catch (error) {
         console.error('Error fetching tweets:', error);
@@ -81,8 +81,10 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
+    // setIsPreload(true)
     if (isIntersecting && !isLoading) {
       fetchMoreTweets();
+      // setIsPreload(false)
     }
   }, [isIntersecting, !isLoading]);
 
@@ -126,28 +128,24 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   //Reducer to manage chats
+  //This reducer helps keep track of the chats, so if the currentUse Id is greater it know whose chats to load
   const chatReducer = (state: any, action: any) => {
     switch (action.type) {
       case "CHANGE_USER":
         return {
           user: action.payload,
-          chatId: currentUser._id > action.payload.uid ?
-            currentUser._id + action.payload.uid
-            : action.payload.uid + currentUser._id
+          chatId: currentUser?._id > action.payload.uid ?
+            currentUser?._id + action.payload.uid
+            : action.payload.uid + currentUser?._id
         }
       default:
         return state;
     }
-  }
-  // console.log(notifications, "notifications");
-  
+  }  
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
   
-   if (pageProps.protected && !currentUser) {
-     router.push('/login')
-     return null
-  } 
+  
 
     return (
       <AppContext.Provider value={{
@@ -173,6 +171,9 @@ export default function App({ Component, pageProps }: AppProps) {
         observerRef,
         navigation,
         setNavigation,
+        isLoading,
+        // isPreload,
+        // setIsPreload
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

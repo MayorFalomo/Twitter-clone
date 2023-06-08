@@ -87,7 +87,7 @@ const Notifications = () => {
   const [notification, setNotification] = useState<string[]>([]);
 
   useEffect(() => {
-    // console.log(currentUser.notifications);
+    // console.log(currentUser?.notifications);
     
     const fetchNotifications = async () => {
       try {
@@ -121,7 +121,7 @@ const Notifications = () => {
   const handleClearNotifications = async () => {
     try {
      const res = await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/clear-notifications/clear`, {
-          id: currentUser._id,
+          id: currentUser?._id,
         });
         setNotification(res.data);
         setNotifications(notification);
@@ -132,9 +132,9 @@ const Notifications = () => {
 
 //   useEffect(() => {
 //     axios.post('http://localhost:7000/users/clear-notifications', {
-//       id: currentUser._id,
+//       id: currentUser?._id,
 //     }).then((response) => setNotifications(response.data))
-//     console.log(currentUser.notifications?.length);
+//     console.log(currentUser?.notifications?.length);
     
 //   }, [])
 
@@ -153,7 +153,7 @@ const Notifications = () => {
   // const handleClearNotifications = async () => {
   //   try {
   //     await axios.put('http://localhost:7000/api/users/notifications', {
-  //       userId: currentUser._id,
+  //       userId: currentUser?._id,
   //     })
   //     setNotifications([])
   //   } catch (error) {

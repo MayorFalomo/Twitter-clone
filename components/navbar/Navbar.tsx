@@ -14,16 +14,19 @@ import Link from "next/link";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase-config";
 
 type Props = {};
 
 const Navbar = (props: any) => {
 
-  const { currentUser, twitterBlue, setTwitterBlue, notifications, setCommentModal } = useContext(AppContext)
+  const { currentUser, setCurrentUser, twitterBlue, setTwitterBlue, notifications, setCommentModal } = useContext(AppContext)
   const router = useRouter();
   const currentRoute = router.pathname;
 
   const [user, setUser] = useState()
+  const [logOut, setLogOut] = useState<boolean>(false)
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -32,11 +35,27 @@ const Navbar = (props: any) => {
     }
   }, [currentUser?.username, currentRoute])
 
+  const handleLogOut = async () => {
+    await signOut(auth).then(() => {
+      setCurrentUser(null)
+    }).then(() => router.push("/login")).catch((err) => {
+    console.log(err, "Error Logging out user");
+  })
+  }
+
+  const handleActive = () => {
+    if (logOut) {
+      setLogOut(false)
+    } else {
+      setLogOut(true)
+    }
+  }
+
   // console.log(currentUser);
 
   // const router = useRouter()
   
-  // console.log(router);
+  console.log(logOut);
   
   return (
     <NavContainer>
@@ -62,7 +81,7 @@ const Navbar = (props: any) => {
               <Link href='/notifications' ><li>
                 <div className="navLinkItems">
                   <BiBell className="navIcon" />
-                  <span className="noOfNotifications" > {currentUser.notifications?.length  > 0 ? notifications?.length || currentUser.notifications?.length : "" } </span>
+                  <span className="noOfNotifications" > {currentUser?.notifications?.length  > 0 ? notifications?.length || currentUser?.notifications?.length : "" } </span>
                   <span className="links" >Notifications </span>
                   </div>
               </li></Link>
@@ -95,22 +114,18 @@ const Navbar = (props: any) => {
                 <HiOutlineEllipsisHorizontalCircle className="navIcon" />
                   <span  className="links" >More </span>
                   </div>
-                {/* <div className="navLinkItems">
-                <RiQuillPenLine className="tweetIconBtn" />
-                  <span>More </span>
-                  </div> */}
               </li></Link>
 
               <button  className="tweetBtn">Tweet </button>
               <div className="quill" ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 50, borderRadius: "50px"}} />} </p></div>
             </ul>
           </div>
-          <div className="navProfileFlex" >
+          <div onClick={handleActive} className="navProfileFlex" >
           <div className="navProfile">
-            <Link href="/profile" style={{backgroundImage: `url(${currentUser?.profilePic})`}} className="bgImg"></Link>
+            <div style={{backgroundImage: `url(${currentUser?.profilePic})`}} className="bgImg"></div>
             <div className="navSubProfile">
               <div className="navUsername" style={{ fontSize: 22 }}>
-                <Link href="/profile" >{currentUser?.username}</Link>
+                <p >{currentUser?.username}</p>
               </div>
               <div
                 className="navEmail"
@@ -120,7 +135,10 @@ const Navbar = (props: any) => {
               </div>
               </div>
             </div>
-            <div className="logOutIcon" >{<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />} </div>
+            <div  className="logOutIcon" >
+              {<BiDotsHorizontalRounded fontSize='30px' cursor='pointer' />}
+            </div>
+                 {logOut ? <div onClick={handleLogOut} className="logOutCon" ><span>Log out {currentUser?.usersAt} </span> </div> : ""}
             </div>
         </div>
         {/* <div onClick={() => setT(false)} className={overlay ? "overlay" : ""} > </div> */}

@@ -1,6 +1,6 @@
 import { AppContext } from '@/helpers/Helpers'
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, } from 'react'
 import { AiFillTwitterSquare, AiOutlineCloseCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import { BsArrowUpRightSquare, BsLink, BsPersonFill } from 'react-icons/bs'
 import { FaAngleDown, FaAngleUp, FaRegNewspaper } from 'react-icons/fa'
@@ -11,13 +11,19 @@ import { BiBarChart, BiLogIn, BiPlus } from 'react-icons/bi'
 import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2'
 import { TbChartPie2 } from 'react-icons/tb'
 import { FiEdit } from 'react-icons/fi'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/firebase-config'
+import { useRouter } from 'next/router'
+
 
 type Props = {}
 
 const Navigation = (props: Props) => {
 
-    const { currentUser, setNavigation } = useContext(AppContext)
+    const { currentUser,setCurrentUser, setNavigation } = useContext(AppContext)
     
+    const router = useRouter()
+
     const [openActive, setOpenActive] = useState<boolean>(false)
     const [dropActive, setDropActive] = useState<boolean>(false)
     const [settingsActive, setSettingsActive] = useState<boolean>(false)
@@ -28,6 +34,14 @@ const Navigation = (props: Props) => {
        setDropActive(false)
        setSettingsActive(false)
     }
+
+     const handleLogOut = async () => {
+    await signOut(auth).then(() => {
+      setCurrentUser(null)
+    }).then(() => router.push("/login")).catch((err) => {
+    console.log(err, "Error Logging out user");
+  })
+  }
 
     return (
       <NavigationStyle>
@@ -115,7 +129,7 @@ const Navigation = (props: Props) => {
                                 <span><TbChartPie2 fontSize={20} /> Data saver </span>
                                 <span><FiEdit fontSize={20} /> Display </span>
                                 <span><AiOutlineCloseCircle fontSize={20} />Keyboard shortcuts</span>
-                                <span><BiLogIn fontSize={20} />Log Out</span>
+                                <span onClick={handleLogOut} ><BiLogIn fontSize={20} />Log Out</span>
                             </div> : ""}
                   </div>
               </div>

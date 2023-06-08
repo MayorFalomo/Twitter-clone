@@ -87,9 +87,9 @@ function generateId (len:any) {
    //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
-       username: currentUser.username,
+       username: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.tweet._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
@@ -101,9 +101,9 @@ function generateId (len:any) {
    const removeRetweet = async () => {
     setRetweet(false)
     const retweetData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
       retweetId: generateId(24),
     }
@@ -119,9 +119,9 @@ function generateId (len:any) {
    //Add like function
   const handleCommentAddLike = async () => {
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profileDp,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.comment._id,
       createdAt,
       likeId: generateId(24)
@@ -139,9 +139,9 @@ function generateId (len:any) {
   const removeLike = async () => {
     setLikeTweet(false)
     const unLikeData = {
-       username: currentUser.username,
+       username: currentUser?.username,
       profileDp: currentUser?.profileDp,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.comment._id,
       createdAt,
     }

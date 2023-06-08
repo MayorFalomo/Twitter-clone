@@ -3,10 +3,10 @@ import axios from 'axios';
 import moment from 'moment';
 import Link from 'next/link';
 import React, {useState, useContext} from 'react'
-import { AiOutlineRetweet } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai';
 import { BiBarChart } from 'react-icons/bi';
-import { BsFillHeartFill, BsHeart } from 'react-icons/bs';
-import { FaRegComment, FaRegHeart, FaRetweet } from 'react-icons/fa';
+import { BsFillHeartFill } from 'react-icons/bs';
+import { FaRegComment, FaRetweet } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
 import Slug from '../commentmodal/Commentmodal';
 import { SingleUserTweetsStyle } from './Singleusertweets.styled';
@@ -39,9 +39,9 @@ const Singleusertweets = (props: any) => {
     else {
       // const handleAddLike = async () => {
         const likeData = {
-          username: currentUser.username,
+          username: currentUser?.username,
           profileDp: currentUser?.profilePic,
-          usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+          usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: props.allTweets._id,
         }
         axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
@@ -53,9 +53,9 @@ const Singleusertweets = (props: any) => {
   const removeLike = async () => {
     setLikeTweet(false)
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
@@ -136,7 +136,7 @@ const Singleusertweets = (props: any) => {
                           }}
                         />
                       ) : (
-                        <FaRegHeart
+                        <AiOutlineHeart
                           className='likeIcon'
                           onClick={handleLikeEvent}
                           style={{ cursor: "pointer", color: '#71767B' }}

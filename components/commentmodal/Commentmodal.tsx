@@ -90,7 +90,7 @@ const CommentModal = (props:any) => {
                     <div className='profileImages' >
               <div style={{ backgroundImage: `url(${singleTweets?.profileDp})` }} className='ProfilePic'> </div>
               <div className='border' > </div>
-                        <div style={{ backgroundImage: `url(${currentUser.profilePic})` }} className='ProfilePic' > </div>
+                        <div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='ProfilePic' > </div>
                         </div>
               <div className='replyDetails' >
                   <h3>{singleTweets?.username} <span>{singleTweets?.usersAt} </span> </h3>

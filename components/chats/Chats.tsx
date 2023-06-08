@@ -36,7 +36,7 @@ const Chats = (props: any) => {
 
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(doc(db, "userChats", currentUser._id), (doc) => {
+            const unsub = onSnapshot(doc(db, "userChats", currentUser?._id), (doc) => {
             setChats(doc.data() as Chat[])
         })
         return () => {
@@ -44,7 +44,7 @@ const Chats = (props: any) => {
         }
     }
     currentUser?._id && getChats();
-}, [currentUser._id])
+}, [currentUser?._id])
     
   //This function handles the clicking even for when you find a user
   //

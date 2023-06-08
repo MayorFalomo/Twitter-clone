@@ -126,7 +126,7 @@ const Singleuser = (props: any) => {
                         <Link href='/messages' ><span>{<RxEnvelopeClosed />} </span></Link>
                         {/* <span>{<MdOutlineNotificationAdd />} </span> */}
                             <div className='singleUserFollow' >
-                                {currentUser.following?.some((e: any) => e.usersId === props.user?._id) ?
+                                {currentUser?.following?.some((e: any) => e.usersId === props.user?._id) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                                         onMouseLeave={() => setOnMouseHover(false)}
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>

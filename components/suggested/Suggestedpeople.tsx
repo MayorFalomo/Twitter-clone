@@ -53,7 +53,7 @@ const Suggestedpeople = (props: any) => {
     try {
      await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`, data) 	//username of the user who is following the current user.
         .catch((err) => console.log(err));
-        currentUser.following?.filter((val: any) => console.log(val.usersId === props.suggestedUsers?._id , "vals id"))
+        currentUser?.following?.filter((val: any) => console.log(val.usersId === props.suggestedUsers?._id , "vals id"))
       let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)
       console.log(filtered, "this is filtered");
       setCurrentUser({ ...currentUser, following: [...filtered] })
@@ -77,7 +77,7 @@ const Suggestedpeople = (props: any) => {
           </div>
         </div>
           <div>
-            {currentUser.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
+            {currentUser?.following?.some((e: any) => e.usersId === props.suggestedUser?._id) ?
               <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                 onMouseLeave={() => setOnMouseHover(false)}
                 className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>

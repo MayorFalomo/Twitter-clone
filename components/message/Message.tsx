@@ -29,7 +29,7 @@ const Message = (props: any) => {
                 
                 <div className={currentUser?._id == props.message?.senderId ? "currentVideoContainer" : "userVideoContainer" } >
                     {props.message?.video == undefined ? "" : <div className={currentUser?._id == props.message?.senderId  ? 'currentVideoContainer' : 'userVideoContainer '}  >
-                        <video className={currentUser._id == props.message?.senderId ?  "currentVideo" : "userBgVideo"} controls loop>
+                        <video className={currentUser?._id == props.message?.senderId ?  "currentVideo" : "userBgVideo"} controls loop>
                             <source src={props?.message?.video} />
                          </video>
                     </div>}

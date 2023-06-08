@@ -97,7 +97,7 @@ const Meet = (props: any) => {
                             <p>{props.suggest?.bio} </p>
                             </div>
                  <div className='singleUserFollow' >
-                                {currentUser.following?.some((e: any) => e.usersId === props.suggest?._id) ?
+                                {currentUser?.following?.some((e: any) => e.usersId === props.suggest?._id) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                                         onMouseLeave={() => setOnMouseHover(false)}
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>

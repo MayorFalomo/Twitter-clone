@@ -35,9 +35,9 @@ const Bookmark = (props: any) => {
     else {
       // const handleAddLike = async () => {
         const likeData = {
-          username: currentUser.username,
+          username: currentUser?.username,
           profileDp: currentUser?.profilePic,
-          usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+          usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: props.bookmark.postId,
         }
         axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
@@ -49,9 +49,9 @@ const Bookmark = (props: any) => {
    const removeLike = async () => {
     SetLikeTweet(false)
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))

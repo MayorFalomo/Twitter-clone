@@ -104,9 +104,9 @@ function generateId (len:any) {
    //Add like function
   const handleAddLike = async () => {
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profileDp,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId: props.comment._id,
       createdAt,
       likeId: generateId(24)

@@ -37,7 +37,7 @@ const Tweet = (props: any) => {
       username: props?.tweet.username,
       currentUserName: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       id: props.tweet?._id,
       tweets: props.tweet?.tweet,
     }      
@@ -50,7 +50,7 @@ const Tweet = (props: any) => {
    const removeRetweet = async () => {
     setRetweet(false)
     const retweetData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       id: postId,
      }     
      await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))     
@@ -64,10 +64,10 @@ const Tweet = (props: any) => {
     const likeData = {
        username: props.tweet.username, //This is the important bit
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       tweets: props.tweet.tweet,
       id: props.tweet?._id,
-      currentUserName: currentUser.username,
+      currentUserName: currentUser?.username,
     }    
     setLikesArray([...likesArray, likeData])    
     setNoOfLikesArray(likesArray.length + 1 );
@@ -78,7 +78,7 @@ const Tweet = (props: any) => {
   const removeLike = async () => {
     SetLikeTweet(false)
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       id: postId,
     }
         await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))

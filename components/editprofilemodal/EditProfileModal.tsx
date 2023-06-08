@@ -155,7 +155,7 @@ const EditProfileModal = (props: any) => {
                                 <label>Location </label>
                                 {currentActiveInput == 2 ? <span>  {location.length} / { maxLocationLength} </span> : ""}
                                 </div>
-                            <input onChange={(e: any) => setLocation(e.target.value)} value={location} onClick={() => setCurrentActiveInput(2)} maxLength={maxLocationLength} type='text' placeholder={currentUser.location} />
+                            <input onChange={(e: any) => setLocation(e.target.value)} value={location} onClick={() => setCurrentActiveInput(2)} maxLength={maxLocationLength} type='text' placeholder={currentUser?.location} />
                       </div>
                         <div className={currentActiveInput == 3 ? "activeInput" : "labelBorder"} >
                             <div className='flexLabelBorder' >
@@ -245,7 +245,7 @@ const EditProfileModal = (props: any) => {
                             <option value='2005' >2005 </option>    
                             </select>
                             </div>
-                        </div> : <h1>{currentUser.birthday}</h1>}
+                        </div> : <h1>{currentUser?.birthday}</h1>}
                         </div>
                     <ul>
                         <h2>Switch to professional </h2>

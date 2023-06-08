@@ -13,12 +13,12 @@ const Followers = (props: any) => {
     
   
     
-    console.log(currentUser.followers, "This is followers");
+    console.log(currentUser?.followers, "This is followers");
     
     return (
       <FollowersStyled>
       <div className='followersContainer' >
-          {currentUser.followers?.length > 0 ? <div className='mappedContainer' >
+          {currentUser?.followers?.length > 0 ? <div className='mappedContainer' >
               {currentUser?.followers?.map((followers: any) => (
                   <div key={followers.userId} className="subMapped" >
                       <MappedFollowers followers={followers} />

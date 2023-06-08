@@ -50,9 +50,9 @@ const messages = (props: any) => {
   const handleSelect = async () => {
     
     //Check whether the chat group exists or not(inside chats in firestore), If not create one
-    const combinedId = currentUser._id > user.uid ?
-      currentUser._id + user.uid
-      : user.uid + currentUser._id;
+    const combinedId = currentUser?._id > user.uid ?
+      currentUser?._id + user.uid
+      : user.uid + currentUser?._id;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
 
@@ -61,7 +61,7 @@ const messages = (props: any) => {
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
         
         //Create user chats with the user that was returned after searching
-        await updateDoc(doc(db, "userChats", currentUser._id), {
+        await updateDoc(doc(db, "userChats", currentUser?._id), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             username: user.username,
@@ -72,10 +72,10 @@ const messages = (props: any) => {
         })
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
-            uid: currentUser._id,
-            username: currentUser.username,
-            profilePic: currentUser.profilePic,
-            usersAt: currentUser.usersAt,
+            uid: currentUser?._id,
+            username: currentUser?.username,
+            profilePic: currentUser?.profilePic,
+            usersAt: currentUser?.usersAt,
           },
           [combinedId + ".date"]: serverTimestamp()
         })

@@ -72,16 +72,16 @@ function generateId (len:any) {
     e.preventDefault();
 
     const newTweet = {
-      username: currentUser.username,
-      profileDp: currentUser.profilePic || "",
-      usersAt: currentUser.usersAt,
+      username: currentUser?.username,
+      profileDp: currentUser?.profilePic || "",
+      usersAt: currentUser?.usersAt,
       tweet,
       video,
       picture,
       newDates,
       likes,
       retweet,
-      followers: currentUser.followers?.length, //I am adding this so i can add verified user badges on the tl
+      followers: currentUser?.followers?.length, //I am adding this so i can add verified user badges on the tl
       // _id: currentUser?._id,
       userId: currentUser?.usersId,
       _id: generateId(24),

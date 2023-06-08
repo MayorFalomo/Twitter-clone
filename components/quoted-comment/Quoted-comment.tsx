@@ -110,7 +110,7 @@ function generateId (len:any) {
           <div className='commentModalClose' >
           {<MdClose onClick={handleClose} fontSize={30} cursor='pointer' />} </div>
         <div className='subCommentModal' >
-          <div style={{backgroundImage: `url(${currentUser.profilePic})`}} className='ProfilePic' > </div>
+          <div style={{backgroundImage: `url(${currentUser?.profilePic})`}} className='ProfilePic' > </div>
           <form onSubmit={handleQuotedTweet} >
             <div className='commentForm' >
               <select className='select' >

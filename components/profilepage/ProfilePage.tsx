@@ -18,7 +18,7 @@ const ProfilePage = (props: any) => {
     const { currentUser } = useContext(AppContext);
 
     const [current, setCurrent] = useState<any>(0)
-  const [following, setNoOfFollowing] = useState<any>(currentUser.following?.length)
+  const [following, setNoOfFollowing] = useState<any>(currentUser?.following?.length)
 
      const handleClick = (param: any) => {
     setCurrent(param);

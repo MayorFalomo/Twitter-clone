@@ -97,7 +97,7 @@ const MappedFollowing = (props: any) => {
                             <p>{props.following?.bio} </p>
                             </div>
                             <div className='singleUserFollow' >
-                                {currentUser.following?.some((e: any) => e._id === props.follower?.userId) ?
+                                {currentUser?.following?.some((e: any) => e._id === props.follower?.userId) ?
                                     <button onClick={handleRemoveFollower} onMouseEnter={() => setOnMouseHover(true)}
                                         onMouseLeave={() => setOnMouseHover(false)}
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>

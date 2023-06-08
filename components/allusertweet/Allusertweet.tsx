@@ -34,9 +34,9 @@ const Allusertweet = (props: any) => {
     }
     else {
         const likeData = {
-          username: currentUser.username,
+          username: currentUser?.username,
           profileDp: currentUser?.profilePic,
-          usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+          usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           postId: props.allTweet._id,
         }
         axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
@@ -48,9 +48,9 @@ const Allusertweet = (props: any) => {
    const removeLike = async () => {
     setLikeTweet(false)
     const likeData = {
-      username: currentUser.username,
+      username: currentUser?.username,
       profileDp: currentUser?.profilePic,
-      usersAt: currentUser.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
+      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       postId,
     } 	//takes the id of the post and removes it from the
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))

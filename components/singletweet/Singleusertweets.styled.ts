@@ -69,7 +69,10 @@ export const SingleUserTweetsStyle = styled.div`
                 align-items: center;
                 gap: 10px;
                 .likeIcon{
-                font-size: calc(26px + 0.25vw);
+                font-size: calc(24px + 0.25vw);
+                }
+                p{
+                font-size: calc(20px + 0.25vw);
                 }
                 span{
                     font-size: calc(16px + 0.25vw);

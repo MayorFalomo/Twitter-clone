@@ -175,13 +175,17 @@ export const NavContainer = styled.div`
       justify-content: space-between;
       width: 100%;
       gap: 20px;
+      position: relative;
+      /* border: 2px green solid; */
        /* @media (max-width: 1500px) {
           display: flex;
           justify-content: flex-end;
         } */
     .bgImg {
       border: 2px rgb(47, 51, 54) solid;
-      height: 70px;width: 70px;
+      height: 70px;
+      width: 70px;
+      min-width: 50px;
       border-radius: 50%;
       margin-right: 10px;
       background-color: black;
@@ -189,13 +193,21 @@ export const NavContainer = styled.div`
       background-repeat: no-repeat;
       background-size: cover;
       object-fit: cover;
+       @media (max-width: 1300px) {
+         position: absolute;
+         right: -10px;
+         z-index: 9999;
+        }
     }
     .navProfile {
       display: flex;
       align-items: center;
       gap: 10px;
       width: 100%;
+      padding: 20px;
+      border-radius: 10px;
       margin-bottom: 20px;
+      cursor: pointer;
       /* border: 2px red solid; */
         @media (max-width: 1500px) {
           display: flex;
@@ -212,13 +224,37 @@ export const NavContainer = styled.div`
       }
      
     }
+   
      .logOutIcon{
         /* border: 2px solid red; */
         @media (max-width: 1500px) {
           display: none;
         }
       }
+      .logOutCon{
+        position: absolute;
+        top: -60px;
+        left: 10px;
+        z-index: 99999999999999999;
+       border-radius: 50px;
+       background: #000;
+       border-radius: 10px;
+       padding: 20px 10px;
+       background: #000;
+       box-shadow:  20px 10px 60px rgb(47, 51, 54),
+             -20px -20px 60px #000;
+      font-size: calc(16px + 0.25vw);
+        cursor: pointer;
+        width: 80%;
+         @media (max-width: 1500px) {
+        display: none;
+        }
+      }
   }
+   .navProfileFlex:hover{
+      background-color: rgb(47, 51, 54, 0.3);
+      border-radius: 20px;
+    }
 }
 .overlay{
   /* width: 100vw;
