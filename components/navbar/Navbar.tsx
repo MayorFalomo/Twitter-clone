@@ -25,16 +25,9 @@ const Navbar = (props: any) => {
   const router = useRouter();
   const currentRoute = router.pathname;
 
-  const [user, setUser] = useState()
   const [logOut, setLogOut] = useState<boolean>(false)
 
-  useEffect(() => {
-    if (currentUser !== null) {
-      axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/get-user/${currentUser?.username}`)
-        .then((res) => setUser(res.data) )
-    }
-  }, [currentUser?.username, currentRoute])
-
+  //Function to handle Log out 
   const handleLogOut = async () => {
     await signOut(auth).then(() => {
       setCurrentUser(null)

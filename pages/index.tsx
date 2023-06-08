@@ -11,7 +11,6 @@ import { AppContext } from "@/helpers/Helpers";
 import { useRouter } from "next/router";
 import { BsStars, BsTwitter } from "react-icons/bs";
 import MobileNav from "@/components/mobilenav/MobileNav";
-import Link from "next/link";
 import Navigation from "@/components/navigation/Navigation";
 import Preload from "@/components/preload/Preload";
 
@@ -22,6 +21,13 @@ export default function Home(props: any) {
   
   const { currentUser, navigation, setNavigation, isLoading} = useContext(AppContext)
 
+  const router = useRouter()
+
+   useEffect(() => {
+    if (!currentUser) {
+      router.push("/login");
+    }
+  }, [currentUser, router]);
 
   const [current, setCurrent] = useState<number>(0);
   const [active, setActive] = useState<boolean>(false);
@@ -62,7 +68,8 @@ setIsPreload(true);
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          { isLoading ? <Preload/> :
+          {
+            isLoading ? <Preload /> :
             <div className="mainHomePage" >
               <Navbar />
               <main>
@@ -104,7 +111,7 @@ setIsPreload(true);
                 <Trends />
               </div>
               <div className="mobileNav" > <MobileNav /></div>
-            </div>}
+          </div>}
         </HomeContainer>
       );
     }
