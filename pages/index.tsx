@@ -24,7 +24,7 @@ export default function Home(props: any) {
   const router = useRouter()
 
    useEffect(() => {
-    if (!currentUser) {
+    if (currentUser == null || "") {
       router.push("/login");
     }
   }, [currentUser, router]);
