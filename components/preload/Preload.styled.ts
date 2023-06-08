@@ -7,7 +7,7 @@ export const PreloadStyle = styled.div`
     width: 100%;
     background-color: #000;
     p{
-        font-size: calc(40px + 0.25vw);
+        font-size: calc(60px + 0.25vw);
         display: flex;
         justify-content: center;
         align-items: center;

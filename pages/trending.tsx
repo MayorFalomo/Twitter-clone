@@ -19,8 +19,10 @@ const trending = (props: any) => {
     
    useEffect(() => {
     const fetchData = async () => {
-        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=25e9b037490044f88305b1f5b40c99ae`);
-        const objects = res.data.articles.map((news:any) => {
+        const res = await axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`);
+        console.log(res.data.results, "This is res");
+        
+        const objects = res.data.results.map((news:any) => {
             return {
                 ids: Math.floor(Date.now() * Math.random()),
                 ...news,
@@ -30,7 +32,10 @@ const trending = (props: any) => {
     };
 
     fetchData();
-}, []);
+   }, []);
+    
+    console.log(setTrendingObject);
+    
     
     return (
       <TrendingStyled>

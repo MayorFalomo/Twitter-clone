@@ -10,7 +10,7 @@ const MappedTrends = (props: any) => {
     <TrendingStyled>
      <div className='trendContainer' >
           <div className='subTrendContainer' >
-              <p style={{color: 'rgb(74,78,81)'}} > Trending in <span className='location' style={{color: 'rgb(74,78,81)'}} >{props.trendingNews?.subsection }us</span> </p>
+              <p style={{color: 'rgb(74,78,81)'}} > Trending in <span className='location' style={{color: 'rgb(74,78,81)'}} >{props.trendingNews?.subsection }</span> </p>
               <h4>{props.trendingNews?.title}... </h4>
           </div>
             <div>{<BiDotsHorizontalRounded fontSize='20px' cursor='pointer' />} </div>

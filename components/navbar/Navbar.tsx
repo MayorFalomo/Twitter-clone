@@ -50,12 +50,6 @@ const Navbar = (props: any) => {
       setLogOut(true)
     }
   }
-
-  // console.log(currentUser);
-
-  // const router = useRouter()
-  
-  console.log(logOut);
   
   return (
     <NavContainer>
