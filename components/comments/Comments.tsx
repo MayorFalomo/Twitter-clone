@@ -71,13 +71,14 @@ function generateId (len:any) {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
     };
+    console.log(props.tweetProps?.username);
     
   //Function to handle commenting on a tweet
   const handleComment = async (e: any) => {
     e.preventDefault()
     const commentData = {
       username: currentUser?.username,
-      // currentUsername: props.comment?.username ,
+      currentUsername:  props.tweetProps?.username ,
       usersAt: currentUser?.usersAt,
       profileDp: currentUser?.profilePic,
       comments,
@@ -123,7 +124,7 @@ function generateId (len:any) {
       <CommentStyled>
       <div className='postsContainer' >
            <form onSubmit={handleComment} >
-            <div style={{ backgroundImage: `url()`}} className="userProfileDp" > </div>
+            <div style={{ backgroundImage: `url(${currentUser?.profilePic})`}} className="userProfileDp" > </div>
             <div className="textAreaContainer">
                {everyOne ? (
               <p>

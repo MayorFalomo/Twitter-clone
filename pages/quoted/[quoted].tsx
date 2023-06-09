@@ -17,9 +17,7 @@ type Props = {}
 export const getStaticPaths = async () => {
   try {
     const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets');
-    const data = await res.json();
-    console.log(data?.posts, "this is data");
-    
+    const data = await res.json();    
     const paths = data?.map((tweet:any) => ({
       params: {
         quoted: tweet?._id.toString()

@@ -37,9 +37,7 @@ const Chat = (props: any) => {
     }, [data.user.uid])
 
         const handleData = async () => {
-            const waitForId = data.user.uid
-        console.log(waitForId);
-        
+            const waitForId = data.user.uid        
             try {
                 await waitForId            
                 await axios.get((`https://twitter-clone-server-nu.vercel.app/api/users/${waitForId}`)).then((res) => setUserObject(res.data))

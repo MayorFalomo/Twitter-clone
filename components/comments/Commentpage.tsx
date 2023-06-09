@@ -23,7 +23,7 @@ const Commentpage = (props: any) => {
   
   const commentId = new Date()
   
-  console.log(props.comment.likes, "this is");
+  // console.log(props.comment.likes, "this is");
   
 
   const [postId, setPostId] = useState(props.comment?._id)
@@ -213,9 +213,9 @@ function generateId (len:any) {
             <div className='tweetDetailsCon' >
               <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
-              <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.username}</Link>
+              <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.currentUsername}</Link>
               <span className='userAt'>{props.comment?.usersAt}</span>
-              <span className='createdAt' >{moment(new Date(props.comment?.createdAt)).fromNow()}</span>
+              <span className='createdAt' >{moment(new Date(props.comment?.createdAt)).fromNow() == undefined || null ? "a few seconds ago" : moment(new Date(createdAt)).fromNow() }</span>
             </div>
                   <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>
