@@ -34,18 +34,43 @@ export default function App({ Component, pageProps }: AppProps) {
   const [navigation, setNavigation] = useState<boolean>(false);
 
   //Function to get current user from backend
-  const getCurrentUser = (id: string) => {
-    fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
-      setUser(res.user)
-    }).catch((err) => {
-      console.log(err)
+  // const getCurrentUser = (id: string) => {
+  //   fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`).then((res) => res.json()).then((res) => {
+  //     setUser(res.user)
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
+  // };
+
+  // console.log(cookies.user);
+  
+
+  // useEffect(() => {
+  //   getCurrentUser(cookies.user)
+  // }, [cookies.user]);
+
+  const getCurrentUser = async(id: string) => {
+ await fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("User ID not found");
+      }
     })
-  };
+    .then((res) => {
+      setUser(res.user);
+    })
+    .catch((err) => {
+      console.log(err);
+      router.push("/login"); // Redirect to login page if user ID is not found
+    });
+};
 
-  useEffect(() => {
-    getCurrentUser(cookies.user)
-  }, [cookies.user]);
-
+useEffect(() => {
+  getCurrentUser(cookies.user);
+}, [cookies.user]);
+  
   const observerRef = useRef(null);
   
    const fetchMoreTweets = async () => {

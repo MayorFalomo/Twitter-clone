@@ -23,11 +23,11 @@ export default function Home(props: any) {
 
   const router = useRouter()
 
-   useEffect(() => {
-    if (currentUser == null || "") {
-      router.push("/login");
-    }
-  }, [currentUser, router]);
+  //  useEffect(() => {
+  //   if (currentUser == null || "") {
+  //     router.push("/login");
+  //   }
+  // }, [currentUser, router]);
 
   const [current, setCurrent] = useState<number>(0);
   const [active, setActive] = useState<boolean>(false);

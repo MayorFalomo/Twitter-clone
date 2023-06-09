@@ -80,11 +80,11 @@ export const NavigationStyle = styled.div`
             }
         }
         .others{
-            /* border: 2px yellow solid; */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
+            margin-bottom: 40px;
             .subOthers{
                 /* border: 2px solid green; */
                 width: 100%;
