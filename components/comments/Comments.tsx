@@ -91,6 +91,8 @@ function generateId (len:any) {
       retweet,
       newId: generateId(24),
     }
+    console.log(commentData);
+    
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/comments`, commentData).catch((err) => console.log(err))
     setComments(" ")
     setPicture("")

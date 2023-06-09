@@ -213,7 +213,7 @@ function generateId (len:any) {
             <div className='tweetDetailsCon' >
               <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
-              <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.currentUsername}</Link>
+              <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.username}</Link>
               <span className='userAt'>{props.comment?.usersAt}</span>
               <span className='createdAt' >{moment(new Date(props.comment?.createdAt)).fromNow() == undefined || null ? "a few seconds ago" : moment(new Date(createdAt)).fromNow() }</span>
             </div>
