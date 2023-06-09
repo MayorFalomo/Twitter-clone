@@ -209,13 +209,13 @@ function generateId (len:any) {
                     {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
             {/* <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div> */}
           <div className='subPostsContainer' >
-            <Link href={'/users/' + props.comment?.username } className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></Link>
+            <Link href={'/users/' + props.comment?.username } className="profilePicture" style={{ backgroundImage: `url(${props.comment?.profileDp})` }} ></Link>
             <div className='tweetDetailsCon' >
               <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
               <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.username}</Link>
               <span className='userAt'>{props.comment?.usersAt}</span>
-              <span className='createdAt' >{moment(new Date(props.comment?.createdAt)).fromNow() == undefined || null ? "a few seconds ago" : moment(new Date(createdAt)).fromNow() }</span>
+              <span className='createdAt' >{ moment(new Date(createdAt)).fromNow() }</span>
             </div>
                   <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>

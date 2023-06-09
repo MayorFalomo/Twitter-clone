@@ -77,7 +77,8 @@ function generateId (len:any) {
    const handleQuotedTweet = async (e:any) => {
          e.preventDefault();
          const quotedData = {
-             username: currentUser?.username,
+           username: currentUser?.username,
+           currentUsername: singleTweets?.username,
              usersAt: currentUser?.usersAt,
              profileDp: currentUser?.profilePic,
              comments,
@@ -101,7 +102,7 @@ function generateId (len:any) {
   }
 
     // console.log(props?.commentModal);
-    console.log(singleTweets, "quoted comment modal");
+    // console.log(singleTweets, "quoted comment modal");
     
     
   return (

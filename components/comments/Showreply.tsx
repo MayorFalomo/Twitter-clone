@@ -11,8 +11,7 @@ type Props = {}
 
 //parent component is Showreplies.tsx
 const Showreply = (props: any) => {
-
-    const views = Math.floor(Math.random() * props.suggestedUsers?.length)
+  
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
     const [retweet, setRetweet] = useState<boolean>(false)
     
@@ -23,11 +22,11 @@ const Showreply = (props: any) => {
   const removeLike = async () => {
     setLikeTweet(false)
   }
-
+  
   return (
       <ShowReplyStyle>
       <div className='showReplyContainer' >
-       <div className="profilePicture" style={{ backgroundImage: `url(${props.replies?.profileDp})` }} ></div>
+       <div className="profilePicture" style={{ backgroundImage: `url(${props.reply?.profileDp})` }} ></div>
                  <div className='subPostContainer' >
             <div className='flexTweetProfileDetails' >
                   <div className='tweetProfileDetails' >
@@ -48,7 +47,7 @@ const Showreply = (props: any) => {
                       style={{ cursor: "pointer"}}
                       />
                   }</p>
-                      <span>{1} </span>
+                      <span> 0 </span>
                   </div>
             <div  className='flexIconsAndValues'>
               {retweet ? <p>
@@ -86,7 +85,7 @@ const Showreply = (props: any) => {
                         style={{ cursor: "pointer" }}
                       />
                     )}
-              <span>{props.comment?.like?.length} </span>
+              <span>{props?.reply.like?.length} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>

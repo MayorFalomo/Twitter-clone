@@ -141,6 +141,7 @@ export const QuotedCommentStyle = styled.div`
                 align-items: center;
                 justify-content: space-between;
                 margin-top: 20px;
+                position: relative;
                   .tweetIcons {
           display: flex;
           align-items: center;
@@ -161,7 +162,7 @@ export const QuotedCommentStyle = styled.div`
         }
         .pickerEmoji{
           position: absolute;
-          bottom: 85px;
+          bottom: -450px;
           width: 100%;
           display: flex;
           justify-content: center;

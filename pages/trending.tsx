@@ -6,6 +6,7 @@ import Search from '@/components/search/Search'
 import Whotofollow from '@/components/whotofollow/Whotofollow'
 import { TrendingStyled } from '@/styles/Trending.styled'
 import axios from 'axios'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { RiSettings5Line } from 'react-icons/ri'
@@ -40,7 +41,7 @@ const trending = (props: any) => {
                 <div className='centerGrid'>
                     <div className='center-Header' >
                     <ul>
-                        <li>{<BsArrowLeft  cursor='pointer' />} </li>
+                        <li><Link href='/' > {<BsArrowLeft  cursor='pointer' />}</Link> </li>
                         <li>Trends </li>
                     </ul>
                         <h1>{<RiSettings5Line cursor='pointer'/>} </h1>

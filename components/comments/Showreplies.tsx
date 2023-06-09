@@ -26,9 +26,7 @@ const Showreplies = (props: any) => {
   //Handle Remove Like 
   const removeLike = async () => {
     setLikeTweet(false)
-  }
-    // console.log(props.replies, "This are replies");
-    
+  }    
     
   return (
       <div className='showRepliesContainer' >

@@ -149,7 +149,7 @@ const Tweet = (props: any) => {
               <p onClick={handleClick}>
                         <FaRegComment
                       className="likeIcon"
-                  style={{cursor: "pointer"}} />
+                  style={{cursor: "pointer",  color: 'rgb(113,118,123)'}} />
             </p>
               <span>{props.tweet.comments?.length} </span>
               {commentModal ?  <div className="activeModal" ><CommentModal urlParams={urlParams} setCommentModal={setCommentModal} /> </div> : ""}
@@ -172,7 +172,7 @@ const Tweet = (props: any) => {
                       <AiOutlineRetweet
                         className='likeIcon'
                         onClick={handleAddRetweet}
-                        style={{ cursor: "pointer",   }}
+                        style={{ cursor: "pointer", color: 'rgb(113,118,123)'  }}
                       />
                     )}
                   </p>
@@ -197,7 +197,7 @@ const Tweet = (props: any) => {
                       <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleAddLike}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer",  color: 'rgb(113,118,123)' }}
                       />
                     )}
                   </p>
@@ -209,7 +209,7 @@ const Tweet = (props: any) => {
                   {
                         <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer",  color: 'rgb(113,118,123)' }}
                       />
                 }</p>
               <span>{views.toLocaleString()}{views > 1000 ? "k" : ""} </span>
@@ -219,7 +219,7 @@ const Tweet = (props: any) => {
                   {
                         <AiOutlineUpload
                       className="likeIcon"
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer",  color: 'rgb(113,118,123)' }}
                       />
                 }</p>
             </div>

@@ -28,7 +28,7 @@ padding: 10px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border: 1px white solid;
+    // border: 1px white solid;
     width: 70px;
     height: 70px;
     border-radius:50%;
@@ -148,6 +148,7 @@ padding: 10px;
         gap: 10px;
         span{
             font-size: calc(16px + 0.25vw);
+            color: rgb(113,118,123);
         }
         .activeModal{
             position: fixed;
