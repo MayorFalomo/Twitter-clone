@@ -17,7 +17,7 @@ const Following = (props: any) => {
               ))}
           </div>
               :
-              <div className="noFollowersText" ><h2>You have no followers </h2></div>
+              <div className="noFollowersText" ><h2>You have no following </h2></div>
           }
     </div>
   )

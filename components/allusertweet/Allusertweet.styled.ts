@@ -80,7 +80,7 @@ export const AllUserTweets = styled.div`
         background-repeat: no-repeat;
         background-size: cover;
         object-fit: cover;
-        border: 1px white solid;
+        border: 1px rgb(47, 51, 54) solid;
         height: 400px;
         width: 100%;
         border-radius: 15px;

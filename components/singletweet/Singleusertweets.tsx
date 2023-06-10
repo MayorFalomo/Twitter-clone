@@ -2,7 +2,7 @@ import { AppContext } from '@/helpers/Helpers';
 import axios from 'axios';
 import moment from 'moment';
 import Link from 'next/link';
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai';
 import { BiBarChart } from 'react-icons/bi';
 import { BsFillHeartFill } from 'react-icons/bs';
@@ -28,7 +28,13 @@ const Singleusertweets = (props: any) => {
   const [modalLink, setModalLink] = useState<string>("")
   const [urlParams, setUrlParams] = useState<string>(" ")
   const [getUsername, setGetUsername] = useState<string>("")
-
+ const [views, setViews] = useState<number>(0)
+  
+  
+      useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
     // console.log(props.allTweet);
 
   const handleLikeEvent = () => {
@@ -73,7 +79,7 @@ const Singleusertweets = (props: any) => {
   console.log(props.allTweets, "This object");
   // console.log("hello");
 
-  const views = Math.floor(Math.random() * suggestedUsers?.length);
+  
 
   return (
     <SingleUserTweetsStyle>

@@ -19,21 +19,15 @@ import Preload from "@/components/preload/Preload";
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
 export default function Home(props: any) {
   
-  const { currentUser, navigation, setNavigation, isLoading} = useContext(AppContext)
+  const { currentUser, navigation, setNavigation, isLoading, isIntersecting} = useContext(AppContext)
 
   const router = useRouter()
-
-  //  useEffect(() => {
-  //   if (currentUser == null || "") {
-  //     router.push("/login");
-  //   }
-  // }, [currentUser, router]);
-
+  
   const [current, setCurrent] = useState<number>(0);
   const [active, setActive] = useState<boolean>(false);
-  const [mobileNavCon, setMobileNav] = useState<boolean>(false)
-  const [show, setShow] = useState<boolean>(true)
-  const [isPreload, setIsPreload] = useState<boolean>(false)
+  const [mobileNavCon, setMobileNav] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
+  const [isPreload, setIsPreload] = useState<boolean>(false);
 
   const handleClick = (param: any) => {
     setCurrent(param);
@@ -50,15 +44,10 @@ setIsPreload(true);
     }, 2000)
   }, [])
   
-//   useEffect(() => {
-//   if (isPreload) { // Check if isPreload is false to avoid resetting it to true
-//     setIsPreload(true);
-
-//     setTimeout(() => {
-//       setIsPreload(false);
-//     }, 2000);
-//   }
-// }, [isPreload]);
+  console.log(isLoading, "isLoading");
+  console.log(isIntersecting, "isIntersecting");
+  
+  
   
       return (
         <HomeContainer>
@@ -69,7 +58,7 @@ setIsPreload(true);
             <link rel="icon" href="/favicon.ico" />
           </Head>
           {
-            isLoading ? <Preload /> :
+            isLoading && isIntersecting ? <Preload /> :
             <div className="mainHomePage" >
               <Navbar />
               <main>

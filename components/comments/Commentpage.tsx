@@ -2,7 +2,7 @@ import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillHeartFill } from 'react-icons/bs'
@@ -18,8 +18,12 @@ type Props = {}
 const Commentpage = (props: any) => {
 
     const { suggestedUsers, currentUser } = useContext(AppContext)
-    
-  const views = Math.floor(Math.random() * suggestedUsers.length)
+  const [views, setViews] = useState<number>(0)
+  
+      useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
   
   const commentId = new Date()
   
@@ -71,7 +75,8 @@ function generateId (len:any) {
       .then((res) => setPicture(res.data.url))
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
-    };
+  };
+  
     //function to upload video
   const uploadVideo = (files: any) => {
     const formData = new FormData();
@@ -197,17 +202,18 @@ function generateId (len:any) {
      setCommentModal(true)
   };
 
+  //Function to handle showing replies of comments
   const handleShowReplies = () => {
     setUrlParams(props.comment?.newId)
     setGetCommentId(props.comment?.postId)
     setShowReplies(true)
   }
 
+  
     return (
       <CommentPageStyle>
         <div className='commentPageContainer' >
                     {<div className={commentModal ? 'overlay' : "removeOverlay"} > </div>}
-            {/* <div className="profilePicture" style={{ backgroundImage: `url(${props.tweet?.profileDp})` }} ></div> */}
           <div className='subPostsContainer' >
             <Link href={'/users/' + props.comment?.username } className="profilePicture" style={{ backgroundImage: `url(${props.comment?.profileDp})` }} ></Link>
             <div className='tweetDetailsCon' >
@@ -215,7 +221,7 @@ function generateId (len:any) {
                   <div className='tweetProfileDetails' >
               <Link href={'/users/' + props.comment?.username } className='userName'  > {props.comment?.username}</Link>
               <span className='userAt'>{props.comment?.usersAt}</span>
-              <span className='createdAt' >{ moment(new Date(createdAt)).fromNow() }</span>
+              <span className='createdAt' >{ moment(new Date(props.comment.createdAt)).fromNow() }</span>
             </div>
                   <div className='dottedIcon' >{<BiDotsHorizontalRounded cursor='pointer' />} </div>
           </div>

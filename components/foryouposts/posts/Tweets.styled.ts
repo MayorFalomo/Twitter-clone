@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const TweetsContainer = styled.div`
 .tweetsContainer {
+    margin-bottom: 70px;
     .bookmarkAdded {
     background-color: #1d9aef;
     color: #fff;
@@ -30,8 +31,8 @@ export const TweetsContainer = styled.div`
         z-index: 99;
         display: none;
         @media (max-width: 500px ) {
-            display: flex;
-             position: fixed;
+        display: flex;
+        position: fixed;
         bottom: 70px;
         right: 20px;
         z-index: 99;

@@ -2,7 +2,7 @@ import { AppContext } from '@/helpers/Helpers'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillHeartFill } from 'react-icons/bs'
@@ -76,8 +76,12 @@ const Bookmark = (props: any) => {
         //      props.setRemovedBookmark(false)
         //  }, 3000)
   }
-    
-    const views = Math.floor(Math.random() * suggestedUsers?.length)
+  const [views, setViews] = useState<number>(0)
+  
+      useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
 
     const handleRemove = () => {
         setModalActive(true)

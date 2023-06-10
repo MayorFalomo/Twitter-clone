@@ -194,8 +194,14 @@ const Id = ({tweetData}:any) => {
     setRetweetModal(false);
   }
  
+   const [views, setViews] = useState<number>(0)
   
-  const views = Math.floor(Math.random() * suggestedUsers.length)
+      useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
+  
+ 
   return (
     <SingleTweetStyle>
       <div className={'singleTweetContainer'} >

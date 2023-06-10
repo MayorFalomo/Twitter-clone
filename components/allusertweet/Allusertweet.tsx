@@ -1,5 +1,5 @@
 import moment from 'moment'
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart } from 'react-icons/bi'
 import { FiUpload } from 'react-icons/fi'
@@ -27,6 +27,7 @@ const Allusertweet = (props: any) => {
   const [modalLink, setModalLink] = useState<string>("")
   const [urlParams, setUrlParams] = useState<string>(" ")
   const [getUsername, setGetUsername] = useState<string>("")
+  const [views, setViews] = useState<number>(0)
 
   const handleLikeEvent = () => {
     if (likesArray.includes(likesArray.username)) {
@@ -72,8 +73,10 @@ const Allusertweet = (props: any) => {
   };
 
   
-  
-  const views = Math.floor(Math.random() * suggestedUsers?.length);
+  useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
 
     // console.log(props.allTweet?.picture?.length);
     

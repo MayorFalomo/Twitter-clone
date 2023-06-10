@@ -15,10 +15,15 @@ const Showreplies = (props: any) => {
     // console.log(props.urlParams);
 
     const [mappedReplies, setMappedReplies] = useState<any>()
-    const views = Math.floor(Math.random() * props.suggestedUsers.length)
 //   const [suggestedUsers, setSuggestedUsers] = useState<any>(props.suggestedUsers?.length)
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
 
+     const [views, setViews] = useState<number>(0)
+  
+      useEffect(() => {
+    const view = Math.floor(Math.random() * props.suggestedUsers?.length);
+    setViews(view)
+  }, [])
       //Add like function
   const handleAddLike = async () => {
   }

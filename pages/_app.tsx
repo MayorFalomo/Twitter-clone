@@ -32,6 +32,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
   const [navigation, setNavigation] = useState<boolean>(false);
+  // const [isPreload, setIsPreload] = useState<boolean>(true);
+// const [isInitialFetch, setIsInitialFetch] = useState<boolean>(true);
+// const [hasFetched, setHasFetched] = useState<boolean>(false);
+
 
   //Function to get current user from backend
   // const getCurrentUser = (id: string) => {
@@ -73,25 +77,39 @@ useEffect(() => {
   
   const observerRef = useRef(null);
   
+
    const fetchMoreTweets = async () => {
-    if (!isLoading) {
-      setIsLoading(true);
+     if (!isLoading) {
+       setIsLoading(true);
+      // setIsPreload(true);
       try {
         const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}&search=$=${searchTweets}`);
         const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
         setTweets((prevTweets: any) => [...prevTweets, ...tweetsArray]);
         setCurrentPage((prevPage) => prevPage + 1);
+        // setIsPreload(false)
       } catch (error) {
         console.error('Error fetching tweets:', error);
       }
-      setIsLoading(false);
+       setIsLoading(false);
+      // setIsPreload(false); // Hide preload screen after initial fetch
+      // setIsPreload(false)
     }
    };
-  
+  // 
+        // console.log(isPreload, "This is a preload");
+
    useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const isIntersecting = entries[0].isIntersecting;
       setIsIntersecting(isIntersecting);
+    //    if (isIntersecting && !isLoading && !isInitialFetch ) {
+    //      fetchMoreTweets();
+         
+    // }
+    //    if (isIntersecting && !isLoading) {
+    //   fetchMoreTweets();
+    // }
     });
 
     if (observerRef.current) {
@@ -103,15 +121,42 @@ useEffect(() => {
         observer.unobserve(observerRef.current);
       }
     };
-  }, []);
+   }, [isLoading]);
+  
+  // console.log(tweets?.length, "isTweet there");
+  
+//  useEffect(() => {
+//    if (isInitialFetch) {
+//     fetchMoreTweets()
+//     setIsPreload(false);
+//   }
+// }, [isInitialFetch]);
+// console.log(isPreload, "this is app");
+  
+//   useEffect(() => {
+//   if (tweets?.length === 0 && !isLoading) {
+//     setIsPreload(true); // Show preload screen
+//   } else {
+//     setIsPreload(false); // Hide preload screen
+//   }
+// }, [tweets, isLoading]);
 
+  // console.log(isIntersecting, "isIntersecting");
+  // console.log(isLoading, "isLoading");
+  
   useEffect(() => {
-    // setIsPreload(true)
-    if (isIntersecting && !isLoading) {
+    if (!isIntersecting && !isLoading) {
       fetchMoreTweets();
+      // console.log(!isIntersecting, "inside useEffect !intersecting");
+      //   console.log(!isLoading, "inside useEffect !isLoading");
+
       // setIsPreload(false)
     }
-  }, [isIntersecting, !isLoading]);
+  //    if (!isIntersecting && !isLoading) {
+  //   setIsPreload(false); // Hide preload screen when not fetching tweets
+  // }
+    // setIsPreload(false)
+  }, [!isIntersecting, !isLoading]);
 
  
 //useEffect to load the currentUser info
@@ -197,6 +242,7 @@ useEffect(() => {
         navigation,
         setNavigation,
         isLoading,
+        isIntersecting,
         // isPreload,
         // setIsPreload
       }}>

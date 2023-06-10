@@ -13,7 +13,7 @@ const Followers = (props: any) => {
     
   
     
-    console.log(currentUser?.followers, "This is followers");
+    // console.log(currentUser?.followers, "This is followers");
     
     return (
       <FollowersStyled>

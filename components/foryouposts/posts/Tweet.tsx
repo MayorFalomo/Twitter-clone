@@ -1,4 +1,4 @@
-import React, { useContext, useState,} from 'react'
+import React, { useContext, useEffect, useState,} from 'react'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
@@ -125,7 +125,12 @@ const Tweet = (props: any) => {
   //   setGetUsername(props.tweet?.username)
   // };
   
-  const views = Math.floor(Math.random() * suggestedUsers?.length)
+   const [views, setViews] = useState<number>(0)
+  
+      useEffect(() => {
+    const view = Math.floor(Math.random() * suggestedUsers?.length);
+    setViews(view)
+  }, [])
   
   return (
       <Tweetstyled>

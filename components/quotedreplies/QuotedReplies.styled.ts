@@ -13,9 +13,13 @@ padding: 10px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: cover;
+    object-position: center;
     border: 1px rgb(47, 51, 54) solid;
     width: 70px;
     height: 70px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius:50%;
 }
 .subPostsContainer{

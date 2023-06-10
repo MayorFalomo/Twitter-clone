@@ -30,7 +30,6 @@ const Comments = (props: any) => {
   const [retweet, setRetweet] = useState<any>([]);
     const [createdAt, setCreatedAt] = useState<any>(moment(new Date(commentId)).fromNow())
     const [postId, setPostId] = useState<number>(props.tweetProps?._id)
-    const [cookies, setCookie] = useCookies(["user"])
     const [comment, setComment] =  useState<any>([])
     const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [comments, setComments] = useState<string>("") //comment box for user to enter comment and post it. 	   
@@ -71,7 +70,6 @@ function generateId (len:any) {
       .catch((err) => console.log(err));
       setSuccessfulUpload(true)
     };
-    console.log(props.tweetProps?.username);
     
   //Function to handle commenting on a tweet
   const handleComment = async (e: any) => {
@@ -118,7 +116,6 @@ function generateId (len:any) {
     // console.log("successfully liked this comment");
     
   }
-    // console.log(props.tweetProps?.username, "tweetprops");
     
     return (
       <CommentStyled>
