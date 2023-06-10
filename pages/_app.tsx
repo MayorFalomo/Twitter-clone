@@ -205,8 +205,6 @@ useEffect(() => {
         setNavigation,
         isLoading,
         isIntersecting,
-        // isPreload,
-        // setIsPreload
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />

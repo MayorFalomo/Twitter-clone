@@ -81,7 +81,7 @@ Firebase.
 ## Lessons Learned and problems faced
 
 
-The challenges were numerous which is expected considering the scale of what i was attempting to replicate and some of them i'd probably never get their solutions.
+The challenges were a lot which is expected considering the scale of what i was attempting to replicate and some of them i'd probably never get their solutions but here are some challenges i faced and lessons i learnt the hard way.
 
 My first lesson was when working on the user registration, So since i'm using Firebase to handle both my users sign-up and login, firebase creates an Id for each user, Then that id is stored on a cookie and sent to mongoDbB but then this created problems on implementing features later, for instance while trying to create relationships between tweets and the user, i discovered firebase Id was too long for mongoDB (mongoDB only accepts a 24 string hexadecimal or a 12 number integer) so my 28 long _id from firebase couldn't work and i had to find another means of generating a working mongoDb id for both my past and present users so i could tie my tweets and users together, problem with this was, The function that adds a mongoDB id for all users keeps running with every Api call made(And i cannot remove it because once i do mongoDb won't generate an id for users anymore since there is an _id already), so basically id's were always changing which made it pointless to use, So i had to resort to using each users username and making it unique so that two users can't have the same username(My bad). But it was the only thing i could think to do without wasting time, So if you face some issues with somethings, This is largely the reason, other solutions or ideas are welcome too.
 
@@ -93,7 +93,7 @@ Making all the comments reply-able" is something i'm working on learning.
 
 Getting all a users likes, and all their replies is still something i'm figuring out.
 
-Showing only your followers post is still another part i'm figuring out moving forward.
+Showing only your followers post is something i would like to work on later, The general idea of it is to find only the tweets with the username of only the people in your following.
 
 Getting Specific recommendations based on your likes and retweets.
 
