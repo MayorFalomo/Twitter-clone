@@ -32,10 +32,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
   const [navigation, setNavigation] = useState<boolean>(false);
-  // const [isPreload, setIsPreload] = useState<boolean>(true);
-// const [isInitialFetch, setIsInitialFetch] = useState<boolean>(true);
-// const [hasFetched, setHasFetched] = useState<boolean>(false);
-
 
   //Function to get current user from backend
   // const getCurrentUser = (id: string) => {
@@ -53,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
   //   getCurrentUser(cookies.user)
   // }, [cookies.user]);
 
+  //getCurrentUser takes in a parameter called Id which we'll get from cookies.user
   const getCurrentUser = async(id: string) => {
  await fetch(`https://twitter-clone-server-nu.vercel.app/api/users/${id}`)
     .then((res) => {
@@ -71,8 +68,9 @@ export default function App({ Component, pageProps }: AppProps) {
     });
 };
 
+  //UseEffect to load cookies.user and just 
 useEffect(() => {
-  getCurrentUser(cookies.user);
+  getCurrentUser(cookies?.user);
 }, [cookies.user]);
   
   const observerRef = useRef(null);
@@ -97,19 +95,11 @@ useEffect(() => {
     }
    };
   // 
-        // console.log(isPreload, "This is a preload");
 
    useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const isIntersecting = entries[0].isIntersecting;
       setIsIntersecting(isIntersecting);
-    //    if (isIntersecting && !isLoading && !isInitialFetch ) {
-    //      fetchMoreTweets();
-         
-    // }
-    //    if (isIntersecting && !isLoading) {
-    //   fetchMoreTweets();
-    // }
     });
 
     if (observerRef.current) {
@@ -123,40 +113,12 @@ useEffect(() => {
     };
    }, [isLoading]);
   
-  // console.log(tweets?.length, "isTweet there");
-  
-//  useEffect(() => {
-//    if (isInitialFetch) {
-//     fetchMoreTweets()
-//     setIsPreload(false);
-//   }
-// }, [isInitialFetch]);
-// console.log(isPreload, "this is app");
-  
-//   useEffect(() => {
-//   if (tweets?.length === 0 && !isLoading) {
-//     setIsPreload(true); // Show preload screen
-//   } else {
-//     setIsPreload(false); // Hide preload screen
-//   }
-// }, [tweets, isLoading]);
-
-  // console.log(isIntersecting, "isIntersecting");
-  // console.log(isLoading, "isLoading");
   
   useEffect(() => {
     if (!isIntersecting && !isLoading) {
       fetchMoreTweets();
-      // console.log(!isIntersecting, "inside useEffect !intersecting");
-      //   console.log(!isLoading, "inside useEffect !isLoading");
-
-      // setIsPreload(false)
     }
-  //    if (!isIntersecting && !isLoading) {
-  //   setIsPreload(false); // Hide preload screen when not fetching tweets
-  // }
-    // setIsPreload(false)
-  }, [!isIntersecting, !isLoading]);
+  }, [isIntersecting, isLoading]);
 
  
 //useEffect to load the currentUser info

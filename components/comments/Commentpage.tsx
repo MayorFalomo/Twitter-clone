@@ -116,10 +116,7 @@ function generateId (len:any) {
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
-  }
-
-  // console.log(generateId(24));
-  
+  }  
   
    //Add like function
   const handleCommentAddLike = async () => {
