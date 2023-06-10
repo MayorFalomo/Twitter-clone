@@ -43,7 +43,6 @@ export const getStaticProps = async (context:any) => {
     const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`);
     const data = await res.json();
 
-    // console.log(data, 'getStatic Data');
 
     return {
       props: {

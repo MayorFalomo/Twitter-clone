@@ -24,9 +24,9 @@ export default function Home(props: any) {
   const router = useRouter()
   
   const [current, setCurrent] = useState<number>(0);
-  const [active, setActive] = useState<boolean>(false);
-  const [mobileNavCon, setMobileNav] = useState<boolean>(false);
-  const [show, setShow] = useState<boolean>(true);
+  // const [active, setActive] = useState<boolean>(false);
+  // const [mobileNavCon, setMobileNav] = useState<boolean>(false);
+  // const [show, setShow] = useState<boolean>(true);
   const [isPreload, setIsPreload] = useState<boolean>(false);
 
   const handleClick = (param: any) => {
@@ -42,11 +42,7 @@ setIsPreload(true);
     setTimeout(() => {
       setIsPreload(false)
     }, 2000)
-  }, [])
-  
-  console.log(isLoading, "isLoading");
-  console.log(isIntersecting, "isIntersecting");
-  
+  }, [])  
   
   
       return (

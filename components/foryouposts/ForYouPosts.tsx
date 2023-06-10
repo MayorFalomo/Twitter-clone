@@ -16,17 +16,14 @@ const ForYouPosts = (props: any) => {
   const { currentUser, tweets, setTweets } = useContext(AppContext)
 
   const [emoji, setEmoji] = useState<boolean>(false);
-  const [currentEmoji, setCurrentEmoji] = useState(null)
   const [everyOne, setEveryOne] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [tweet, setTweet] = useState<string>("");
   const [picture, setPicture] = useState<string>("");
   const [video, setVideo] = useState<string>("");
-  const [gif, setGif] = useState<string>("");
   const [likes, setLikes] = useState<any>([])
   const [retweet, setRetweet] = useState<any>([])
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
-  // const [newDate, setNewDate] = useState<any>(false);
   
   const uploadImage = (files: any) => {
     const formData = new FormData();

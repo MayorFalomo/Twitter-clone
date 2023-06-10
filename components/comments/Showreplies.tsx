@@ -15,7 +15,6 @@ const Showreplies = (props: any) => {
     // console.log(props.urlParams);
 
     const [mappedReplies, setMappedReplies] = useState<any>()
-//   const [suggestedUsers, setSuggestedUsers] = useState<any>(props.suggestedUsers?.length)
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
 
      const [views, setViews] = useState<number>(0)

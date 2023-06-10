@@ -64,7 +64,6 @@ const QuotedReply = (props: any) => {
             </div>
                 <div className='removeModalContainer'>
                   {<BiDotsHorizontalRounded  cursor='pointer' />}
-                  {/* {modalActive ? <span className='remove' >Remove bookmark </span> : ""} */}
                 </div>
           </div>
           <p className='tweet-caption' >{props.quoted?.comments} </p>

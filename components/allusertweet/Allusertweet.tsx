@@ -78,7 +78,6 @@ const Allusertweet = (props: any) => {
     setViews(view)
   }, [])
 
-    // console.log(props.allTweet?.picture?.length);
     
     return (
         <AllUserTweets>

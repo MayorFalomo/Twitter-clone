@@ -12,6 +12,7 @@ import { BookmarkStyle } from './Bookmark.styled'
 
 type Props = {}
 
+//Parent component is bookmarks.tsx
 const Bookmark = (props: any) => {
 
     const { currentUser, suggestedUsers, bookmarks, setBookmarks, } = useContext(AppContext)
@@ -77,7 +78,7 @@ const Bookmark = (props: any) => {
         //  }, 3000)
   }
   const [views, setViews] = useState<number>(0)
-  
+
       useEffect(() => {
     const view = Math.floor(Math.random() * suggestedUsers?.length);
     setViews(view)
