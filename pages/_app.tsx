@@ -59,7 +59,9 @@ export default function App({ Component, pageProps }: AppProps) {
         throw new Error("User ID not found");
       }
     })
-    .then((res) => {
+   .then((res) => {
+      console.log(res.user, "This is res.user");
+      
       setUser(res.user);
     })
     .catch((err) => {
@@ -184,6 +186,7 @@ useEffect(() => {
         isAuth,
         user,
         setUser,
+        getCurrentUser,
         setCurrentUser,
         suggestedUsers,
         setSuggestedUsers,

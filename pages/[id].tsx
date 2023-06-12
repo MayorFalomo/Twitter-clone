@@ -87,7 +87,7 @@ const Id = ({tweetData}:any) => {
        username: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId: tweetProps._id,
+      id: tweetProps?._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
     setRetweetArray([...retweetArray, retweetData])    
@@ -100,7 +100,7 @@ const Id = ({tweetData}:any) => {
       username: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId,
+      id: tweetData?._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))
     let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
@@ -120,7 +120,7 @@ const Id = ({tweetData}:any) => {
           username: currentUser?.username,
           profileDp: currentUser?.profilePic,
           usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-          postId: tweetData._id,
+          id: tweetData?._id,
         }
         axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData]);
@@ -149,7 +149,7 @@ const Id = ({tweetData}:any) => {
       username: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
-      postId,
+      id: tweetData?._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
     let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
