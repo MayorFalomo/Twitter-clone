@@ -10,7 +10,7 @@ export const ShowReplyStyle = styled.div`
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 1px white solid;
+            border: 1px rgb(113,118,123) solid;
             background: black;
             background-repeat: no-repeat;
             background-size: cover;
@@ -121,8 +121,8 @@ export const ShowReplyStyle = styled.div`
             object-position: center;
         }
     }
-    .replyDetails{
-        /* border: 2px green solid; */
+    /* .replyDetails{
+        border: 2px green solid !important;
         width: 90%;
         h1{
           span{
@@ -142,7 +142,7 @@ export const ShowReplyStyle = styled.div`
                 font-size: 28px;
             }
         }
-  }
+  } */
             }
         }
                 }

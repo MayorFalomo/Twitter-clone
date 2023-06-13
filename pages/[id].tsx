@@ -9,12 +9,12 @@ import { SingleTweetStyle } from '@/styles/Id.styled'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
-import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsArrowLeft, BsFillHeartFill } from 'react-icons/bs'
-import { FaRegComment, FaRegHeart } from 'react-icons/fa'
+import { FaRegComment} from 'react-icons/fa'
 
 type Props = {}
 
@@ -84,14 +84,15 @@ const Id = ({tweetData}:any) => {
   const handleAddRetweet = async () => {
     setRetweetModal(false)
     const retweetData = {
-       username: currentUser?.username,
+      username: tweetProps?.username,
+      currentUserName: currentUser?.username,
       profileDp: currentUser?.profilePic,
       usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       id: tweetProps?._id,
     }
-    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
-    setRetweetArray([...retweetArray, retweetData])    
+     setRetweetArray([...retweetArray, retweetData])    
     setNoOfRetweetArray(retweetArray.length + 1 );
+    await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
   }
 
    const removeRetweet = async () => {
@@ -103,7 +104,7 @@ const Id = ({tweetData}:any) => {
       id: tweetData?._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`, retweetData).catch((err) => console.log(err))
-    let filtered = retweetArray.filter((item: any) => item.username !== retweetData.username)
+    let filtered = retweetArray.filter((item: any) => item.currentUserName !== retweetData.username)
     setRetweetArray(filtered)
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
@@ -117,10 +118,11 @@ const Id = ({tweetData}:any) => {
     else {
       // const handleAddLike = async () => {
         const likeData = {
-          username: currentUser?.username,
+          username: tweetProps?.username,
           profileDp: currentUser?.profilePic,
           usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
           id: tweetData?._id,
+          currentUserName: currentUser?.username,
         }
         axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`, likeData).catch((err) => console.log(err))
         setLikesArray([...likesArray, likeData]);
@@ -147,12 +149,10 @@ const Id = ({tweetData}:any) => {
     SetLikeTweet(false)
     const likeData = {
       username: currentUser?.username,
-      profileDp: currentUser?.profilePic,
-      usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       id: tweetData?._id,
     }
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`, likeData).catch((err) => console.log(err))
-    let filtered = likesArray.filter((item: any) => item.username !== likeData.username)
+    let filtered = likesArray.filter((item: any) => item.currentUserName !== likeData.username)
     setLikesArray(filtered)
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
@@ -177,7 +177,7 @@ const Id = ({tweetData}:any) => {
     setAddedToBookmark(true)
     setTimeout(() => {
       setAddedToBookmark(false)
-    }, 3000)
+    }, 300000)
     setBookmarks([...bookmarks, bookmarkData].reverse())    
   }
 
@@ -303,7 +303,7 @@ const Id = ({tweetData}:any) => {
                         }}
                       />
                     ) : (
-                      <FaRegHeart
+                      <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleLikeEvent}
                         style={{ cursor: "pointer" }}

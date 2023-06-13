@@ -3,10 +3,10 @@ import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
 import React, {useContext, useEffect, useState} from 'react'
-import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillHeartFill } from 'react-icons/bs'
-import { FaRegComment, FaRegHeart } from 'react-icons/fa'
+import { FaRegComment } from 'react-icons/fa'
 import { CommentPageStyle } from './Commentpage.styled'
 import Showreplies from './Showreplies'
 import Reply from './Replymodal';
@@ -275,7 +275,7 @@ function generateId (len:any) {
                         }}
                       />
                     ) : (
-                      <FaRegHeart
+                      <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleCommentAddLike}
                         style={{ cursor: "pointer" }}

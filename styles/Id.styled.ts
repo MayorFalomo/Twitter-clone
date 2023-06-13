@@ -185,9 +185,15 @@ export const SingleTweetStyle = styled.div`
             left: 40%;
             bottom: 70px;
             z-index: 999;
-            font-size: 24px;
+            font-size: calc(18px + 0.25vw);
             z-index: 9999;
             border-radius: 15px;
+            @media (max-width: 600px) {
+                left: 20%;
+            }
+            @media (max-width: 400px) {
+                left: 10%;
+            }
         }
     }
     .flexIconsAndValues{

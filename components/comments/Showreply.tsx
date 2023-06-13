@@ -1,7 +1,7 @@
 import moment from 'moment';
 import Link from 'next/link';
 import React, {useState} from 'react'
-import { AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai';
 import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { BsFillHeartFill } from 'react-icons/bs';
 import { FaRegComment, FaRegHeart } from 'react-icons/fa';
@@ -13,14 +13,28 @@ type Props = {}
 const Showreply = (props: any) => {
   
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
-    const [retweet, setRetweet] = useState<boolean>(false)
+  const [retweet, setRetweet] = useState<boolean>(false)
+  const [likeLength, setLikeLength] = useState<number>(props?.reply.like?.length)
+  const [retweetLength, setRetweetLength] = useState<number>(0)
     
-     const handleAddLike = async () => {
+  const handleRetweet = async () => {
+   setRetweet(true)
+    setRetweetLength(retweetLength + 1)
+  }
+  const handleAddLike = async () => {
+    setLikeTweet(true)
+    setLikeLength(likeLength + 1)
   }
 
   //Handle Remove Like 
   const removeLike = async () => {
     setLikeTweet(false)
+    setLikeLength( likeLength - 1)
+  }
+  
+  const removeRetweet = async () => {
+    setRetweet(false)
+    setRetweetLength( retweetLength - 1)
   }
   
   return (
@@ -53,7 +67,7 @@ const Showreply = (props: any) => {
               {retweet ? <p>
                 {
                   <AiOutlineRetweet
-                    onClick={() => setRetweet(false)}
+                    onClick={removeRetweet}
                     className="likeIcon"
                     style={{ cursor: "pointer", color: "#00BA7C" }}
                   />
@@ -61,7 +75,7 @@ const Showreply = (props: any) => {
               <p>
                 {
                     <AiOutlineRetweet
-                    onClick={() => setRetweet(true)}
+                    onClick={handleRetweet}
                     className="likeIcon"
                     style={{ cursor: "pointer",}}
                   />
@@ -79,13 +93,13 @@ const Showreply = (props: any) => {
                         }}
                       />
                     ) : (
-                      <FaRegHeart
+                      <AiOutlineHeart
                         className='likeIcon'
                         onClick={handleAddLike}
                         style={{ cursor: "pointer" }}
                       />
                     )}
-              <span>{props?.reply.like?.length} </span>
+              <span>{likeLength} </span>
             </div>
             <div className='flexIconsAndValues'>
               <p>
