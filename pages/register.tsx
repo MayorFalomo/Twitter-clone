@@ -29,11 +29,9 @@ const register = (props: any) => {
   const [isAuth, setIsAuth] = useState<boolean>(false)
 
   //Sign Up With Google
-  const signInWithGoogle = async () => {
+  const signUpWithGoogle = async () => {
     signInWithPopup(auth, provider).then((res) => {
-      setCookie("user", res.user.uid, { path: "/" })
-      // console.log(res.user);
-            
+      setCookie("user", res.user.uid, { path: "/" })            
       let userInfo = {
         userId: res.user.uid,
         username: res.user.displayName,
@@ -67,19 +65,6 @@ const register = (props: any) => {
       getCurrentUser(res.user.uid)
     }).catch((err) => console.log(err) )
   }
-    //        axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => setIsAuth(true))
-    //       getCurrentUser(res.user.uid)
-    //       setDoc(doc(db, "users", res.user.uid), {
-    //         uid: res.user.uid,
-    //         username: res.user.displayName,
-    //          usersAt: `@${userNames}`,
-    //         email: res.user.email,
-    //         profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
-    //       })
-    //     }).then(() =>
-    //         router.push("/")
-    //  ).then(() => window.location.reload() ).catch(() => setIsAuth(true))
-  // }
   
 
 //Sign up by creating account
@@ -118,8 +103,6 @@ const register = (props: any) => {
         })
       setDoc(doc(db, "userChats", res.user.uid), {})
       getCurrentUser(res.user.uid)
-      
-            // console.log(res.user.uid, "This is submit res");
     }).catch((err) => console.log(err))
   }
 
@@ -170,7 +153,7 @@ const register = (props: any) => {
                     <IoMdClose className='letterX' />
           <BsTwitter className='loginLogo' style={{color: ' #1d9aef', fontSize: '40px'}} />
           <h1>Join Twitter Today</h1>
-          <button onClick={signInWithGoogle} className='googleBtn' > <FcGoogle size={30}  /> Sign Up With Google </button>
+          <button onClick={signUpWithGoogle} className='googleBtn' > <FcGoogle size={30}  /> Sign Up With Google </button>
           <div className='orBars' >
               <span className='leftBar' ></span>
               <p>or</p>
