@@ -30,15 +30,15 @@ const register = (props: any) => {
 
   //Sign Up With Google
   const signUpWithGoogle = async () => {
+    try{
     signInWithPopup(auth, provider).then((res) => {
       setCookie("user", res.user.uid, { path: "/" })            
       let userInfo = {
-        userId: res.user.uid,
+        id: res.user.uid,
         username: res.user.displayName,
         email: res.user.email,
-        profilePic: res.user.photoURL,
+        profilePic: res.user.photoURL == null || "" ? "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg" : res.user.photoURL ,
         coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
-        password: "123456",
         usersAt: `@${res.user.displayName}`,
         following: [],
         followers: [],
@@ -53,7 +53,8 @@ const register = (props: any) => {
       axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo)
         .then(() => router.push("/"))
         .then(() => window.location.reload())
-        .catch((err) => err && setIsAuth(true))
+        .catch((err) => console.log(err)
+        )
       setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         username: res.user.displayName,
@@ -63,7 +64,11 @@ const register = (props: any) => {
       })
       setDoc(doc(db, "userChats", res.user.uid), {})
       getCurrentUser(res.user.uid)
-    }).catch((err) => console.log(err) )
+      
+    })
+    } catch (err) {
+      console.log("Sign up with Google error:", err) 
+    }
   }
   
 

@@ -40,19 +40,12 @@ export const getStaticProps = async (context: any) => {
 
 const Slug = ({ users }: any) => {
     
-  // console.log(users);
-  // const [username, setUsername] = useState<string>(users?.username)
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
       const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 
      useEffect(() => {
      axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [users?.username])
-     
-    // console.log(users, "This is users");
-    
-  // console.log(allUsersTweets, "all tweets");
-  
     
   return (
     <UsernamePageStyle>

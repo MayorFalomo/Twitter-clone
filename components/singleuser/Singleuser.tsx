@@ -58,9 +58,7 @@ const Singleuser = (props: any) => {
             userToAddToAt: usersAt,
             userToAddToProfilePic: usersProfileDp, 	//username of the user who is following the current user.
             usersId: urlParams,
-       }
-       console.log(followAUser);
-       
+       }       
      try {
          setCurrentUser({ ...currentUser, following: [...currentUser?.following, followAUser] })
        await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/follow-user`, followAUser)
