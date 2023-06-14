@@ -36,6 +36,7 @@ const register = (props: any) => {
       let userInfo = {
         id: res.user.uid,
         username: res.user.displayName,
+        password: "12345",
         email: res.user.email,
         profilePic: res.user.photoURL == null || "" ? "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg" : res.user.photoURL ,
         coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",

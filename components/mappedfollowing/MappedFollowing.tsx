@@ -84,7 +84,7 @@ const MappedFollowing = (props: any) => {
     }
     }
 
-    console.log(props.following);
+    // console.log(props.following);
     
   return (
     <MappedFollowerStyled>

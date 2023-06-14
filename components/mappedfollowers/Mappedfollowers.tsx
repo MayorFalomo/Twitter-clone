@@ -83,7 +83,7 @@ const MappedFollowers = (props: any) => {
     }
     }
 
-    console.log(props.followers, "this is props");
+    // console.log(props.followers, "this is props");
     
 
     return (

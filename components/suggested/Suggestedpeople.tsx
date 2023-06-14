@@ -55,9 +55,9 @@ const Suggestedpeople = (props: any) => {
         .catch((err) => console.log(err));
         currentUser?.following?.filter((val: any) => console.log(val.usersId === props.suggestedUsers?._id , "vals id"))
       let filtered = currentUser?.following.filter((val: any) => val.usersId !== props.suggestedUser?._id)
-      console.log(filtered, "this is filtered");
+      // console.log(filtered, "this is filtered");
       setCurrentUser({ ...currentUser, following: [...filtered] })
-      console.log("User Unfollowed");
+      // console.log("User Unfollowed");
       setFollowingButton(false)
     }
     catch (err) {
