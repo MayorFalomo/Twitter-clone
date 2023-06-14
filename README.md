@@ -50,6 +50,8 @@ What optimizations did you make in your code? E.g. refactors, performance improv
 
 I needed my web application to be fast so i used Next Js which is known for it's speed.
 
+I made registration easy and simple using a random username, password generator and firebase to handle all my users registration.
+
 I avoided making too many API Calls and instead used context to pass my data through out my application so the data is always readily available for users instead of requesting that same information from the server again.
 
 I stored each users information on a cookie that way, the users login and information is better secured and persists instead of using Local storage.
