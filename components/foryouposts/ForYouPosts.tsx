@@ -83,6 +83,8 @@ function generateId (len:any) {
       userId: currentUser?.usersId,
       _id: generateId(24),
     }
+    console.log(newTweet);
+    
     try {
       await axios.post(`https://twitter-clone-server-nu.vercel.app/api/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)

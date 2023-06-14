@@ -9,6 +9,7 @@ import { SingleTweetStyle } from '@/styles/Id.styled'
 import axios from 'axios'
 import moment from 'moment'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 // import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineHeart, AiOutlineRetweet, AiOutlineUpload } from 'react-icons/ai'
@@ -18,36 +19,48 @@ import { FaRegComment} from 'react-icons/fa'
 
 type Props = {}
 
-export const getStaticPaths = async () => {
-  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
-  const data = await res.json()
-  // console.log(data);
+// export const getStaticPaths = async () => {
+//   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets')
+//   const data = await res.json()
+//   // console.log(data);
   
-  const paths = data.map((path: any) => {
-    return {      
-      params: { id: path._id }
+//   const paths = data.map((path: any) => {
+//     return {
+//       params: { id: path?._id }
       
-    }
-  })
-  return { 
-    paths,     
-    fallback: false
-  }
-}
+//     }
+//   })
+//   return {
+//     paths,
+//     fallback: false
+//   }
+// }
 
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
+// export const getStaticProps = async (context: any) => {
+//   const id = context.params?.id;
   
-  const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`)
-  const data = await res.json()
+//   const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`)
+//   const data = await res.json()
   
+//   return {
+//     props: {
+//       tweetData: data
+//     },
+//   }
+// }
+
+export const getServerSideProps = async (context:any) => {
+  const { id } = context.params;
+
+  const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`);
+  const data = await res.json();
+
   return {
     props: {
       tweetData: data
-    },
-  }
-}
-
+    }
+  };
+};
 const Id = ({tweetData}:any) => {
   
   const { currentUser, tweets, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
@@ -65,7 +78,10 @@ const Id = ({tweetData}:any) => {
   
   
   
-  const [tweetProps, setTweetProps] = useState<any>(tweetData)
+  const [tweetProps, setTweetProps] = useState<any>( tweetData )
+
+  // console.log(tweetProps, "This is tweetProps");
+  
 
   const [postId, setPostId] = useState(tweetData?._id)
   const [likeTweet, SetLikeTweet] = useState<boolean>(false)
@@ -229,7 +245,7 @@ const Id = ({tweetData}:any) => {
           { tweetProps?.video?.length > 0 ? <video width='100%' height='600px' src={tweetProps?.video}  controls suppressHydrationWarning className='video' > </video> : ""}
           <div className='postDetailsContainer' >
             <div className='timeAndViews' >
-              <span  style={{ color: "#575B5F", fontWeight: 600 }} > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
+              <span  style={{ color: "#575B5F", fontWeight: 600 }} suppressHydrationWarning > {moment(tweetProps?.createdAt).format('h:mm a')} </span>
               <span className="listStyle" style={{ color: "#575B5F", fontWeight: 500 }} >{moment(tweetProps?.createdAt).format("D MMMM, YYYY")} </span>
               <span className='listStyle'  style={{ color: "#575B5F", fontWeight: 500 }} > {views} Views</span>
             </div>
