@@ -79,8 +79,8 @@ const Navigation = (props: Props) => {
                         </li>
                         <li>
                             <div className='flexLinks' >
-                                <Link href="/allfollowers"  ><span className='navIcons' ><BsLink /> </span></Link>
-                                <Link href="/allfollowers"  ><span  className='navTexts' >Connect </span> </Link>
+                                <Link href="/connect"  ><span className='navIcons' ><BsLink /> </span></Link>
+                                <Link href="/connect"  ><span  className='navTexts' >Connect </span> </Link>
                                 </div>
                         </li>
                         <li>

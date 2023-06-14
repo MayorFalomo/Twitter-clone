@@ -28,43 +28,58 @@ const register = (props: any) => {
   const [name, setName] = useState("")
   const [isAuth, setIsAuth] = useState<boolean>(false)
 
-  //Sign In With Google
-   const signInWithGoogle = async () => {
-        signInWithPopup(auth, provider).then((res) => {
-            setCookie("user", res.user.uid, { path: "/" })
-            // console.log(res.user);
+  //Sign Up With Google
+  const signInWithGoogle = async () => {
+    signInWithPopup(auth, provider).then((res) => {
+      setCookie("user", res.user.uid, { path: "/" })
+      // console.log(res.user);
             
-            let userInfo = {
-            userId: res.user.uid,
-            username:  res.user.displayName,
-            email: res.user.email,
-            profilePic: res.user.photoURL,
-            coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
-            password: "123456",
-            usersAt: `@${res.user.displayName}`,
-            following: [],
-            followers: [],
-              notifications: [],
-            retweeted: [],
-            bio: "Regular Human",
-            location: "Lagos, Nigeria",
-            birthday: "April 19th, 2023",
-            links: "https://mayowa-falomo.netlify.app"
+      let userInfo = {
+        userId: res.user.uid,
+        username: res.user.displayName,
+        email: res.user.email,
+        profilePic: res.user.photoURL,
+        coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
+        password: "123456",
+        usersAt: `@${res.user.displayName}`,
+        following: [],
+        followers: [],
+        notifications: [],
+        retweeted: [],
+        bio: "Regular Human",
+        location: "Lagos, Nigeria",
+        birthday: "April 19th, 2023",
+        links: "https://mayowa-falomo.netlify.app"
 
-            }
-           axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => setIsAuth(true))
-          getCurrentUser(res.user.uid)
-          setDoc(doc(db, "users", res.user.uid), {
-            uid: res.user.uid,
-            username: res.user.displayName,
-             usersAt: `@${userNames}`,
-            email: res.user.email,
-            profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
-          })
-        }).then(() =>
-            router.push("/")
-     ).then(() => window.location.reload() ).catch(() => setIsAuth(true))
+      }
+      axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo)
+        .then(() => router.push("/"))
+        .then(() => window.location.reload())
+        .catch((err) => err && setIsAuth(true))
+      setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        username: res.user.displayName,
+        usersAt: `@${res.user.displayName}`,
+        email: res.user.email,
+        profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
+      })
+      setDoc(doc(db, "userChats", res.user.uid), {})
+      getCurrentUser(res.user.uid)
+    }).catch((err) => console.log(err) )
   }
+    //        axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).catch((err) => setIsAuth(true))
+    //       getCurrentUser(res.user.uid)
+    //       setDoc(doc(db, "users", res.user.uid), {
+    //         uid: res.user.uid,
+    //         username: res.user.displayName,
+    //          usersAt: `@${userNames}`,
+    //         email: res.user.email,
+    //         profilePic: "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
+    //       })
+    //     }).then(() =>
+    //         router.push("/")
+    //  ).then(() => window.location.reload() ).catch(() => setIsAuth(true))
+  // }
   
 
 //Sign up by creating account

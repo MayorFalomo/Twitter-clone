@@ -62,7 +62,7 @@ const Chats = (props: any) => {
     return (
       <Chatstyled>
       <div className='chatsContainer' >
-          {Object?.entries(chats)?.sort((a, b) => b[1].date - a[1].date )?.map((chat: any) => (
+          {/* {Object?.entries(chats)?.sort((a, b) => b[1].date - a[1].date )?.map((chat: any) => (
               <div className="allUsersChat" style={{cursor: "pointer", }} key={chat[0]} onClick={() =>  handleSelect(chat[1].userInfo)} >
                   <div style={{backgroundImage: `url${chat[1].userInfo.profilePicture} `}} className='profilePic' > </div>
                   <div className='chatHeadingCon' >
@@ -71,7 +71,18 @@ const Chats = (props: any) => {
                       <p>{chat[1].lastMessage?.texts?.slice(0, 50)}... </p>
                 </div>
               </div>
-          ))}
+          ))} */}
+
+          {Object?.entries(chats)?.sort((a, b) => b[1].date - a[1].date)?.map((chat: any) => (
+  <div className="allUsersChat" style={{ cursor: "pointer" }} key={chat[0]} onClick={() => handleSelect(chat[1]?.userInfo)}>
+    <div style={{ backgroundImage: `url(${chat[1]?.userInfo?.profilePicture})` }} className="profilePic"></div>
+    <div className="chatHeadingCon">
+      <h2>{chat[1]?.userInfo?.username}</h2>
+      <span>{chat[1]?.userInfo?.usersAt}</span>
+      <p>{chat[1]?.lastMessage?.texts?.slice(0, 50)}...</p>
+    </div>
+  </div>
+))}
               
             </div>
             </Chatstyled>
