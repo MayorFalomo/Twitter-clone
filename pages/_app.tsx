@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
       }
     })
    .then((res) => {
-      console.log(res.user, "This is res.user");
+      // console.log(res.user, "This is res.user");
       
       setUser(res.user);
     })
@@ -128,6 +128,7 @@ useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
   }, [])
+  
   
   //useEffect to load all registered users
   useEffect(() => {

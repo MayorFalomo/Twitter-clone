@@ -17,7 +17,7 @@ import EmojiPicker from 'emoji-picker-react';
 import Link from 'next/link';
 import { IoMdClose } from 'react-icons/io';
 
-
+//Parent component is messages.tsx
 type Props = {}
 
 const Chat = (props: any) => {
@@ -59,6 +59,7 @@ const Chat = (props: any) => {
     }, [data.chatId])
 
     const handleSubmit = async () => {
+        //Function to handle video upload to Firestore
         if (picture) {
         const storageRef = ref(storage, uuid());
         const uploadTask = uploadBytesResumable(storageRef, picture);
@@ -150,10 +151,10 @@ const Chat = (props: any) => {
           <div className='profileDp' style={{backgroundImage: `url(${userObject?.profilePic})`  }} ></div>
                             <Link href={'/users/' + data.user?.username } ><span className='username' >{data.user?.username}</span></Link>
                         </div>
-                        <p onClick={handleResize} >{props.isMobile ? <IoMdClose cursor='pointer' fontSize='35' /> : <IoInformationCircleOutline fontSize='35'/> }</p>
+                        <p onClick={handleResize} >{props.isMobile ? <IoMdClose cursor='pointer' fontSize='25' /> : <IoInformationCircleOutline fontSize='25'/> }</p>
                     </div>
                     <div className="userObject" >
-                        <Link href={'/users/' + userObject?.username } ><div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div></Link>
+                        <Link href={'/users/' + userObject?.username } ><div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='profilePic' ></div></Link>
                         <Link href={'/users/' + userObject?.username} ><h2>{userObject?.username} </h2></Link>
                         <p>{userObject?.usersAt} </p>
                         <h2 className='bio' >{userObject?.bio} </h2>

@@ -62,7 +62,7 @@ const Tweet = (props: any) => {
   //Add like function
   const handleAddLike = async () => {
     const likeData = {
-       username: props.tweet.username, //This is the important bit
+       username: props.tweet.username, //This is the important bit, It is the username of the person whose tweet was liked
       profileDp: currentUser?.profilePic,
       usersAt: currentUser?.usersAt, 	//usersAt is a list of usernames, so it can be filtered out.
       tweets: props.tweet.tweet,

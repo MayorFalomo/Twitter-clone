@@ -118,7 +118,7 @@ export const SingleTweetStyle = styled.div`
     }
     .picture {
         width: 95%;
-        height: 80%;
+        height: 60%;
         margin: 5px 10px;
         border-radius: 30px;
         object-position: center;

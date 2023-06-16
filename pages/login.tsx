@@ -50,7 +50,6 @@ const Login = (props: any) => {
             // console.log(userInfo);
             
             axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo).catch((err) => err && setIsAuth(true))
-            // console.log(res.user.uid, "This is userId");
             getCurrentUser(res.user.uid)
         }).then(() => router.push("/")).then(() => window.location.reload()).catch((err) => console.log(err))
     }
