@@ -17,10 +17,7 @@ const Trends = (props: any) => {
   useEffect(() => {
     axios.get(`https://api.nytimes.com/svc/topstories/v2/world.json?api-key=GmA3xB7sjQZPAcxANOlKsTVftiyidoBC`)
       .then((res: any) => setTrending(res.data.results)).catch((err: any) => console.log(err))
-  }, [])  
-
-  // console.log(trending);
-  
+  }, []);  
 
  
   return <TrendStyle>

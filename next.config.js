@@ -21,7 +21,8 @@ const nextConfig = {
   env: {
     API_KEY: process.env.NEXT_PUBLIC_API_KEY,
     MESSENGER_ID: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-    APP_ID: process.env.NEXT_PUBLIC_APP_ID
+    APP_ID: process.env.NEXT_PUBLIC_APP_ID,
+    NEWS_KEY: process.env.NEXT_PUBLIC_NEWS_KEY
   },
 };
 

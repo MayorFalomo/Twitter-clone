@@ -5,7 +5,6 @@ import { TrendStyle } from './Trend.style';
 type Props = {}
 
 const Trend = (props: any) => {
-    // console.log(props.trends);
     
     return (
       <TrendStyle>

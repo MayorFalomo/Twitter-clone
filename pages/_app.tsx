@@ -128,6 +128,14 @@ useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
   }, [])
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then((registration) => console.log('scope is: ', registration.scope));
+    }
+  }, []);
   
   
   //useEffect to load all registered users
