@@ -85,7 +85,6 @@ const Meet = (props: any) => {
     }
   }
 
-     console.log(props.suggest.username, "this is username")
     //  console.log(currentUser.following)
 
     return (
