@@ -85,7 +85,8 @@ const Meet = (props: any) => {
     }
   }
 
-     console.log(currentUser)
+     console.log(props.suggest.username, "this is username")
+    //  console.log(currentUser.following)
 
     return (
       <MeetStyled>
@@ -105,7 +106,7 @@ const Meet = (props: any) => {
                                         className="btn-following" >{onMouseHover ? "Unfollow" : "Following"} </button>
                                     :
                                     <button onClick={handleFollow} className='btn-follow'
-                                        disabled={currentUser?.username == props.user?.username} >Follow </button>}
+                                        disabled={currentUser?.username == props.suggest?.username} >Follow </button>}
                             </div>
                   </div>
           </div>

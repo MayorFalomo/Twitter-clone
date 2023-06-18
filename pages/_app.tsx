@@ -127,7 +127,7 @@ useEffect(() => {
   useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
-  }, [])
+  }, [cookies.user])
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
