@@ -21,6 +21,7 @@ Tweeks is a full MERN Stack project and Twitter clone with both Backend and Fron
 - Get a verified badge if you get up to 5 followers.
 - It is a PWA so it can be installed on devices.
 - Infinite scroll so more tweets load when the user gets to the last tweet.
+- All users by default get a birthday date,bio, location and a link, this is i simply did for UI purposes. all are editable later as you wish.
 - your login data is saved to a cookie so you never have to remember your password or username.
 
 ## Demo
