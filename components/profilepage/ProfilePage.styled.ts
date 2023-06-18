@@ -108,7 +108,10 @@ export const ProfileStyled = styled.div`
         }
         .usersBio{
             p{
-                font-size: calc(20px + 0.25vw);
+                font-size: calc(18px + 0.25vw);
+                @media (max-width: 400px ) {
+                font-size: calc(14px + 0.25vw);
+                }
             }
         }
         .usersExtraInfoContainer{

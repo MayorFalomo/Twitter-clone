@@ -61,7 +61,7 @@ const Navigation = (props: Props) => {
                         </div>
              
               <div className='followersCon' >
-                  <span>{currentUser?.following?.length} Following </span>
+                  <Link href='/allfollowers' ><span>{currentUser?.following?.length} Following </span></Link>
                  <Link href='/allfollowers' > <span>{currentUser?.followers?.length} Followers </span></Link>
               </div>
               <ul>
