@@ -46,7 +46,6 @@ const Commentpage = (props: any) => {
   const [video, setVideo] = useState<string>("");
   const [newId, setNewId] = useState<string>(props.comment?.newId);
   const [createdAt, setCreatedAt] = useState<any>(commentId);
-  const [replyId, setReplyId] = useState<any>("");
   const [like, setLike] = useState<any>([]);
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<boolean>(false);
@@ -179,9 +178,12 @@ function generateId (len:any) {
       //   ]
       // })
       props.setTweetProps({
-      ...props.tweetProps, comments: {
-        ...props.tweetProps.comments, comment: [
-          ...props.tweetProps.comments.comment, commentData
+        ...props.tweetProps,
+        comments: {
+          ...props.tweetProps.comments,
+          comment: [
+            ...props.tweetProps.comments.comment,
+            { ...commentData }
         ]
       }
     })
@@ -193,9 +195,7 @@ function generateId (len:any) {
    const handleClick = (e: any) => {
      e.preventDefault()
      setUrlParams(props.comment?.newId)
-     setGetCommentId(props.comment?._id || props.comment?.id || props.comment?.postId)
-     console.log(getCommentId, "commentId");
-     
+     setGetCommentId(props.comment?._id || props.comment?.id || props.comment?.postId)     
      setCommentModal(true)
   };
 
@@ -205,7 +205,9 @@ function generateId (len:any) {
     setGetCommentId(props.comment?.postId)
     setShowReplies(true)
   }
-
+  
+  // console.log(props.comment);
+  
   
     return (
       <CommentPageStyle>

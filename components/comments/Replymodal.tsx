@@ -92,10 +92,33 @@ function generateId (len:any) {
      setComments(" ")
      setSuccessComment(true)
         //  setSingleTweets({
-        //      ...singleTweets, comments: [
-        //      ...singleTweets.comments, commentData,
-        //  ]})
+        //    ...singleTweets,
+        //    comments: [
+        //      ...singleTweets.comments, 
+        //    ]
+        //  })
+        setSingleTweets([
+    {
+      ...singleTweets,
+      comments: {
+        ...singleTweets.comments,
+        comment: [...singleTweets.comments.comment, { ...commentData }],
+      },
+    },
+    ...singleTweets,
+  ]);
+    //      props.setSingleTweets({
+    //     ...props.tweetProps,
+    //     comments: {
+    //       ...props.tweetProps?.comments,
+    //       comment: [
+    //         ...props.tweetProps?.comments.comment,
+    //         { ...commentData }
+    //     ]
+    //   }
+    // })
   }
+console.log(singleTweets, "singletweets");
 
   
  

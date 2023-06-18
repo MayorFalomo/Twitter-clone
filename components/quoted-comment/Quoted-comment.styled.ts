@@ -26,7 +26,7 @@ export const QuotedCommentStyle = styled.div`
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            border: 1px white solid;
+            border: 1px rgb(113, 118, 123) solid;
             background: black;
             background-repeat: no-repeat;
             background-size: cover;
@@ -87,7 +87,7 @@ export const QuotedCommentStyle = styled.div`
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 1px white solid;
+            border: 1px rgb(113, 118, 123) solid;
             background: black;
             background-repeat: no-repeat;
             background-size: cover;

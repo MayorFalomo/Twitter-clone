@@ -84,7 +84,9 @@ const Meet = (props: any) => {
       console.log(err);
     }
   }
-    
+
+     console.log(currentUser)
+
     return (
       <MeetStyled>
       <div className='meetContainer' >
@@ -92,7 +94,7 @@ const Meet = (props: any) => {
               <div style={{ backgroundImage: `url(${props.suggest.profilePic})` }} className='bgImg' ></div>
                     <div className='followFlex' >
                         <div>
-                      <Link href={'/users/' + props.suggest?.username} ><h3>{props.suggest?.username} <span style={{color:'#1d9aef'}}  >{props.suggest?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span> </h3></Link>
+                      <Link href={'/users/' + props.suggest?.username} ><h3>{props.suggest?.username} <span style={{color:'#1d9aef'}}  >{props.suggest?.followers?.length > 5 ? <MdOutlineVerified/> : "" }</span> </h3></Link>
                             <p style={{ color: "#575B5F" }} className='usersAt' >{props.suggest?.usersAt} </p>
                             <p>{props.suggest?.bio} </p>
                             </div>

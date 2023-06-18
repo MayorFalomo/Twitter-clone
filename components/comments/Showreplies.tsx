@@ -12,7 +12,6 @@ type Props = {}
 
 //Parent component is CommentPage.tsx
 const Showreplies = (props: any) => {
-    // console.log(props.urlParams);
 
     const [mappedReplies, setMappedReplies] = useState<any>()
   const [likeTweet, setLikeTweet] = useState<boolean>(false)
@@ -22,7 +21,8 @@ const Showreplies = (props: any) => {
       useEffect(() => {
     const view = Math.floor(Math.random() * props.suggestedUsers?.length);
     setViews(view)
-  }, [])
+      }, [])
+  
       //Add like function
   const handleAddLike = async () => {
   }

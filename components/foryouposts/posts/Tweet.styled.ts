@@ -192,7 +192,7 @@ padding: 10px;
             background-size: cover;
             object-fit: cover;
             border-radius: 50%;
-            border: 2px white solid;
+            border: 2px rgb(113, 118, 123) solid;
         }
         p{
             font-size: calc(14px + 0.25vw);
