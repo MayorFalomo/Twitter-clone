@@ -32,7 +32,7 @@ const ProfilePage = (props: any) => {
             <Link href='/' style={{listStyle: 'none'}} className='arrowBack' >{<BsArrowLeft cursor='pointer' fontSize={25} />} </Link>
             <div className='profileUsersDetails' >
                 <h1>{currentUser?.username} </h1>
-                <span style={{color:'#1d9aef'}}  >{currentUser?.following?.length > 5 ? <MdOutlineVerified/> : "" }</span>
+                <span style={{color:'#1d9aef'}}  >{currentUser?.followers?.length > 5 ? <MdOutlineVerified fontSize={25} /> : "" }</span>
               </div>
           </div>
           <div className='profilePhotoContainers' >
