@@ -154,7 +154,7 @@ const Chat = (props: any) => {
                         <p onClick={handleResize} >{props.isMobile ? <IoMdClose cursor='pointer' fontSize='25' /> : <IoInformationCircleOutline fontSize='25'/> }</p>
                     </div>
                     <div className="userObject" >
-                        <Link href={'/users/' + userObject?.username } ><div style={{ backgroundImage: `url(${currentUser?.profilePic})` }} className='profilePic' ></div></Link>
+                        <Link href={'/users/' + userObject?.username } ><div style={{ backgroundImage: `url(${userObject?.profilePic})` }} className='profilePic' ></div></Link>
                         <Link href={'/users/' + userObject?.username} ><h2>{userObject?.username} </h2></Link>
                         <p>{userObject?.usersAt} </p>
                         <h2 className='bio' >{userObject?.bio} </h2>
