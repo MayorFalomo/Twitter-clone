@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-  border: 1px rgb(47, 51, 54) solid;
+  /* border: 1px red solid; */
+  /* border: 1px rgb(47, 51, 54) solid; */
     .mainHomePage {
     display: grid;
     grid-template-columns: 400px auto 600px;
