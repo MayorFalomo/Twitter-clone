@@ -64,6 +64,7 @@ export const ConnectStyled = styled.div`
     .centerGridContainer{
     overflow: auto;
     border: 1px rgb(47, 51, 54) solid;
+    padding-bottom: 50px;
     .connectDetails{
         display: flex;
         align-items: center;

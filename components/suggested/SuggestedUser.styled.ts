@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const SuggestedStyle = styled.div`
 /* border: 3px green solid; */
 .suggestedContainer{
-    /* border: 2px solid red; */
     display: flex;
     align-items: center;
     justify-content: space-between;
