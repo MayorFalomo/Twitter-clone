@@ -106,7 +106,7 @@ const Notifications = () => {
 
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
-       const delayInMilliseconds = 18 * 1000; // 3 minutes in milliseconds
+       const delayInMilliseconds = 24 * 1000; // 3 minutes in milliseconds
       const timeout = setTimeout(() => {
         handleClearNotifications();
       }, delayInMilliseconds); // 10 seconds delay
@@ -129,7 +129,7 @@ const Notifications = () => {
       console.log('Error clearing notifications:', error);
     }
   };
-
+  
 //   useEffect(() => {
 //     axios.post('http://localhost:7000/users/clear-notifications', {
 //       id: currentUser?._id,

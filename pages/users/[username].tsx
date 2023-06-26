@@ -10,41 +10,55 @@ import React, {useEffect, useState} from 'react'
 
 type Props = {}
 
-export const getStaticPaths = async () => {
-  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users')
-  const data = await res.json()
+// export const getStaticPaths = async () => {
+//   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users')
+//   const data = await res.json()
 
-  const paths = data.map((path: any) => {
-    return {
-      params: { username: path.username  }
-    }
-  })
-  return { 
-    paths,
-    fallback: false
-  }
-}
+//   const paths = data.map((path: any) => {
+//     return {
+//       params: { username: path.username  }
+//     }
+//   })
+//   return { 
+//     paths,
+//     fallback: false
+//   }
+// }
 
-export const getStaticProps = async (context: any) => {
-    const username :string = context.params?.username;
-  const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users/get-user/' + username);
-  const data = await res.json();
+// export const getStaticProps = async (context: any) => {
+//     const username :string = context.params?.username;
+//   const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/users/get-user/' + username);
+//   const data = await res.json();
   
+//   return {
+//     props: {
+//       users: data
+//     },
+//   }
+// }
+
+export const getServerSideProps = async (context:any) => {
+  const { username } = context.params;
+
+  const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/users/get-user/${username}`);
+  const data = await res.json();  
+
   return {
     props: {
       users: data
-    },
-  }
-}
-
+    }
+  };
+};
 
 const Slug = ({ users }: any) => {
     
+  console.log(users);
+  
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
       const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 
-     useEffect(() => {
-     axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
+  useEffect(() => {
+    axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${users?.username}`).then((res) => setAllUsersTweets(res.data)).catch((err) => console.log(err))
   }, [users?.username])
     
   return (

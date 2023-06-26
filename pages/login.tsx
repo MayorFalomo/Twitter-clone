@@ -26,33 +26,72 @@ const Login = (props: any) => {
     const [password, setPassword] = useState<any>("")
     const [isAuth, setIsAuth] = useState<boolean>(false)
 
-    const signInWithGoogle = async () => {
-        signInWithPopup(auth, provider).then((res) => {
-            setCookie("user", res.user.uid, { path: "/" })
+    // const signInWithGoogle = async () => {
+    //     signInWithPopup(auth, provider).then((res) => {
+    //         setCookie("user", res.user.uid, { path: "/" })
             
-            let userInfo = {
-            userId: res.user.uid,
-            // username:  res.user.displayName,
-            // email: res.user.email,
-            // profilePic: res.user.photoURL,
-            // coverPhoto: "https://blog.contentstudio.io/wp-content/uploads/2022/04/twitter-header.jpg",
-            // password: "12345",
-            // usersAt: `@${res.user.displayName}`,
-            // following: [],
-            // followers: [],
-            // notifications: [],
-            // bio: "Regular Human",
-            // location: "Lagos, Nigeria",
-            // birthday: "April 19th, 1999",
-            // links: "https://mayowa-falomo.netlify.app"
+    //         let userInfo = {
+    //         userId: res.user.uid,
+    //         }            
+    //         axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo)
+    //             .catch((err) => err && setIsAuth(true))
+    //         getCurrentUser(res.user.uid)}).then(() => router.push("/")).then(() => window.location.reload()).catch((err) => console.log(err))
+    // }
+    
+     const signInWithGoogle = async () => {
+         signInWithPopup(auth, provider).then((res) => {
+             setCookie("user", res.user.uid, { path: "/" })
+             let userInfo = {
+                 userId: res.user.uid,
+             }
+    } )
+      .then((res) => {})
+      .catch((err) => console.log(err));
+    };
+    
+//     const signInWithGoogle = async () => {
+//     try {
+//         const res = await signInWithPopup(auth, provider);
+//         setCookie("user", res.user.uid, { path: "/" });
 
-            }
-            // console.log(userInfo);
-            
-            axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo).catch((err) => err && setIsAuth(true))
-            getCurrentUser(res.user.uid)
-        }).then(() => router.push("/")).then(() => window.location.reload()).catch((err) => console.log(err))
-    }
+//         let userInfo = {
+//             userId: res.user.uid
+//         };
+
+//         await axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo);
+//         await getCurrentUser(res.user.uid);
+        
+//         router.push("/");
+//         window.location.reload();
+//     } catch (err) {
+//         console.log(err);
+//     }
+// };
+
+// const signInWithGoogle = () => {
+//     signInWithPopup(auth, provider)
+//         .then((res) => {
+//             setCookie("user", res.user.uid, { path: "/" });
+
+//             let userInfo = {
+//                 userId: res.user.uid
+//             };
+
+//             return axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo);
+//         })
+//         .then(() => {
+//             return getCurrentUser(res.user.uid);
+//         })
+//         .then(() => {
+//             router.push("/");
+//             window.location.reload();
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//         });
+// };
+
+
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()

@@ -61,6 +61,7 @@ export const getServerSideProps = async (context:any) => {
     }
   };
 };
+
 const Id = ({tweetData}:any) => {
   
   const { currentUser, tweets, suggestedUsers, bookmarks, setBookmarks } = useContext(AppContext)
