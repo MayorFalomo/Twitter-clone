@@ -38,15 +38,16 @@ const Login = (props: any) => {
     //         getCurrentUser(res.user.uid)}).then(() => router.push("/")).then(() => window.location.reload()).catch((err) => console.log(err))
     // }
     
-     const signInWithGoogle = async () => {
-         signInWithPopup(auth, provider).then((res) => {
-             setCookie("user", res.user.uid, { path: "/" })
-             let userInfo = {
-                 userId: res.user.uid,
-             }
-    } )
-      .then((res) => {})
-      .catch((err) => console.log(err));
+    const signInWithGoogle = async () => {
+        signInWithPopup(auth, provider).then((res) => {
+            setCookie("user", res.user.uid, { path: "/" })
+            let userInfo = {
+                userId: res.user.uid,
+            }
+            axios.post('https://twitter-clone-server-nu.vercel.app/api/users/login', userInfo).catch((err) => console.log(err)
+            ).then(() => router.push("/")).then(() => getCurrentUser(res.user.uid) ).then(() => window.location.reload()).catch((err) => err && setIsAuth(true)
+            )
+        }).catch((err) => console.log(err));
     };
     
 //     const signInWithGoogle = async () => {
