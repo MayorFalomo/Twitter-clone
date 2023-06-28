@@ -14,50 +14,64 @@ import { BsArrowLeft } from 'react-icons/bs'
 
 type Props = {}
 
-export const getStaticPaths = async () => {
-  try {
-    const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets');
-    const data = await res.json();    
-    const paths = data?.map((tweet:any) => ({
-      params: {
-        quoted: tweet?._id.toString()
-      }
-    }));
+export const getServerSideProps = async (context:any) => {
+  const { quoted } = context.params;
 
-    return {
-      paths,
-      fallback: false
-    };
-  } catch (error) {
-    console.error('Error in getStaticPaths:', error);
-    return {
-      paths: [],
-      fallback: false
-    };
-  }
+  const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${quoted}`);
+  const data = await res.json();
+
+  return {
+    props: {
+      quotedData: data
+    }
+  };
 };
 
-export const getStaticProps = async (context:any) => {
-  try {
-    const id = context.params.quoted;
-    const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`);
-    const data = await res.json();
+
+// export const getStaticPaths = async () => {
+//   try {
+//     const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets');
+//     const data = await res.json();    
+//     const paths = data?.map((tweet:any) => ({
+//       params: {
+//         quoted: tweet?._id.toString()
+//       }
+//     }));
+
+//     return {
+//       paths,
+//       fallback: false
+//     };
+//   } catch (error) {
+//     console.error('Error in getStaticPaths:', error);
+//     return {
+//       paths: [],
+//       fallback: false
+//     };
+//   }
+// };
+
+// export const getStaticProps = async (context:any) => {
+//   try {
+//     const id = context.params.quoted;
+//     const res = await fetch(`https://twitter-clone-server-nu.vercel.app/api/tweets/${id}`);
+//     const data = await res.json();
 
 
-    return {
-      props: {
-        quotedData: data
-      }
-    };
-  } catch (error) {
-    console.error('Error in getStaticProps:', error);
-    return {
-      props: {
-        quotedData: null
-      }
-    };
-  }
-};
+//     return {
+//       props: {
+//         quotedData: data
+//       }
+//     };
+//   } catch (error) {
+//     console.error('Error in getStaticProps:', error);
+//     return {
+//       props: {
+//         quotedData: null
+//       }
+//     };
+//   }
+// };
 const quoted = ({quotedData}: any) => {
 
   const [quotedProps, setQuotedProps] = useState<any>(quotedData)
