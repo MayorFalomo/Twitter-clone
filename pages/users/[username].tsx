@@ -51,9 +51,7 @@ export const getServerSideProps = async (context:any) => {
 };
 
 const Slug = ({ users }: any) => {
-    
-  console.log(users);
-  
+      
     const [allUsersTweets, setAllUsersTweets] = useState<any>([])
       const [editProfileModal, setEditProfileModal] = useState<boolean>(false)
 

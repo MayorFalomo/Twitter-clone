@@ -10,7 +10,6 @@ export const NotifyStyle = styled.div`
         align-items: center;
         justify-content: space-between;
         padding: 10px;
-                    /* font-size: calc(16px + 0.25vw); */
         span{
             font-size: calc(24px + 0.25vw);
             opacity: 0.4;
@@ -57,8 +56,6 @@ export const NotifyStyle = styled.div`
     display: flex;
     align-items: start;
     gap: 10px;
-  /* border: 2px red solid; */
-  /* display: none; */
     margin: 30px;
     .loveIcon {
         font-size: calc(28px + 0.25vw)

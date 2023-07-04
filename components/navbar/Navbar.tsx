@@ -26,6 +26,7 @@ const Navbar = (props: any) => {
   const currentRoute = router.pathname;
 
   const [logOut, setLogOut] = useState<boolean>(false)
+  const [lengthOfNotification, setLengthOfNotification] = useState([])
 
   //Function to handle Log out 
   const handleLogOut = async () => {
@@ -43,6 +44,15 @@ const Navbar = (props: any) => {
       setLogOut(true)
     }
   }
+
+  useEffect(() => {
+    const notify = async () => {
+ await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications`)
+      .then((res: any) => setLengthOfNotification(res.data))
+    .catch((err) => console.log(err) )
+    }
+    notify()
+  },[currentUser?._id])
   
   return (
     <NavContainer>
@@ -68,7 +78,8 @@ const Navbar = (props: any) => {
               <Link href='/notifications' ><li>
                 <div className="navLinkItems">
                   <BiBell className="navIcon" />
-                  <span className="noOfNotifications" > {currentUser?.notifications?.length  > 0 ? notifications?.length || currentUser?.notifications?.length : "" } </span>
+                  <span className="noOfNotifications" > {lengthOfNotification.length} </span>
+                  {/* <span className="noOfNotifications" > {currentUser?.notifications?.length  > 0 ? notifications?.length || currentUser?.notifications?.length : "" } </span> */}
                   <span className="links" >Notifications </span>
                   </div>
               </li></Link>

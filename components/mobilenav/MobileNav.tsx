@@ -18,6 +18,7 @@ const MobileNav = (props: Props) => {
   const currentRoute = router.pathname;
 
   const [user, setUser] = useState();
+  const [lengthOfNotification, setLengthOfNotification] = useState<any>([])
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -26,7 +27,14 @@ const MobileNav = (props: Props) => {
     }
   }, [currentUser?.username, currentRoute])
 
-  
+   useEffect(() => {
+     const notify = async () => {
+       await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications`)
+      .then((res: any) => setLengthOfNotification(res.data))
+    .catch((err) => console.log(err) )
+    }
+    notify()
+  },[currentUser?._id])
 
     return (
       <MobileNavStyle>
@@ -35,7 +43,8 @@ const MobileNav = (props: Props) => {
           <Link href='/trending' ><span><BiSearch className={currentRoute == '/trends' ? "activeRoute" : "navIcon"} /></span></Link>
           <div className="notificationsCon" >
             <Link href='/notifications' ><span><BiBell className={currentRoute == '/notifications' ? "activeRoute" : "navIcon"} /> </span></Link>
-            <span className='noOfNotifications' >{currentUser?.notifications?.length > 0 ? currentUser?.notifications?.length || notifications?.length : "" } </span>
+            <span className='noOfNotifications' >{lengthOfNotification?.length } </span>
+            {/* <span className='noOfNotifications' >{currentUser?.notifications?.length > 0 ? currentUser?.notifications?.length || notifications?.length : "" } </span> */}
             </div>
           <Link href='/messages' ><span><RxEnvelopeClosed className={currentRoute =='/messages' ? "activeRoute" : "navIcon"} /></span></Link>
             </div>

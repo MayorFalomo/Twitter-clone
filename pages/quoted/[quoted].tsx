@@ -31,7 +31,7 @@ export const getServerSideProps = async (context:any) => {
 // export const getStaticPaths = async () => {
 //   try {
 //     const res = await fetch('https://twitter-clone-server-nu.vercel.app/api/tweets');
-//     const data = await res.json();    
+//     const data = await res.json();
 //     const paths = data?.map((tweet:any) => ({
 //       params: {
 //         quoted: tweet?._id.toString()
@@ -72,6 +72,7 @@ export const getServerSideProps = async (context:any) => {
 //     };
 //   }
 // };
+
 const quoted = ({quotedData}: any) => {
 
   const [quotedProps, setQuotedProps] = useState<any>(quotedData)
