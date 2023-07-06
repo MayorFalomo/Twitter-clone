@@ -26,8 +26,6 @@ Tweeks is a full MERN Stack project and Twitter clone with both Backend and Fron
 
 ## Demo
 
-
-
 https://tweeks.netlify.app/register
 ## License
 

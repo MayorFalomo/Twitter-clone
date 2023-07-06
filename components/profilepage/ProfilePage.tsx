@@ -20,6 +20,7 @@ const ProfilePage = (props: any) => {
     const [current, setCurrent] = useState<any>(0)
   const [following, setNoOfFollowing] = useState<any>(currentUser?.following?.length)
 
+  //Function takes in an argument and uses it to switch through components
      const handleClick = (param: any) => {
     setCurrent(param);
     };

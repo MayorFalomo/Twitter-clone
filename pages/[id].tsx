@@ -97,7 +97,7 @@ const Id = ({tweetData}:any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false)
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false)
 
-
+//Function to handle Retweet
   const handleAddRetweet = async () => {
     setRetweetModal(false)
     const retweetData = {
@@ -112,6 +112,7 @@ const Id = ({tweetData}:any) => {
     await axios.put(`https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`, retweetData).catch((err) => console.log(err))
   }
 
+  //Function to handle remove Retweet
    const removeRetweet = async () => {
     setRetweet(false)
     const retweetData = {
@@ -126,7 +127,7 @@ const Id = ({tweetData}:any) => {
     setNoOfRetweetArray(retweetArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
   
-  
+  //Function to handle Likes
    const handleLikeEvent = () => {
 
     if (likesArray.includes(likesArray.username)) {
@@ -162,6 +163,7 @@ const Id = ({tweetData}:any) => {
   //   setNoOfLikesArray(likesArray.length + 1 );
   // }
 
+  //Function to handle removing like
   const removeLike = async () => {
     SetLikeTweet(false)
     const likeData = {
@@ -174,6 +176,7 @@ const Id = ({tweetData}:any) => {
     setNoOfLikesArray(likesArray?.length - 1)	//filtered is a array with all the items that are not the likeData.username, this is the
   }
 
+  //Function to handle adding bookmark
    const handleBookmark = () => {
     const bookmarkData = {
       profileDp: tweetProps?.profileDp,
@@ -204,6 +207,7 @@ const Id = ({tweetData}:any) => {
      setQuotedCommentModal(true)
   };
 
+  //Function to handle Quoted and Retweet modal
   const handleOpenAndClose = (e: any) => {
     e.preventDefault()
     setQuotedCommentModal(true);
@@ -213,6 +217,7 @@ const Id = ({tweetData}:any) => {
  
    const [views, setViews] = useState<number>(0)
   
+  //useEffect to handle number of Views
       useEffect(() => {
     const view = Math.floor(Math.random() * suggestedUsers?.length);
     setViews(view)

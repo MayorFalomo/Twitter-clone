@@ -86,7 +86,7 @@ const EditProfileModal = (props: any) => {
             setLocation("")
             setLinks("")
             setEditDateActive(false)
-            setCurrentUser({ ...currentUser, updatedUser })
+            setCurrentUser({ ...currentUser, ...updatedUser })
             props.setEditProfileModal(false)
             } catch (err) {
             console.log(err);
