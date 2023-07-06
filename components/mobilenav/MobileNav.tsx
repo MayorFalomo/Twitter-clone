@@ -20,6 +20,7 @@ const MobileNav = (props: Props) => {
   const [user, setUser] = useState();
   const [lengthOfNotification, setLengthOfNotification] = useState<any>([])
 
+  //useEffect to get a single user.
   useEffect(() => {
     if (currentUser !== null) {
       axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/get-user/${currentUser?.username}`)
@@ -27,6 +28,7 @@ const MobileNav = (props: Props) => {
     }
   }, [currentUser?.username, currentRoute])
 
+    //useEffect to check the present Length of notifications
    useEffect(() => {
      const notify = async () => {
        await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications`)

@@ -86,9 +86,7 @@ const Notifications = () => {
   const { currentUser, notifications, setNotifications } = useContext(AppContext);
   const [notification, setNotification] = useState<string[]>([]);
 
-  useEffect(() => {
-    // console.log(currentUser?.notifications);
-    
+  useEffect(() => {    
     const fetchNotifications = async () => {
       try {
          const res =await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications` );
@@ -104,6 +102,7 @@ const Notifications = () => {
     fetchNotifications();
   }, [currentUser?._id]);
 
+  //useEffect to handle time before notifications clear
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
        const delayInMilliseconds = 30 * 1000; // 3 minutes in milliseconds
@@ -118,6 +117,7 @@ const Notifications = () => {
     clearNotificationsAfterDelay();
   }, []);
 
+  //Function to handle clearing notifications
   const handleClearNotifications = async () => {
     try {
      const res = await axios.put(`https://twitter-clone-server-nu.vercel.app/api/users/clear-notifications/clear`, {

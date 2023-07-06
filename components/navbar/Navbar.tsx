@@ -37,6 +37,7 @@ const Navbar = (props: any) => {
   })
   }
 
+  //Function to handle LogOut
   const handleActive = () => {
     if (logOut) {
       setLogOut(false)
@@ -45,6 +46,7 @@ const Navbar = (props: any) => {
     }
   }
 
+  //useEffect to check the present Length of notifications
   useEffect(() => {
     const notify = async () => {
  await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications`)
