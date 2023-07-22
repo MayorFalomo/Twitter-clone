@@ -49,8 +49,8 @@ export const ProfileStyled = styled.div`
         }
     }
     .profileDp{
-        height:300px;
-        width: 300px;
+        height:200px;
+        width: 200px;
         border-radius: 50%;
         background-color: black;
         background-position: center;
@@ -63,14 +63,14 @@ export const ProfileStyled = styled.div`
         bottom: -150px;
         left: 20px;
         @media (max-width: 600px ) {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             position: absolute;
             bottom: -90px;
         }
         @media (max-width: 400px ) {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             position: absolute;
             left: 5px;
             bottom: -50px;
@@ -214,8 +214,8 @@ export const ProfileStyled = styled.div`
         border-bottom: 2px rgb(47, 51, 54) solid;
     }
     .profileDp{
-        height:300px;
-        width: 300px;
+        height:350px;
+        width: 250px;
         border-radius: 50%;
         background-color: black;
         background-position: center;

@@ -129,13 +129,13 @@ useEffect(() => {
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
   }, [cookies.user])
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then((registration) => console.log('scope is: ', registration.scope));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if ('serviceWorker' in navigator) {
+  //     navigator.serviceWorker
+  //       .register('/service-worker.js')
+  //       .then((registration) => console.log('scope is: ', registration.scope));
+  //   }
+  // }, []);
   
   
   //useEffect to load all registered users

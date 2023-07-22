@@ -97,9 +97,9 @@ const register = (props: any) => {
         // links: "https://mayowa-falomo.netlify.app"
       }
      
-      axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).then(() =>
-        router.push("/")
-      ).then(() =>  window.location.reload() ).catch((err) =>  err && setIsAuth(true))
+      axios.post("https://twitter-clone-server-nu.vercel.app/api/users/register", userInfo).then(() => router.push("/"))
+        .then(() => window.location.reload())
+        .catch((err) => err && setIsAuth(true))
         setDoc(doc(db, "users", res.user.uid), {
             uid: res.user.uid,
             username: userNames,

@@ -55,8 +55,8 @@ form{
         object-position: center;
         }
         .profilePicBg{
-            height: 180px;
-            width: 180px;
+            height: 120px;
+            width: 120px;
             border-radius: 50%;
             border: 1px white solid;
             position: absolute;
