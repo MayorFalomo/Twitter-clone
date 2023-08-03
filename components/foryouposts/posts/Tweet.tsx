@@ -146,7 +146,7 @@ const Tweet = (props: any) => {
             </div>
                   <div>{<BiDotsHorizontalRounded className='biDots' cursor='pointer' />} </div>
           </div>
-          <Link href={'/posts/' + props.tweet?._id} className='tweet-caption' >{props.tweet?.tweet} </Link>
+          <p className='tweet-caption' >{props.tweet?.tweet} </p>
           {props.tweet?.picture?.length > 1 ? <div style={{ backgroundImage: `url(${props.tweet?.picture})` }} className='tweet-image' ></div> : ""}
           {props.tweet?.video?.length > 1 ? <video className='tweetVideo' src={`${props.tweet?.video}`} controls ></video>  : "" }
           <div className='tweetOptions'>
