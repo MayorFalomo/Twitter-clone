@@ -76,7 +76,6 @@ const Singleusertweets = (props: any) => {
      setCommentModal(true)
   };
 
-  console.log(props.allTweets, "This object");
   // console.log("hello");
 
   

@@ -34,7 +34,7 @@ export const ProfileStyled = styled.div`
     }
     .profilePhotoContainers{
         position: relative;
-.backDropPhoto{
+        .backDropPhoto{
         background-color: black;
         background-position: center;
         background-repeat:no-repeat;

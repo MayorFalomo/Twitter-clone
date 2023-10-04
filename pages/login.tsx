@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/rules-of-hooks */
+import { LoginContainer } from '@/styles/Login.styled'
 import React, {useContext, useState} from 'react'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import {auth, provider} from '../firebase-config'
@@ -10,7 +11,6 @@ import {FcGoogle} from 'react-icons/fc'
 import axios from 'axios'
 import { BsTwitter } from 'react-icons/bs'
 import { IoMdClose } from 'react-icons/io'
-import { LoginContainer } from '@/styles/Login.styled'
 import Link from 'next/link'
 
 

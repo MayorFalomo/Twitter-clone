@@ -10,7 +10,7 @@ export const UserTweetStyle = styled.div`
         justify-content: center;
         align-items: center;
         height: 30vh;
-            font-size: calc( 14px + 0.25vw);
+        font-size: calc( 14px + 0.25vw);
     }
     p{
 

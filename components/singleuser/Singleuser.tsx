@@ -121,7 +121,7 @@ const Singleuser = (props: any) => {
                     {currentUser?.username === props.user?.username ? <div className='editProfileBtn'><button> Your profile </button></div> :
                         <div className='profilePageIcons' >
                         {/* <span>{<BiDotsHorizontalRounded />} </span> */}
-                        <Link href='/messages' ><span>{<RxEnvelopeClosed />} </span></Link>
+                        <Link href='/messages' ><span>{<RxEnvelopeClosed width={40} height={40} />} </span></Link>
                         {/* <span>{<MdOutlineNotificationAdd />} </span> */}
                             <div className='singleUserFollow' >
                                 {currentUser?.following?.some((e: any) => e.usersId === props.user?._id) ?

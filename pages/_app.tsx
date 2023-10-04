@@ -59,9 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
         throw new Error("User ID not found");
       }
     })
-   .then((res) => {
-      // console.log(res.user, "This is res.user");
-      
+   .then((res) => {      
       setUser(res.user);
     })
     .catch((err) => {
@@ -83,11 +81,12 @@ useEffect(() => {
        setIsLoading(true);
       // setIsPreload(true);
       try {
-        const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets?page=${currentPage}&search=$=${searchTweets}`);
-        const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
-        setTweets((prevTweets: any) => [...prevTweets, ...tweetsArray]);
-        setCurrentPage((prevPage) => prevPage + 1);
-        // setIsPreload(false)
+        const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
+        // const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
+        // setTweets((prevTweets: any) => [...prevTweets, ...tweetsArray]);
+        // setCurrentPage((prevPage) => prevPage + 1);   
+        const tweeks =  [...res.data].reverse()
+        setTweets(tweeks)
       } catch (error) {
         console.error('Error fetching tweets:', error);
       }
@@ -96,12 +95,13 @@ useEffect(() => {
       // setIsPreload(false)
     }
    };
-  // 
-
-   useEffect(() => {
+  
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const isIntersecting = entries[0].isIntersecting;
       setIsIntersecting(isIntersecting);
+      console.log(isIntersecting, "Inside the UseEffect");
+      
     });
 
     if (observerRef.current) {
@@ -113,14 +113,41 @@ useEffect(() => {
         observer.unobserve(observerRef.current);
       }
     };
-   }, [isLoading]);
-  
-  
+  }, []);
+
+
   useEffect(() => {
-    if (!isIntersecting && !isLoading) {
-      fetchMoreTweets();
-    }
-  }, [isIntersecting, isLoading]);
+          fetchMoreTweets();
+  //  console.log(isIntersecting, "Is intersecting work");
+  //     console.log(isLoading, "Is Loading State");
+  //   if (isIntersecting && isLoading) {
+   
+  //   }
+  }, []);
+
+  //  useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     const isIntersecting = entries[0].isIntersecting;
+  //     setIsIntersecting(isIntersecting);
+  //   });
+
+  //   if (observerRef.current) {
+  //     observer.observe(observerRef.current);
+  //   }
+
+  //   return () => {
+  //     if (observerRef.current) {
+  //       observer.unobserve(observerRef.current);
+  //     }
+  //   };
+  //  }, [isLoading]);
+  
+  
+  // useEffect(() => {
+  //   if (!isIntersecting && !isLoading) {
+  //     fetchMoreTweets();
+  //   }
+  // }, [isIntersecting, isLoading]);
 
  
 //useEffect to load the currentUser info
@@ -162,7 +189,7 @@ useEffect(() => {
 
   const [noOfFollowing, setNoOfFollowing] = useState(currentUser?.following?.length);
   
-    const [notifications, setNotifications] = useState<any>();  
+    const [notifications, setNotifications] = useState<any>();
   
 
   const INITIAL_STATE = {

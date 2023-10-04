@@ -27,7 +27,7 @@ const Tweets = (props: any) => {
             </div>
               )            
           })}
-          <div ref={observerRef} style={{ height: '10px' }} />
+          <div ref={observerRef} style={{ height: '10px'}} />
           <div className="quill" onClick={() => setTweetModal(true)} ><p className="tweetIconBtn" >{<RiQuillPenLine style={{ background: '#1d9aef', padding: "10px 10px", fontSize: 55, borderRadius: "50px" }} />} </p></div>
           {TweetModal && <div className={tweetModal ? "active" : "inactive"} ><TweetModal/></div> }
                   {addedToBookmark ? <p className="bookmarkAdded" >Tweet added to bookmark</p> : ""}

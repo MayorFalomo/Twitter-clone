@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsArrowLeftShort, BsCardImage, BsEmojiSmile, BsEmojiSmileUpsideDown } from "react-icons/bs";
 import { AiOutlineBars, AiOutlineFileGif } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";

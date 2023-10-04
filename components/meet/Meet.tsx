@@ -39,7 +39,6 @@ const Meet = (props: any) => {
 
   //Handle follow of a user
      const handleFollow = async () => {
-    // e.preventDefault()
     setFollowingButton(true)
            const followAUser = {
             currentUserName: currentUser?.username, 		//username of the user who is following the current user.

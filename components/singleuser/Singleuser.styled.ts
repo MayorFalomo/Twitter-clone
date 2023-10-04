@@ -55,8 +55,8 @@ export const SingleUserStyle = styled.div`
         }
     }
     .profileDp{
-        height:200px;
-        width: 200px;
+        height:150px;
+        width: 150px;
         border-radius: 50%;
         background-color: black;
         background-position: center;
@@ -168,7 +168,7 @@ export const SingleUserStyle = styled.div`
         span{
             border: 1px rgb(47, 51, 54) solid;
             border-radius: 50% ;
-            padding: 15px;
+            padding: 10px 15px;
             font-size: calc(20px + 0.25vw);
         };
         .singleUserFollow{

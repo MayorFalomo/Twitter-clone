@@ -89,9 +89,13 @@ export const NavContainer = styled.div`
           /* border: #1d9aef 2px solid; */
           .noOfNotifications {
             position: absolute;
-            left: 15px;
+            left: 5px;
             top: 5px;
-            padding: 5px;
+           width: 20px;
+           height: 20px;
+           display: flex;
+           justify-content: center;
+           transform: translate(40%, -15%);
             background-color: #1d9aef;
             color: #fff;
             border-radius: 50%;

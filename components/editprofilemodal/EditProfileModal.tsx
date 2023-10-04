@@ -102,10 +102,7 @@ const EditProfileModal = (props: any) => {
     }
     const handleYear = (e:any) => {
         setCurrentYear(e.target.value)
-    }
-
-    // console.log(props.userProfile);
-    // console.log(profilePic);
+    } 
     
     
     return (

@@ -51,7 +51,7 @@ const Navbar = (props: any) => {
     const notify = async () => {
  await axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}/get-notifications`)
       .then((res: any) => setLengthOfNotification(res.data))
-    .catch((err) => console.log(err) )
+    .catch((err) => console.log("No new Notifications") )
     }
     notify()
   },[currentUser?._id])

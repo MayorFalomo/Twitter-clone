@@ -105,7 +105,7 @@ const Notifications = () => {
   //useEffect to handle time before notifications clear
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
-       const delayInMilliseconds = 30 * 1000; // 3 minutes in milliseconds
+       const delayInMilliseconds =  90 * 24 * 60 * 60 * 1000; // 3 minutes in milliseconds
       const timeout = setTimeout(() => {
         handleClearNotifications();
       }, delayInMilliseconds); // 10 seconds delay

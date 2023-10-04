@@ -27,7 +27,11 @@ export const MobileNavStyle = styled.div`
             left: 5px;
             top: 2px;
             background-color: #1d9aef;
-            padding: 5px;
+            width: 20px;
+           height: 20px;
+           display: flex;
+           justify-content: center;
+           transform: translate(-10%, -45%);
             font-size: calc(10px + 0.25vw);
             border-radius: 50%;
         }

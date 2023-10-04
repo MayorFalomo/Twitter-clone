@@ -19,7 +19,9 @@ const Message = (props: any) => {
       <MessageStyle>
             <div className='messageContainer' ref={ref} >
                 <div className={currentUser?._id == props.message?.senderId ? "currentUserTextContainer" : 'userTextContainer'} >
-                    <p style={{ color: 'white' }} className={currentUser?._id == props.message?.senderId ? 'currentUsersText' : "usersText"} >{props.message?.texts?.length > 1 ? props.message?.texts : ""} </p>
+                    <p style={{ color: 'white' }}
+                        className={currentUser?._id == props.message?.senderId ? 'currentUsersText' : "usersText"} >
+                        {props.message?.texts?.length > 1 ? props.message?.texts : ""} </p>
                 </div>
 
                 {props.message?.picture == undefined ? "" :
