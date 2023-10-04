@@ -45,8 +45,10 @@ const ProfilePage = (props: any) => {
             <div className={props.editProfileModal ? 'editProfileModal' : "removeModal"} >{props.editProfileModal ?
               <EditProfileModal userProfile={props.userProfile} setUserProfile={props.setUserProfile} setEditProfileModal={props.setEditProfileModal} /> : ""}</div>
             <div className='userDetailsContainer' >
+              <div style={{display: 'flex', alignItems: 'center', gap: '10px'}} >
               <h1 style={{ fontWeight: 800 }} >{currentUser?.username} </h1>
-              <span style={{ color: '#1d9aef' }}  >{currentUser?.followers?.length > 5 ? <MdOutlineVerified /> : ""}</span>
+                <span style={{ color: '#1d9aef' }} className='verifiedIcon' >{currentUser?.followers?.length > 5 ? <MdOutlineVerified /> : ""}</span>
+                </div>
               <p style={{ color: "#575B5F", fontWeight: 500 }} >{currentUser?.usersAt} </p>
               <div className='usersBio' style={{ margin: '30px auto', fontWeight: 500 }}>
                 <p>{currentUser?.bio} </p>

@@ -97,7 +97,7 @@ export const ProfileStyled = styled.div`
     .userDetailsContainer{
         margin-top: 60px;
         padding: 10px;
-          @media (max-width: 600px ) {
+        @media (max-width: 600px ) {
           margin-top: 0px;
         }
         h1{
@@ -105,6 +105,9 @@ export const ProfileStyled = styled.div`
         }
         p{
         font-size: calc(16px + 0.25vw);
+        }
+        .verifiedIcon{
+             font-size: calc(26px + 0.25vw);
         }
         .usersBio{
             p{

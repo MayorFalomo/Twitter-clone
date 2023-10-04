@@ -95,6 +95,8 @@ export const NavContainer = styled.div`
            height: 20px;
            display: flex;
            justify-content: center;
+           align-items: center;
+           padding: 5px 10px;
            transform: translate(40%, -15%);
             background-color: #1d9aef;
             color: #fff;
