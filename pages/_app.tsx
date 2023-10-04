@@ -77,53 +77,72 @@ useEffect(() => {
   
 
    const fetchMoreTweets = async () => {
-     if (!isLoading) {
+    //  if (!isLoading) {
        setIsLoading(true);
       // setIsPreload(true);
       try {
         const res = await axios.get(`https://twitter-clone-server-nu.vercel.app/api/tweets`);
-        // const tweetsArray = Array.isArray(res.data) ? res.data : Array.from(res.data);
-        // setTweets((prevTweets: any) => [...prevTweets, ...tweetsArray]);
-        // setCurrentPage((prevPage) => prevPage + 1);   
+        // console.log(res, "This is Res");
+        
+        // const data = await res.data
+                // console.log(data, "This is Res");
+        // setTweets((prevTweets: any) => [...prevTweets, ...data]);
+        // setCurrentPage((prevPage) => prevPage + 1);
         const tweeks =  [...res.data].reverse()
         setTweets(tweeks)
       } catch (error) {
         console.error('Error fetching tweets:', error);
+      } finally {
+          setIsLoading(false);
+     
       }
-       setIsLoading(false);
-      // setIsPreload(false); // Hide preload screen after initial fetch
-      // setIsPreload(false)
-    }
    };
-  
+
+
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const isIntersecting = entries[0].isIntersecting;
-      setIsIntersecting(isIntersecting);
-      console.log(isIntersecting, "Inside the UseEffect");
+    fetchMoreTweets();
+  }, []);
+    
+
+//  useEffect(() => {
+//     const handleScroll = () => {
+//       const viewportHeight = window.innerHeight;
+//       const scrollPosition = window.scrollY;
+//       console.log(viewportHeight, "This is ViewPort height");
       
-    });
+//       // Set the threshold height as a fraction of the viewport height, adjust as needed
+//       const thresholdFraction = 0.5;
+//       const thresholdHeight = viewportHeight * thresholdFraction;
 
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
+//       // Check if the scroll position is greater than or equal to the threshold height
+//       if (scrollPosition >= thresholdHeight) {
+//         console.log('Hello');
+//       }
+//     };
 
-    return () => {
-      if (observerRef.current) {
-        observer.unobserve(observerRef.current);
-      }
-    };
-  }, []);
+//     // Attach the event listener to the scroll event
+//     window.addEventListener('scroll', handleScroll);
 
+//     // Clean up the event listener on component unmount
+//     return () => {
+//       window.removeEventListener('scroll', handleScroll);
+//     };
+//   }, []);
+//   const handleScroll = () => {
+//   const isAtBottom =
+//     window.innerHeight + document.documentElement.scrollTop + 700 >=
+//     document.documentElement.offsetHeight;
 
-  useEffect(() => {
-          fetchMoreTweets();
-  //  console.log(isIntersecting, "Is intersecting work");
-  //     console.log(isLoading, "Is Loading State");
-  //   if (isIntersecting && isLoading) {
-   
-  //   }
-  }, []);
+//   if (isAtBottom && !isLoading) {
+//     console.log("Reached the bottom");
+//     fetchMoreTweets();
+//   }
+// };
+
+// useEffect(() => {
+//   window.addEventListener('scroll', handleScroll);
+//   return () => window.removeEventListener('scroll', handleScroll);
+// }, [isLoading, fetchMoreTweets]);
 
   //  useEffect(() => {
   //   const observer = new IntersectionObserver((entries) => {
@@ -151,18 +170,11 @@ useEffect(() => {
 
  
 //useEffect to load the currentUser info
+  
   useEffect(() => {
     axios.get(`https://twitter-clone-server-nu.vercel.app/api/users/${cookies.user}`)
       .then((res: any) => setCurrentUser(res.data)).catch((err: any) => console.log(err))
   }, [cookies.user])
-
-  // useEffect(() => {
-  //   if ('serviceWorker' in navigator) {
-  //     navigator.serviceWorker
-  //       .register('/service-worker.js')
-  //       .then((registration) => console.log('scope is: ', registration.scope));
-  //   }
-  // }, []);
   
   
   //useEffect to load all registered users
@@ -243,7 +255,7 @@ useEffect(() => {
         navigation,
         setNavigation,
         isLoading,
-        isIntersecting,
+        // isIntersecting,
       }}>
         <ChatContext.Provider value={{ data: state, dispatch }} >
           <GlobalStyle />
