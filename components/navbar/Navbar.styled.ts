@@ -9,6 +9,7 @@ export const NavContainer = styled.div`
     .navContainer::-webkit-scrollbar{
       width: 0;
     }
+    
   .navContainer {
     display: flex;
     flex-direction: column;
