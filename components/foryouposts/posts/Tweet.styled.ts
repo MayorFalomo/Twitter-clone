@@ -207,14 +207,26 @@ padding: 10px;
     transform: translate(-50%, -50%);
     /* top: 0;
     left: 0; */
-    width: 70%;
-    height: 70%;
-    z-index: 999999;
+    width: 90%;
+    height: 90%;
+    z-index: 99999999999999999999;
+    @media (max-width: 1100px) {
+        width: 100%;
+        max-height: 100%;
+    }
+    @media (max-width: 600px) {
+      
+    }
+    .picsModal{
+  width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
     .closeModalBtn{
         position: absolute;
         top: 20px;
         right: 20px;
-        font-size: 25px;
+        font-size: 19px;
         color: #1d9aef;
         background-color: #E2E4E4;
         cursor: pointer;

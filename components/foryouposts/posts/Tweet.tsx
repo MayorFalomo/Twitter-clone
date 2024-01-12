@@ -332,18 +332,27 @@ const Tweet = (props: any) => {
           </div>
         </div>
         {openPictureModal ? (
-          <div className="pictureModal">
+          <div
+            style={{
+              backgroundImage: `url(${props?.tweet?.picture})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+            className="pictureModal"
+          >
             <span
               className="closeModalBtn"
               onClick={() => setOpenPictureModal(false)}
             >
               close{" "}
             </span>
-            <img
-              style={{ width: "100%", height: "100%" }}
+            {/* <img
+              className="picsModal"
+              style={{ width: "100%", height: "auto" }}
               src={props.tweet?.picture}
               alt="tweet"
-            />
+            /> */}
           </div>
         ) : (
           ""
