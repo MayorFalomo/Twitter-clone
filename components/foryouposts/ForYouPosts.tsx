@@ -96,7 +96,8 @@ const ForYouPosts = (props: any) => {
         newTweet
       );
       // window.location.replace("/tweets/" + res.data._id)
-      setTweets([...tweets, newTweet].reverse());
+      setTweets([newTweet, ...tweets]);
+      // setTweets([...tweets, newTweet].reverse());
       setTweet(" ");
       setPicture("");
       setVideo("");

@@ -200,6 +200,27 @@ padding: 10px;
         }
     }
 }
-
+.pictureModal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* top: 0;
+    left: 0; */
+    width: 70%;
+    height: 70%;
+    z-index: 999999;
+    .closeModalBtn{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 25px;
+        color: #1d9aef;
+        background-color: #E2E4E4;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+}
 }
 `
