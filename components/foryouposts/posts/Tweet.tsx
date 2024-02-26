@@ -166,8 +166,13 @@ const Tweet = (props: any) => {
 
   useEffect(() => {
     const view = Math.floor(Math.random() * suggestedUsers?.length);
+    // console.log(view, "This is view");
+    // console.log(suggestedUsers?.length, "suggested User");
+
     setViews(view);
   }, []);
+
+  // console.log(views, "This is view");
 
   return (
     <Tweetstyled>

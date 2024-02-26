@@ -156,6 +156,9 @@ export const SingleUserStyle = styled.div`
         p{
             font-size: calc(16px + 0.25vw);
         }
+        p:hover{
+            text-decoration: underline;
+        }
         /* font-size: calc(18px + 0.25vw); */
     }
     .profilePageIcons{

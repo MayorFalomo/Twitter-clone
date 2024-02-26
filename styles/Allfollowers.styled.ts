@@ -76,6 +76,7 @@ export const AllFollowersStyle = styled.div`
         top: 0;
         left: 0;
         z-index: 9;
+        border-bottom: 1px #2F3336 solid;
     }
     .mappedContainer{
         display: flex;

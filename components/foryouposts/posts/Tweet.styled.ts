@@ -29,8 +29,10 @@ padding: 10px;
     background-repeat: no-repeat;
     background-size: cover;
     // border: 1px white solid;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
+    min-height: 60px;
+    min-height: 60px;
     border-radius:50%;
     @media (max-width: 500px ) {
         width: 50px;

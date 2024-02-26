@@ -30,6 +30,17 @@ const register = (props: any) => {
   const [name, setName] = useState("");
   const [isAuth, setIsAuth] = useState<boolean>(false);
 
+  function dec2hex(dec: any) {
+    return dec.toString(16).padStart(2, "0");
+  }
+
+  // generateId :: Integer -> String
+  function generateId(len: any) {
+    var arr = new Uint8Array((len || 40) / 2);
+    window.crypto.getRandomValues(arr);
+    return Array.from(arr, dec2hex).join("");
+  }
+
   //Sign Up With Google
   const signUpWithGoogle = async () => {
     try {
@@ -55,6 +66,7 @@ const register = (props: any) => {
           location: "Lagos, Nigeria",
           birthday: "April 19th, 2023",
           links: "https://mayowa-falomo.netlify.app",
+          usersId: generateId(24),
         };
         axios
           .post(
@@ -102,6 +114,8 @@ const register = (props: any) => {
           notifications: [],
           retweeted: [],
           bio: "Regular Human",
+          usersId: generateId(24),
+
           // location: "Lagos, Nigeria",
           // birthday: "April 19th, 1999",
           // links: "https://mayowa-falomo.netlify.app"
