@@ -29,6 +29,8 @@ export const MobileNavStyle = styled.div`
             background-color: #1d9aef;
             width: 20px;
            height: 20px;
+           min-width: 20px;
+           min-height: 20px;
            display: flex;
            justify-content: center;
            transform: translate(-10%, -45%);
