@@ -18,7 +18,7 @@ export const getServerSideProps = async (context: any) => {
   const currentName = allfollowing;
 
   const res = await fetch(
-    `http://localhost:7000/api/users/${currentName}/all-following`
+    `https://twitter-clone-server-nu.vercel.app/api/users/${currentName}/all-following`
   );
   const data = await res.json();
 
@@ -31,7 +31,7 @@ export const getServerSideProps = async (context: any) => {
 };
 
 const allfollowing = ({ userData, currentName }: any) => {
-  console.log(userData, "USerdata");
+  // console.log(userData, "USerdata");
   // console.log(currentName, "currentName");
   const [allFollowers, setAllFollowers] = useState<[]>([]);
 
