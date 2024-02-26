@@ -64,9 +64,9 @@ export const AllFollowersStyle = styled.div`
     overflow: auto;
     border: 1px rgb(47, 51, 54) solid;
     .connectDetails{
-        display: flex;
+        /* display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 10px; */
         padding: 20px;
         background: rgba(255, 255, 255, 0);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
@@ -77,6 +77,20 @@ export const AllFollowersStyle = styled.div`
         left: 0;
         z-index: 9;
         border-bottom: 1px #2F3336 solid;
+        p{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .shortArrow{
+          font-size: calc(22px + 0.25vw );
+        }
+        .followingName{
+          font-size: calc(18px + 0.25vw );
+          @media (max-width: 450px) {
+                      font-size: calc(15px + 0.25vw );
+          }
+        }
     }
     .mappedContainer{
         display: flex;

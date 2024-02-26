@@ -9,6 +9,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 type Props = {};
 
@@ -41,14 +42,21 @@ const allfollowing = ({ userData, currentName }: any) => {
         <Navbar />
         <div className="centerGridContainer">
           <div className="connectDetails">
-            <Link
-              href={"/users/" + currentName}
-              style={{ listStyle: "none" }}
-              className="arrowBack"
-            >
-              {<BsArrowLeft cursor="pointer" fontSize={25} />}{" "}
-            </Link>
-            <h2 style={{ marginLeft: "20px" }}> {currentName}'s Following</h2>
+            <p>
+              <Link
+                href={"/users/" + currentName}
+                style={{ listStyle: "none" }}
+                className="arrowBack"
+              >
+                <span className="shortArrow">
+                  {<IoIosArrowRoundBack cursor="pointer" />}{" "}
+                </span>
+              </Link>
+              <span className="followingName" style={{ marginLeft: "5px" }}>
+                {" "}
+                {currentName}'s following
+              </span>
+            </p>
           </div>
           {/* <h3 > </h3> */}
           <div className="mappedContainer">

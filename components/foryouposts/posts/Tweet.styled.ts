@@ -37,6 +37,8 @@ padding: 10px;
     @media (max-width: 500px ) {
         width: 50px;
         height: 50px;
+        min-width: 40px;
+        min-height: 40px;
     }
 }
 .subPostsContainer{
