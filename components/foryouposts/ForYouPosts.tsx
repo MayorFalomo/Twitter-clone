@@ -12,6 +12,8 @@ import axios from "axios";
 import { AppContext } from "@/helpers/Helpers";
 import moment from "moment";
 import EmojiPicker from "emoji-picker-react";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 type Props = {};
 
@@ -139,33 +141,43 @@ const ForYouPosts = (props: any) => {
             )}
             <div className="flexIcons">
               <div className="tweetIcons">
-                <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
-                  {<BsCardImage />}
-                </label>
+                <Tippy content="image" placement="bottom">
+                  <label htmlFor="fileInputImage" style={{ cursor: "pointer" }}>
+                    {<BsCardImage />}
+                  </label>
+                </Tippy>
                 <input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files)}
                   id="fileInputImage"
                   style={{ display: "none" }}
                 />
-                <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
-                  {<AiOutlineFileGif />}
-                </label>
+                <Tippy content="video" placement="bottom">
+                  <label htmlFor="fileInputGif" style={{ cursor: "pointer" }}>
+                    {<AiOutlineFileGif />}
+                  </label>
+                </Tippy>
                 <input
                   type="file"
                   onChange={(e) => uploadVideo(e.target.files)}
                   id="fileInputGif"
                   style={{ display: "none" }}
                 />
-                <span>{<AiOutlineBars cursor="pointer" />} </span>
+                <Tippy content="poll" placement="bottom">
+                  <span className="locationIcon">{<AiOutlineBars />} </span>
+                </Tippy>
                 {emoji ? (
-                  <span onClick={() => setEmoji(false)}>
-                    {<BsEmojiSmileUpsideDown cursor="pointer" />}
-                  </span>
+                  <Tippy content="emoji" placement="bottom">
+                    <span onClick={() => setEmoji(false)}>
+                      {<BsEmojiSmileUpsideDown cursor="pointer" />}
+                    </span>
+                  </Tippy>
                 ) : (
-                  <span onClick={() => setEmoji(true)}>
-                    {<BsEmojiSmile cursor="pointer" />}
-                  </span>
+                  <Tippy content="emoji" placement="bottom">
+                    <span onClick={() => setEmoji(true)}>
+                      {<BsEmojiSmile cursor="pointer" />}
+                    </span>
+                  </Tippy>
                 )}
                 {emoji ? (
                   <div className="pickerEmoji">
@@ -178,8 +190,12 @@ const ForYouPosts = (props: any) => {
                   ""
                 )}
 
-                <span>{<TbCalendarTime cursor="pointer" />} </span>
-                <span className="locationIcon">{<IoLocationOutline />} </span>
+                <Tippy content="schedule" placement="bottom">
+                  <span className="locationIcon">{<TbCalendarTime />} </span>
+                </Tippy>
+                <Tippy content="location" placement="bottom">
+                  <span className="locationIcon">{<IoLocationOutline />} </span>
+                </Tippy>
               </div>
               {everyOne ? (
                 <div className="tweetButton">

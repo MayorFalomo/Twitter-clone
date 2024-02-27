@@ -3,11 +3,17 @@
 
 Tweeks is a full MERN Stack project and Twitter clone with both Backend and Frontend functionalities, The idea was to create something very similar to twitter in terms of both looks and at least some of it's functionalities.
 
+## Demo
+https://tweeks.netlify.app/
+
+![Logo](https://res.cloudinary.com/dsghy4siv/image/upload/v1693133147/qaffemcdlwdkhfujmg51.png)
+
 ## Features
 
 - Real-time messaging (pictures and videos included).
 - Receive Notifications when your post is liked, retweeted, quoted and commented on or being followed.
-- Notifications clear after 3 minutes though, this is to reduce the load on the database.
+- Option to view Tailored post for you based on your following
+- Notifications clear after 1 day though, this is to reduce the load on the database.
 - Follow and Unfollow other users.
 - commenting on a tweet and replying comments.
 - like and retweet comments.
@@ -16,6 +22,7 @@ Tweeks is a full MERN Stack project and Twitter clone with both Backend and Fron
 - Edit your profile.
 - View other peoples profiles.
 - Posting Tweets, pictures and videos.
+- See profiles you follow and your followers.
 - Connect with other users.
 - Search for a tweet(This is done from the backend not a simple filter method).
 - Get a verified badge if you get up to 5 followers.

@@ -76,13 +76,15 @@ export const ForYouContainer = styled.div`
           gap: 30px;
           .locationIcon {
             opacity: 0.5;
-            cursor: default;
+            cursor: not-allowed;
           }
           label{
               font-size: calc(22px + 0.25vw);
+              cursor: not-allowed;
           }
           span{
             font-size: calc(22px + 0.25vw);
+            cursor: not-allowed;
           }
         }
         .pickerEmoji{

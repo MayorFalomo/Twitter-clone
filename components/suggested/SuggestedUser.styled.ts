@@ -14,8 +14,10 @@ export const SuggestedStyle = styled.div`
         /* border: 2px red solid; */
         /* padding: 10px auto; */
         .profileImage{
-        width:90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
+        min-width:70px;
+        min-height: 70px;
         background-color: black;
         background-position: center;
         background-repeat: no-repeat;
@@ -35,7 +37,8 @@ export const SuggestedStyle = styled.div`
     }
     p{
         color: rgb(113,118,123);
-        font-size: 20px;
+         font-size: calc(1em + 1px)
+        /* font-size: 20px; */
     }
     }
     .btn-follow{

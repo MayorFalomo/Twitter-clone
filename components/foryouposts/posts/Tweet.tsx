@@ -14,6 +14,9 @@ import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import CommentModal from "@/components/commentmodal/Commentmodal";
 import { RxHeart } from "react-icons/rx";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
 type Props = {};
 
 //parent component is tweets
@@ -227,12 +230,14 @@ const Tweet = (props: any) => {
           )}
           <div className="tweetOptions">
             <div className="flexIconsAndValues">
-              <p onClick={handleClick}>
-                <FaRegComment
-                  className="likeIcon"
-                  style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                />
-              </p>
+              <Tippy content="comment" placement="bottom">
+                <p onClick={handleClick}>
+                  <FaRegComment
+                    className="likeIcon"
+                    style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                  />
+                </p>
+              </Tippy>
               <span>{props.tweet.comments?.length} </span>
               {commentModal ? (
                 <div className="activeModal">
@@ -247,77 +252,85 @@ const Tweet = (props: any) => {
             </div>
             <div className="flexIconsAndValues">
               {retweetArray && (
-                <p>
-                  {retweetArray.some(
-                    (e: any) => e.currentUserName == currentUser?.username
-                  ) ? (
-                    <AiOutlineRetweet
-                      onClick={removeRetweet}
-                      className="likeIcon"
-                      style={{
-                        color: "#00BA7C",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ) : (
-                    <AiOutlineRetweet
-                      className="likeIcon"
-                      onClick={handleAddRetweet}
-                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                    />
-                  )}
-                </p>
+                <Tippy content="retweet" placement="bottom">
+                  <p>
+                    {retweetArray.some(
+                      (e: any) => e.currentUserName == currentUser?.username
+                    ) ? (
+                      <AiOutlineRetweet
+                        onClick={removeRetweet}
+                        className="likeIcon"
+                        style={{
+                          color: "#00BA7C",
+                          cursor: "pointer",
+                        }}
+                      />
+                    ) : (
+                      <AiOutlineRetweet
+                        className="likeIcon"
+                        onClick={handleAddRetweet}
+                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                      />
+                    )}
+                  </p>
+                </Tippy>
               )}
               <span>{noOfRetweetArray} </span>
             </div>
             <div className="flexIconsAndValues">
               {likesArray && (
-                <p>
-                  {likesArray.some(
-                    (e: any) => e.currentUserName == currentUser?.username
-                  ) ? (
-                    <BsFillHeartFill
-                      onClick={removeLike}
-                      className="likeIcon"
-                      style={{
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ) : (
-                    <AiOutlineHeart
-                      className="likeIcon"
-                      onClick={handleAddLike}
-                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                    />
-                  )}
-                </p>
+                <Tippy content="like" placement="bottom">
+                  <p>
+                    {likesArray.some(
+                      (e: any) => e.currentUserName == currentUser?.username
+                    ) ? (
+                      <BsFillHeartFill
+                        onClick={removeLike}
+                        className="likeIcon"
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                        }}
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        className="likeIcon"
+                        onClick={handleAddLike}
+                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                      />
+                    )}
+                  </p>
+                </Tippy>
               )}
               <span>{noOfLikesArray} </span>
             </div>
             <div className="flexIconsAndValues">
-              <p>
-                {
-                  <BiBarChart
-                    className="likeIcon"
-                    style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                  />
-                }
-              </p>
+              <Tippy content="view" placement="bottom">
+                <p>
+                  {
+                    <BiBarChart
+                      className="likeIcon"
+                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                    />
+                  }
+                </p>
+              </Tippy>
               <span>
                 {views.toLocaleString()}
                 {views > 1000 ? "k" : ""}{" "}
               </span>
             </div>
             <div className="flexIconsAndValues">
-              <p onClick={handleBookmark}>
-                {
-                  <AiOutlineUpload
-                    className="likeIcon"
-                    style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                  />
-                }
-              </p>
+              <Tippy content="bookmark" placement="bottom">
+                <p onClick={handleBookmark}>
+                  {
+                    <AiOutlineUpload
+                      className="likeIcon"
+                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                    />
+                  }
+                </p>
+              </Tippy>
             </div>
           </div>
           <div className="showThread">

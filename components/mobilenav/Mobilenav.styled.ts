@@ -34,7 +34,7 @@ export const MobileNavStyle = styled.div`
            display: flex;
            justify-content: center;
            transform: translate(-10%, -45%);
-            font-size: calc(10px + 0.25vw);
+            font-size: calc(12px + 0.25vw);
             border-radius: 50%;
         }
     }

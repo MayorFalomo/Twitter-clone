@@ -35,10 +35,10 @@ padding: 10px;
     min-height: 60px;
     border-radius:50%;
     @media (max-width: 500px ) {
-        width: 50px;
-        height: 50px;
-        min-width: 40px;
-        min-height: 40px;
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
     }
 }
 .subPostsContainer{
@@ -56,10 +56,10 @@ padding: 10px;
             .userName{
             font-size: calc(18px + 0.25vw);
             @media (max-width: 445px ) {
-                font-size: calc(14px + 0.25vw);
+                font-size: 1em;
             }
             @media (max-width: 420px ) {
-                    font-size: calc(14px + 0.25vw);
+                    font-size: 1em;
                 }
             }
             .userName:hover{
