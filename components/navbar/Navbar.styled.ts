@@ -192,7 +192,8 @@ export const NavContainer = styled.div`
       border: 2px rgb(47, 51, 54) solid;
       height: 70px;
       width: 70px;
-      min-width: 50px;
+      min-width: 70px !important;
+      min-height: 70px !important;
       border-radius: 50%;
       margin-right: 10px;
       background-color: black;
@@ -200,10 +201,14 @@ export const NavContainer = styled.div`
       background-repeat: no-repeat;
       background-size: cover;
       object-fit: cover;
-       @media (max-width: 1300px) {
+       @media (max-width: 1400px) {
          position: absolute;
-         right: -10px;
+         right: 0px;
          z-index: 9999;
+          height: 40px;
+      width: 40px;
+          min-width: 40px;
+      min-height: 40px;
         }
     }
     .navProfile {
