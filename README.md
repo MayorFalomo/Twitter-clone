@@ -12,7 +12,7 @@ https://tweeks.netlify.app/
 
 - Real-time messaging (pictures and videos included).
 - Receive Notifications when your post is liked, retweeted, quoted and commented on or being followed.
-- Option to view Tailored post for you based on your following
+- View tailored tweets for you based on your following
 - Notifications clear after 1 day though, this is to reduce the load on the database.
 - Follow and Unfollow other users.
 - commenting on a tweet and replying comments.
@@ -31,9 +31,6 @@ https://tweeks.netlify.app/
 - All users by default get a birthday date,bio, location and a link, this is i simply did for UI purposes. all are editable later as you wish.
 - your login data is saved to a cookie so you never have to remember your password or username.
 
-## Demo
-
-https://tweeks.netlify.app/register
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
