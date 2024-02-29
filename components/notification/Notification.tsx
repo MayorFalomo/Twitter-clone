@@ -208,7 +208,6 @@ const Notifications = () => {
           }}
         >
           <p>No new notifications</p>
-          {/* <div className="mobileNav" > <MobileNav/></div> */}
         </div>
       );
     }

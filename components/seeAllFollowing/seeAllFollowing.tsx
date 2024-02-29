@@ -16,7 +16,7 @@ const SeeAllFollowing = (props: any) => {
   const [followingButton, setFollowingButton] = useState<boolean>(false);
   const [onMouseHover, setOnMouseHover] = useState<boolean>(false);
   const [urlParams, setUrlParams] = useState<string>(props.suggest?._id);
-  const [usernames, setUsernames] = useState<string>(props.suggest?.username);
+  const [usernames, setUsernames] = useState<string>(props.suggest?.name);
   const [usersAt, setUsersAt] = useState<string>(props.suggest?.usersAt);
   const [usersProfileDp, setUsersProfileDp] = useState<string>(
     props.suggest?.profilePic
@@ -53,7 +53,8 @@ const SeeAllFollowing = (props: any) => {
       userToAddToProfilePic: usersProfileDp, //username of the user who is following the current user.
       usersId: urlParams,
     };
-    //  console.log(followAUser, "This is followAuser");
+    console.log(props.suggest, "This Suggest props");
+    console.log(followAUser, "This is followAuser");
 
     try {
       setCurrentUser({

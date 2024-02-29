@@ -17,6 +17,7 @@ const FollowersPosts = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [addedToBookmark, setAddedToBookmark] = useState<boolean>(false);
 
+  //UseEffect to call tweets of those you're following
   useEffect(() => {
     if (currentUser) {
       axios
