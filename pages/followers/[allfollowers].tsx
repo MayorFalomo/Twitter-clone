@@ -69,7 +69,7 @@ const allfollowers = ({ userData, currentName }: any) => {
             ) : (
               <p style={{ textAlign: "center", marginTop: "60px" }}>
                 {" "}
-                This user has no following
+                This user currently has no followers
               </p>
             )}
           </div>
