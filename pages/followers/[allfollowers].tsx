@@ -58,11 +58,11 @@ const allfollowers = ({ userData, currentName }: any) => {
               </span>
             </p>
           </div>
-          {/* <h3 > </h3> */}
+
           <div className="mappedContainer">
-            {userData.length > 0 ? (
-              userData.map((suggest: any) => (
-                <div key={suggest.id} className="subMapped">
+            {userData?.length > 0 ? (
+              userData?.map((suggest: any) => (
+                <div key={suggest?.id} className="subMapped">
                   <SeeAllFollowers suggest={suggest} />
                 </div>
               ))

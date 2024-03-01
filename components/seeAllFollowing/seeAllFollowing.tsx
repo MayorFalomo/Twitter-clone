@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
@@ -15,23 +15,38 @@ const SeeAllFollowing = (props: any) => {
   // const [allUsersTweets, setAllUsersTweets] = useState<any>([])
   const [followingButton, setFollowingButton] = useState<boolean>(false);
   const [onMouseHover, setOnMouseHover] = useState<boolean>(false);
-  const [urlParams, setUrlParams] = useState<string>(props.suggest?._id);
+  const [urlParams, setUrlParams] = useState<string>(props.suggest?.usersId);
   const [usernames, setUsernames] = useState<string>(props.suggest?.name);
-  const [usersAt, setUsersAt] = useState<string>(props.suggest?.usersAt);
+  const [usersAt, setUsersAt] = useState<string>(props.suggest?.userAt);
   const [usersProfileDp, setUsersProfileDp] = useState<string>(
     props.suggest?.profilePic
   );
   const [followersArray, setFollowersArray] = useState<any>(
     props.suggest?.following
   );
-  const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(
-    followersArray?.length
-  );
 
   const handleClick = (param: any) => {
     setCurrent(param);
   };
 
+  const [allFollowing, setAllFollowing] = useState<any>([]);
+  const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(
+    allFollowing?.length
+  );
+
+  //useEffect finds the user i selected by their username and sets the user array object to allFollowing
+  useEffect(() => {
+    axios
+      .get(
+        `https://twitter-clone-server-nu.vercel.app/api/users/get-user/${props.suggest.name}`
+      )
+      .then((res: any) => {
+        setAllFollowing(res.data);
+      })
+      .catch((err: any) => console.log(err));
+  }, []);
+
+  // console.log(allFollowing, "This is allFollowers");
   // console.log(followingArray, "following Array");
   // console.log(noOfFollowingsArray, "no of following");
 
@@ -53,8 +68,7 @@ const SeeAllFollowing = (props: any) => {
       userToAddToProfilePic: usersProfileDp, //username of the user who is following the current user.
       usersId: urlParams,
     };
-    console.log(props.suggest, "This Suggest props");
-    console.log(followAUser, "This is followAuser");
+    // console.log(props.suggest, "This Suggest props");
 
     try {
       setCurrentUser({
@@ -68,19 +82,24 @@ const SeeAllFollowing = (props: any) => {
         )
         .catch((err) => console.log(err));
       setFollowingButton(true);
-      setNoOfFollowersArray(followersArray?.length + 1);
+      setNoOfFollowersArray(allFollowing?.length + 1);
     } catch (err) {
       console.log(err);
     }
   };
 
+  // console.log(currentUser, "currentUser following");
+  // console.log(props.suggest, "This is props.suggest");
+  // console.log(
+  //   currentUser?.following.map((val: any) => val),
+  //   "This is val filtered"
+  // );
   //Handle Unfollowing of a user
   const handleRemoveFollower = async () => {
     const data = {
       userToBeUnfollowed: urlParams,
       currentUser: currentUser?._id,
     };
-    // console.log(data, "This is data");
 
     try {
       await axios
@@ -89,10 +108,11 @@ const SeeAllFollowing = (props: any) => {
           data
         ) //username of the user who is following the current user.
         .catch((err) => console.log(err));
-      setNoOfFollowersArray(followersArray.length);
-      let filtered = currentUser?.following.filter(
+      setNoOfFollowersArray(allFollowing.length);
+      let filtered = allFollowing.filter(
         (val: any) => val.usersId !== props.suggest?._id
       );
+
       setCurrentUser({ ...currentUser, following: [...filtered] });
       setFollowingButton(false);
     } catch (err) {

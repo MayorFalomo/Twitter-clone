@@ -35,6 +35,13 @@ const allfollowing = ({ userData, currentName }: any) => {
   // console.log(userData, "USerdata");
   // console.log(currentName, "currentName");
   const [allFollowers, setAllFollowers] = useState<[]>([]);
+  //useEffect to load all registered users
+  useEffect(() => {
+    axios
+      .get(`https://twitter-clone-server-nu.vercel.app/api/users`)
+      .then((res: any) => setAllFollowers(res.data))
+      .catch((err: any) => console.log(err));
+  }, []);
 
   return (
     <AllFollowersStyle>
@@ -61,8 +68,8 @@ const allfollowing = ({ userData, currentName }: any) => {
           {/* <h3 > </h3> */}
           <div className="mappedContainer">
             {userData?.length > 0 ? (
-              userData.map((suggest: any) => (
-                <div key={suggest.usersId} className="subMapped">
+              userData?.map((suggest: any) => (
+                <div key={suggest?.usersId} className="subMapped">
                   <SeeAllFollowing suggest={suggest} />
                 </div>
               ))

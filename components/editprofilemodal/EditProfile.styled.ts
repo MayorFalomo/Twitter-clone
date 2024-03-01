@@ -254,11 +254,13 @@ form{
 }
     ul{
         margin: 20px 10px;
+        padding: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
         h2{
-            font-size: calc(20px + 0.25vw);    
+            font-size: calc(17px + 0.25vw);    
         }
        
     }
