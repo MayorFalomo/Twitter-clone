@@ -153,7 +153,7 @@ const EditProfileModal = (props: any) => {
                   className="camera"
                   style={{ borderRadius: "50%", padding: 20 }}
                 >
-                  {<MdClose fontSize={30} cursor="pointer" />}{" "}
+                  {<MdClose fontSize={25} cursor="pointer" />}{" "}
                 </label>
                 <input
                   onChange={(e: any) => uploadCoverImage("")}

@@ -32,7 +32,7 @@ form{
         }
         .submitBtn{
             padding: 10px 25px;
-            font-size: calc(20px + 0.25vw);
+            font-size: calc(17px + 0.25vw);
             /* font-size: 24px; */
             font-weight: 400 ;
             border-radius: 20px;
@@ -144,12 +144,12 @@ form{
             }
             label{
                 /* font-size: 24px; */
-                font-size: calc(18px + 0.25vw);
+                font-size: calc(17px + 0.25vw);
                 font-weight: 500;
                 color: #575B5F;
             }
             span{
-                font-size: calc(18px + 0.25vw);
+                font-size: calc(17px + 0.25vw);
                 /* font-size: 24px; */
                 color: #575B5F;
             }
@@ -164,7 +164,7 @@ form{
             }
             input::placeholder{
                 color:  #575B5F;
-                font-size: calc(18px + 0.25vw);
+                font-size: calc(17px + 0.25vw);
                 font-weight:400;
             }
             }
@@ -182,11 +182,11 @@ form{
                     display: list-item;
                     list-style: disc outside none;
                     color:  #1d9aef;
-                    font-size: calc(18px + 0.25vw);
+                    font-size: calc(17px + 0.25vw);
                     cursor: pointer;
                 }
         }h1{
-        font-size: calc(22px + 0.25vw);
+        font-size: calc(20px + 0.25vw);
          padding: 5px 20px;
         }
     .editBirth{
@@ -225,7 +225,7 @@ form{
             padding: 10px 1px ;
             background-color: #000;
             color: #fff;
-            font-size: calc(20px + 0.25vw);
+            font-size: calc(18px + 0.25vw);
             border: none;
             outline: none;
             width: 90%;
@@ -258,7 +258,7 @@ form{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+                transition: all 0.4s ease-in;
         h2{
             font-size: calc(17px + 0.25vw);    
         }
@@ -267,6 +267,7 @@ form{
     ul:hover{
         background-color: rgb(47, 51, 54);
         cursor: pointer;
+        transition: all 0.4s ease;
     }
 }
 }

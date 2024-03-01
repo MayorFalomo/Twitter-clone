@@ -129,6 +129,7 @@ padding: 10px;
         width: 100%;
         height: 400px;
     }
+    
     }
     .tweetVideo{
         margin-top: 10px;
@@ -204,16 +205,21 @@ padding: 10px;
         }
     }
 }
+
 .pictureModal{
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* top: 0;
-    left: 0; */
-    width: 90%;
-    height: 90%;
+    z-index: 99999;
+   border-radius: 10px;
+    width: 95%;
+    height: 95%;
     z-index: 99999999999999999999;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
     @media (max-width: 1100px) {
         width: 100%;
         max-height: 100%;
@@ -230,13 +236,29 @@ padding: 10px;
         position: absolute;
         top: 20px;
         right: 20px;
+        z-index: 99999999;
         font-size: 19px;
         color: #1d9aef;
         background-color: #E2E4E4;
         cursor: pointer;
         padding: 6px 10px;
         border-radius: 6px;
+          @media (max-width: 450px) {
+            position: absolute;
+            top: 180px;
+            right: 10px;
     }
+    }
+}
+
+.bgFilter{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.6);
 }
 }
 `

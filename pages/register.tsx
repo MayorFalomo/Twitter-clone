@@ -74,7 +74,7 @@ const register = (props: any) => {
             userInfo
           )
           .then(() => router.push("/"))
-          .then(() => window.location.reload())
+          // .then(() => window.location.reload())
           .catch((err) => console.log(err));
         setDoc(doc(db, "users", res.user.uid), {
           uid: res.user.uid,
@@ -127,7 +127,7 @@ const register = (props: any) => {
             userInfo
           )
           .then(() => router.push("/"))
-          .then(() => window.location.reload())
+          // .then(() => window.location.reload())
           .catch((err) => err && setIsAuth(true));
         setDoc(doc(db, "users", res.user.uid), {
           uid: res.user.uid,

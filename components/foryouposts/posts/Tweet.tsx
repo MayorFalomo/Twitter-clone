@@ -16,6 +16,7 @@ import CommentModal from "@/components/commentmodal/Commentmodal";
 import { RxHeart } from "react-icons/rx";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
+import { MdClose } from "react-icons/md";
 
 type Props = {};
 
@@ -353,9 +354,6 @@ const Tweet = (props: any) => {
           <div
             style={{
               backgroundImage: `url(${props?.tweet?.picture})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
             }}
             className="pictureModal"
           >
@@ -363,18 +361,13 @@ const Tweet = (props: any) => {
               className="closeModalBtn"
               onClick={() => setOpenPictureModal(false)}
             >
-              close{" "}
+              <MdClose fontSize={30} cursor="pointer" />
             </span>
-            {/* <img
-              className="picsModal"
-              style={{ width: "100%", height: "auto" }}
-              src={props.tweet?.picture}
-              alt="tweet"
-            /> */}
           </div>
         ) : (
           ""
         )}
+        {openPictureModal ? <div className="bgFilter"> </div> : ""}
       </div>
     </Tweetstyled>
   );
