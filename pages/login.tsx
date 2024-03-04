@@ -24,18 +24,6 @@ const Login = (props: any) => {
   const [password, setPassword] = useState<any>("");
   const [isAuth, setIsAuth] = useState<boolean>(false);
 
-  // const signInWithGoogle = async () => {
-  //     signInWithPopup(auth, provider).then((res) => {
-  //         setCookie("user", res.user.uid, { path: "/" })
-
-  //         let userInfo = {
-  //         userId: res.user.uid,
-  //         }
-  //         axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo)
-  //             .catch((err) => err && setIsAuth(true))
-  //         getCurrentUser(res.user.uid)}).then(() => router.push("/")).then(() => window.location.reload()).catch((err) => console.log(err))
-  // }
-
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
       .then((res) => {
@@ -56,48 +44,6 @@ const Login = (props: any) => {
       })
       .catch((err) => console.log(err));
   };
-
-  //     const signInWithGoogle = async () => {
-  //     try {
-  //         const res = await signInWithPopup(auth, provider);
-  //         setCookie("user", res.user.uid, { path: "/" });
-
-  //         let userInfo = {
-  //             userId: res.user.uid
-  //         };
-
-  //         await axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo);
-  //         await getCurrentUser(res.user.uid);
-
-  //         router.push("/");
-  //         window.location.reload();
-  //     } catch (err) {
-  //         console.log(err);
-  //     }
-  // };
-
-  // const signInWithGoogle = () => {
-  //     signInWithPopup(auth, provider)
-  //         .then((res) => {
-  //             setCookie("user", res.user.uid, { path: "/" });
-
-  //             let userInfo = {
-  //                 userId: res.user.uid
-  //             };
-
-  //             return axios.post("https://twitter-clone-server-nu.vercel.app/api/users/login", userInfo);
-  //         })
-  //         .then(() => {
-  //             return getCurrentUser(res.user.uid);
-  //         })
-  //         .then(() => {
-  //             router.push("/");
-  //             window.location.reload();
-  //         })
-  //         .catch((err) => {
-  //             console.log(err);
-  //         });
-  // };
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

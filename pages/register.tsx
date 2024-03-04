@@ -115,7 +115,6 @@ const register = (props: any) => {
           retweeted: [],
           bio: "Regular Human",
           usersId: generateId(24),
-
           // location: "Lagos, Nigeria",
           // birthday: "April 19th, 1999",
           // links: "https://mayowa-falomo.netlify.app"
