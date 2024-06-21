@@ -92,6 +92,7 @@ export const MessagesStyle = styled.div`
     .centerGridContainer{
         overflow: auto;
         height: 100vh;
+        /* border: 4px red solid; */
         border-right: 1px solid rgb(47, 51, 54);
         border-left: 1px solid rgb(47, 51, 54);
         header{
@@ -122,6 +123,7 @@ export const MessagesStyle = styled.div`
             display: flex;
             justify-content: center;
             position: relative;
+
             .biSearch{
                 position: absolute;
                 right: 40px;
@@ -131,6 +133,8 @@ export const MessagesStyle = styled.div`
                 cursor: pointer;
             }
         }
+
+        
         .searchInput{
             padding: 10px 20px;
             border: 1px rgb(113,118,123) solid;
@@ -155,10 +159,13 @@ export const MessagesStyle = styled.div`
             gap: 10px;
             padding: 20px 5px;
             margin-top:30px;
+            /* border: 5px red solid !important; */
             border: 1px rgb(113,118,123) solid ;
             .profilePic{
                 width: 50px;
                 height: 50px;
+                display: grid;
+                place-items: center;
                 border-radius: 50%;
                 background-color: black;
                 background-position: center;

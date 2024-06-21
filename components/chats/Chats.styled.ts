@@ -14,9 +14,11 @@ width: 100%; */
     margin: 20px 5px;
     .profilePic{
         border-radius: 50%;
-        border: 3px solid white;
-        width: 60px;
-        height: 60px;
+        display: grid;
+        place-content: center;
+        border: 1px solid white;
+        min-width: 50px;
+        min-height: 50px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

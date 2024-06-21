@@ -195,7 +195,7 @@ const Tweet = (props: any) => {
                 className="userName"
               >
                 {" "}
-                {props.tweet?.username}{" "}
+                {props.tweet?.username.slice(0, 10)}..
               </Link>
               <span className="userAt">{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? (
