@@ -102,7 +102,7 @@ export const NavContainer = styled.div`
             background-color: #1d9aef;
             color: #fff;
             border-radius: 50%;
-            font-size: calc(10px + 0.25vw );
+            font-size: calc(8px + 0.25vw );
             @media (max-width: 1500px) {
               position: absolute;
               left: 55px;

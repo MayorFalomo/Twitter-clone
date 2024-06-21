@@ -156,7 +156,7 @@ const messages = (props: any) => {
         <div className="leftGrid">
           {chatComponentActive ? (
             <div>
-              <Chat user={user} isMobile={isMobile} setIsMobile={setIsMobile} />
+              <Chat isMobile={isMobile} setIsMobile={setIsMobile} />
             </div>
           ) : (
             <div className="subLeftGrid">

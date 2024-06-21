@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { BiBarChart, BiDotsHorizontalRounded } from "react-icons/bi";
 import {
   AiOutlineHeart,
@@ -373,4 +373,4 @@ const Tweet = (props: any) => {
   );
 };
 
-export default Tweet;
+export default memo(Tweet);
