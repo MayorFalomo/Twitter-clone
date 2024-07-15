@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavContainer } from "./Navbar.styled";
-import { RiHome7Line, RiQuillPenFill } from "react-icons/ri";
+import { RiHome7Line } from "react-icons/ri";
 import { TfiTwitter } from "react-icons/tfi";
 import { RiHashtag } from "react-icons/ri";
 import { BiBell, BiDotsHorizontalRounded } from "react-icons/bi";
