@@ -39,6 +39,9 @@ export const NavContainer = styled.div`
         }
         .twitterLogo {
           padding: 10px 10px;
+          min-height: 30px;
+          min-width: 30px;
+          display: grid;
           border-radius: 50%;
           margin-top: 20px;
           font-size: calc(28px + 0.25vw);

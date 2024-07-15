@@ -11,9 +11,9 @@
 //   // next.js config
 // })
 
-const nextConfig = { 
+const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com'], // Specify the domains for images
+    domains: ["res.cloudinary.com"], // Specify the domains for images
   },
   compiler: {
     styledComponents: true,
@@ -22,7 +22,8 @@ const nextConfig = {
     API_KEY: process.env.NEXT_PUBLIC_API_KEY,
     MESSENGER_ID: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
     APP_ID: process.env.NEXT_PUBLIC_APP_ID,
-    NEWS_KEY: process.env.NEXT_PUBLIC_NEWS_KEY
+    NEWS_KEY: process.env.NEXT_PUBLIC_NEWS_KEY,
+    BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
 };
 

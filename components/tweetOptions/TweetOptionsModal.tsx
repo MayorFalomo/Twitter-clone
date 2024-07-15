@@ -47,9 +47,6 @@ const TweetOptionsModal = (props: IProps) => {
   const {
     currentUser,
     setCurrentUser,
-    suggestedUsers,
-    bookmarks,
-    setBookmarks,
     tweets,
     setTweets,
     setIsLoading,
@@ -128,7 +125,7 @@ const TweetOptionsModal = (props: IProps) => {
         );
 
         setCurrentUser({ ...currentUser, following: [...filtered] });
-        toast.success(`You have unfollowed ${props.tweet.username}`, {
+        toast.success(`You have followed ${props.tweet.username}`, {
           style: {
             borderRadius: "5px",
             background: "#333",
@@ -138,7 +135,7 @@ const TweetOptionsModal = (props: IProps) => {
         setPopUpModal(false);
       }
     } catch (error) {
-      toast.error(`You have unollowed ${props.tweet.username}`, {
+      toast.error(`You have unfollowed ${props.tweet.username}`, {
         style: {
           borderRadius: "5px",
           background: "#333",
@@ -169,13 +166,25 @@ const TweetOptionsModal = (props: IProps) => {
         );
 
         setTweets(newTweets);
-        toast.success("Tweet marked as uninterested");
+        toast.success("Tweet marked as uninterested", {
+          style: {
+            borderRadius: "5px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
 
         setPopUpModal(false);
       }
     } catch (error) {
       console.log(error, "An error has occurred");
-      toast.error("error marking as uninterested");
+      toast.error("error marking as uninterested", {
+        style: {
+          borderRadius: "5px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     }
   };
 
@@ -202,7 +211,13 @@ const TweetOptionsModal = (props: IProps) => {
         const updatedUser = res.data.response;
         setTweets(tweeks);
         setCurrentUser(updatedUser);
-        toast.success("You have blocked this user");
+        toast.success("You have blocked this user", {
+          style: {
+            borderRadius: "5px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
 
         // setTweets({ ...tweeks });
         setIsLoading(false);
@@ -234,10 +249,22 @@ const TweetOptionsModal = (props: IProps) => {
         },
       });
       if (res.data) {
-        toast.success("Tweet Reported");
+        toast.success("Tweet Reported", {
+          style: {
+            borderRadius: "5px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     } catch (error) {
-      toast.error("Failed to Report tweet");
+      toast.error("Failed to Report tweet", {
+        style: {
+          borderRadius: "5px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       console.log(error, "An error has occurred while Reporting Tweet");
     }
   };

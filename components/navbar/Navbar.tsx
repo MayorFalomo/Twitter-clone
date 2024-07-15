@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase-config";
 import { AnimatePresence, motion } from "framer-motion";
+import Tippy from "@tippyjs/react";
 
 type Props = {};
 
@@ -84,7 +85,9 @@ const Navbar = (props: any) => {
                 <Link href="/">
                   <li>
                     <div className="navLinkItems">
-                      {<RiHome7Line className="navIcon" />}
+                      <Tippy placement="bottom" content="home">
+                        {<RiHome7Line className="navIcon" />}
+                      </Tippy>
                       <span className="links">Home </span>
                     </div>
                   </li>
@@ -92,7 +95,9 @@ const Navbar = (props: any) => {
                 <Link href="/trending">
                   <li>
                     <div className="navLinkItems">
-                      <RiHashtag className="navIcon" />
+                      <Tippy placement="bottom" content="Explore">
+                        <RiHashtag className="navIcon" />
+                      </Tippy>
                       <span className="links">Explore</span>
                     </div>
                   </li>
@@ -100,7 +105,9 @@ const Navbar = (props: any) => {
                 <Link href="/notifications">
                   <li>
                     <div className="navLinkItems">
-                      <BiBell className="navIcon" />
+                      <Tippy placement="bottom" content="bookmark">
+                        <BiBell className="navIcon" />
+                      </Tippy>
                       <span className="noOfNotifications">
                         {" "}
                         {lengthOfNotification.length}{" "}
@@ -113,7 +120,9 @@ const Navbar = (props: any) => {
                 <Link href="/messages">
                   <li>
                     <div className="navLinkItems">
-                      <RxEnvelopeClosed className="navIcon" />
+                      <Tippy placement="bottom" content="Messages">
+                        <RxEnvelopeClosed className="navIcon" />
+                      </Tippy>
                       <span className="links">Messages </span>
                     </div>
                   </li>
@@ -121,7 +130,9 @@ const Navbar = (props: any) => {
                 <Link href="/bookmarks">
                   <li>
                     <div className="navLinkItems">
-                      <IoBookmarkOutline className="navIcon" />
+                      <Tippy placement="bottom" content="bookmark">
+                        <IoBookmarkOutline className="navIcon" />
+                      </Tippy>
                       <span className="links">Bookmarks </span>
                     </div>
                   </li>
@@ -131,14 +142,18 @@ const Navbar = (props: any) => {
                     onClick={() => setTwitterBlue(true)}
                     className="navLinkItems"
                   >
-                    <AiFillTwitterSquare className="navIcon" />
+                    <Tippy placement="bottom" content="Twitter blue">
+                      <AiFillTwitterSquare className="navIcon" />
+                    </Tippy>
                     <span className="links">Twitter Blue </span>
                   </div>
                 </li>
                 <Link href="/profile">
                   <li>
                     <div className="navLinkItems">
-                      <BsPersonFill className="navIcon" />
+                      <Tippy placement="bottom" content="profile">
+                        <BsPersonFill className="navIcon" />
+                      </Tippy>
                       <span className="links">Profile </span>
                     </div>
                   </li>
@@ -146,7 +161,9 @@ const Navbar = (props: any) => {
                 {/* <Link href="/more"> */}
                 <li>
                   <div className="navLinkItems">
-                    <HiOutlineEllipsisHorizontalCircle className="navIcon" />
+                    <Tippy placement="bottom" content="more">
+                      <HiOutlineEllipsisHorizontalCircle className="navIcon" />
+                    </Tippy>
                     <span className="links">More </span>
                   </div>
                 </li>
