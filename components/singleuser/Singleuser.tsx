@@ -1,16 +1,11 @@
 import axios from "axios";
 import moment from "moment";
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  MouseEventHandler,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { BiCalendar, BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsArrowLeft, BsBalloon } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
-import { MdOutlineNotificationAdd, MdOutlineVerified } from "react-icons/md";
+import { MdOutlineVerified } from "react-icons/md";
 import { RxEnvelopeClosed } from "react-icons/rx";
 import { SingleUserStyle } from "./Singleuser.styled";
 import SingleUserReplies from "./SingleUserReplies";
@@ -18,9 +13,9 @@ import Singleusertweets from "../singletweet/Singleusertweets";
 import { AppContext } from "@/helpers/Helpers";
 import EditProfileModal from "../editprofilemodal/EditProfileModal";
 import Link from "next/link";
-import { PiCompassLight } from "react-icons/pi";
 import { FcCancel } from "react-icons/fc";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { IoCompassOutline } from "react-icons/io5";
 
 type Props = {};
 
@@ -277,7 +272,7 @@ const Singleuser = (props: any) => {
                     ) ? (
                       <p onClick={unBlockUser}>
                         {" "}
-                        <span>{<PiCompassLight />} </span>{" "}
+                        <span>{<IoCompassOutline />} </span>{" "}
                         <span>Unblock {props.user?.usersAt}</span>{" "}
                       </p>
                     ) : (
