@@ -93,12 +93,10 @@ const ForYouPosts = (props: any) => {
     // console.log(newTweet);
 
     try {
-      await axios.post(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets`,
-        newTweet
-      );
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
       setTweets([newTweet, ...tweets]);
+      setEveryOne(false);
       // setTweets([...tweets, newTweet].reverse());
       setTweet(" ");
       setPicture("");
@@ -111,8 +109,6 @@ const ForYouPosts = (props: any) => {
     }
   };
 
-  // console.log(tweets);
-
   return (
     <ForYouContainer>
       <div className="forYouPostContainer">
@@ -121,9 +117,17 @@ const ForYouPosts = (props: any) => {
           className="userProfilePicture"
         ></div>
         <form onSubmit={postTweet}>
+          {everyOne ? (
+            <select>
+              <option>Everyone </option>
+            </select>
+          ) : (
+            ""
+          )}
+
           <div
-            className="textAreaContainer"
             onClick={() => setEveryOne(!false)}
+            className="textAreaContainer"
           >
             <textarea
               className="textArea"
@@ -132,13 +136,6 @@ const ForYouPosts = (props: any) => {
               value={tweet}
               onChange={(e) => setTweet(e.target.value)}
             />
-            {everyOne ? (
-              <select>
-                <option>Everyone </option>
-              </select>
-            ) : (
-              ""
-            )}
             <div className="flexIcons">
               <div className="tweetIcons">
                 <Tippy content="image" placement="bottom">

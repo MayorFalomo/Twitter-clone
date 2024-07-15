@@ -49,8 +49,8 @@ export const ProfileStyled = styled.div`
         }
     }
     .profileDp{
-        height:200px;
-        width: 200px;
+        height:150px;
+        width: 150px;
         border-radius: 50%;
         background-color: black;
         background-position: center;
@@ -60,17 +60,17 @@ export const ProfileStyled = styled.div`
         object-position: center;
         border: 2px black solid;
         position: absolute;
-        bottom: -150px;
+        bottom: -80px;
         left: 20px;
         @media (max-width: 600px ) {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             bottom: -90px;
         }
         @media (max-width: 400px ) {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             left: 5px;
             bottom: -50px;
@@ -99,6 +99,15 @@ export const ProfileStyled = styled.div`
         padding: 10px;
         @media (max-width: 600px ) {
           margin-top: 0px;
+        }
+        .flexName{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span{
+                font-size: calc(18px + 0.25vw);
+                padding-top: 5px;
+            }
         }
         h1{
         font-size: calc(20px + 0.25vw);

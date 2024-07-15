@@ -15,20 +15,23 @@ export const SingleUserTweetsStyle = styled.div`
         background-size: cover;
         object-fit: cover;
         border-top: 1px white solid;
-        height: 70px;
-        width: 70px;
-        min-width: 40px;
-        min-height: 40px;
+        /* min-height: 70px;
+        width: 70px; */
+        min-width: 60px;
+        min-height: 60px;
+         display: grid;
+            border-radius: 50%;
         border-radius: 50%;
-        @media (max-width: 400px) {
-            width: 40px;
-            height: 40px;
+        @media (max-width: 500px) {
+            min-width: 40px;
+            min-height: 40px;
+           
         }
     }
     .flexUserInfoContainer{
         width: 100%;
         p{
-            font-size: calc(16px + 0.25vw);
+            font-size: calc(15px + 0.25vw);
             line-height: 30px;
             font-weight: 400;
             margin: 5px auto;
@@ -69,7 +72,10 @@ export const SingleUserTweetsStyle = styled.div`
                 align-items: center;
                 gap: 10px;
                 .likeIcon{
-                font-size: calc(24px + 0.25vw);
+                font-size: calc(20px + 0.25vw);
+                @media (max-width: 600px) {
+                 font-size: calc(17px + 0.25vw) ;
+                }
                 }
                 p{
                 font-size: calc(20px + 0.25vw);
@@ -109,7 +115,6 @@ export const SingleUserTweetsStyle = styled.div`
         }
         }
          .singleTweetImage{
-                border: 2px red solid;
                 width: 100%;
                 height: 400px;
                 border-radius: 20px;

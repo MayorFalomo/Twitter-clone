@@ -25,9 +25,21 @@ export const CommentPageStyle = styled.div`
       gap: 10px;
       /* border: 2px yellow solid !important; */
        .profilePicture{
+         border: 1px white solid;
+                min-width: 50px;
+                min-height: 50px;
+                display: grid;
+                place-content: center;
+                border-radius: 50%;
+                background-color: black;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                object-fit: cover;
+                object-position: center;
             @media (max-width:600px) {
-            width: 50px;
-            height: 50px;
+            min-width: 40px;
+            min-height: 40px;
           } 
         }
     .tweetDetailsCon{
@@ -38,6 +50,7 @@ export const CommentPageStyle = styled.div`
         }
         .usersAt{
           font-size: calc(10px + 0.25vw) !important;
+          /* color: "#575B5F"; */
         }
         .createdAt{
           font-size: calc(10px + 0.25vw) !important;
@@ -118,8 +131,8 @@ export const CommentPageStyle = styled.div`
             flex-direction: column;
             gap: 10px;
         .ProfilePic{
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 1px white solid;
             background: black;

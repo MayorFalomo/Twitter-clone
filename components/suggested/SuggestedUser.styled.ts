@@ -14,10 +14,9 @@ export const SuggestedStyle = styled.div`
         /* border: 2px red solid; */
         /* padding: 10px auto; */
         .profileImage{
-        width: 70px;
-        height: 70px;
-        min-width:70px;
-        min-height: 70px;
+      
+        min-width:40px;
+        min-height: 40px;
         background-color: black;
         background-position: center;
         background-repeat: no-repeat;
@@ -43,16 +42,17 @@ export const SuggestedStyle = styled.div`
     }
     .btn-follow{
         border-radius: 30px;
-        padding:10px 20px;
-        width: 120px;
-        font-size: 20px;
+        padding:8px 15px;
+        width: auto;
+        font-size: calc(15px + 0.25vw);
         cursor: pointer;
+
     }
     .btn-following{
         border-radius: 30px;
-        padding:10px 20px;
-        width: 140px;
-        font-size: 20px;
+        padding: 8px 15px;
+       width: auto;
+        font-size: calc(15px + 0.25vw);
         cursor: pointer;
         background-color: transparent;
         color: white;

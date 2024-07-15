@@ -5,8 +5,7 @@ export const BookmarkStyle = styled.div`
 display: flex;
 align-items: flex-start;
 gap: 10px;
-/* margin: 25px auto; */
-/* border-top: 2px rgb(47, 51, 54) solid; */
+
 border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px;
 .profilePicture{
@@ -15,8 +14,8 @@ padding: 10px;
     background-repeat: no-repeat;
     background-size: cover;
     border: 1px white solid;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius:50%;
 }
 .subPostsContainer{
@@ -78,7 +77,7 @@ padding: 10px;
             position: relative;
             .remove{
                 position: absolute;
-                top: 10px;
+                top: 20px;
                 right: 10px;
                 z-index:9;
                 color: #fff;
@@ -137,7 +136,7 @@ padding: 10px;
         gap: 10px;
         /* color: #1d9aef; */
         span{
-            font-size: 20px;
+             font-size: calc(16px + 0.25vw);
         }
         .activeModal{
             position: fixed;
@@ -154,7 +153,7 @@ padding: 10px;
         /* p{
             font-size: calc(28px + 0.25vw) !important; */
         .likeIcon{
-            font-size: calc(24px + 0.25vw);
+            font-size: calc(17px + 0.25vw);
             /* border: 2px red solid; */
         /* } */
     }

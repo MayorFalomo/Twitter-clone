@@ -8,12 +8,24 @@ https://tweeks.netlify.app/
 
 ![Logo](https://res.cloudinary.com/dsghy4siv/image/upload/v1693133147/qaffemcdlwdkhfujmg51.png)
 
+## New Features
+
+- Block other users and never see their tweet.
+- Mark a tweet as uninterested.
+- Users can now Report a tweet.
+- Follow a user right from their tweet.
+- Mark tweets that are in your bookmarks
+- Improved performance.
+- improved UI and Ux.
+- Fixed issues from replying comments, Now replied comments would appear instantly.
+- Fixed issues fom liking and retweeting comments
+
 ## Features
 
 - Real-time messaging (pictures and videos included).
 - Receive Notifications when your post is liked, retweeted, quoted and commented on or being followed.
 - View tailored tweets for you based on people you're following.
-- Notifications clear after 1 day though, this is to reduce the load on the database.
+- notifications clear after 1 day though, this is to reduce the load on the database.
 - Follow and Unfollow other users.
 - comment on a tweet and reply comments.
 - like and retweet comments.
@@ -53,7 +65,7 @@ For support, email mayorfalomo@gmail.com or contact me via any platform.
 
 What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
 
-I needed my web application to be fast so i used Next Js which is known for it's speed.
+used the useMemo hook to run some functions to allow their values to be cached
 
 I made registration easy and simple using a random username, password generator and firebase to handle all my users registration.
 
@@ -65,7 +77,7 @@ When registering, I added a auto generate username, email and password functiona
 
 i made sure Components were reusable so i didn't have to build as much many components as i should have from scratch.
 
-All useEffects have a dependency Array, and some useEffects only run after a value has been gotten.
+All useEffects have a dependency Array to avoid re-renders.
 ## Deployment
 
 To deploy this project run

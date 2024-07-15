@@ -1,11 +1,12 @@
-import React, { memo, useContext, useEffect, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { BiBarChart, BiDotsHorizontalRounded } from "react-icons/bi";
 import {
+  AiOutlineFrown,
   AiOutlineHeart,
   AiOutlineRetweet,
   AiOutlineUpload,
 } from "react-icons/ai";
-import { FaRegComment, FaRegHeart } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa";
 import { Tweetstyled } from "./Tweet.styled";
 import moment from "moment";
 import Link from "next/link";
@@ -13,18 +14,59 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import CommentModal from "@/components/commentmodal/Commentmodal";
-import { RxHeart } from "react-icons/rx";
+// import { RxHeart } from "react-icons/rx";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { MdClose } from "react-icons/md";
+import TweetOptionsModal from "@/components/tweetOptions/TweetOptionsModal";
+import { AnimatePresence, motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { CiBookmark } from "react-icons/ci";
+import { RxBookmarkFilled } from "react-icons/rx";
 
-type Props = {};
+interface IFollowUser {
+  _id: string;
+  usersId: string;
+  name: string;
+  username: string;
+  usersAt: string;
+  userToAddToName: string;
+}
 
+interface IUnfollowUser {
+  _id: string;
+  usersId: string;
+  name: string;
+  username: string;
+  currentUserId: string;
+  userToAddToName: string;
+}
+
+interface IBookmark {
+  _id: string;
+  usersId: string;
+  username: string;
+  postId: string;
+  tweet: string;
+  picture: string;
+  video: string;
+  like: [];
+  retweet: [];
+  comment: [];
+  createdAt: string;
+}
 //parent component is tweets
 const Tweet = (props: any) => {
-  const { currentUser, suggestedUsers, bookmarks, setBookmarks } = useContext(
-    AppContext
-  );
+  const {
+    currentUser,
+    setCurrentUser,
+    suggestedUsers,
+    bookmarks,
+    setBookmarks,
+    tweets,
+    setTweets,
+    setIsLoading,
+  } = useContext(AppContext);
 
   const [postId, setPostId] = useState(props.tweet?._id);
   const [retweet, setRetweet] = useState<boolean>(false);
@@ -37,12 +79,16 @@ const Tweet = (props: any) => {
   const [noOfLikesArray, setNoOfLikesArray] = useState<number>(
     likesArray?.length
   );
-  const [modalLink, setModalLink] = useState<string>("");
   const [urlParams, setUrlParams] = useState<string>(" ");
-  const [getUsername, setGetUsername] = useState<string>("");
-  const [getTweetsUserName, setGetTweetsUserName] = useState<string>("");
+  const [usernames, setUsernames] = useState<string>(
+    props.suggestedUser?.username
+  );
+
+  const [views, setViews] = useState<number>(0);
+
   const [commentModal, setCommentModal] = useState<boolean>(false);
   const [openPictureModal, setOpenPictureModal] = useState<boolean>(false);
+  const [popUpModal, setPopUpModal] = useState<boolean>(false);
 
   //Retweet Function
   const handleAddRetweet = async () => {
@@ -58,7 +104,7 @@ const Tweet = (props: any) => {
     setNoOfRetweetArray(retweetArray.length + 1);
     await axios
       .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/retweet-tweet`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/retweet-tweet`,
         retweetData
       )
       .catch((err) => console.log(err));
@@ -72,10 +118,7 @@ const Tweet = (props: any) => {
       id: postId,
     };
     await axios
-      .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/un-retweet`,
-        retweetData
-      )
+      .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/un-retweet`, retweetData)
       .catch((err) => console.log(err));
     let filtered = retweetArray.filter(
       (item: any) => item.currentUserName !== retweetData.username
@@ -88,8 +131,8 @@ const Tweet = (props: any) => {
   const handleAddLike = async () => {
     const likeData = {
       username: props.tweet.username, //This is the important bit, It is the username of the person whose tweet was liked
-      profileDp: currentUser?.profilePic,
-      usersAt: currentUser?.usersAt, //usersAt is a list of usernames, so it can be filtered out.
+      profileDp: props.tweet?.profilePic,
+      usersAt: props.tweet?.usersAt, //usersAt is a list of usernames, so it can be filtered out.
       tweets: props.tweet.tweet,
       id: props.tweet?._id,
       currentUserName: currentUser?.username,
@@ -97,10 +140,7 @@ const Tweet = (props: any) => {
     setLikesArray([...likesArray, likeData]);
     setNoOfLikesArray(likesArray.length + 1);
     await axios
-      .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`,
-        likeData
-      )
+      .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/liketweet`, likeData)
       .catch((err) => console.log(err));
   };
 
@@ -112,10 +152,7 @@ const Tweet = (props: any) => {
       id: postId,
     };
     await axios
-      .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`,
-        likeData
-      )
+      .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/unlike-tweet`, likeData)
       .catch((err) => console.log(err));
     let filtered = likesArray.filter(
       (item: any) => item.currentUserName !== likeData.username
@@ -126,7 +163,7 @@ const Tweet = (props: any) => {
   };
 
   //Add a Bookmark function
-  const handleBookmark = () => {
+  const handleBookmark = async () => {
     const bookmarkData = {
       profileDp: props.tweet?.profileDp,
       username: props.tweet?.username,
@@ -141,47 +178,100 @@ const Tweet = (props: any) => {
       userDetail: currentUser?._id,
       saved: true,
     };
-    setBookmarks([...bookmarks, bookmarkData]);
-    axios
-      .post(
-        `https://twitter-clone-server-nu.vercel.app/api/bookmarks/addBookmark`,
-        bookmarkData
-      )
-      .catch((err) => console.log(err));
-    props.setAddedToBookmark(true);
-    setTimeout(() => {
-      props.setAddedToBookmark(false);
-    }, 3000);
+    try {
+      const res = await axios({
+        method: "POST",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/addBookmark`,
+        data: bookmarkData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.data) {
+        setBookmarks([...bookmarks, res.data.bookmark]);
+
+        props.setAddedToBookmark(true);
+        setTimeout(() => {
+          props.setAddedToBookmark(false);
+        }, 3000);
+        toast("Added to bookmarks", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error, "Error bookmarking tweet");
+      toast("Error bookmarking tweet", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
+  };
+
+  //Remove bookmark
+  const removeTweetFromBookmark = async () => {
+    try {
+      const res = await axios({
+        method: "DELETE",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/delete-bookmark/${props?.tweet?._id}`,
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.data) {
+        setBookmarks(
+          bookmarks.filter(
+            (bookmark: IBookmark) => bookmark.postId !== props.tweet?._id
+          )
+        );
+        toast.success("Tweet has been removed to boookmark", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast("Error removing from bookmarks", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
   };
 
   //Function to get the id of a tweet so it can be sent as a prop and open a modal
-  const handleClick = (e: any) => {
+  const handleGetId = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setUrlParams(props.tweet?._id);
     setCommentModal(true);
   };
 
-  // const handleLink = (e: any) => {
-  //   e.preventDefault()
-  //   setGetUsername(props.tweet?.username)
-  // };
-
-  const [views, setViews] = useState<number>(0);
-
-  useEffect(() => {
+  useMemo(() => {
     const view = Math.floor(Math.random() * suggestedUsers?.length);
-    // console.log(view, "This is view");
-    // console.log(suggestedUsers?.length, "suggested User");
 
     setViews(view);
-  }, []);
-
-  // console.log(views, "This is view");
+  }, [suggestedUsers?.length]);
 
   return (
     <Tweetstyled>
       <div className="postsContainer">
-        {<div className={commentModal ? "overlay" : "removeOverlay"}> </div>}
+        {
+          <AnimatePresence>
+            <motion.div className={commentModal ? "overlay" : "removeOverlay"}>
+              {" "}
+            </motion.div>
+          </AnimatePresence>
+        }
         <Link
           href={"/users/" + props.tweet?.username}
           className="profilePicture"
@@ -195,7 +285,10 @@ const Tweet = (props: any) => {
                 className="userName"
               >
                 {" "}
-                {props.tweet?.username.slice(0, 10)}..
+                {props.tweet?.username.length > 11
+                  ? props.tweet?.username.slice(0, 10)
+                  : props.tweet?.username}{" "}
+                {props.tweet?.username.length > 11 ? "..." : ""}
               </Link>
               <span className="userAt">{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? (
@@ -206,11 +299,29 @@ const Tweet = (props: any) => {
                 <span className="createdAt">a few seconds ago </span>
               )}
             </div>
-            <div>
-              {<BiDotsHorizontalRounded className="biDots" cursor="pointer" />}{" "}
+            <div className="popUpModal">
+              <span onClick={() => setPopUpModal((prev) => !prev)}>
+                {
+                  <BiDotsHorizontalRounded
+                    className="biDots"
+                    cursor="pointer"
+                  />
+                }{" "}
+              </span>
+
+              {popUpModal && (
+                <TweetOptionsModal
+                  tweet={props.tweet}
+                  setPopUpModal={setPopUpModal}
+                />
+              )}
             </div>
           </div>
-          <p className="tweet-caption">{props.tweet?.tweet} </p>
+          <p className="tweet-caption">
+            <Link href="/[id]" as={`${props.tweet?._id}`}>
+              {props.tweet?.tweet}
+            </Link>
+          </p>
           {props.tweet?.picture ? (
             <div
               onClick={() => setOpenPictureModal(true)}
@@ -232,7 +343,7 @@ const Tweet = (props: any) => {
           <div className="tweetOptions">
             <div className="flexIconsAndValues">
               <Tippy content="comment" placement="bottom">
-                <p onClick={handleClick}>
+                <p onClick={handleGetId}>
                   <FaRegComment
                     className="likeIcon"
                     style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
@@ -241,12 +352,14 @@ const Tweet = (props: any) => {
               </Tippy>
               <span>{props.tweet.comments?.length} </span>
               {commentModal ? (
-                <div className="activeModal">
-                  <CommentModal
-                    urlParams={urlParams}
-                    setCommentModal={setCommentModal}
-                  />{" "}
-                </div>
+                <AnimatePresence>
+                  <motion.div className="activeModal">
+                    <CommentModal
+                      urlParams={urlParams}
+                      setCommentModal={setCommentModal}
+                    />{" "}
+                  </motion.div>
+                </AnimatePresence>
               ) : (
                 ""
               )}
@@ -322,16 +435,32 @@ const Tweet = (props: any) => {
               </span>
             </div>
             <div className="flexIconsAndValues">
-              <Tippy content="bookmark" placement="bottom">
-                <p onClick={handleBookmark}>
-                  {
-                    <AiOutlineUpload
-                      className="likeIcon"
-                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
-                    />
-                  }
-                </p>
-              </Tippy>
+              {bookmarks?.some((val: any) => val.postId == props.tweet?._id) ? (
+                <Tippy content="Remove from bookmark" placement="bottom">
+                  <span onClick={removeTweetFromBookmark}>
+                    {
+                      <RxBookmarkFilled
+                        className="likeIcon"
+                        style={{
+                          cursor: "pointer",
+                          color: "#1d9aef",
+                        }}
+                      />
+                    }
+                  </span>
+                </Tippy>
+              ) : (
+                <Tippy content="Bookmark tweet" placement="bottom">
+                  <span onClick={handleBookmark}>
+                    {
+                      <CiBookmark
+                        className="likeIcon"
+                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                      />
+                    }
+                  </span>
+                </Tippy>
+              )}
             </div>
           </div>
           <div className="showThread">
@@ -361,7 +490,7 @@ const Tweet = (props: any) => {
               className="closeModalBtn"
               onClick={() => setOpenPictureModal(false)}
             >
-              <MdClose fontSize={30} cursor="pointer" />
+              <MdClose fontSize={25} cursor="pointer" />
             </span>
           </div>
         ) : (
@@ -373,4 +502,4 @@ const Tweet = (props: any) => {
   );
 };
 
-export default memo(Tweet);
+export default React.memo(Tweet);

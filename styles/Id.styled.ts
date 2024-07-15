@@ -7,7 +7,7 @@ export const SingleTweetStyle = styled.div`
     grid-template-columns: 400px auto 600px;
     overflow: hidden;
     height: 100vh;
-    margin: 0 10%;
+    margin: 0 5%;
     position: relative;
      @media (max-width: 2070px ) {
       display: grid;
@@ -15,11 +15,11 @@ export const SingleTweetStyle = styled.div`
     }
     @media (max-width: 1830px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 400px auto 450px ; 
     }
     @media (max-width: 1700px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 350px auto 500px ; 
       margin: 0 5%;
     }
     @media (max-width: 1500px ) {
@@ -84,7 +84,7 @@ export const SingleTweetStyle = styled.div`
             font-size: calc(20px + 0.25vw);
             }
             span{
-                font-size: calc(24px + 0.25vw);
+                font-size: calc(22px + 0.25vw);
             }
         }
         .userDetailsContainer{
@@ -93,14 +93,19 @@ export const SingleTweetStyle = styled.div`
             justify-content: space-between;
             margin-top: 30px;
             margin-left: 10px;
+            /* position: relative; */
+            /* border: 2px red solid; */
         .subUserDetailsContainer{
             display: flex;
             align-items: flex-start;
             gap: 20px;
+            /* border: 2px red solid; */
             .profilePic{
                 border: 1px white solid;
-                width: 70px;
-                height: 70px;
+                min-width: 50px;
+                min-height: 50px;
+                display: grid;
+                place-content: center;
                 border-radius: 50%;
                 background-color: black;
                 background-repeat: no-repeat;
@@ -108,12 +113,34 @@ export const SingleTweetStyle = styled.div`
                 background-position: center;
                 object-fit: cover;
                 object-position: center;
+
             }
             .username {
+                /* border: 2px red solid; */
                 h1{
                     font-size: calc(20px + 0.25vw);
+                    color: #fff;
+                     @media (max-width: 500px) {
+                font-size: calc(18px + 0.25vw);
+                }
+                p{
+                    font-size: calc(16px + 0.25vw);
+                    color: #575B5F !important;
+                    /* border: 2px red solid !important; */
+                      @media (max-width: 500px) {
+                font-size: calc(16px + 0.25vw);
+                }
+                }
+                /* .popUp{
+                    position: relative;
+                    width: 100%;
+                    border: 2px red solid;
+                } */
                 }
             }
+        }
+        span{
+            font-size: calc(22px + 0.25vw);
         }
     }
     .picture {
@@ -130,10 +157,10 @@ export const SingleTweetStyle = styled.div`
     }
     .tweetText{
         /* font-size: 30px; */
-        font-size: calc(18px + 0.25vw);
-        font-weight: 500;
+        font-size: calc(15px + 0.25vw);
+        font-weight: 400;
         margin: 20px 20px;
-        line-height: 30px;
+        line-height: 35px;
     }
     .postDetailsContainer{
         .timeAndViews{
@@ -144,6 +171,9 @@ export const SingleTweetStyle = styled.div`
             .listStyle{
                 display: list-item;
                 list-style: disc outside none;
+                @media (max-width: 350px){
+                font-size: calc(12px + 0.25vw);
+                }
             }
         }
         .tweetCount{
@@ -158,7 +188,7 @@ export const SingleTweetStyle = styled.div`
                 width: 100%;
             }
             p{
-                font-size: calc(18px + 0.25vw);
+                font-size: calc(16px + 0.25vw);
                @media (max-width: 400px ){
                 font-size: calc(14px + 0.25vw);
                }
@@ -204,7 +234,7 @@ export const SingleTweetStyle = styled.div`
             position: relative;
             .retweetModal{
                 position: absolute;
-                top: 20px;
+                top: 25px;
                 left: 0;
                 z-index: 1;
                 background-color: #000;
@@ -217,11 +247,15 @@ export const SingleTweetStyle = styled.div`
                
             }
         }
-        span{
-            font-size: 20px;
+       .noOfInteractions{
+        font-size: calc(18px + 0.25vw);
+        @media (max-width: 500px ) {
+         font-size: calc(16px + 0.25vw) ;
         }
+       }
         .likeIcon{
-        font-size: calc(24px + 0.25vw);
+        font-size: calc(18px + 0.25vw);
+        margin-top: 5px;
        }
         .activeModal{
                     width: 40vw;
@@ -247,6 +281,9 @@ export const SingleTweetStyle = styled.div`
                         border-radius: 0;
                         z-index: 9999999999;
                     }
+                }
+                span{
+                    font-size: calc(15px + 0.25vw);
                 }
     }
 

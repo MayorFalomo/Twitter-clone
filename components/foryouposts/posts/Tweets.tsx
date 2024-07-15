@@ -1,12 +1,10 @@
 import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
 import Tweet from "./Tweet";
 import { TweetsContainer } from "./Tweets.styled";
 import { RiQuillPenLine } from "react-icons/ri";
 import TweetModal from "@/components/tweetmodal/Tweetmodal";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Tweets = (props: any) => {
   const {

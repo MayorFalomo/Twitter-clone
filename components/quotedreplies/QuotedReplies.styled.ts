@@ -209,7 +209,7 @@ padding: 10px;
         p{
        font-size: calc(16px + 0.25vw);
             color:#1d9aef ;
-            border: 2px red solid;
+            /* border: 2px red solid; */
         }
     }
 }

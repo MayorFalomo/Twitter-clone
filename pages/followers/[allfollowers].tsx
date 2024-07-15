@@ -19,7 +19,7 @@ export const getServerSideProps = async (context: any) => {
   const currentName = allfollowers;
 
   const res = await fetch(
-    `https://twitter-clone-server-nu.vercel.app/api/users/${allfollowers}/get-allfollowers`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users/${allfollowers}/get-allfollowers`
   );
   const data = await res.json();
 

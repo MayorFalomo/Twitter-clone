@@ -18,12 +18,14 @@ export const ForYouContainer = styled.div`
       background-size: cover;
       background-position: center;
       object-fit: cover;
+      margin-top: 5px;
        @media (max-width: 500px ) {
         display: none;
       }
     }
     form {
       width: 100%;
+      margin-top: 5px;
       /* border: 2px red solid; */
       @media (max-width: 500px ) {
         display: none;
@@ -31,30 +33,34 @@ export const ForYouContainer = styled.div`
       .textAreaContainer {
         position: relative;
         width: 100%;
+
       }
 
       textArea {
+         /* border: 2px yellow solid; */
         width: 100%;
         height: 170px;
         background-color: transparent;
         border: none;
-        font-size: calc(20px + 0.25vw);
+        font-size: calc(15px + 0.25vw);
         outline: 0;
         color: white;
         white-space: wrap;
         resize: none;
+        padding-top: 8px;
+        padding-left: 5px;
       }
       textArea::placeholder {
-        font-size: calc(22px + 0.25vw);
-        padding: 60px;
+        font-size: calc(18px + 0.25vw);
+        padding: 50px;
       }
       select {
         outline: none;
         padding: 7px 15px;
         border-radius: 20px;
-        position: absolute;
+        /* position: absolute;
         left: 20px;
-        top: 10px;
+        top: 10px; */
         background-color: transparent;
         color: #1d9aef;
         font-size: calc(6px + 0.25vw);
@@ -79,11 +85,11 @@ export const ForYouContainer = styled.div`
             cursor: not-allowed;
           }
           label{
-              font-size: calc(22px + 0.25vw);
+              font-size: calc(20px + 0.25vw);
               cursor: not-allowed;
           }
           span{
-            font-size: calc(22px + 0.25vw);
+            font-size: calc(20px + 0.25vw);
             cursor: not-allowed;
           }
         }
@@ -99,7 +105,7 @@ export const ForYouContainer = styled.div`
           border: none;
           outline: none;
           cursor: pointer;
-          font-size: 18px;
+          font-size: 17px;
           background-color: #1d9aef;
           color: #fff;
           border-radius: 25px;

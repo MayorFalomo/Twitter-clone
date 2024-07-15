@@ -2,8 +2,8 @@ import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import moment from "moment";
 import Link from "next/link";
-import React, { useState, useContext, useEffect } from "react";
-import { AiOutlineRetweet, AiOutlineUpload } from "react-icons/ai";
+import React, { useState, useContext, useMemo } from "react";
+import { AiOutlineRetweet } from "react-icons/ai";
 import { BiBarChart, BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsFillHeartFill } from "react-icons/bs";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
@@ -35,7 +35,6 @@ const Bookmark = (props: any) => {
     if (likesArray.includes(likesArray.username)) {
       console.log("You cannot like this tweet");
     } else {
-      // const handleAddLike = async () => {
       const likeData = {
         username: currentUser?.username,
         profileDp: currentUser?.profilePic,
@@ -43,10 +42,7 @@ const Bookmark = (props: any) => {
         postId: props.bookmark.postId,
       };
       axios
-        .put(
-          `https://twitter-clone-server-nu.vercel.app/api/tweets/liketweet`,
-          likeData
-        )
+        .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/liketweet`, likeData)
         .catch((err) => console.log(err));
       setLikesArray([...likesArray, likeData]);
       setNoOfLikesArray(likesArray?.length + 1);
@@ -62,10 +58,7 @@ const Bookmark = (props: any) => {
       postId,
     };
     await axios
-      .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/unlike-tweet`,
-        likeData
-      )
+      .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/unlike-tweet`, likeData)
       .catch((err) => console.log(err));
     let filtered = likesArray.filter(
       (item: any) => item.username !== likeData.username
@@ -83,7 +76,7 @@ const Bookmark = (props: any) => {
   const handleRemoveBookmark = async () => {
     axios
       .delete(
-        `https://twitter-clone-server-nu.vercel.app/api/bookmarks/delete-bookmark/${props.bookmark?.postId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/delete-bookmark/${props.bookmark?.postId}`
       )
       .catch((err) => console.log(err));
     let filtered = bookmarks.filter(
@@ -98,7 +91,7 @@ const Bookmark = (props: any) => {
   };
   const [views, setViews] = useState<number>(0);
 
-  useEffect(() => {
+  useMemo(() => {
     const view = Math.floor(Math.random() * suggestedUsers?.length);
     setViews(view);
   }, []);
@@ -106,9 +99,6 @@ const Bookmark = (props: any) => {
   const handleRemove = () => {
     setModalActive(true);
   };
-
-  // console.log(props?.bookmark?.postId, "props");
-  // console.log(bookmarks, "map over");
 
   return (
     <BookmarkStyle>
@@ -126,7 +116,9 @@ const Bookmark = (props: any) => {
                 className="userName"
               >
                 {" "}
-                {props.bookmark?.username}{" "}
+                {props.bookmark?.username.length > 10
+                  ? props.bookmark?.username.slice(0, 9)
+                  : props.bookmark?.username}{" "}
               </Link>
               <span className="userAt">{props.bookmark?.usersAt}</span>
               {props.tweet?.newDates == undefined ? (

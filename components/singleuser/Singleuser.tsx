@@ -1,6 +1,11 @@
 import axios from "axios";
 import moment from "moment";
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  MouseEventHandler,
+} from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { BiCalendar, BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsArrowLeft, BsBalloon } from "react-icons/bs";
@@ -13,18 +18,29 @@ import Singleusertweets from "../singletweet/Singleusertweets";
 import { AppContext } from "@/helpers/Helpers";
 import EditProfileModal from "../editprofilemodal/EditProfileModal";
 import Link from "next/link";
+import { PiCompassLight } from "react-icons/pi";
+import { FcCancel } from "react-icons/fc";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {};
+
+interface IBlocked {
+  username: string;
+  id: string;
+  usersAt: string;
+  profilePic: string;
+}
 
 //[username] in pages is the parent component
 const Singleuser = (props: any) => {
   const { currentUser, setCurrentUser, user } = useContext(AppContext);
 
-  const [current, setCurrent] = useState<any>(0);
+  const [current, setCurrent] = useState<number>(0);
   const [allUsersTweets, setAllUsersTweets] = useState<any>([]);
   const [copied, setCopied] = useState<boolean>(false);
   const [followingButton, setFollowingButton] = useState<boolean>(false);
   const [onMouseHover, setOnMouseHover] = useState<boolean>(false);
+  // const [onMouseHover, setOnMouseHover] = useState<boolean>(false);
   const [urlParams, setUrlParams] = useState<string>(props.user?._id);
   const [usernames, setUsernames] = useState<string>(props.user?.username);
   const [usersAt, setUsersAt] = useState<string>(props.user?.usersAt);
@@ -37,8 +53,10 @@ const Singleuser = (props: any) => {
   const [noOfFollowersArray, setNoOfFollowersArray] = useState<number>(
     followersArray?.length
   );
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [openBlockedTweets, setOpenBlockedTweets] = useState<boolean>(false);
 
-  const handleClick = (param: any) => {
+  const handleClick = (param: number) => {
     setCurrent(param);
   };
 
@@ -48,10 +66,15 @@ const Singleuser = (props: any) => {
   useEffect(() => {
     axios
       .get(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/get-tweet/${props.user?.username}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/get-tweet/${props.user?.username}`
       )
       .then((res) => setAllUsersTweets(res.data))
       .catch((err) => console.log(err));
+    if (currentUser) {
+      currentUser.blocked?.some(
+        (val: IBlocked) => val.username === usernames
+      ) && setOpenBlockedTweets(true);
+    }
   }, [props.user?.username]);
 
   //Handle follow of a user
@@ -75,7 +98,7 @@ const Singleuser = (props: any) => {
       });
       await axios
         .put(
-          `https://twitter-clone-server-nu.vercel.app/api/users/follow-user`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/users/follow-user`,
           followAUser
         )
         .catch((err) => console.log(err));
@@ -96,10 +119,7 @@ const Singleuser = (props: any) => {
 
     try {
       await axios
-        .put(
-          `https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`,
-          data
-        ) //username of the user who is following the current user.
+        .put(`${process.env.NEXT_PUBLIC_BASE_URL}/users/unfollow-user`, data) //username of the user who is following the current user.
         .catch((err) => console.log(err));
       setNoOfFollowersArray(followersArray?.length);
       let filtered = currentUser?.following.filter(
@@ -112,6 +132,87 @@ const Singleuser = (props: any) => {
     }
   };
 
+  const blockUser = async () => {
+    const data = {
+      _id: currentUser?._id,
+    };
+
+    // const blockedUserDetails = {
+    //   _id: props.user?._id,
+    //   username: props.user?.username,
+    //   userId: props.user?.userId,
+    // };
+    // console.log(data, blockedUserDetails);
+
+    try {
+      const response = await axios({
+        method: "put",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${props.user.username}/block`,
+        data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.data) {
+        setCurrentUser(response.data.response);
+        toast.success("blocked successfully!", {
+          style: {
+            backgroundColor: "#333",
+            color: "#fff",
+          },
+        });
+        // const addedBlockedToArray = currentUser?.blocked.push(
+        //   blockedUserDetails
+        // );
+        // console.log(addedBlockedToArray, "addedblocked");
+      }
+    } catch (error) {
+      console.log(error, "An Error has occurred");
+      toast.error("Failed to block this user", {
+        style: {
+          backgroundColor: "#333",
+          color: "#fff",
+        },
+      });
+    }
+  };
+
+  const unBlockUser = async () => {
+    const data = {
+      _id: currentUser?._id,
+    };
+
+    try {
+      const response = await axios({
+        method: "put",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${usernames}/unblock`,
+        data: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data) {
+        setCurrentUser(response.data.currentUser);
+        // setCurrentUser();
+        // (prev: any) => ({
+        //   ...prev,
+        //   blocked: [
+        //     ...prev.blocked.filter(
+        //       (block) => block.username !== props.user.username
+        //     ),
+        //   ],
+        // })
+      }
+    } catch (error) {
+      console.log(error, "Error Unblocking user");
+    }
+  };
+
+  // console.log(
+  //   currentUser?.blocked?.some((e: any) => e.username == props.user?.username)
+  // );
+
   //  const handleCopyToClipboard = (param:any) => {
   // navigator.clipboard.writeText(
   //   `https://insttagg-server.vercel.app/post/${param}`
@@ -119,9 +220,8 @@ const Singleuser = (props: any) => {
   // setCopied(!copied);
   // };
 
-  // console.log(noOfFollowersArray);
-
-  // console.log(props.user);
+  console.log(current, "current");
+  console.log(openBlockedTweets, "openblocked");
 
   return (
     <SingleUserStyle>
@@ -133,12 +233,14 @@ const Singleuser = (props: any) => {
             </Link>
             <div className="profileUsersDetails">
               <h1>
-                {props.user?.username}{" "}
-                {noOfFollowersArray >= 5 ? (
-                  <MdOutlineVerified color="#1d9aef" />
-                ) : (
-                  ""
-                )}{" "}
+                <span>{props.user?.username}</span>
+                <span style={{ paddingTop: "5px" }}>
+                  {noOfFollowersArray >= 5 ? (
+                    <MdOutlineVerified color="#1d9aef" />
+                  ) : (
+                    ""
+                  )}
+                </span>
               </h1>
               <p>{allUsersTweets.posts?.length} Tweets</p>
             </div>
@@ -161,33 +263,90 @@ const Singleuser = (props: any) => {
             </div>
           ) : (
             <div className="profilePageIcons">
-              {/* <span>{<BiDotsHorizontalRounded />} </span> */}
-              <Link href="/messages">
-                <span>{<RxEnvelopeClosed width={40} height={40} />} </span>
-              </Link>
-              {/* <span>{<MdOutlineNotificationAdd />} </span> */}
-              <div className="singleUserFollow">
-                {currentUser?.following?.some(
-                  (e: any) => e.usersId === props.user?._id
-                ) ? (
-                  <button
-                    onClick={handleRemoveFollower}
-                    onMouseEnter={() => setOnMouseHover(true)}
-                    onMouseLeave={() => setOnMouseHover(false)}
-                    className="btn-following"
-                  >
-                    {onMouseHover ? "Unfollow" : "Following"}{" "}
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleFollow}
-                    className="btn-follow"
-                    disabled={currentUser?.username == props.user?.username}
-                  >
-                    Follow{" "}
-                  </button>
+              <div className="pageIcons">
+                <span
+                  className="dots"
+                  onClick={() => setModalOpen((prev: boolean) => !prev)}
+                >
+                  {<BiDotsHorizontalRounded />}{" "}
+                </span>
+                {modalOpen && (
+                  <div className="optionsModal">
+                    {currentUser.blocked.some(
+                      (prev: any) => prev.username == props.user?.username
+                    ) ? (
+                      <p onClick={unBlockUser}>
+                        {" "}
+                        <span>{<PiCompassLight />} </span>{" "}
+                        <span>Unblock {props.user?.usersAt}</span>{" "}
+                      </p>
+                    ) : (
+                      <p onClick={blockUser}>
+                        {" "}
+                        <span> {<FcCancel />} </span>{" "}
+                        <span> Block {props.user?.usersAt} </span>
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
+              <Link href="/messages">
+                <span className="dots">{<RxEnvelopeClosed />} </span>
+              </Link>
+              {currentUser?.blocked?.some(
+                (e: any) => e.username == props.user?.username
+              ) && (
+                <div className="blockedBtnContainer">
+                  {onMouseHover ? (
+                    <button
+                      onClick={unBlockUser}
+                      onMouseEnter={() => setOnMouseHover(true)}
+                      onMouseLeave={() => setOnMouseHover(false)}
+                      className="unBlockBtn"
+                    >
+                      {onMouseHover ? "UnBlock" : "Blocked"}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={blockUser}
+                      onMouseEnter={() => setOnMouseHover(true)}
+                      onMouseLeave={() => setOnMouseHover(false)}
+                      className="blockBtn"
+                    >
+                      Blocked
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {currentUser?.blocked?.some(
+                (e: any) => e.username === props.user?.username
+              ) ? (
+                ""
+              ) : (
+                <div className="singleUserFollow">
+                  {currentUser?.following?.some(
+                    (e: any) => e.usersId === props.user?._id
+                  ) ? (
+                    <button
+                      onClick={handleRemoveFollower}
+                      onMouseEnter={() => setOnMouseHover(true)}
+                      onMouseLeave={() => setOnMouseHover(false)}
+                      className="btn-following"
+                    >
+                      {onMouseHover ? "Unfollow" : "Following"}{" "}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleFollow}
+                      className="btn-follow"
+                      disabled={currentUser?.username == props.user?.username}
+                    >
+                      Follow{" "}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           )}
           {props.editProfileModal ? <EditProfileModal /> : ""}
@@ -196,12 +355,14 @@ const Singleuser = (props: any) => {
           </div>
           <div className="userDetailsContainer">
             <h1 style={{ fontWeight: 800 }}>
-              {props.user?.username}{" "}
-              {noOfFollowersArray >= 5 ? (
-                <MdOutlineVerified color="#1d9aef" />
-              ) : (
-                ""
-              )}{" "}
+              <span>{props.user?.username}</span>
+              <span style={{ paddingTop: "5px" }}>
+                {noOfFollowersArray >= 5 ? (
+                  <MdOutlineVerified color="#1d9aef" />
+                ) : (
+                  ""
+                )}
+              </span>
             </h1>
             {/* <span style={{color:'#1d9aef'}}  >{noOfFollowersArray >= 5 ? <MdOutlineVerified color='#1d9aef' /> : "" }</span> */}
             <p
@@ -260,54 +421,96 @@ const Singleuser = (props: any) => {
               </Link>
             </div>
           </div>
-          <ul className="tweetsDetails">
-            <li
-              onClick={(e: any) => handleClick(0)}
-              className={current == 0 ? "border-bottom" : "no-border"}
-              style={{ cursor: "pointer" }}
-            >
-              Tweets{" "}
-            </li>
-            <li
-              onClick={(e: any) => handleClick(1)}
-              className={current == 1 ? "border-bottom" : ""}
-              style={{ cursor: "pointer" }}
-            >
-              Replies{" "}
-            </li>
-            <li
-              onClick={(e: any) => handleClick(2)}
-              className={current == 2 ? "border-bottom" : ""}
-              style={{ cursor: "pointer" }}
-            >
-              Media{" "}
-            </li>
-            <li
-              onClick={(e: any) => handleClick(3)}
-              className={current == 3 ? "border-bottom" : ""}
-              style={{ cursor: "pointer" }}
-            >
-              {" "}
-              Likes
-            </li>
-          </ul>
-          {current == 0 && (
-            <div className="singleTweetsContainer">
-              {allUsersTweets?.posts?.map((allTweets: any) => (
-                <div key={allTweets._id} className="singleTweet">
-                  <Singleusertweets allTweets={allTweets} />
-                </div>
-              ))}
-              {allUsersTweets.posts?.length == 0 && (
-                <div className="noTweetMessage">
-                  <h3>This user has no tweets</h3>{" "}
+          {currentUser.blocked?.some(
+            (val: IBlocked) => val.username == props.user?.username
+          ) && openBlockedTweets == true ? (
+            ""
+          ) : (
+            <ul className="tweetsDetails">
+              <li
+                onClick={() => handleClick(0)}
+                className={current == 0 ? "border-bottom" : "no-border"}
+                style={{ cursor: "pointer" }}
+              >
+                Tweets{" "}
+              </li>
+              <li
+                onClick={() => handleClick(1)}
+                className={current == 1 ? "border-bottom" : ""}
+                style={{ cursor: "pointer" }}
+              >
+                Replies{" "}
+              </li>
+              <li
+                onClick={() => handleClick(2)}
+                className={current == 2 ? "border-bottom" : ""}
+                style={{ cursor: "pointer" }}
+              >
+                Media{" "}
+              </li>
+              <li
+                onClick={() => handleClick(3)}
+                className={current == 3 ? "border-bottom" : ""}
+                style={{ cursor: "pointer" }}
+              >
+                {" "}
+                Likes
+              </li>
+            </ul>
+          )}
+
+          {currentUser.blocked?.some(
+            (prev: IBlocked) => prev.username === props.user?.username
+          ) && openBlockedTweets == true
+            ? ""
+            : current == 0 && (
+                <div className="singleTweetsContainer">
+                  {allUsersTweets?.posts?.map((allTweets: any) => (
+                    <div key={allTweets._id} className="singleTweet">
+                      <Singleusertweets allTweets={allTweets} />
+                    </div>
+                  ))}
+                  {allUsersTweets.posts?.length == 0 && (
+                    <div className="noTweetMessage">
+                      <h3>This user has no tweets</h3>{" "}
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
-          )}
-          {current == 1 && <SingleUserReplies />}
-          {current == 2 && <SingleUserReplies />}
-          {current == 3 && <SingleUserReplies />}
+          {currentUser.blocked?.some(
+            (prev: IBlocked) => prev.username === props.user?.username
+          ) && openBlockedTweets == true
+            ? " "
+            : current == 1 && <SingleUserReplies />}
+
+          {currentUser.blocked?.some(
+            (prev: IBlocked) => prev.username === props.user?.username
+          ) && openBlockedTweets == true
+            ? ""
+            : current == 2 && <SingleUserReplies />}
+          {currentUser.blocked?.some(
+            (prev: IBlocked) => prev.username === props.user?.username
+          ) && openBlockedTweets == true
+            ? " "
+            : current == 3 && <SingleUserReplies />}
+
+          {currentUser.blocked?.some(
+            (prev: IBlocked) => prev.username === props.user?.username
+          ) &&
+            openBlockedTweets == true && (
+              <div className="blockedContainer">
+                <div className="subCon">
+                  <h1>{props.user.usersAt} is blocked </h1>
+                  <p>
+                    Are you sure you want to view these posts? Viewing posts
+                    won’t unblock {props.user?.usersAt} Learn more{" "}
+                  </p>
+                  <button onClick={() => setOpenBlockedTweets(false)}>
+                    View posts{" "}
+                  </button>
+                </div>
+              </div>
+            )}
         </div>
       </div>
     </SingleUserStyle>

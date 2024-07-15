@@ -10,7 +10,7 @@ export const ShowReplyStyle = styled.div`
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 1px rgb(113,118,123) solid;
+            /* border: 1px rgb(113,118,123) solid; */
             background: black;
             background-repeat: no-repeat;
             background-size: cover;
@@ -121,28 +121,6 @@ export const ShowReplyStyle = styled.div`
             object-position: center;
         }
     }
-    /* .replyDetails{
-        border: 2px green solid !important;
-        width: 90%;
-        h1{
-          span{
-            font-size: 28px;
-            color: #575B5F ;
-          }
-        }
-        p{
-            font-size: 26px;
-        }
-        .tweet{
-            font-size: 26px;
-            margin-top: 20px;
-            color:  #575B5F;
-            span{
-                color: #1d9aef;
-                font-size: 28px;
-            }
-        }
-  } */
             }
         }
                 }

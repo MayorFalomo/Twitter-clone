@@ -33,13 +33,12 @@ export const AllUserTweets = styled.div`
         background-size: cover;
         object-fit: cover;
         border: 1px white solid;
-        height: 70px;
-        width: 70px;
+       min-height: 50px;
+      min-width: 50px;
         border-radius: 50%;
         @media (max-width: 400px ) {
-            width: 40px;
             min-width: 40px;
-            height: 40px;
+            min-height: 40px;
         }
     }
     .flexUserInfoContainer{
@@ -57,7 +56,7 @@ export const AllUserTweets = styled.div`
             gap: 10px;
             .usersUsername{
                 /* color: #575B5F; */
-                font-size: calc(16px + 0.25vw);
+                font-size: calc(15px + 0.25vw);
             }
             .createdAt{
                  display: list-item;
@@ -71,7 +70,7 @@ export const AllUserTweets = styled.div`
             }
         }
         .tweetText{
-            font-size: calc(16px + 0.25vw);
+            font-size: calc(15px + 0.25vw);
             line-height: 30px;
         }
         .tweet-image{

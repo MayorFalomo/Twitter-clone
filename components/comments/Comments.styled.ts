@@ -8,11 +8,11 @@ export const CommentStyled = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border: 1px white solid;
-    width: 70px;
-    height: 70px;
+    min-width: 50px;
+    min-height: 50px;
+    display: grid;
+    place-content: center;
     border-radius:50%;
-    /* border: 2px red solid; */
     @media (max-width: 450px ) {
       width: 50px;
       height: 50px;
@@ -93,7 +93,7 @@ export const CommentStyled = styled.div`
         /* justify-content: space-around; */
         margin: 20px auto;
         color: #E2E4E4;
-        border: 2px red solid;
+        /* border: 2px red solid; */
     }
     .flexIconsAndValues{
         display: flex;
@@ -135,8 +135,10 @@ export const CommentStyled = styled.div`
       padding: 10px;
       border-top: 1px solid #575B5F;
       .userProfileDp{
-        width: 70px;
-        height: 70px;
+        display: grid;
+        place-content: center;
+        min-width: 50px;
+        min-height: 50px;
         border-radius: 50%;
         background-color: #000;
         background-repeat: no-repeat;
@@ -163,16 +165,20 @@ export const CommentStyled = styled.div`
         color: white;
         white-space: wrap;
         resize: none;
-        font-size: calc(16px + 0.25vw);
+        font-size: calc(15px + 0.25vw);
+        margin-top: 5px;
       }
       .textArea::placeholder {
-          font-size: calc(20px + 0.25vw);
+          font-size: calc(16px + 0.25vw);
         padding-top: 60px;
       }
       p {
         background-color: transparent;
         color: #1d9aef;
-        font-size: 22px;
+        font-size: calc(18px + 0.25vw);
+        @media (max-width: 500px) {
+         font-size : calc(17px + 0.25vw) ;
+        }
       }
       .flexIcons {
         display: flex;
@@ -201,14 +207,14 @@ export const CommentStyled = styled.div`
         }
           }
           label{
-            font-size: calc(24px + 0.25vw);
+            font-size: calc(20px + 0.25vw);
              @media (max-width: 400px ) {
-                font-size: calc(18px + 0.25vw);        
+                font-size: calc(16px + 0.25vw);        
         }
            
           }
           span{
-            font-size: calc(24px + 0.25vw);
+            font-size: calc(20px + 0.25vw);
               @media (max-width: 400px ) {
                 font-size: calc(18px + 0.25vw);        
         }

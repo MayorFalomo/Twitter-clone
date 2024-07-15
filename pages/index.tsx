@@ -13,6 +13,7 @@ import { BsStars, BsTwitter } from "react-icons/bs";
 import MobileNav from "@/components/mobilenav/MobileNav";
 import Navigation from "@/components/navigation/Navigation";
 import Preload from "@/components/preload/Preload";
+import { AnimatePresence, motion } from "framer-motion";
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
@@ -52,7 +53,10 @@ export default function Home(props: any) {
     <HomeContainer>
       <Head>
         <title>Tweeks - A Twitter-clone</title>
-        <meta name="description" content="Tweets" />
+        <meta
+          name="description"
+          content="A Full stack clone of Twitter - Tweeks is a full-stack clone of twitter built with twitter features in mind"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
@@ -60,83 +64,89 @@ export default function Home(props: any) {
       {isLoading && isIntersecting ? (
         <Preload />
       ) : (
-        <div className="mainHomePage">
-          <Navbar />
-          <main>
-            <div className="homeHeader">
-              <div className="homeHeading">
-                <h1>Home </h1>
+        <AnimatePresence>
+          <motion.div className="mainHomePage">
+            <Navbar />
+            <main>
+              <div className="homeHeader">
+                <div className="homeHeading">
+                  <h1>Home </h1>
+                </div>
+                <div className={`mobileHeader`}>
+                  <div
+                    onClick={handleOpenNavigation}
+                    style={{
+                      backgroundImage: `url(${currentUser?.profilePic})`,
+                    }}
+                    className="profilePicHeader"
+                  >
+                    {" "}
+                  </div>
+                  <p>
+                    <BsTwitter
+                      className="hiddenloginLogo"
+                      style={{ color: " #1d9aef" }}
+                    />
+                  </p>
+                  <p>
+                    <BsTwitter
+                      className="loginLogo"
+                      style={{ color: " #1d9aef" }}
+                    />
+                  </p>
+                  <p>
+                    <BsStars
+                      className="loginLogo"
+                      style={{ color: " #1d9aef" }}
+                    />
+                  </p>
+                  <div
+                    className={
+                      navigation ? "openNavigation" : "closedNavigation"
+                    }
+                  >
+                    <Navigation />
+                  </div>
+                </div>
+                <ul className="postGroup">
+                  <a
+                    className={current == 0 ? "linkActive" : "link"}
+                    onClick={() => handleClick(0)}
+                  >
+                    <li> For you </li>
+                  </a>
+                  <a
+                    className={current == 1 ? "linkActive" : "link"}
+                    onClick={() => handleClick(1)}
+                  >
+                    <li> Following </li>
+                  </a>
+                </ul>
               </div>
-              <div className={`mobileHeader`}>
-                <div
-                  onClick={handleOpenNavigation}
-                  style={{ backgroundImage: `url(${currentUser?.profilePic})` }}
-                  className="profilePicHeader"
-                >
-                  {" "}
-                </div>
-                <p>
-                  <BsTwitter
-                    className="hiddenloginLogo"
-                    style={{ color: " #1d9aef" }}
-                  />
-                </p>
-                <p>
-                  <BsTwitter
-                    className="loginLogo"
-                    style={{ color: " #1d9aef" }}
-                  />
-                </p>
-                <p>
-                  <BsStars
-                    className="loginLogo"
-                    style={{ color: " #1d9aef" }}
-                  />
-                </p>
-                <div
-                  className={navigation ? "openNavigation" : "closedNavigation"}
-                >
-                  <Navigation />
-                </div>
+              <div className="centerGrid">
+                {current == 1 ? (
+                  <div>
+                    <ForYouPosts />
+                    <FollowersPosts />
+                  </div>
+                ) : (
+                  <div>
+                    <ForYouPosts />
+                    <Tweets />
+                  </div>
+                )}
               </div>
-              <ul className="postGroup">
-                <a
-                  className={current == 0 ? "linkActive" : "link"}
-                  onClick={() => handleClick(0)}
-                >
-                  <li> For you </li>
-                </a>
-                <a
-                  className={current == 1 ? "linkActive" : "link"}
-                  onClick={() => handleClick(1)}
-                >
-                  <li> Following </li>
-                </a>
-              </ul>
+            </main>
+            <div className="trendsContainer">
+              <Search />
+              <Trends />
             </div>
-            <div className="centerGrid">
-              {current == 1 ? (
-                <div>
-                  <ForYouPosts />
-                  <FollowersPosts />
-                </div>
-              ) : (
-                <div>
-                  <ForYouPosts />
-                  <Tweets />
-                </div>
-              )}
+            <div className="mobileNav">
+              {" "}
+              <MobileNav />
             </div>
-          </main>
-          <div className="trendsContainer">
-            <Search />
-            <Trends />
-          </div>
-          <div className="mobileNav">
-            {" "}
-            <MobileNav />
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       )}
     </HomeContainer>
   );

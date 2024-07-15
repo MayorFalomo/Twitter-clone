@@ -5,7 +5,7 @@ export const ProfileStyled = styled.div`
 .profileStyleContainer{
     display: grid;
     grid-template-columns: 400px auto 600px;
-    margin: 0 10%;
+    margin: 0 5%;
     overflow: hidden;
     /* border: 2px red solid; */
     height: 100vh;
@@ -15,11 +15,11 @@ export const ProfileStyled = styled.div`
     }
     @media (max-width: 1830px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 400px auto 450px ; 
     }
     @media (max-width: 1700px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 400px auto 450px ; 
       margin: 0 5%;
     }
     @media (max-width: 1500px ) {

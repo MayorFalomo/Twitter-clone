@@ -19,7 +19,7 @@ export const getServerSideProps = async (context: any) => {
   const currentName = allfollowing;
 
   const res = await fetch(
-    `https://twitter-clone-server-nu.vercel.app/api/users/${currentName}/all-following`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentName}/all-following`
   );
   const data = await res.json();
 
@@ -38,7 +38,7 @@ const allfollowing = ({ userData, currentName }: any) => {
   //useEffect to load all registered users
   useEffect(() => {
     axios
-      .get(`https://twitter-clone-server-nu.vercel.app/api/users`)
+      .get(`${process.env.NEXT_PUBLIC_BASE_URL}/users`)
       .then((res: any) => setAllFollowers(res.data))
       .catch((err: any) => console.log(err));
   }, []);

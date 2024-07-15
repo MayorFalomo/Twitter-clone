@@ -15,6 +15,23 @@ import EmojiPicker from "emoji-picker-react";
 import { ReplyPageStyle } from "./Replymodal.styled";
 type Props = {};
 
+interface ICommentReply {
+  _id: string;
+  username: string;
+  profileDp: string;
+  createdAt: string;
+  picture: string;
+  retweet: [];
+  usersAt: string;
+  comments: string;
+  like: [];
+}
+
+interface ISingleTweets {
+  _id: string;
+  comments: [];
+}
+
 //Parent component is CommentPage.tsx
 const Reply = (props: any) => {
   const commentId = new Date();
@@ -37,14 +54,20 @@ const Reply = (props: any) => {
   const [video, setVideo] = useState<string>("");
   const [like, setLike] = useState<any>([]);
   const [retweet, setRetweet] = useState<any>([]);
-  const [singleTweets, setSingleTweets] = useState<any>();
+  const [singleTweets, setSingleTweets] = useState<any>([]);
+  const [commentArray, setCommentArray] = useState<any>(
+    props?.commentingVal.comment
+  );
   const [comments, setComments] = useState<any>(singleTweets?.comments); //comment box for user to enter comment and post it. 	   const [
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false);
   const [postId, setPostId] = useState<number>(singleTweets?._id);
   const [createdAt, setCreatedAt] = useState<any>(commentId);
+
   const [successComment, setSuccessComment] = useState<boolean>(false);
-  const [newId, setNewId] = useState<any>(generateId(24));
+  const [newId, setNewId] = useState<string>(generateId(24));
   const [id, setId] = useState<any>();
+
+  const [mappedOverComment, setMappedOverComment] = useState<any>();
 
   const uploadImage = (files: any) => {
     const formData = new FormData();
@@ -68,19 +91,45 @@ const Reply = (props: any) => {
     setSuccessfulUpload(true);
   };
 
-  //UseEffect to get the comment being replied
+  const getSingleTweetsFunc = async () => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/${props.getCommentId}/${props.urlParams}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data) {
+        setSingleTweets(response.data.comments);
+      }
+    } catch (error) {
+      console.log(error, "error while getting singleTweet");
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/${props.getCommentId}/${props.urlParams}`
-      )
-      .then((res) => setSingleTweets(res.data.comments))
-      .catch((err) => console.log(err));
-  }, [props.getCommentId, props.urlParams]);
+    getSingleTweetsFunc();
+  }, []);
+
+  console.log(singleTweets, "singleTweets");
+
+  useEffect(() => {
+    setMappedOverComment(
+      singleTweets.map((single: ISingleTweets) => {
+        if (single && single.comments) {
+          return single.comments.map((mapped: any) => mapped.comment);
+        }
+        return [];
+      })
+    );
+  }, [singleTweets]);
 
   //Function to handle Replying of a comment
   const handleComment = async (e: any) => {
     e.preventDefault();
+
     const commentData = {
       username: props.currentUser?.username,
       profileDp: props.currentUser?.profilePic,
@@ -88,48 +137,33 @@ const Reply = (props: any) => {
       usersAt: props.currentUser?.usersAt,
       picture,
       video,
-      postId: singleTweets?._id,
+      postId: props.getCommentId,
       createdAt,
       newId,
       like,
       retweet,
     };
-    await axios
-      .put(
-        `https://twitter-clone-server-nu.vercel.app/api/tweets/${props.getCommentId}/${props.urlParams}/replies-comments`,
-        commentData
-      )
-      .catch((err) => console.log(err));
-    setComments(" ");
-    setSuccessComment(true);
-    //  setSingleTweets({
-    //    ...singleTweets,
-    //    comments: [
-    //      ...singleTweets.comments,
-    //    ]
-    //  })
-    setSingleTweets([
-      {
-        ...singleTweets,
-        comments: {
-          ...singleTweets.comments,
-          comment: [...singleTweets?.comments?.comment, { ...commentData }],
-        },
+
+    // console.log(commentData, "commentData");
+
+    const response = await axios({
+      method: "PUT",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/${props.getCommentId}/${props?.urlParams}/replies-comments`,
+      data: commentData,
+      headers: {
+        "Content-Type": "application/json",
       },
-      ...singleTweets,
-    ]);
-    //      props.setSingleTweets({
-    //     ...props.tweetProps,
-    //     comments: {
-    //       ...props.tweetProps?.comments,
-    //       comment: [
-    //         ...props.tweetProps?.comments.comment,
-    //         { ...commentData }
-    //     ]
-    //   }
-    // })
+    });
+
+    if (response.data) {
+      props.setReplies([...props?.replies, commentData]);
+
+      setComments(" ");
+      setSuccessComment(true);
+    }
   };
-  console.log(singleTweets, "singletweets");
+
+  console.log(mappedOverComment, "single");
 
   return (
     <ReplyPageStyle>
@@ -146,7 +180,13 @@ const Reply = (props: any) => {
         <div className="subCommentModal">
           <div className="profileImages">
             <div
-              style={{ backgroundImage: `url(${singleTweets?.profileDp})` }}
+              style={{
+                backgroundImage: `url(${
+                  singleTweets?.profileDp
+                    ? singleTweets?.profileDp
+                    : singleTweets?.usersPic
+                })`,
+              }}
               className="ProfilePic"
             >
               {" "}
@@ -164,7 +204,11 @@ const Reply = (props: any) => {
           <div className="replyDetails">
             {singleTweets?.map((singleTweet: any) => (
               <div key={singleTweet._id}>
-                <Mappedreply singleTweet={singleTweet} setId={setId} />{" "}
+                <Mappedreply
+                  singleTweet={singleTweet}
+                  setId={setId}
+                  setMappedOverComment={setMappedOverComment}
+                />{" "}
               </div>
             ))}
             <h1>

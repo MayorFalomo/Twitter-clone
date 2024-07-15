@@ -36,7 +36,7 @@ const SeeAllFollowers = (props: any) => {
   useEffect(() => {
     axios
       .get(
-        `https://twitter-clone-server-nu.vercel.app/api/users/get-user/${props.suggest?.username}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get-user/${props.suggest?.username}`
       )
       .then((res) => setFollowersArray(res.data))
       .catch((err) => console.log(err));
@@ -64,7 +64,7 @@ const SeeAllFollowers = (props: any) => {
       });
       await axios
         .put(
-          `https://twitter-clone-server-nu.vercel.app/api/users/follow-user`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/users/follow-user`,
           followAUser
         )
         .catch((err) => console.log(err));
@@ -87,10 +87,7 @@ const SeeAllFollowers = (props: any) => {
 
     try {
       await axios
-        .put(
-          `https://twitter-clone-server-nu.vercel.app/api/users/unfollow-user`,
-          data
-        ) //username of the user who is following the current user.
+        .put(`${process.env.NEXT_PUBLIC_BASE_URL}/users/unfollow-user`, data) //username of the user who is following the current user.
         .catch((err) => console.log(err));
       setNoOfFollowersArray(followersArray.length);
       let filtered = currentUser?.following.filter(

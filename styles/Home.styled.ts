@@ -8,25 +8,30 @@ export const HomeContainer = styled.div`
     grid-template-columns: 400px auto 600px;
       overflow: hidden;
     height: 100vh;
-    margin: 0 10%;
+    margin: 0 5%;
     position: relative;
     @media (max-width: 2070px ) {
       display: grid;
-      grid-template-columns: 400px auto 500px ; 
+      grid-template-columns: 400px auto 600px ; 
     }
     @media (max-width: 1830px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 400px auto 450px ; 
+            /* border: 2px yellow solid; */
+
     }
     @media (max-width: 1700px ) {
       display: grid;
-      grid-template-columns: 400px auto 400px ; 
+      grid-template-columns: 350px auto 500px ; 
       margin: 0 5%;
+      /* border: 2px red solid; */
     }
     @media (max-width: 1500px ) {
       display: grid;
       grid-template-columns: 100px auto 400px ; 
       margin: 0 5%;
+            /* border: 2px blue solid; */
+
     }
     @media (max-width: 1300px ) {
       display: grid;

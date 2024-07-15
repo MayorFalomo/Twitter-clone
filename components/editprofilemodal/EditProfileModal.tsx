@@ -81,7 +81,7 @@ const EditProfileModal = (props: any) => {
     try {
       await axios
         .put(
-          `https://twitter-clone-server-nu.vercel.app/api/users/${currentUser?._id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentUser?._id}`,
           updatedUser
         )
         .catch((err) => console.log(err));

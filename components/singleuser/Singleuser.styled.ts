@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const SingleUserStyle = styled.div`
 .profilePageStyled {
-    /* border: 2px red solid; */
+
 .subProfileStyle{
-    /* border: 1px rgb(47, 51, 54) solid; */
     position: relative;
     color: white;
     .subProfileFlex{
@@ -27,16 +26,27 @@ export const SingleUserStyle = styled.div`
         }
         .profileUsersDetails{
             h1{
+                display: flex;
+                align-items: center;
+                gap: 8px;
                 font-size: calc(18px + 0.25vw);         
             }
             p{
                 margin-top:5px;
                 font-size: calc(14px + 0.25vw);
             }
-            a{
-                border: 2px solid red;
-            }
+          
     }
+    .userReplies{
+    /* border: 1px solid rgb(47, 51, 54); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh !important;
+    width: 100% !important;
+    font-size: calc(18px + 0.25vw);
+    /* border: 2px red solid !important; */
+}
     }
     .profilePhotoContainers{
         position: relative;
@@ -67,12 +77,13 @@ export const SingleUserStyle = styled.div`
         border: 2px black solid;
         position: absolute;
         bottom: -100px;
-        left: 20px;
+        left: 10px;
         @media (max-width: 450px ) {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             position: absolute;
-            bottom: -70px;
+
+            bottom: -50px;
         }
     }
     
@@ -92,26 +103,44 @@ export const SingleUserStyle = styled.div`
         outline: none;
         border-radius: 40px;
         cursor: pointer;
+        @media screen {
+         padding   :10px 20px ;
+        }
         }
     }
     .userDetailsContainer{
-        margin-top: 40px;
+        margin-top: 20px;
         padding: 20px;
         h1{
+            display: flex;
+            align-items: center;
+            gap: 15px;
             font-size: calc(22px + 0.25vw);
+            @media (max-width: 500px) {
+                font-size: calc(20px + 0.25vw);
+            }
         }
         .usersAt{
             font-size: calc(16px + 0.25vw);
+              @media (max-width: 500px) {
+                font-size: calc(14px + 0.25vw);
+            }
         }
         .usersBio{
             font-size: calc(18px + 0.25vw);
+              @media (max-width: 500px) {
+                font-size: calc(16px + 0.25vw);
+            }
         }
         .usersExtraInfo{
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
-            font-size: calc(16px + 0.25vw);     
+            font-size: calc(16px + 0.25vw);  
+              @media (max-width: 500px) {
+                font-size: calc(14px + 0.25vw);
+            }   
             .usersLink:hover{
                 text-decoration: underline;
                 cursor: pointer;
@@ -120,6 +149,9 @@ export const SingleUserStyle = styled.div`
         .createdAt{
             font-size: calc(16px + 0.25vw);
             margin-top: 5px;
+              @media (max-width: 500px) {
+                font-size: calc(14px + 0.25vw);
+            }
         }
     }
     .tweetsDetails{
@@ -159,7 +191,6 @@ export const SingleUserStyle = styled.div`
         p:hover{
             text-decoration: underline;
         }
-        /* font-size: calc(18px + 0.25vw); */
     }
     .profilePageIcons{
         /* border: 2px red solid; */
@@ -168,11 +199,44 @@ export const SingleUserStyle = styled.div`
         align-items: center;
         gap: 25px;
         margin-top: 20px;
-        span{
+        @media (max-width: 600px) {
+            gap: 10px;
+        }
+        .pageIcons{
+            position: relative;
+            .optionsModal{
+                position: absolute;
+                min-width: 250px;
+                 width: auto;
+                left: -50px;
+                bottom: -40px;
+                z-index: 2;
+                padding: 8px 5px;
+                background-color: black;
+                color: white;
+                /* border: #1d9aef 2px solid; */
+                /* border-radius: 15px; */
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                p{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    /* border: 2px red solid; */
+                    font-size: calc(14px + 0.25vw);
+                    cursor: pointer;
+                }
+            }
+        }
+        .dots{
+            min-height: 30px;
+            min-width: 30px;
+            display: grid;
+            place-content: center;
             border: 1px rgb(47, 51, 54) solid;
             border-radius: 50% ;
-            padding: 10px 15px;
-            font-size: calc(20px + 0.25vw);
+            padding: 10px 10px;
+            font-size: calc(18px + 0.25vw);
+            cursor: pointer;
         };
         .singleUserFollow{
            .btn-follow{
@@ -198,6 +262,21 @@ export const SingleUserStyle = styled.div`
         transition: 0.3s ease;
     }
         }
+        .blockedBtnContainer {
+            margin-right: 10px;
+            /* border: #1d9aef 2px solid; */
+            .blockBtn, .unBlockBtn{
+                border-radius: 20px;
+                padding: 7px 20px;
+                background-color: red;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+                border: none;
+                outline: none;
+                
+            }
+        }
     }
     .singleTweet{
         border-top: 1px solid rgb(47, 51, 54);
@@ -210,15 +289,49 @@ export const SingleUserStyle = styled.div`
     height: 30vh;
     font-size: calc( 14px + 0.25vw);
 }
+.blockedContainer{
+    /* border: 2px green solid; */
+    /* border: 2px red solid; */
+    height: 40vh;
+    .subCon{
+        height: 100%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        @media (max-width: 610px ) {
+            width: 90% ;
+        }
+        h1{
+            font-size: calc(26px + 0.25vw);
+        }
+        p{
+            font-size: calc(14px + 0.25vw);
+            color: #575B5F;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        button{
+            margin-top: 30px;
+            width: fit-content;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #1d9aef;
+            color: white;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            font-size: calc(18px + 0.25vw);
+             @media (max-width: 610px ) {
+           padding: 7px 20px;
+           margin-top: 20px;
+           font-size: calc(16px +0.25vw);
+        }
+        }
+    }
 }
-.singleUserReplies{
-    /* border: 1px solid rgb(47, 51, 54); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30vh;
-    font-size: calc(18px + 0.25vw);
+}
 
-}
 }
 `;

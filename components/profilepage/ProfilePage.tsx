@@ -83,7 +83,7 @@ const ProfilePage = (props: any) => {
             )}
           </div>
           <div className="userDetailsContainer">
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div className="flexName">
               <h1 style={{ fontWeight: 800 }}>{currentUser?.username} </h1>
               <span style={{ color: "#1d9aef" }} className="verifiedIcon">
                 {currentUser?.followers?.length > 5 ? (

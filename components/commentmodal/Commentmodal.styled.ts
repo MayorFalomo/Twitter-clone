@@ -4,6 +4,7 @@ export const CommentModalStyle = styled.div`
 .commentModalContainer{
     background-color: black;
     padding: 20px;
+    /* border: 2px red solid; */
     .commentModalClose{
         padding: 10px;
         /* border-bottom: 1px solid white; */

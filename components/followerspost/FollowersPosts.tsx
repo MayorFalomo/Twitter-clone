@@ -22,7 +22,7 @@ const FollowersPosts = (props: Props) => {
     if (currentUser) {
       axios
         .get(
-          `https://twitter-clone-server-nu.vercel.app/api/users/${currentUser.username}/following-tweets`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentUser.username}/following-tweets`
         )
         .then((res) => {
           setFollowingTweets(res.data);

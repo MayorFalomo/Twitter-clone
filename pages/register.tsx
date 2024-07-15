@@ -16,6 +16,7 @@ import { useCookies } from "react-cookie";
 import { AppContext } from "@/helpers/Helpers";
 import Link from "next/link";
 import { doc, setDoc } from "firebase/firestore";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {};
 
@@ -44,7 +45,7 @@ const register = (props: any) => {
   //Sign Up With Google
   const signUpWithGoogle = async () => {
     try {
-      signInWithPopup(auth, provider).then((res) => {
+      signInWithPopup(auth, provider).then(async (res) => {
         setCookie("user", res.user.uid, { path: "/" });
         let userInfo = {
           id: res.user.uid,
@@ -68,14 +69,14 @@ const register = (props: any) => {
           links: "https://mayowa-falomo.netlify.app",
           usersId: generateId(24),
         };
-        axios
+        await axios
           .post(
             "https://twitter-clone-server-nu.vercel.app/api/users/register",
             userInfo
           )
-          .then(() => router.push("/"))
-          // .then(() => window.location.reload())
+          .then(async () => router.push("/"))
           .catch((err) => console.log(err));
+
         setDoc(doc(db, "users", res.user.uid), {
           uid: res.user.uid,
           username: res.user.displayName,
@@ -84,8 +85,8 @@ const register = (props: any) => {
           profilePic:
             "https://i.pinimg.com/564x/33/f4/d8/33f4d8c6de4d69b21652512cbc30bb05.jpg",
         });
-        setDoc(doc(db, "userChats", res.user.uid), {});
-        getCurrentUser(res.user.uid);
+        await setDoc(doc(db, "userChats", res.user.uid), {});
+        await getCurrentUser(res.user.uid);
       });
     } catch (err) {
       console.log("Sign up with Google error:", err);
@@ -184,93 +185,99 @@ const register = (props: any) => {
 
   return (
     <RegisterContainer>
-      <div>
-        <div className="signUpPageContainer">
-          <div className="subLoginPage">
-            <IoMdClose className="letterX" />
-            <BsTwitter
-              className="loginLogo"
-              style={{ color: " #1d9aef", fontSize: "40px" }}
-            />
-            <h1>Join Twitter Today</h1>
-            <button onClick={signUpWithGoogle} className="googleBtn">
-              {" "}
-              <FcGoogle size={30} /> Sign Up With Google{" "}
-            </button>
-            <div className="orBars">
-              <span className="leftBar"></span>
-              <p>or</p>
-              <span className="rightBar"></span>
-            </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <div className="flex-Center">
-                <input
-                  className="Input"
-                  type="text"
-                  value={email}
-                  onChange={(e: any) => setEmail(e.target.value)}
-                  placeholder="Enter Email"
-                />
-                <div onClick={getRandomEmail} className="generateBtn">
-                  generate email{" "}
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="signUpPageContainer">
+            <div className="subLoginPage">
+              <IoMdClose className="letterX" />
+              <BsTwitter
+                className="loginLogo"
+                style={{ color: " #1d9aef", fontSize: "40px" }}
+              />
+              <h1>Join Twitter Today</h1>
+              <button onClick={signUpWithGoogle} className="googleBtn">
+                {" "}
+                <FcGoogle size={30} /> Sign Up With Google{" "}
+              </button>
+              <div className="orBars">
+                <span className="leftBar"></span>
+                <p>or</p>
+                <span className="rightBar"></span>
+              </div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <div className="flex-Center">
+                  <input
+                    className="Input"
+                    type="text"
+                    value={email}
+                    onChange={(e: any) => setEmail(e.target.value)}
+                    placeholder="Enter Email"
+                  />
+                  <div onClick={getRandomEmail} className="generateBtn">
+                    generate email{" "}
+                  </div>
                 </div>
-              </div>
-              <div className="flex-Center">
-                <input
-                  className="Input"
-                  type="text"
-                  value={userNames}
-                  onChange={(e: any) => setUserName(e.target.value)}
-                  placeholder="Enter username"
-                />
-                <div onClick={getRandomName} className="generateBtn">
-                  generate username{" "}
+                <div className="flex-Center">
+                  <input
+                    className="Input"
+                    type="text"
+                    value={userNames}
+                    onChange={(e: any) => setUserName(e.target.value)}
+                    placeholder="Enter username"
+                  />
+                  <div onClick={getRandomName} className="generateBtn">
+                    generate username{" "}
+                  </div>
                 </div>
-              </div>
-              <div className="flex-Center">
-                <input
-                  className="Input"
-                  type="password"
-                  value={passwords}
-                  onChange={(e: any) => setPasswords(e.target.value)}
-                  placeholder="Enter Password"
-                />
-                <div
-                  className="generateBtn"
-                  onClick={() => setPasswords(getRandomPassword())}
-                >
-                  generate password{" "}
+                <div className="flex-Center">
+                  <input
+                    className="Input"
+                    type="password"
+                    value={passwords}
+                    onChange={(e: any) => setPasswords(e.target.value)}
+                    placeholder="Enter Password"
+                  />
+                  <div
+                    className="generateBtn"
+                    onClick={() => setPasswords(getRandomPassword())}
+                  >
+                    generate password{" "}
+                  </div>
                 </div>
-              </div>
-              <div className="loginFlexBtn">
-                <button
-                  type="submit"
-                  className="LoginSignInBtn"
-                  style={{ backgroundColor: "black", color: "white" }}
-                  id="nextBtn"
-                >
-                  Create account{" "}
-                </button>
-              </div>
-              {isAuth ? (
-                <span className="errorText">
-                  There was an error, please try again!
-                </span>
-              ) : (
-                ""
-              )}
-              <p>
-                Have an account already?
-                <Link href="login">
-                  <span style={{ color: "#1d9aef", cursor: "pointer" }}>
-                    Log in
+                <div className="loginFlexBtn">
+                  <button
+                    type="submit"
+                    className="LoginSignInBtn"
+                    style={{ backgroundColor: "black", color: "white" }}
+                    id="nextBtn"
+                  >
+                    Create account{" "}
+                  </button>
+                </div>
+                {isAuth ? (
+                  <span className="errorText">
+                    There was an error, please try again!
                   </span>
-                </Link>{" "}
-              </p>
-            </form>
+                ) : (
+                  ""
+                )}
+                <p>
+                  Have an account already?
+                  <Link href="login">
+                    <span style={{ color: "#1d9aef", cursor: "pointer" }}>
+                      Log in
+                    </span>
+                  </Link>{" "}
+                </p>
+              </form>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </RegisterContainer>
   );
 };

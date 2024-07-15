@@ -31,8 +31,10 @@ padding: 10px;
     // border: 1px white solid;
     width: 60px;
     height: 60px;
+    min-width: 60px;
     min-height: 60px;
-    min-height: 60px;
+    display: grid;
+   place-content: center;
     border-radius:50%;
     @media (max-width: 500px ) {
         width: 35px;
@@ -103,9 +105,12 @@ padding: 10px;
         }
           .biDots{
                 font-size: calc(20px + 0.25vw);
-                @media (max-width: 455px ) {
-                    display: none;
+               
                 }
+                .popUpModal {
+                    position: relative;
+                   
+                    
                 }
     }
     .tweet-caption{

@@ -17,7 +17,9 @@ const seefollowers = (props: any) => {
   const [allFollowers, setAllFollowers] = useState<[]>([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:7000/api/users/${currentUser}/get-allfollowers`)
+      .get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentUser}/get-allfollowers`
+      )
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }, [currentUser]);

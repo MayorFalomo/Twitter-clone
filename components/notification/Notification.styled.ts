@@ -11,7 +11,7 @@ export const NotifyStyle = styled.div`
         justify-content: space-between;
         padding: 10px;
         span{
-            font-size: calc(24px + 0.25vw);
+            font-size: calc(18px + 0.25vw);
             opacity: 0.4;
         }
     }
@@ -58,7 +58,7 @@ export const NotifyStyle = styled.div`
     gap: 10px;
     margin: 30px;
     .loveIcon {
-        font-size: calc(28px + 0.25vw)
+        font-size: calc(22px + 0.25vw)
     }
     .profileDp{
         width: 40px;
