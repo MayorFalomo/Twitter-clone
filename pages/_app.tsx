@@ -51,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const getCurrentUser = async (id: string) => {
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`)
       .then(async (res) => {
-        console.log(res, "result");
+        // console.log(res, "result");
 
         if (res.ok) {
           return res.json();
@@ -70,7 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   //UseEffect to load cookies.user and just
   useEffect(() => {
-    console.log(cookies?.user, "cookies in useEffect");
+    // console.log(cookies?.user, "cookies in useEffect");
 
     getCurrentUser(cookies?.user);
   }, [cookies.user]);

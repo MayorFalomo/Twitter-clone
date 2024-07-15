@@ -29,7 +29,7 @@ const Login = (props: any) => {
     signInWithPopup(auth, provider)
       .then(async (res) => {
         setCookie("user", res.user.uid, { path: "/" });
-        console.log(res.user.uid, "res user uid");
+        // console.log(res.user.uid, "res user uid");
 
         let userInfo = {
           userId: res.user.uid,

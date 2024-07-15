@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
     }
     @media (max-width: 1700px ) {
       display: grid;
-      grid-template-columns: 350px auto 500px ; 
+      grid-template-columns: 350px auto 450px ; 
       margin: 0 5%;
       /* border: 2px red solid; */
     }

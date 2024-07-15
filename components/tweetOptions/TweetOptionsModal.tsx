@@ -221,12 +221,13 @@ const TweetOptionsModal = (props: IProps) => {
 
   const reportTweet = async () => {
     const data = {
-      username: "",
+      username: props.tweet.username,
     };
+
     try {
       const res = await axios({
         method: "PUT",
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${props.tweet?._id}/report-tweet`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/tweet-options/${props.tweet?._id}/report-tweet`,
         data,
         headers: {
           "Content-Type": "application/json",
@@ -236,7 +237,7 @@ const TweetOptionsModal = (props: IProps) => {
         toast.success("Tweet Reported");
       }
     } catch (error) {
-      toast.error("Tweet Reported");
+      toast.error("Failed to Report tweet");
       console.log(error, "An error has occurred while Reporting Tweet");
     }
   };
