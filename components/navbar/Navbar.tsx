@@ -59,18 +59,33 @@ const Navbar = (props: any) => {
 
   //useEffect to check the present Length of notifications
   useEffect(() => {
-    const notify = async () => {
-      await axios
-        .get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentUser?._id}/get-notifications`
-        )
-        .then((res: any) => setLengthOfNotification(res.data))
-        .catch((err) => console.log("No new Notifications"));
-    };
-    if (currentUser) {
-      notify();
+    if (currentUser?._id) {
+      const notify = async () => {
+        await axios
+          .get(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/users/${currentUser?._id}/get-notifications`
+          )
+          .then((res: any) => setLengthOfNotification(res.data))
+          .catch((err) => console.log("No new Notifications"));
+      };
+      if (currentUser) {
+        notify();
+      }
     }
   }, [currentUser?._id]);
+
+  // Hello Everyone!....I finally updated this by adding new features 🎉, they include:
+
+  //  * Now you can Block and Unblock another person, So their name and tweet would be hidden from you until you find and unblock them again from the connect page.
+  // * You can also Report a tweet.
+  // * You can mark a tweet as uninterested, it should disappear from your TL.
+  // * You can now also follow and unfollow people from their tweets, use the little option dots on the side  👉.
+  // * Improved UI and Ux.
+  // * Fixed issues with replying other people's comments.
+  // * Fixed other little bugs and issues
+  // * Changed the bookmark icon to the current Twitter standard where you can see tweets you already bookmarked, you can also unbookmark tweets.
+  // * Fix issues with using the emoji icon when creating tweets, where emoji's only appear at the ending and not the current point in the input box.
+  // * I also added a way users route to a users page or products if a link is posted as a tweet, So You can tweet your links as Ads, example: https://www.github.com/Mayorfalomo
 
   return (
     <NavContainer>

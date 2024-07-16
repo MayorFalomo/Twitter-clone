@@ -21,7 +21,6 @@ export const ProfileStyled = styled.div`
         padding: 15px;
         z-index: 9;
         width: 100%;
-        /* border: 2px red solid; */
         .profileUsersDetails{
             h1{
                 font-size: calc(20px + 0.25vw);
@@ -84,8 +83,8 @@ export const ProfileStyled = styled.div`
         align-items: flex-end;
         button{
         background-color: transparent;
-        font-size: calc(18px + 0.25vw);
-        padding: 15px 30px;
+        font-size: calc(16px + 0.25vw);
+        padding: 10px 20px;
         margin: 20px 5px;
         color: white;
         border: 3px rgb(47, 51, 54) solid;

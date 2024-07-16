@@ -5,14 +5,14 @@ export const HomeContainer = styled.div`
   /* border: 1px rgb(47, 51, 54) solid; */
     .mainHomePage {
     display: grid;
-    grid-template-columns: 400px auto 600px;
+    grid-template-columns: 400px auto 500px;
       overflow: hidden;
     height: 100vh;
     margin: 0 5%;
     position: relative;
     @media (max-width: 2070px ) {
       display: grid;
-      grid-template-columns: 400px auto 600px ; 
+      grid-template-columns: 400px auto 480px ; 
     }
     @media (max-width: 1830px ) {
       display: grid;

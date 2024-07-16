@@ -26,6 +26,7 @@ import Tippy from "@tippyjs/react";
 import { RxBookmarkFilled } from "react-icons/rx";
 import { CiBookmark } from "react-icons/ci";
 import toast from "react-hot-toast";
+import ReactLinkify from "react-linkify";
 
 type Props = {};
 
@@ -378,7 +379,26 @@ const Id = ({ tweetData }: any) => {
                 )}
               </div>
             </div>
-            <p className="tweetText">{tweetProps?.tweet}</p>
+            <p className="tweetText">
+              <ReactLinkify
+                componentDecorator={(
+                  decoratedHref: string,
+                  decoratedText: string,
+                  key: number
+                ) => (
+                  <a
+                    href={decoratedHref}
+                    style={{ color: "#1d9aef" }}
+                    key={key}
+                    target="_blank"
+                  >
+                    {decoratedText}
+                  </a>
+                )}
+              >
+                {tweetProps?.tweet}
+              </ReactLinkify>
+            </p>
             {tweetProps?.picture?.length > 0 ? (
               <img
                 src={tweetProps?.picture}

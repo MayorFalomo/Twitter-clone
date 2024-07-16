@@ -161,6 +161,7 @@ export const SingleTweetStyle = styled.div`
         font-weight: 400;
         margin: 20px 20px;
         line-height: 35px;
+        white-space: pre-wrap;
     }
     .postDetailsContainer{
         .timeAndViews{

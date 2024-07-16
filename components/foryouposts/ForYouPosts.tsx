@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ForYouContainer } from "./ForYou.styled";
 import {
   BsCardImage,
@@ -109,6 +115,75 @@ const ForYouPosts = (props: any) => {
     }
   };
 
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.selectionStart; // Accessing the property to ensure TypeScript recognizes it
+    }
+  }, []);
+
+  // const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setTweet(e.target.value);
+  //   if (textareaRef.current) {
+  //     const textarea = textareaRef.current;
+  //     textarea.setSelectionRange(
+  //       e.target.selectionStart,
+  //       e.target.selectionEnd
+  //     );
+  //   }
+  // };
+
+  // const handleTextareaChange = (emojiData: { emoji: string }) => {
+  //   if (textareaRef.current) {
+  //     const textarea = textareaRef.current;
+  //     const start = textarea.selectionStart;
+  //     const end = textarea.selectionEnd;
+  //     setTweet(tweet.slice(0, start) + emojiData.emoji + tweet.slice(end));
+  //     textarea.setSelectionRange(
+  //       start + emojiData.emoji.length,
+  //       start + emojiData.emoji.length
+  //     );
+  //   }
+  // };
+
+  // const handleEmojiClick = (emojiData: { emoji: string }) => {
+  //   if (textareaRef.current) {
+  //     const textarea = textareaRef.current;
+  //     const start = textarea.selectionStart;
+  //     const end = textarea.selectionEnd;
+  //     setTweet(tweet.slice(0, start) + emojiData.emoji + tweet.slice(end));
+  //     textarea.setSelectionRange(
+  //       start + emojiData.emoji.length,
+  //       start + emojiData.emoji.length
+  //     );
+  //   }
+  // }
+
+  const handleEmojiClick = (emojiData: { emoji: string }) => {
+    if (textareaRef.current) {
+      const textarea = textareaRef.current;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      setTweet(tweet.slice(0, start) + emojiData.emoji + tweet.slice(end));
+      textarea.setSelectionRange(
+        start + emojiData.emoji.length,
+        start + emojiData.emoji.length
+      );
+    }
+  };
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTweet(e.target.value);
+    if (textareaRef.current) {
+      const textarea = textareaRef.current;
+      textarea.setSelectionRange(
+        e.target.selectionStart,
+        e.target.selectionEnd
+      );
+    }
+  };
+
   return (
     <ForYouContainer>
       <div className="forYouPostContainer">
@@ -130,12 +205,20 @@ const ForYouPosts = (props: any) => {
             className="textAreaContainer"
           >
             <textarea
+              ref={textareaRef}
+              className="textArea"
+              placeholder="What's happening?"
+              typeof="text"
+              value={tweet}
+              onChange={handleTextareaChange}
+            />
+            {/* <textarea
               className="textArea"
               placeholder="What's happening?"
               typeof="text"
               value={tweet}
               onChange={(e) => setTweet(e.target.value)}
-            />
+            /> */}
             <div className="flexIcons">
               <div className="tweetIcons">
                 <Tippy content="image" placement="bottom">
@@ -178,9 +261,12 @@ const ForYouPosts = (props: any) => {
                 )}
                 {emoji ? (
                   <div className="pickerEmoji">
-                    <EmojiPicker
-                      onEmojiClick={(e) => setTweet(tweet + e.emoji)}
-                    />
+                    <EmojiPicker onEmojiClick={handleEmojiClick} />
+                    {/* <EmojiPicker
+                      onEmojiClick={(e) => {
+                        setTweet(tweet + e.emoji);
+                      }}
+                    /> */}
                     {/* <Picker data={data} onEmojiSelect={(emoji: any) => setCurrentEmoji(emoji.native)} /> */}
                   </div>
                 ) : (

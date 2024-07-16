@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import Allusertweet from "../allusertweet/Allusertweet";
 import { UserTweetStyle } from "./Userstweet.styled";
 import { AppContext } from "@/helpers/Helpers";
@@ -16,21 +15,21 @@ const Userstweet = (props: any) => {
 
   //Function to get the currentUsers tweet
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/get-tweet/${currentUser?.username}`
-      )
-      .then((res) => setAllUsersTweets(res.data))
-      .catch((err) => console.log(err));
+    if (currentUser?.username) {
+      axios
+        .get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/get-tweet/${currentUser?.username}`
+        )
+        .then((res) => setAllUsersTweets(res.data))
+        .catch((err) => console.log(err));
+    }
   }, [currentUser?.username]);
-
-  // console.log(allUsersTweets.posts?.length);
 
   return (
     <UserTweetStyle>
       <div className="userTweetContainer">
         <div>
-          {allUsersTweets.posts?.map((allTweet: any) => (
+          {allUsersTweets.posts?.reverse()?.map((allTweet: any) => (
             <div key={allTweet._id} className="subAllTweet">
               <Allusertweet allTweet={allTweet} />
             </div>

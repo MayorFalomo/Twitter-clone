@@ -23,6 +23,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { CiBookmark } from "react-icons/ci";
 import { RxBookmarkFilled } from "react-icons/rx";
+import ReactLinkify from "react-linkify";
 
 interface IFollowUser {
   _id: string;
@@ -262,6 +263,26 @@ const Tweet = (props: any) => {
     setViews(view);
   }, [suggestedUsers?.length]);
 
+  const componentDecorator = (
+    decoratedHref: string,
+    decoratedText: string,
+    key: number
+  ) => {
+    if (decoratedHref == decoratedText) {
+      return (
+        <a href={decoratedHref} style={{ color: "#1d9aef" }} target="_blank">
+          {decoratedText}
+        </a>
+      );
+    } else {
+      return (
+        <Link href="/[id]" as={`${props.tweet?._id}`} legacyBehavior key={key}>
+          <a>{decoratedText}</a>
+        </Link>
+      );
+    }
+  };
+
   return (
     <Tweetstyled>
       <div className="postsContainer">
@@ -318,9 +339,9 @@ const Tweet = (props: any) => {
             </div>
           </div>
           <p className="tweet-caption">
-            <Link href="/[id]" as={`${props.tweet?._id}`}>
+            <ReactLinkify componentDecorator={componentDecorator}>
               {props.tweet?.tweet}
-            </Link>
+            </ReactLinkify>
           </p>
           {props.tweet?.picture ? (
             <div

@@ -62,7 +62,7 @@ export const AllUserTweets = styled.div`
                  display: list-item;
                 list-style: disc outside none;
                 margin-left: 15px;
-                font-size: calc(14px + 0.25vw);
+                font-size: calc(12px + 0.25vw);
             }
             .usersUsername:hover{
                 text-decoration: underline;
@@ -72,6 +72,7 @@ export const AllUserTweets = styled.div`
         .tweetText{
             font-size: calc(15px + 0.25vw);
             line-height: 30px;
+            white-space: pre-wrap;
         }
         .tweet-image{
              background-color: black ;

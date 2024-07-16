@@ -39,7 +39,7 @@ export const ForYouContainer = styled.div`
       textArea {
          /* border: 2px yellow solid; */
         width: 100%;
-        height: 170px;
+        height: 140px;
         background-color: transparent;
         border: none;
         font-size: calc(15px + 0.25vw);
@@ -49,10 +49,16 @@ export const ForYouContainer = styled.div`
         resize: none;
         padding-top: 8px;
         padding-left: 5px;
+        font-family: 'Open sans';
+        overflow: auto;
+        line-height: 30px;
+      }
+      textarea::-webkit-scrollbar{
+        width: 0;
       }
       textArea::placeholder {
-        font-size: calc(18px + 0.25vw);
-        padding: 50px;
+        font-size: calc(16px + 0.25vw);
+        padding: 30px;
       }
       select {
         outline: none;
@@ -71,10 +77,10 @@ export const ForYouContainer = styled.div`
         justify-content: space-around;
         gap: 20px;
         color: #1d9aef;
-        position: absolute;
-        bottom: 15px;
+        /* position: absolute;
+        bottom: 15px; */
         width: 100%;
-
+        background-color: #000;
         .tweetIcons {
           display: flex;
           align-items: center;

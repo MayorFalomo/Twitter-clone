@@ -13,6 +13,7 @@ import Tippy from "@tippyjs/react";
 import { RxBookmarkFilled } from "react-icons/rx";
 import { CiBookmark } from "react-icons/ci";
 import toast from "react-hot-toast";
+import ReactLinkify from "react-linkify";
 
 type Props = {};
 
@@ -189,6 +190,26 @@ const Allusertweet = (props: any) => {
     }
   };
 
+  const componentDecorator = (
+    decoratedHref: string,
+    decoratedText: string,
+    key: number
+  ) => {
+    if (decoratedHref == decoratedText) {
+      return (
+        <a href={decoratedHref} style={{ color: "#1d9aef" }} target="_blank">
+          {decoratedText}
+        </a>
+      );
+    } else {
+      return (
+        <Link href="/[id]" as={`${props.tweet?._id}`} legacyBehavior key={key}>
+          <a>{decoratedText}</a>
+        </Link>
+      );
+    }
+  };
+
   return (
     <AllUserTweets>
       <div className="AllUserTweetContainer">
@@ -208,17 +229,18 @@ const Allusertweet = (props: any) => {
               </span>
               <span
                 className="createdAt"
-                style={{ color: "#575B5F", fontWeight: 500 }}
+                style={{ color: "#575B5F", fontWeight: 400 }}
               >
                 {moment(new Date(props.allTweet?.createdAt)).fromNow()}
               </span>
             </div>
             <p className="tweetText">
               {" "}
-              <Link href="/[id]" as={`${props.allTweet?._id}`}>
-                {" "}
+              {/* <Link href="/[id]" as={`${props.allTweet?._id}`}> */}
+              <ReactLinkify componentDecorator={componentDecorator}>
                 {props.allTweet?.tweet}{" "}
-              </Link>{" "}
+              </ReactLinkify>
+              {/* </Link>{" "} */}
             </p>
             {props.allTweet?.picture?.length > 1 ? (
               <div
