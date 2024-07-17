@@ -90,7 +90,7 @@ const Tweet = (props: any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false);
   const [openPictureModal, setOpenPictureModal] = useState<boolean>(false);
   const [popUpModal, setPopUpModal] = useState<boolean>(false);
-
+  const [seeMore, setSeeMore] = useState<number>(350);
   //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
@@ -314,7 +314,12 @@ const Tweet = (props: any) => {
               <span className="userAt">{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? (
                 <span className="createdAt">
-                  {moment(new Date(props.tweet?.createdAt)).fromNow()}
+                  {moment(new Date(props.tweet?.createdAt)).fromNow().length >
+                  11
+                    ? moment(new Date(props.tweet?.createdAt))
+                        .fromNow()
+                        .slice(0, 8)
+                    : moment(new Date(props.tweet?.createdAt)).fromNow()}
                 </span>
               ) : (
                 <span className="createdAt">a few seconds ago </span>
@@ -340,9 +345,31 @@ const Tweet = (props: any) => {
           </div>
           <p className="tweet-caption">
             <ReactLinkify componentDecorator={componentDecorator}>
-              {props.tweet?.tweet}
+              {props.tweet?.tweet.length > 400
+                ? `${props.tweet?.tweet.slice(0, seeMore)}...`
+                : props.tweet?.tweet}
             </ReactLinkify>
           </p>
+          {props.tweet?.tweet.length > 400 && (
+            <p>
+              {seeMore == 350 ? (
+                <span
+                  style={{ color: "#1d9aef" }}
+                  onClick={() => setSeeMore(props.tweet?.tweet.length)}
+                >
+                  Read more{" "}
+                </span>
+              ) : (
+                <span
+                  style={{ color: "#1d9aef" }}
+                  onClick={() => setSeeMore(350)}
+                >
+                  {" "}
+                  Read less
+                </span>
+              )}{" "}
+            </p>
+          )}
           {props.tweet?.picture ? (
             <div
               onClick={() => setOpenPictureModal(true)}

@@ -59,16 +59,18 @@ const Singleuser = (props: any) => {
   // console.log(noOfFollowingsArray, "no of following");
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/get-tweet/${props.user?.username}`
-      )
-      .then((res) => setAllUsersTweets(res.data))
-      .catch((err) => console.log(err));
-    if (currentUser) {
-      currentUser.blocked?.some(
-        (val: IBlocked) => val.username === usernames
-      ) && setOpenBlockedTweets(true);
+    if (props.user?.username) {
+      axios
+        .get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/get-tweet/${props.user?.username}`
+        )
+        .then((res) => setAllUsersTweets(res.data))
+        .catch((err) => console.log(err));
+      if (currentUser) {
+        currentUser.blocked?.some(
+          (val: IBlocked) => val.username === usernames
+        ) && setOpenBlockedTweets(true);
+      }
     }
   }, [props.user?.username]);
 
@@ -110,7 +112,6 @@ const Singleuser = (props: any) => {
       userToBeUnfollowed: urlParams,
       currentUser: currentUser?._id,
     };
-    // console.log(data, "This is data");
 
     try {
       await axios
@@ -131,13 +132,6 @@ const Singleuser = (props: any) => {
     const data = {
       _id: currentUser?._id,
     };
-
-    // const blockedUserDetails = {
-    //   _id: props.user?._id,
-    //   username: props.user?.username,
-    //   userId: props.user?.userId,
-    // };
-    // console.log(data, blockedUserDetails);
 
     try {
       const response = await axios({
@@ -214,9 +208,6 @@ const Singleuser = (props: any) => {
   // );
   // setCopied(!copied);
   // };
-
-  console.log(current, "current");
-  console.log(openBlockedTweets, "openblocked");
 
   return (
     <SingleUserStyle>

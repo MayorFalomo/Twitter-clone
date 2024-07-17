@@ -229,11 +229,13 @@ const Comments = (props: any) => {
           </div>
         </form>
         <div className="seeCommentMap">
-          {props.tweetProps?.comments?.map((comment: any, index: any) => (
-            <div key={index} className="mappedContainer">
-              <Commentpage comment={comment} />
-            </div>
-          ))}
+          {props.tweetProps?.comments
+            ?.reverse()
+            ?.map((comment: any, index: any) => (
+              <div key={index} className="mappedContainer">
+                <Commentpage comment={comment} />
+              </div>
+            ))}
         </div>
       </div>
     </CommentStyled>
