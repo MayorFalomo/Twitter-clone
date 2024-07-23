@@ -23,6 +23,7 @@ export const TweetOptionStyled = styled.div`
         list-style: none;
         display: flex;
         align-items: center;
+        /* justify-content: space-between; */
         gap: 10px;
         padding: 10px 0px;
         cursor: pointer;
@@ -31,6 +32,29 @@ export const TweetOptionStyled = styled.div`
         }
         .optionsIcon {
           font-size: calc(14px + 0.25vw) !important;
+        }
+        .loader {
+          width: 18px;
+          height: 18px;
+          border: 3px solid #1d9aef;
+          margin-left: 20px;
+          /* border: 5px solid #FFF; */
+          border-bottom-color: transparent;
+          border-radius: 50%;
+          display: inline-block;
+          text-align: center;
+          box-sizing: border-box;
+          animation: rotation 1s linear infinite;
+          margin: 0 auto;
+        }
+
+        @keyframes rotation {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       }
     }

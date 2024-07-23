@@ -90,7 +90,7 @@ const Tweet = (props: any) => {
   const [commentModal, setCommentModal] = useState<boolean>(false);
   const [openPictureModal, setOpenPictureModal] = useState<boolean>(false);
   const [popUpModal, setPopUpModal] = useState<boolean>(false);
-  const [seeMore, setSeeMore] = useState<number>(350);
+  const [seeMore, setSeeMore] = useState<number>(500);
   //Retweet Function
   const handleAddRetweet = async () => {
     const retweetData = {
@@ -347,22 +347,41 @@ const Tweet = (props: any) => {
             <ReactLinkify componentDecorator={componentDecorator}>
               {props.tweet?.tweet.length > 400
                 ? `${props.tweet?.tweet.slice(0, seeMore)}...`
-                : props.tweet?.tweet}
+                : props.tweet?.tweet
+                    .split(/(@\w+)/g)
+                    .map((part: string, index: number) =>
+                      part.startsWith("@") ? (
+                        <span key={index}>
+                          <Link
+                            style={{
+                              color: "#1d9aef",
+                              fontWeight: "bold",
+                              cursor: "pointer",
+                            }}
+                            href={"/users/" + part.slice(1)}
+                          >
+                            {part}
+                          </Link>
+                        </span>
+                      ) : (
+                        <span key={index}>{part}</span>
+                      )
+                    )}
             </ReactLinkify>
           </p>
           {props.tweet?.tweet.length > 400 && (
             <p>
-              {seeMore == 350 ? (
+              {seeMore == 500 ? (
                 <span
-                  style={{ color: "#1d9aef" }}
+                  style={{ color: "#1d9aef", cursor: "pointer" }}
                   onClick={() => setSeeMore(props.tweet?.tweet.length)}
                 >
                   Read more{" "}
                 </span>
               ) : (
                 <span
-                  style={{ color: "#1d9aef" }}
-                  onClick={() => setSeeMore(350)}
+                  style={{ color: "#1d9aef", cursor: "pointer" }}
+                  onClick={() => setSeeMore(500)}
                 >
                   {" "}
                   Read less

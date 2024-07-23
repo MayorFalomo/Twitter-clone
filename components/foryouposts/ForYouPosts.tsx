@@ -20,6 +20,7 @@ import moment from "moment";
 import EmojiPicker from "emoji-picker-react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
+import TaggingModal from "../taggingModal/TaggingModal";
 
 type Props = {};
 
@@ -35,6 +36,9 @@ const ForYouPosts = (props: any) => {
   const [likes, setLikes] = useState<any>([]);
   const [retweet, setRetweet] = useState<any>([]);
   const [successfulUpload, setSuccessfulUpload] = useState<boolean>(false);
+  const [taggedArray, setTaggedArray] = useState([]);
+  const [openTaggingModal, setTaggingModal] = useState<boolean>();
+  const [tagged, setTagged] = useState<string>("");
 
   const uploadImage = (files: any) => {
     const formData = new FormData();
@@ -173,8 +177,42 @@ const ForYouPosts = (props: any) => {
     }
   };
 
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaChange = async (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setTweet(e.target.value);
+
+    const value = e.target.value;
+
+    //Here i get the lastindex of the last @ i used, else it returns a negative number
+    const atIndex = value.lastIndexOf("@");
+    console.log(atIndex, "atIndex");
+    console.log(atIndex + 1, "atIndex + 1");
+    console.log(value.length, "value length");
+
+    //Until you type @, the lastIndexOf would always return -1
+    //If the value length is > atIndex + 1 (the index of @ + 1)
+    //The +1 is there because we need to be sure we have added a value for the @ so the modal to work
+
+    if (atIndex !== -1 && value.length > atIndex + 1) {
+      const typedAfterAt = value.substring(atIndex + 1); //Gives me the value i write after the @
+      console.log(typedAfterAt, "typedAfterAt");
+
+      // Check if the user has typed at least one letter after '@'
+      if (typedAfterAt.length > 0) {
+        setTaggingModal(true);
+
+        const response = await axios({
+          method: "get",
+          url: `http://localhost:7000/api/users/search/suggested-users?usersAt=${typedAfterAt}`,
+        });
+
+        if (response.data) {
+          setTaggedArray(response.data);
+        }
+      }
+    }
+
     if (textareaRef.current) {
       const textarea = textareaRef.current;
       textarea.setSelectionRange(
@@ -183,6 +221,24 @@ const ForYouPosts = (props: any) => {
       );
     }
   };
+
+  const handleSubmit = async () => {
+    if (tagged) {
+      const getStringIndex = tweet.lastIndexOf("@");
+      console.log(getStringIndex, "getsTRINGiNDEX");
+      const getStringlength = tweet.length;
+
+      const updated = tweet.slice(-getStringlength, getStringIndex) + tagged;
+      setTweet((prev) => (prev = updated));
+      setTaggingModal(false);
+    }
+  };
+
+  useEffect(() => {
+    if (tagged) {
+      handleSubmit();
+    }
+  }, [tagged]);
 
   return (
     <ForYouContainer>
@@ -211,6 +267,7 @@ const ForYouPosts = (props: any) => {
               typeof="text"
               value={tweet}
               onChange={handleTextareaChange}
+              // style={{ color: `${tweet?.startsWith("@")}` ? "blue" : "white" }}
             />
             {/* <textarea
               className="textArea"
@@ -298,6 +355,11 @@ const ForYouPosts = (props: any) => {
                 </div>
               )}
             </div>
+            {openTaggingModal ? (
+              <TaggingModal tagged={taggedArray} setTagged={setTagged} />
+            ) : (
+              ""
+            )}
           </div>
         </form>
       </div>

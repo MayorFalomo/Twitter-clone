@@ -43,6 +43,11 @@ interface ITweetObject {
 
 const TweetOptionsModal = (props: IProps) => {
   const [popUpModal, setPopUpModal] = useState<boolean>(false);
+  const [loadingBar, setLoadingBar] = useState<boolean>(false);
+  const [followedBar, setFollowedBar] = useState<boolean>(false);
+  const [interestedBar, setInterestedBar] = useState<boolean>(false);
+  const [reportedBar, setReportedBar] = useState<boolean>(false);
+  const [blockingBar, setBlockingBar] = useState<boolean>(false);
 
   const {
     currentUser,
@@ -54,6 +59,7 @@ const TweetOptionsModal = (props: IProps) => {
 
   const handleFollowAUser = async () => {
     try {
+      setFollowedBar(true);
       const followObject = {
         currentUserName: currentUser?.username, //username of the user who is following the current user.
         currentUsersAt: currentUser?.usersAt,
@@ -74,9 +80,8 @@ const TweetOptionsModal = (props: IProps) => {
         data: followObject,
       });
 
-      console.log(response, "podyg");
-
       if (response.data) {
+        setFollowedBar(false);
         setCurrentUser({
           ...currentUser,
           following: [...currentUser?.following, followObject],
@@ -91,6 +96,8 @@ const TweetOptionsModal = (props: IProps) => {
         });
       }
     } catch (error) {
+      setFollowedBar(false);
+
       toast.error(`error following ${props.tweet.username}`, {
         style: {
           borderRadius: "5px",
@@ -104,6 +111,7 @@ const TweetOptionsModal = (props: IProps) => {
 
   const handleUnfollow = async () => {
     try {
+      setFollowedBar(true);
       const unfollowObject = {
         userToBeUnfollowed: props.tweet?.username,
         currentUser: currentUser?.username,
@@ -119,6 +127,7 @@ const TweetOptionsModal = (props: IProps) => {
       });
 
       if (response.data) {
+        setFollowedBar(false);
         const filtered = currentUser.following.filter(
           (val: IUnfollowUser) =>
             val.name || val.userToAddToName !== props.tweet?.username
@@ -135,6 +144,7 @@ const TweetOptionsModal = (props: IProps) => {
         setPopUpModal(false);
       }
     } catch (error) {
+      setFollowedBar(false);
       toast.error(`You have unfollowed ${props.tweet.username}`, {
         style: {
           borderRadius: "5px",
@@ -147,6 +157,7 @@ const TweetOptionsModal = (props: IProps) => {
   };
 
   const handleUninterested = async () => {
+    setInterestedBar(true);
     const data = {
       username: props.tweet?.username,
     };
@@ -161,6 +172,7 @@ const TweetOptionsModal = (props: IProps) => {
         },
       });
       if (response) {
+        setInterestedBar(false);
         const newTweets = tweets.filter(
           (tweet: any) => tweet._id !== props.tweet?._id
         );
@@ -177,6 +189,7 @@ const TweetOptionsModal = (props: IProps) => {
         setPopUpModal(false);
       }
     } catch (error) {
+      setInterestedBar(false);
       console.log(error, "An error has occurred");
       toast.error("error marking as uninterested", {
         style: {
@@ -191,6 +204,7 @@ const TweetOptionsModal = (props: IProps) => {
   // console.log(currentUser, "currentUser");
 
   const handleBlocking = async () => {
+    setBlockingBar(true);
     const data = {
       _id: currentUser._id,
     };
@@ -207,6 +221,7 @@ const TweetOptionsModal = (props: IProps) => {
       });
 
       if (res.data) {
+        setBlockingBar(false);
         const tweeks: any = res.data.tweets.reverse();
         const updatedUser = res.data.response;
         setTweets(tweeks);
@@ -223,6 +238,7 @@ const TweetOptionsModal = (props: IProps) => {
         setIsLoading(false);
       }
     } catch (error) {
+      setBlockingBar(false);
       console.log(error);
       toast.error(`Error blocking ${props.tweet.username}`, {
         style: {
@@ -235,6 +251,7 @@ const TweetOptionsModal = (props: IProps) => {
   };
 
   const reportTweet = async () => {
+    setReportedBar(true);
     const data = {
       username: props.tweet.username,
     };
@@ -242,13 +259,15 @@ const TweetOptionsModal = (props: IProps) => {
     try {
       const res = await axios({
         method: "PUT",
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/tweet-options/${props.tweet?._id}/report-tweet`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/tweet-options/${props.tweet?._id}/report-tweet`,
         data,
         headers: {
           "Content-Type": "application/json",
         },
       });
+
       if (res.data) {
+        setReportedBar(false);
         toast.success("Tweet Reported", {
           style: {
             borderRadius: "5px",
@@ -258,6 +277,7 @@ const TweetOptionsModal = (props: IProps) => {
         });
       }
     } catch (error) {
+      setReportedBar(false);
       toast.error("Failed to Report tweet", {
         style: {
           borderRadius: "5px",
@@ -304,6 +324,14 @@ const TweetOptionsModal = (props: IProps) => {
                       : props.tweet?.usersAt}
                   </span>
                 )}
+                {followedBar ? (
+                  <span
+                    style={{ textAlign: "center" }}
+                    className="loader"
+                  ></span>
+                ) : (
+                  ""
+                )}
               </li>
             ) : (
               <li>
@@ -324,6 +352,14 @@ const TweetOptionsModal = (props: IProps) => {
                     Follow {props.tweet?.usersAt}
                   </span>
                 )}
+                {followedBar ? (
+                  <span
+                    style={{ textAlign: "center" }}
+                    className="loader"
+                  ></span>
+                ) : (
+                  ""
+                )}
               </li>
             )}
             <li onClick={handleUninterested}>
@@ -332,6 +368,11 @@ const TweetOptionsModal = (props: IProps) => {
                 {<AiOutlineFrown />}{" "}
               </span>
               <span> Uninterested in this tweet </span>
+              {interestedBar ? (
+                <span style={{ textAlign: "center" }} className="loader"></span>
+              ) : (
+                ""
+              )}
             </li>
             {props.tweet?.username == currentUser.username ? (
               <li style={{ opacity: 0.5 }}>
@@ -340,6 +381,14 @@ const TweetOptionsModal = (props: IProps) => {
                   {<FcCancel />}{" "}
                 </span>{" "}
                 <span> Block {props.tweet?.username} </span>
+                {blockingBar ? (
+                  <span
+                    style={{ textAlign: "center" }}
+                    className="loader"
+                  ></span>
+                ) : (
+                  ""
+                )}
               </li>
             ) : (
               <li onClick={handleBlocking}>
@@ -348,6 +397,14 @@ const TweetOptionsModal = (props: IProps) => {
                   {<FcCancel />}{" "}
                 </span>{" "}
                 <span> Block {props.tweet?.username} </span>
+                {blockingBar ? (
+                  <span
+                    style={{ textAlign: "center" }}
+                    className="loader"
+                  ></span>
+                ) : (
+                  ""
+                )}
               </li>
             )}
             <li onClick={reportTweet}>
@@ -356,6 +413,11 @@ const TweetOptionsModal = (props: IProps) => {
                 {<IoFlagOutline />}{" "}
               </span>{" "}
               <span> Report tweet </span>
+              {reportedBar ? (
+                <span style={{ textAlign: "center" }} className="loader"></span>
+              ) : (
+                ""
+              )}
             </li>
           </ul>
         </motion.div>
