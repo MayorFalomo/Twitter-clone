@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ForYouContainer } from "./ForYou.styled";
 import {
   BsCardImage,
@@ -113,6 +107,7 @@ const ForYouPosts = (props: any) => {
       setVideo("");
       setLikes([]);
       setRetweet([]);
+      setTaggingModal(false);
       // console.log(tweets);
     } catch (err) {
       console.log(err);
@@ -126,43 +121,6 @@ const ForYouPosts = (props: any) => {
       textareaRef.current.selectionStart; // Accessing the property to ensure TypeScript recognizes it
     }
   }, []);
-
-  // const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   setTweet(e.target.value);
-  //   if (textareaRef.current) {
-  //     const textarea = textareaRef.current;
-  //     textarea.setSelectionRange(
-  //       e.target.selectionStart,
-  //       e.target.selectionEnd
-  //     );
-  //   }
-  // };
-
-  // const handleTextareaChange = (emojiData: { emoji: string }) => {
-  //   if (textareaRef.current) {
-  //     const textarea = textareaRef.current;
-  //     const start = textarea.selectionStart;
-  //     const end = textarea.selectionEnd;
-  //     setTweet(tweet.slice(0, start) + emojiData.emoji + tweet.slice(end));
-  //     textarea.setSelectionRange(
-  //       start + emojiData.emoji.length,
-  //       start + emojiData.emoji.length
-  //     );
-  //   }
-  // };
-
-  // const handleEmojiClick = (emojiData: { emoji: string }) => {
-  //   if (textareaRef.current) {
-  //     const textarea = textareaRef.current;
-  //     const start = textarea.selectionStart;
-  //     const end = textarea.selectionEnd;
-  //     setTweet(tweet.slice(0, start) + emojiData.emoji + tweet.slice(end));
-  //     textarea.setSelectionRange(
-  //       start + emojiData.emoji.length,
-  //       start + emojiData.emoji.length
-  //     );
-  //   }
-  // }
 
   const handleEmojiClick = (emojiData: { emoji: string }) => {
     if (textareaRef.current) {
@@ -190,9 +148,9 @@ const ForYouPosts = (props: any) => {
     //Until you type @, the lastIndexOf would always return -1
     //If the value length is > atIndex + 1 (the index of @ + 1)
     //The +1 is there because we need to be sure we have added a value for the @ so the modal to work
-
     if (atIndex !== -1 && value.length > atIndex + 1) {
-      const typedAfterAt = value.substring(atIndex + 1); //Gives me the value i write after the @
+      //Gives me the value I write after the @
+      const typedAfterAt = value.substring(atIndex + 1);
 
       // Check if the user has typed at least one letter after '@'
       if (typedAfterAt.length > 0) {
@@ -225,7 +183,7 @@ const ForYouPosts = (props: any) => {
       const getStringlength = tweet.length;
 
       const updated = tweet.slice(-getStringlength, getStringIndex) + tagged;
-      setTweet((prev) => (prev = updated));
+      setTweet(updated);
       setTaggingModal(false);
     }
   };
