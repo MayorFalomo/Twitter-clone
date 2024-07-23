@@ -186,9 +186,6 @@ const ForYouPosts = (props: any) => {
 
     //Here i get the lastindex of the last @ i used, else it returns a negative number
     const atIndex = value.lastIndexOf("@");
-    // console.log(atIndex, "atIndex");
-    // console.log(atIndex + 1, "atIndex + 1");
-    // console.log(value.length, "value length");
 
     //Until you type @, the lastIndexOf would always return -1
     //If the value length is > atIndex + 1 (the index of @ + 1)
@@ -196,7 +193,6 @@ const ForYouPosts = (props: any) => {
 
     if (atIndex !== -1 && value.length > atIndex + 1) {
       const typedAfterAt = value.substring(atIndex + 1); //Gives me the value i write after the @
-      // console.log(typedAfterAt, "typedAfterAt");
 
       // Check if the user has typed at least one letter after '@'
       if (typedAfterAt.length > 0) {
