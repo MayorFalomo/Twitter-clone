@@ -4,12 +4,13 @@ export const TagModalStyle = styled.div`
   .modalContainer {
     position: absolute;
     left: 30px;
-    top: 50px;
+    top: 70px;
     width: 200px;
     background-color: black;
     color: white;
     padding: 10px;
-    height: 300px;
+    height: auto;
+    max-height: 300px;
     overflow: auto;
     /* display: flex;
     align-items: flex-start; */
@@ -36,6 +37,29 @@ export const TagModalStyle = styled.div`
         p {
           font-size: 14px;
         }
+      }
+    }
+    .loader {
+      width: 24px;
+      height: 24px;
+      border: 5px solid #1d9aef;
+      /* border: 5px solid #FFF; */
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
       }
     }
   }

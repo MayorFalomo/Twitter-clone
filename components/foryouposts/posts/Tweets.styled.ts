@@ -59,6 +59,7 @@ export const TweetsContainer = styled.div`
       right: 20px;
       z-index: 99;
       display: none;
+      cursor: pointer;
       @media (max-width: 500px) {
         display: flex;
         position: fixed;

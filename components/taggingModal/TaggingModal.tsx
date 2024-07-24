@@ -3,8 +3,9 @@ import { TagModalStyle } from "./TagModal.styled";
 import TagModal from "./TagModal";
 
 interface Props {
-  tagged: ITaggedPerson[] | [];
+  taggedPeople: ITaggedPerson[] | [];
   setTagged: (arg: string) => void;
+  isLoading: boolean;
 }
 
 export interface ITaggedPerson {
@@ -23,13 +24,19 @@ const TaggingModal = (props: Props) => {
   return (
     <TagModalStyle>
       <div className="modalContainer">
-        {props.tagged
-          ? props.tagged?.map((val, index: number) => (
-              <div className="taggedPerson" key={index}>
-                <TagModal person={val} setTagged={props.setTagged} />
-              </div>
-            ))
-          : ""}
+        {props.isLoading ? (
+          <div className="loadingBar">
+            <span className="loader"> </span>
+          </div>
+        ) : props.taggedPeople ? (
+          props.taggedPeople?.map((val, index: number) => (
+            <div className="taggedPerson" key={index}>
+              <TagModal person={val} setTagged={props.setTagged} />
+            </div>
+          ))
+        ) : (
+          <span className="emptyArray">No user Found </span>
+        )}
       </div>
     </TagModalStyle>
   );

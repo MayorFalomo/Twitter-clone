@@ -33,7 +33,11 @@ const Tweets = (props: any) => {
           </div>
         )}
         <div ref={observerRef} style={{ height: "10px" }} />
-        <div className="quill" onClick={() => setTweetModal(true)}>
+        <div
+          role="button"
+          className="quill"
+          onClick={() => setTweetModal(true)}
+        >
           <p className="tweetIconBtn">
             {
               <RiQuillPenLine
