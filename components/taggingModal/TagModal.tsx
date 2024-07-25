@@ -4,21 +4,20 @@ import { ITaggedPerson } from "./TaggingModal";
 type Props = {
   person: ITaggedPerson;
   setTagged: (arg: string) => void;
-  // setUserSelected: (arg: boolean) => void;
-  // setTaggingModal: (arg: boolean) => void;
 };
 
 const TagModal = (props: Props) => {
-  // console.log(props., "props");
-
   return (
     <div className="tagView">
-      <img className="imgData" src={props.person.profilePic} alt="img" />
+      <div
+        className="imgData"
+        style={{ backgroundImage: `${props.person.profilePic}` }}
+      >
+        {" "}
+      </div>
       <div
         onClick={() => {
           props.setTagged(props.person.usersAt);
-          // props.setUserSelected(true);
-          // props.setTaggingModal(false);
         }}
       >
         <p> {props.person.username}</p>

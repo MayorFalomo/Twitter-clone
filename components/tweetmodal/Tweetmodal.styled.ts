@@ -1,28 +1,28 @@
 import styled from "styled-components";
 
 export const TweetModalStyled = styled.div`
- .tweetPostContainer{
-   height: 100vh;
-   width: 100vw;
-   .heading{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    .tweetButton button {
-          padding: 10px 25px;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          font-size: 18px;
-          background-color: #1d9aef;
-          color: #fff;
-          border-radius: 25px;
-        }
-        .btn-primary{
-          opacity: 0.4;
-        }
-   }
+  .tweetPostContainer {
+    height: 100vh;
+    width: 100vw;
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      .tweetButton button {
+        padding: 10px 25px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 18px;
+        background-color: #1d9aef;
+        color: #fff;
+        border-radius: 25px;
+      }
+      .btn-primary {
+        opacity: 0.4;
+      }
+    }
     form {
       width: 100%;
       position: relative;
@@ -37,16 +37,21 @@ export const TweetModalStyled = styled.div`
         height: 170px;
         background-color: transparent;
         border: none;
-        font-size: calc(20px + 0.25vw);
+        font-size: calc(15px + 0.25vw);
         outline: 0;
         color: white;
         white-space: wrap;
         resize: none;
         margin-top: 30px;
+        padding-top: 8px;
+        padding-left: 5px;
+        font-family: "Open sans";
+        overflow: auto;
+        line-height: 30px;
       }
       textArea::placeholder {
-        font-size: calc(22px + 0.25vw);
-        padding: 20px;
+        font-size: calc(16px + 0.25vw);
+        padding: 15px;
       }
       select {
         outline: none;
@@ -54,7 +59,7 @@ export const TweetModalStyled = styled.div`
         border-radius: 20px;
         background-color: transparent;
         color: #1d9aef;
-        font-size: calc(14px + 0.25vw);
+        font-size: calc(7px + 0.25vw);
       }
       .flexIcons {
         display: flex;
@@ -74,14 +79,16 @@ export const TweetModalStyled = styled.div`
             opacity: 0.5;
             cursor: default;
           }
-          label{
-              font-size: calc(22px + 0.25vw);
+          label {
+            font-size: calc(20px + 0.25vw);
+            cursor: not-allowed;
           }
-          span{
-            font-size: calc(22px + 0.25vw);
+          span {
+            font-size: calc(20px + 0.25vw);
+            cursor: not-allowed;
           }
         }
-        .pickerEmoji{
+        .pickerEmoji {
           position: absolute;
           left: 0px;
           bottom: -450px;
@@ -89,31 +96,29 @@ export const TweetModalStyled = styled.div`
           display: flex;
           justify-content: center;
         }
-       
       }
     }
-   .subTweetPostContainer {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    border-bottom: 2px rgb(47, 51, 54) solid;
-    position: relative;
-    .formArea {
+    .subTweetPostContainer {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 2px rgb(47, 51, 54) solid;
+      position: relative;
+      .formArea {
         /* border: 2px solid green; */
         width: 100%;
+      }
+      .userProfilePicture {
+        min-height: 50px;
+        min-width: 50px;
+        border-radius: 50%;
+        border: 1px white solid;
+        background-color: #000;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+      }
     }
-    .userProfilePicture {
-      min-height: 50px;
-      min-width: 50px;
-      border-radius: 50%;
-      border: 1px white solid;
-      background-color: #000;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      object-fit: cover;
-    }
-   
   }
- }
-`
+`;

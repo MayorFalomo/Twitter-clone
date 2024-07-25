@@ -5,6 +5,7 @@ export const TagModalStyle = styled.div`
     position: absolute;
     left: 30px;
     top: 70px;
+    z-index: 99999;
     width: 200px;
     background-color: black;
     color: white;
@@ -27,9 +28,16 @@ export const TagModalStyle = styled.div`
         cursor: pointer;
         /* border: 1px white solid; */
         .imgData {
-          width: 30px;
-          height: 30px;
+          min-height: 30px;
+          min-width: 30px;
           border-radius: 50%;
+          border: 1px white solid;
+          background-color: #000;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          object-fit: cover;
+
           place-content: center;
           display: grid;
           border: 1px white solid;

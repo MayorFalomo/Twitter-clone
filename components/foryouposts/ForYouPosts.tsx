@@ -112,20 +112,25 @@ const ForYouPosts = (props: any) => {
       setLikes([]);
       setRetweet([]);
       setTaggingModal(false);
-      // console.log(tweets);
     } catch (err) {
       console.log(err);
     }
   };
 
+  //We initialize a ref using the useRef, we're using the ref for the textArea so i can get the current position in the textArea
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
+  //useEffect checks if the textAreaRea.current is true first
   useEffect(() => {
     if (textareaRef.current) {
+      console.log(textareaRef.current.selectionStart, "textAreaRef");
+
       textareaRef.current.selectionStart; // Accessing the property to ensure TypeScript recognizes it
     }
   }, []);
 
+  //Function to combine the tweet and emoji by getting the current position and the end and combining them
+  //Without this function, when i click on an emoji, the emoji would always be appended to the end of the textArea instead of whereever my current position in the textArea is
   const handleEmojiClick = (emojiData: { emoji: string }) => {
     if (textareaRef.current) {
       const textarea = textareaRef.current;
@@ -139,12 +144,13 @@ const ForYouPosts = (props: any) => {
     }
   };
 
+  //This function handles the onChange functionality of the textArea
   const handleTextareaChange = async (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    if (e.target.value.length < 1) {
-      setTaggingModal(false);
-    }
+    // if (e.target.value.length < 1) {
+    //   setTaggingModal(false);
+    // }
     setTweet(e.target.value);
 
     if (textareaRef.current) {

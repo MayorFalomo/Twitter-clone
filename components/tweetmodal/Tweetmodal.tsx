@@ -115,14 +115,13 @@ const TweetModal = (props: any) => {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets`, newTweet);
       // window.location.replace("/tweets/" + res.data._id)
-      setTweets([...tweets, newTweet]);
+      setTweets([newTweet, ...tweets]);
       setTweet(" ");
       setPicture("");
       setVideo("");
       setLikes([]);
       setRetweet([]);
       setTweetModal(false);
-      // console.log(tweets);
     } catch (err) {
       console.log(err);
     }
@@ -222,7 +221,7 @@ const TweetModal = (props: any) => {
           <div className="heading">
             <BsArrowLeftShort
               onClick={() => setTweetModal(false)}
-              fontSize={35}
+              fontSize={28}
               cursor="pointer"
             />
             <div>

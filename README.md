@@ -9,7 +9,7 @@ https://tweeks.netlify.app/
 ![Logo](https://res.cloudinary.com/dsghy4siv/image/upload/v1693133147/qaffemcdlwdkhfujmg51.png)
 
 ## New Features
-
+- Tag other users to your tweet.
 - Block other users and never see their tweet.
 - Mark a tweet as uninterested.
 - Users can now Report a tweet.
