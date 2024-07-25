@@ -55,7 +55,11 @@ export default function Home(props: any) {
         <title>Tweeks - A Twitter-clone</title>
         <meta
           name="description"
-          content="A Full stack clone of Twitter - Tweeks is a full-stack clone of twitter built with twitter features in mind"
+          content="A Full stack clone of Twitter - Tweeks is a Twitter clone built with Twitter features in mind by Mayowa falomo"
+        />
+        <meta
+          name="keywords"
+          content="Twitter clone, Social app twitter-clone, social-media app, full-stack application "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

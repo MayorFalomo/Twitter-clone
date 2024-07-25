@@ -70,6 +70,7 @@ export const TweetModalStyled = styled.div`
         position: absolute;
         bottom: -55px;
         left: 10px;
+        z-index: 99;
         .tweetIcons {
           display: flex;
           align-items: center;

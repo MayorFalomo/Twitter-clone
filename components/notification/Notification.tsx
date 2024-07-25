@@ -84,7 +84,12 @@ const Notification = ({ notification }: any) => {
           )}
           <div>
             <div
-              style={{ backgroundImage: `url(${notification?.profileDp})` }}
+              style={{
+                backgroundImage: `url(${
+                  notification?.profileDp ||
+                  notification?.userWhoTaggedProfilePic
+                })`,
+              }}
               className="profileDp"
             >
               {" "}
@@ -95,6 +100,11 @@ const Notification = ({ notification }: any) => {
                   ? notification?.currentUsername
                   : notification?.username}{" "}
               </h3>
+              {notification?.userWhoTagged ? (
+                <h3 className="username"> {notification?.userWhoTagged} </h3>
+              ) : (
+                ""
+              )}
               <p>{notification?.message}</p>
             </div>
             <p>{notification?.tweets}</p>

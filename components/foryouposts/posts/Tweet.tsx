@@ -179,74 +179,87 @@ const Tweet = (props: any) => {
       userDetail: currentUser?._id,
       saved: true,
     };
-    try {
-      const res = await axios({
-        method: "POST",
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/addBookmark`,
-        data: bookmarkData,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    // console.log(bookmarkData, "bookmarkData");
 
-      if (res.data) {
-        setBookmarks([...bookmarks, res.data.bookmark]);
+    if (bookmarkData) {
+      try {
+        // console.log(bookmarkData);
+        setBookmarks([bookmarkData, ...bookmarks]);
 
-        props.setAddedToBookmark(true);
-        setTimeout(() => {
-          props.setAddedToBookmark(false);
-        }, 3000);
-        toast("Added to bookmarks", {
+        const res = await axios({
+          method: "POST",
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/addBookmark`,
+          data: bookmarkData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (res.data) {
+          // console.log(res.data, "resData");
+
+          props.setAddedToBookmark(true);
+          setTimeout(() => {
+            props.setAddedToBookmark(false);
+          }, 3000);
+          toast("Added to bookmarks", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
+      } catch (error) {
+        console.log(error, "Error bookmarking tweet");
+        toast("Error bookmarking tweet", {
           style: {
             background: "#333",
             color: "#fff",
           },
         });
       }
-    } catch (error) {
-      console.log(error, "Error bookmarking tweet");
-      toast("Error bookmarking tweet", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+    } else {
+      throw new Error("Bookmark not sent");
     }
   };
 
   //Remove bookmark
   const removeTweetFromBookmark = async () => {
-    try {
-      const res = await axios({
-        method: "DELETE",
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/delete-bookmark/${props?.tweet?._id}`,
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (res.data) {
+    if (props?.tweet?._id) {
+      try {
         setBookmarks(
           bookmarks.filter(
             (bookmark: IBookmark) => bookmark.postId !== props.tweet?._id
           )
         );
-        toast.success("Tweet has been removed to boookmark", {
+        const res = await axios({
+          method: "DELETE",
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/delete-bookmark/${props?.tweet?._id}`,
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (res.data) {
+          toast.success("Tweet has been removed to boookmark", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        toast("Error removing from bookmarks", {
           style: {
             background: "#333",
             color: "#fff",
           },
         });
       }
-    } catch (error) {
-      console.log(error);
-      toast("Error removing from bookmarks", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+    } else {
+      throw new Error("Bookmark could not remove");
     }
   };
 
@@ -282,6 +295,8 @@ const Tweet = (props: any) => {
       );
     }
   };
+
+  // console.log(bookmarks, "bookmarks");
 
   return (
     <Tweetstyled>
@@ -461,26 +476,32 @@ const Tweet = (props: any) => {
             <div className="flexIconsAndValues">
               {likesArray && (
                 <Tippy content="like" placement="bottom">
-                  <p>
-                    {likesArray.some(
-                      (e: any) => e.currentUserName == currentUser?.username
-                    ) ? (
+                  {/* <p> */}
+                  {likesArray.some(
+                    (e: any) => e.currentUserName == currentUser?.username
+                  ) ? (
+                    <span>
                       <BsFillHeartFill
                         onClick={removeLike}
+                        onTouchStart={removeLike}
                         className="likeIcon"
                         style={{
                           color: "red",
                           cursor: "pointer",
                         }}
                       />
-                    ) : (
+                    </span>
+                  ) : (
+                    <span>
                       <AiOutlineHeart
                         className="likeIcon"
                         onClick={handleAddLike}
+                        onTouchStart={handleAddLike}
                         style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
                       />
-                    )}
-                  </p>
+                    </span>
+                  )}
+                  {/* </p> */}
                 </Tippy>
               )}
               <span>{noOfLikesArray} </span>
@@ -502,9 +523,14 @@ const Tweet = (props: any) => {
               </span>
             </div>
             <div className="flexIconsAndValues">
-              {bookmarks?.some((val: any) => val.postId == props.tweet?._id) ? (
+              {bookmarks?.some(
+                (val: any) => val?.postId == props.tweet?._id
+              ) ? (
                 <Tippy content="Remove from bookmark" placement="bottom">
-                  <span onClick={removeTweetFromBookmark}>
+                  <span
+                    onClick={removeTweetFromBookmark}
+                    onTouchStart={removeTweetFromBookmark}
+                  >
                     {
                       <RxBookmarkFilled
                         className="likeIcon"
@@ -518,7 +544,7 @@ const Tweet = (props: any) => {
                 </Tippy>
               ) : (
                 <Tippy content="Bookmark tweet" placement="bottom">
-                  <span onClick={handleBookmark}>
+                  <span onTouchStart={handleBookmark} onClick={handleBookmark}>
                     {
                       <CiBookmark
                         className="likeIcon"

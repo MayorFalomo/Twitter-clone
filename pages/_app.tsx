@@ -6,7 +6,7 @@ import { AppContext } from "@/helpers/Helpers";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { ChatContext } from "@/helpers/ChatContext";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
 
 //*THIS IS THE PARENT COMPONENT OF EVERYTHING
@@ -51,8 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const getCurrentUser = async (id: string) => {
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`)
       .then(async (res) => {
-        // console.log(res, "result");
-
         if (res.ok) {
           return res.json();
         } else {

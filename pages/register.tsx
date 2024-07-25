@@ -127,7 +127,6 @@ const register = (props: any) => {
             userInfo
           )
           .then(() => router.push("/"))
-          // .then(() => window.location.reload())
           .catch((err) => err && setIsAuth(true));
         setDoc(doc(db, "users", res.user.uid), {
           uid: res.user.uid,

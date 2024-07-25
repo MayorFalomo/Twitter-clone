@@ -11,7 +11,7 @@ const TagModal = (props: Props) => {
     <div className="tagView">
       <div
         className="imgData"
-        style={{ backgroundImage: `${props.person.profilePic}` }}
+        style={{ backgroundImage: `url(${props.person.profilePic})` }}
       >
         {" "}
       </div>

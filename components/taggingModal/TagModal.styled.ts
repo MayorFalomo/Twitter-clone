@@ -5,7 +5,7 @@ export const TagModalStyle = styled.div`
     position: absolute;
     left: 30px;
     top: 70px;
-    z-index: 99999;
+    z-index: 99999999999;
     width: 200px;
     background-color: black;
     color: white;

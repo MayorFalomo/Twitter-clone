@@ -16,7 +16,6 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import TaggingModal from "../taggingModal/TaggingModal";
 import { useDebounce } from "@/hooks/useDebounce/useDebounce";
-// import { useDebounce } from "../../hooks/useDebounce/useDebounce";
 
 type Props = {};
 
@@ -77,8 +76,6 @@ const ForYouPosts = (props: any) => {
     return Array.from(arr, dec2hex).join("");
   }
 
-  // console.log(currentUser);
-
   //Function to post Tweets
   const postTweet = async (e: any) => {
     e.preventDefault();
@@ -94,15 +91,12 @@ const ForYouPosts = (props: any) => {
       likes,
       retweet,
       followers: currentUser?.followers?.length, //I am adding this so i can add verified user badges on the tl
-      // _id: currentUser?._id,
       userId: currentUser?.usersId,
       _id: generateId(24),
     };
-    // console.log(newTweet);
 
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets`, newTweet);
-      // window.location.replace("/tweets/" + res.data._id)
       setTweets([newTweet, ...tweets]);
       setEveryOne(false);
       // setTweets([...tweets, newTweet].reverse());
@@ -123,7 +117,7 @@ const ForYouPosts = (props: any) => {
   //useEffect checks if the textAreaRea.current is true first
   useEffect(() => {
     if (textareaRef.current) {
-      console.log(textareaRef.current.selectionStart, "textAreaRef");
+      // console.log(textareaRef.current.selectionStart, "textAreaRef");
 
       textareaRef.current.selectionStart; // Accessing the property to ensure TypeScript recognizes it
     }
@@ -148,9 +142,9 @@ const ForYouPosts = (props: any) => {
   const handleTextareaChange = async (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    // if (e.target.value.length < 1) {
-    //   setTaggingModal(false);
-    // }
+    if (e.target.value.length < 1) {
+      setTaggingModal(false);
+    }
     setTweet(e.target.value);
 
     if (textareaRef.current) {
