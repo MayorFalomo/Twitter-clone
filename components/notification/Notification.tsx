@@ -142,7 +142,7 @@ const Notifications = () => {
   //useEffect to handle time before notifications clear
   useEffect(() => {
     const clearNotificationsAfterDelay = () => {
-      const delayInMilliseconds = 48 * 60 * 60 * 60; // 1day in milliseconds
+      const delayInMilliseconds = 24 * 60 * 60; // 1day in milliseconds
       const timeout = setTimeout(() => {
         handleClearNotifications();
       }, delayInMilliseconds); // 10 seconds delay
@@ -195,7 +195,7 @@ const Notifications = () => {
 
     return (
       <div>
-        {notification?.map((notification: string, index: number) => (
+        {notification?.reverse()?.map((notification: string, index: number) => (
           <div key={index}>
             <Notification notification={notification} />
           </div>
