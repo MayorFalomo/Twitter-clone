@@ -25,9 +25,9 @@ https://tweeks.netlify.app/
 - Real-time messaging (pictures and videos included).
 - Receive Notifications when your post is liked, retweeted, quoted and commented on or being followed.
 - View tailored tweets for you based on people you're following.
-- notifications clear after 1 day though, this is to reduce the load on the database.
+- Notifications clear after 1 day though, this is to reduce the load on the database.
 - Follow and Unfollow other users.
-- comment on a tweet and reply comments.
+- Comment on a tweet and reply comments.
 - like and retweet comments.
 - Like, Retweet and Quote tweets.
 - Bookmark a tweet.
@@ -41,7 +41,7 @@ https://tweeks.netlify.app/
 - It is a PWA so it can be installed on devices.
 - Infinite scroll so more tweets load when the user gets to the last tweet.
 - All users by default get a birthday date,bio, location and a link, this is i simply did for UI purposes. all are editable later as you wish.
-- your login data is saved to a cookie so you never have to remember your password or username.
+- Your login data is saved to a cookie so you never have to remember your password or username.
 
 ## License
 

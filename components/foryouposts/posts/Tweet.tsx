@@ -286,6 +286,7 @@ const Tweet = (props: any) => {
   };
 
   // console.log(bookmarks, "bookmarks");
+  console.log(props.tweet, 'props tweet');
 
   return (
     <Tweetstyled>
@@ -338,7 +339,7 @@ const Tweet = (props: any) => {
             <ReactLinkify componentDecorator={componentDecorator}>
               {props.tweet?.tweet.length > 400
                 ? `${props.tweet?.tweet.slice(0, seeMore)}...`
-                : props.tweet?.tweet.split(/(@\w+)/g).map((part, index: number) =>
+                : props.tweet?.tweet.split(/(@\w+)/g).map((part: string, index: number) =>
                     part.startsWith('@') ? (
                       <span
                         style={{
