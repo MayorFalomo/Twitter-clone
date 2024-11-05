@@ -285,9 +285,6 @@ const Tweet = (props: any) => {
     }
   };
 
-  // console.log(bookmarks, "bookmarks");
-  console.log(props.tweet, 'props tweet');
-
   return (
     <Tweetstyled>
       <div className="postsContainer">
@@ -322,10 +319,11 @@ const Tweet = (props: any) => {
               <span onClick={() => setPopUpModal((prev) => !prev)}>
                 {<BiDotsHorizontalRounded className="biDots" cursor="pointer" />}{' '}
               </span>
-
-              {popUpModal && (
-                <TweetOptionsModal tweet={props.tweet} setPopUpModal={setPopUpModal} />
-              )}
+              <AnimatePresence>
+                {popUpModal && (
+                  <TweetOptionsModal tweet={props.tweet} setPopUpModal={setPopUpModal} />
+                )}
+              </AnimatePresence>
             </div>
           </div>
           <p

@@ -114,9 +114,7 @@ width: 100%;
                
                 }
                 .popUpModal {
-                    position: relative;
-                   
-                    
+                    position: relative;                    
                 }
     }
     .tweet-caption{
