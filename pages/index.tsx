@@ -1,19 +1,19 @@
-import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
-import ForYouPosts from "@/components/foryouposts/ForYouPosts";
-import FollowersPosts from "@/components/followerspost/FollowersPosts";
-import { HomeContainer } from "@/styles/Home.styled";
-import Navbar from "@/components/navbar/Navbar";
-import Search from "@/components/search/Search";
-import Trends from "@/components/trends/Trends";
-import Tweets from "@/components/foryouposts/posts/Tweets";
-import { AppContext } from "@/helpers/Helpers";
-import { useRouter } from "next/router";
-import { BsStars, BsTwitter } from "react-icons/bs";
-import MobileNav from "@/components/mobilenav/MobileNav";
-import Navigation from "@/components/navigation/Navigation";
-import Preload from "@/components/preload/Preload";
-import { AnimatePresence, motion } from "framer-motion";
+import Head from 'next/head';
+import { useContext, useEffect, useState } from 'react';
+import ForYouPosts from '@/components/foryouposts/ForYouPosts';
+import FollowersPosts from '@/components/followerspost/FollowersPosts';
+import { HomeContainer } from '@/styles/Home.styled';
+import Navbar from '@/components/navbar/Navbar';
+import Search from '@/components/search/Search';
+import Trends from '@/components/trends/Trends';
+import Tweets from '@/components/foryouposts/posts/Tweets';
+import { AppContext } from '@/helpers/Helpers';
+import { useRouter } from 'next/router';
+import { BsStars, BsTwitter } from 'react-icons/bs';
+import MobileNav from '@/components/mobilenav/MobileNav';
+import Navigation from '@/components/navigation/Navigation';
+import Preload from '@/components/preload/Preload';
+import { AnimatePresence, motion } from 'framer-motion';
 
 //*THIS IS THE HOMEPAGE, IT'S WHAT YOU'RE GOING TO SEE FIRST WHEN YOU LOGIN
 //*THIS WAS WHERE NEXT DEFINED ALL THEIR OWN PAGE
@@ -84,43 +84,33 @@ export default function Home(props: any) {
                     }}
                     className="profilePicHeader"
                   >
-                    {" "}
+                    {' '}
                   </div>
                   <p>
                     <BsTwitter
                       className="hiddenloginLogo"
-                      style={{ color: " #1d9aef" }}
+                      style={{ color: ' #1d9aef' }}
                     />
                   </p>
                   <p>
-                    <BsTwitter
-                      className="loginLogo"
-                      style={{ color: " #1d9aef" }}
-                    />
+                    <BsTwitter className="loginLogo" style={{ color: ' #1d9aef' }} />
                   </p>
                   <p>
-                    <BsStars
-                      className="loginLogo"
-                      style={{ color: " #1d9aef" }}
-                    />
+                    <BsStars className="loginLogo" style={{ color: ' #1d9aef' }} />
                   </p>
-                  <div
-                    className={
-                      navigation ? "openNavigation" : "closedNavigation"
-                    }
-                  >
+                  <div className={navigation ? 'openNavigation' : 'closedNavigation'}>
                     <Navigation />
                   </div>
                 </div>
                 <ul className="postGroup">
                   <a
-                    className={current == 0 ? "linkActive" : "link"}
+                    className={current == 0 ? 'linkActive' : 'link'}
                     onClick={() => handleClick(0)}
                   >
                     <li> For you </li>
                   </a>
                   <a
-                    className={current == 1 ? "linkActive" : "link"}
+                    className={current == 1 ? 'linkActive' : 'link'}
                     onClick={() => handleClick(1)}
                   >
                     <li> Following </li>
@@ -146,7 +136,7 @@ export default function Home(props: any) {
               <Trends />
             </div>
             <div className="mobileNav">
-              {" "}
+              {' '}
               <MobileNav />
             </div>
           </motion.div>

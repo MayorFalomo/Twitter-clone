@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const TweetsContainer = styled.div`
   .tweetsContainer {
     margin-bottom: 70px;
+    /* max-width: 600px; */
+    width: 100%;
+    /* border: 2px red solid; */
+    overflow-wrap: break-word !important;
     .loadingBar {
       display: flex;
       justify-content: center;

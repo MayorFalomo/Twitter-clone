@@ -18,7 +18,6 @@ export const HomeContainer = styled.div`
       display: grid;
       grid-template-columns: 400px auto 450px ; 
             /* border: 2px yellow solid; */
-
     }
     @media (max-width: 1700px ) {
       display: grid;

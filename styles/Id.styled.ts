@@ -162,6 +162,7 @@ export const SingleTweetStyle = styled.div`
         margin: 20px 20px;
         line-height: 35px;
         white-space: pre-wrap;
+        overflow-wrap: break-word;
     }
     .postDetailsContainer{
         .timeAndViews{

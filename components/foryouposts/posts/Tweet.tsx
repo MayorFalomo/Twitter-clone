@@ -1,29 +1,29 @@
-import React, { useContext, useMemo, useState } from "react";
-import { BiBarChart, BiDotsHorizontalRounded } from "react-icons/bi";
+import React, { useContext, useMemo, useState } from 'react';
+import { BiBarChart, BiDotsHorizontalRounded } from 'react-icons/bi';
 import {
   AiOutlineFrown,
   AiOutlineHeart,
   AiOutlineRetweet,
   AiOutlineUpload,
-} from "react-icons/ai";
-import { FaRegComment } from "react-icons/fa";
-import { Tweetstyled } from "./Tweet.styled";
-import moment from "moment";
-import Link from "next/link";
-import { BsFillHeartFill } from "react-icons/bs";
-import { AppContext } from "@/helpers/Helpers";
-import axios from "axios";
-import CommentModal from "@/components/commentmodal/Commentmodal";
+} from 'react-icons/ai';
+import { FaRegComment } from 'react-icons/fa';
+import { Tweetstyled } from './Tweet.styled';
+import moment from 'moment';
+import Link from 'next/link';
+import { BsFillHeartFill } from 'react-icons/bs';
+import { AppContext } from '@/helpers/Helpers';
+import axios from 'axios';
+import CommentModal from '@/components/commentmodal/Commentmodal';
 // import { RxHeart } from "react-icons/rx";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import { MdClose } from "react-icons/md";
-import TweetOptionsModal from "@/components/tweetOptions/TweetOptionsModal";
-import { AnimatePresence, motion } from "framer-motion";
-import toast from "react-hot-toast";
-import { CiBookmark } from "react-icons/ci";
-import { RxBookmarkFilled } from "react-icons/rx";
-import ReactLinkify from "react-linkify";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import { MdClose } from 'react-icons/md';
+import TweetOptionsModal from '@/components/tweetOptions/TweetOptionsModal';
+import { AnimatePresence, motion } from 'framer-motion';
+import toast from 'react-hot-toast';
+import { CiBookmark } from 'react-icons/ci';
+import { RxBookmarkFilled } from 'react-icons/rx';
+import ReactLinkify from 'react-linkify';
 
 interface IFollowUser {
   _id: string;
@@ -74,16 +74,10 @@ const Tweet = (props: any) => {
   const [likeTweet, SetLikeTweet] = useState<boolean>(false);
   const [retweetArray, setRetweetArray] = useState<any>(props.tweet?.retweet);
   const [likesArray, setLikesArray] = useState<any>(props.tweet?.likes);
-  const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(
-    retweetArray?.length
-  );
-  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(
-    likesArray?.length
-  );
-  const [urlParams, setUrlParams] = useState<string>(" ");
-  const [usernames, setUsernames] = useState<string>(
-    props.suggestedUser?.username
-  );
+  const [noOfRetweetArray, setNoOfRetweetArray] = useState<number>(retweetArray?.length);
+  const [noOfLikesArray, setNoOfLikesArray] = useState<number>(likesArray?.length);
+  const [urlParams, setUrlParams] = useState<string>(' ');
+  const [usernames, setUsernames] = useState<string>(props.suggestedUser?.username);
 
   const [views, setViews] = useState<number>(0);
 
@@ -104,10 +98,7 @@ const Tweet = (props: any) => {
     setRetweetArray([...retweetArray, retweetData]);
     setNoOfRetweetArray(retweetArray.length + 1);
     await axios
-      .put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/tweets/retweet-tweet`,
-        retweetData
-      )
+      .put(`${process.env.NEXT_PUBLIC_BASE_URL}/tweets/retweet-tweet`, retweetData)
       .catch((err) => console.log(err));
   };
 
@@ -187,11 +178,11 @@ const Tweet = (props: any) => {
         setBookmarks([bookmarkData, ...bookmarks]);
 
         const res = await axios({
-          method: "POST",
+          method: 'POST',
           url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/addBookmark`,
           data: bookmarkData,
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         });
 
@@ -202,24 +193,24 @@ const Tweet = (props: any) => {
           setTimeout(() => {
             props.setAddedToBookmark(false);
           }, 3000);
-          toast("Added to bookmarks", {
+          toast('Added to bookmarks', {
             style: {
-              background: "#333",
-              color: "#fff",
+              background: '#333',
+              color: '#fff',
             },
           });
         }
       } catch (error) {
-        console.log(error, "Error bookmarking tweet");
-        toast("Error bookmarking tweet", {
+        console.log(error, 'Error bookmarking tweet');
+        toast('Error bookmarking tweet', {
           style: {
-            background: "#333",
-            color: "#fff",
+            background: '#333',
+            color: '#fff',
           },
         });
       }
     } else {
-      throw new Error("Bookmark not sent");
+      throw new Error('Bookmark not sent');
     }
   };
 
@@ -228,38 +219,36 @@ const Tweet = (props: any) => {
     if (props?.tweet?._id) {
       try {
         setBookmarks(
-          bookmarks.filter(
-            (bookmark: IBookmark) => bookmark.postId !== props.tweet?._id
-          )
+          bookmarks.filter((bookmark: IBookmark) => bookmark.postId !== props.tweet?._id)
         );
         const res = await axios({
-          method: "DELETE",
+          method: 'DELETE',
           url: `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks/delete-bookmark/${props?.tweet?._id}`,
 
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         });
 
         if (res.data) {
-          toast.success("Tweet has been removed to boookmark", {
+          toast.success('Tweet has been removed to boookmark', {
             style: {
-              background: "#333",
-              color: "#fff",
+              background: '#333',
+              color: '#fff',
             },
           });
         }
       } catch (error) {
         console.log(error);
-        toast("Error removing from bookmarks", {
+        toast('Error removing from bookmarks', {
           style: {
-            background: "#333",
-            color: "#fff",
+            background: '#333',
+            color: '#fff',
           },
         });
       }
     } else {
-      throw new Error("Bookmark could not remove");
+      throw new Error('Bookmark could not remove');
     }
   };
 
@@ -283,7 +272,7 @@ const Tweet = (props: any) => {
   ) => {
     if (decoratedHref == decoratedText) {
       return (
-        <a href={decoratedHref} style={{ color: "#1d9aef" }} target="_blank">
+        <a href={decoratedHref} style={{ color: '#1d9aef' }} target="_blank">
           {decoratedText}
         </a>
       );
@@ -301,39 +290,27 @@ const Tweet = (props: any) => {
   return (
     <Tweetstyled>
       <div className="postsContainer">
-        {
-          <AnimatePresence>
-            <motion.div className={commentModal ? "overlay" : "removeOverlay"}>
-              {" "}
-            </motion.div>
-          </AnimatePresence>
-        }
+        {<div className={commentModal ? 'overlay' : 'removeOverlay'}> </div>}
         <Link
-          href={"/users/" + props.tweet?.username}
+          href={'/users/' + props.tweet?.username}
           className="profilePicture"
           style={{ backgroundImage: `url(${props.tweet?.profileDp})` }}
         ></Link>
         <div className="subPostsContainer">
           <div className="flexTweetProfileDetails">
             <div className="tweetProfileDetails">
-              <Link
-                href={"/users/" + props.tweet?.username}
-                className="userName"
-              >
-                {" "}
+              <Link href={'/users/' + props.tweet?.username} className="userName">
+                {' '}
                 {props.tweet?.username.length > 11
                   ? props.tweet?.username.slice(0, 10)
-                  : props.tweet?.username}{" "}
-                {props.tweet?.username.length > 11 ? "..." : ""}
+                  : props.tweet?.username}{' '}
+                {props.tweet?.username.length > 11 ? '...' : ''}
               </Link>
               <span className="userAt">{props.tweet?.usersAt}</span>
               {props.tweet?.newDates == undefined ? (
                 <span className="createdAt">
-                  {moment(new Date(props.tweet?.createdAt)).fromNow().length >
-                  11
-                    ? moment(new Date(props.tweet?.createdAt))
-                        .fromNow()
-                        .slice(0, 8)
+                  {moment(new Date(props.tweet?.createdAt)).fromNow().length > 11
+                    ? moment(new Date(props.tweet?.createdAt)).fromNow().slice(0, 8)
                     : moment(new Date(props.tweet?.createdAt)).fromNow()}
                 </span>
               ) : (
@@ -342,66 +319,70 @@ const Tweet = (props: any) => {
             </div>
             <div className="popUpModal">
               <span onClick={() => setPopUpModal((prev) => !prev)}>
-                {
-                  <BiDotsHorizontalRounded
-                    className="biDots"
-                    cursor="pointer"
-                  />
-                }{" "}
+                {<BiDotsHorizontalRounded className="biDots" cursor="pointer" />}{' '}
               </span>
 
               {popUpModal && (
-                <TweetOptionsModal
-                  tweet={props.tweet}
-                  setPopUpModal={setPopUpModal}
-                />
+                <TweetOptionsModal tweet={props.tweet} setPopUpModal={setPopUpModal} />
               )}
             </div>
           </div>
-          <p className="tweet-caption">
+          <p
+            style={{
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+            }}
+            className="tweet-caption"
+          >
             <ReactLinkify componentDecorator={componentDecorator}>
               {props.tweet?.tweet.length > 400
                 ? `${props.tweet?.tweet.slice(0, seeMore)}...`
-                : props.tweet?.tweet
-                    .split(/(@\w+)/g)
-                    .map((part: string, index: number) =>
-                      part.startsWith("@") ? (
-                        <span key={index}>
-                          <Link
-                            style={{
-                              color: "#1d9aef",
-                              fontWeight: "bold",
-                              cursor: "pointer",
-                            }}
-                            href={"/users/" + part.slice(1)}
-                          >
-                            {part}
-                          </Link>
-                        </span>
-                      ) : (
-                        <span key={index}>{part}</span>
-                      )
-                    )}
+                : props.tweet?.tweet.split(/(@\w+)/g).map((part, index: number) =>
+                    part.startsWith('@') ? (
+                      <span
+                        style={{
+                          color: '#1d9aef',
+                          fontWeight: 'bold',
+                          cursor: 'pointer',
+                        }}
+                        key={index}
+                      >
+                        <Link
+                          style={{
+                            color: '#1d9aef',
+                            fontWeight: 'bold',
+                            cursor: 'pointer',
+                          }}
+                          href={'/users/' + part.slice(1)}
+                        >
+                          {part}
+                        </Link>
+                      </span>
+                    ) : (
+                      <span key={index}>{part}</span>
+                    )
+                  )}
             </ReactLinkify>
           </p>
           {props.tweet?.tweet.length > 400 && (
             <p>
               {seeMore == 500 ? (
                 <span
-                  style={{ color: "#1d9aef", cursor: "pointer" }}
+                  style={{ color: '#1d9aef', cursor: 'pointer' }}
                   onClick={() => setSeeMore(props.tweet?.tweet.length)}
                 >
-                  Read more{" "}
+                  Read more{' '}
                 </span>
               ) : (
                 <span
-                  style={{ color: "#1d9aef", cursor: "pointer" }}
+                  style={{ color: '#1d9aef', cursor: 'pointer' }}
                   onClick={() => setSeeMore(500)}
                 >
-                  {" "}
+                  {' '}
                   Read less
                 </span>
-              )}{" "}
+              )}{' '}
             </p>
           )}
           {props.tweet?.picture ? (
@@ -411,16 +392,12 @@ const Tweet = (props: any) => {
               className="tweet-image"
             ></div>
           ) : (
-            ""
+            ''
           )}
           {props.tweet?.video ? (
-            <video
-              className="tweetVideo"
-              src={`${props.tweet?.video}`}
-              controls
-            ></video>
+            <video className="tweetVideo" src={`${props.tweet?.video}`} controls></video>
           ) : (
-            ""
+            ''
           )}
           <div className="tweetOptions">
             <div className="flexIconsAndValues">
@@ -428,7 +405,7 @@ const Tweet = (props: any) => {
                 <p onClick={handleGetId}>
                   <FaRegComment
                     className="likeIcon"
-                    style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                    style={{ cursor: 'pointer', color: 'rgb(113,118,123)' }}
                   />
                 </p>
               </Tippy>
@@ -439,11 +416,11 @@ const Tweet = (props: any) => {
                     <CommentModal
                       urlParams={urlParams}
                       setCommentModal={setCommentModal}
-                    />{" "}
+                    />{' '}
                   </motion.div>
                 </AnimatePresence>
               ) : (
-                ""
+                ''
               )}
             </div>
             <div className="flexIconsAndValues">
@@ -457,15 +434,15 @@ const Tweet = (props: any) => {
                         onClick={removeRetweet}
                         className="likeIcon"
                         style={{
-                          color: "#00BA7C",
-                          cursor: "pointer",
+                          color: '#00BA7C',
+                          cursor: 'pointer',
                         }}
                       />
                     ) : (
                       <AiOutlineRetweet
                         className="likeIcon"
                         onClick={handleAddRetweet}
-                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(113,118,123)' }}
                       />
                     )}
                   </p>
@@ -486,8 +463,8 @@ const Tweet = (props: any) => {
                         onTouchStart={removeLike}
                         className="likeIcon"
                         style={{
-                          color: "red",
-                          cursor: "pointer",
+                          color: 'red',
+                          cursor: 'pointer',
                         }}
                       />
                     </span>
@@ -497,7 +474,7 @@ const Tweet = (props: any) => {
                         className="likeIcon"
                         onClick={handleAddLike}
                         onTouchStart={handleAddLike}
-                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(113,118,123)' }}
                       />
                     </span>
                   )}
@@ -512,20 +489,18 @@ const Tweet = (props: any) => {
                   {
                     <BiBarChart
                       className="likeIcon"
-                      style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                      style={{ cursor: 'pointer', color: 'rgb(113,118,123)' }}
                     />
                   }
                 </p>
               </Tippy>
               <span>
                 {views.toLocaleString()}
-                {views > 1000 ? "k" : ""}{" "}
+                {views > 1000 ? 'k' : ''}{' '}
               </span>
             </div>
             <div className="flexIconsAndValues">
-              {bookmarks?.some(
-                (val: any) => val?.postId == props.tweet?._id
-              ) ? (
+              {bookmarks?.some((val: any) => val?.postId == props.tweet?._id) ? (
                 <Tippy content="Remove from bookmark" placement="bottom">
                   <span
                     onClick={removeTweetFromBookmark}
@@ -535,8 +510,8 @@ const Tweet = (props: any) => {
                       <RxBookmarkFilled
                         className="likeIcon"
                         style={{
-                          cursor: "pointer",
-                          color: "#1d9aef",
+                          cursor: 'pointer',
+                          color: '#1d9aef',
                         }}
                       />
                     }
@@ -548,7 +523,7 @@ const Tweet = (props: any) => {
                     {
                       <CiBookmark
                         className="likeIcon"
-                        style={{ cursor: "pointer", color: "rgb(113,118,123)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(113,118,123)' }}
                       />
                     }
                   </span>
@@ -558,14 +533,14 @@ const Tweet = (props: any) => {
           </div>
           <div className="showThread">
             <Link
-              href={"/users/" + props.tweet?.username}
+              href={'/users/' + props.tweet?.username}
               style={{
-                cursor: "pointer",
+                cursor: 'pointer',
                 backgroundImage: `url(${props.tweet?.profileDp})`,
               }}
               className="subUserPhoto"
             >
-              {" "}
+              {' '}
             </Link>
             <Link href="/[id]" as={`${props.tweet?._id}`}>
               <p>Show this thread </p>
@@ -579,17 +554,14 @@ const Tweet = (props: any) => {
             }}
             className="pictureModal"
           >
-            <span
-              className="closeModalBtn"
-              onClick={() => setOpenPictureModal(false)}
-            >
+            <span className="closeModalBtn" onClick={() => setOpenPictureModal(false)}>
               <MdClose fontSize={25} cursor="pointer" />
             </span>
           </div>
         ) : (
-          ""
+          ''
         )}
-        {openPictureModal ? <div className="bgFilter"> </div> : ""}
+        {openPictureModal ? <div className="bgFilter"> </div> : ''}
       </div>
     </Tweetstyled>
   );

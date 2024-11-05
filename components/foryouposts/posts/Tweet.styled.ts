@@ -7,6 +7,8 @@ align-items: flex-start;
 gap: 10px;
 border-bottom: 2px rgb(47, 51, 54) solid;
 padding: 10px;
+width: 100%;
+/* border: 2px yellow solid; */
 .overlay{
         position: fixed;
         left: 0;
@@ -44,17 +46,21 @@ padding: 10px;
     }
 }
 .subPostsContainer{
+    max-width: 100%;
     width: 100%;
+    /* border: 2px red solid; */
 .flexTweetProfileDetails{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        /* border: 2px blue solid; */
         .tweetProfileDetails{
             width: 100%;
             display: flex;
             align-items: center;
             gap: 5px;
+                /* border: 2px green solid; */
             .userName{
             font-size: calc(18px + 0.25vw);
             @media (max-width: 445px ) {
@@ -117,11 +123,30 @@ padding: 10px;
         font-size: calc(16px + 0.25vw);
         margin: 10px auto;
         line-height: 35px;
-        white-space: pre-wrap;
+        white-space: pre-wrap !important;
+        overflow-wrap: break-word !important;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 0;
+        word-wrap: break-word;
+        span{
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+              white-space: pre-wrap !important;
+              overflow-wrap: break-word !important;
+          word-wrap: break-word;
+        }
     }
     .tweet-image{
         margin-top: 10px;
-        border: 1px rgb(113,118,123) solid ;
+        border: 1px rgb(113,118,123) solid;
         width: 100%;
         height: 700px;
         background-color: #000;
@@ -152,11 +177,13 @@ padding: 10px;
         justify-content: space-between;
         margin: 20px auto;
         color: #E2E4E4;
+        width: 100%;
     }
     .flexIconsAndValues{
         display: flex;
         align-items:center;
         gap: 10px;
+        width: 100%;
         span{
             font-size: calc(16px + 0.25vw);
             color: rgb(113,118,123);
