@@ -159,6 +159,7 @@ export const MessagesStyle = styled.div`
             gap: 10px;
             padding: 20px 5px;
             margin-top:30px;
+            cursor: pointer;
             /* border: 5px red solid !important; */
             border: 1px rgb(113,118,123) solid ;
             .profilePic{

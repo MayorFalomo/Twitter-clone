@@ -152,7 +152,7 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   //Reducer to manage chats
-  //This reducer helps keep track of the chats, so if the currentUse Id is greater it know whose chats to load
+  //This reducer helps keep track of the chats, so if the currentUser Id is greater it know whose chats to load
   const chatReducer = (state: any, action: any) => {
     switch (action.type) {
       case "CHANGE_USER":

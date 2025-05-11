@@ -1,9 +1,9 @@
-import { db } from "@/firebase-config";
-import { AppContext } from "@/helpers/Helpers";
-import { doc, onSnapshot } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
-import { Chatstyled } from "./Chats.styled";
-import { ChatContext } from "@/helpers/ChatContext";
+import { db } from '@/firebase-config';
+import { AppContext } from '@/helpers/Helpers';
+import { doc, onSnapshot } from 'firebase/firestore';
+import React, { useContext, useEffect, useState } from 'react';
+import { Chatstyled } from './Chats.styled';
+import { ChatContext } from '@/helpers/ChatContext';
 
 interface Chat {
   date: any;
@@ -35,12 +35,9 @@ const Chats = (props: any) => {
 
   useEffect(() => {
     const getChats = () => {
-      const unsub = onSnapshot(
-        doc(db, "userChats", currentUser?._id),
-        (doc) => {
-          setChats(doc.data() as Chat[]);
-        }
-      );
+      const unsub = onSnapshot(doc(db, 'userChats', currentUser?._id), (doc) => {
+        setChats(doc.data() as Chat[]);
+      });
       return () => {
         unsub();
       };
@@ -52,7 +49,7 @@ const Chats = (props: any) => {
   //
   const handleSelect = (u: any) => {
     props.setChatComponentActive(true);
-    dispatch({ type: "CHANGE_USER", payload: u });
+    dispatch({ type: 'CHANGE_USER', payload: u });
     // console.log(dispatch({ type: "CHANGE_USER", payload: u }), "dispatch");
     if (window.innerWidth < 1000) {
       props.setIsMobile(true);
@@ -60,7 +57,7 @@ const Chats = (props: any) => {
       setIsMobile(false);
     }
   };
-  console.log(chats, "user");
+  // console.log(chats, "user");
 
   return (
     <Chatstyled>
@@ -81,7 +78,7 @@ const Chats = (props: any) => {
           ?.map((chat: any) => (
             <div
               className="allUsersChat"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
               key={chat[0]}
               onClick={() => handleSelect(chat[1]?.userInfo)}
             >
